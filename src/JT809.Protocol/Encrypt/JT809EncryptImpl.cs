@@ -9,12 +9,10 @@ namespace JT809.Protocol.Encrypt
     {
         private JT809EncryptConfig Config;
 
-        private uint Key { get; set; }
 
-        public JT809EncryptImpl(uint key,JT809EncryptConfig config)
+        public JT809EncryptImpl(JT809EncryptConfig config)
         {
             Config = config;
-            Key = key;
         }
 
         public void Decrypt(byte[] buffer)
@@ -24,9 +22,9 @@ namespace JT809.Protocol.Encrypt
 
         public void Encrypt(byte[] buffer)
         {
-            if (0 == Key)
+            if (0 == Config.Key)
             {
-                Key = 1;
+                Config.Key = 1;
             }
             uint mkey = Config.M1;
             if (0 == mkey)
@@ -35,8 +33,8 @@ namespace JT809.Protocol.Encrypt
             }
             for (int idx = 0; idx < buffer.Length; idx++)
             {
-                Key = Config.IA1 * (Key % mkey) + Config.IC1;
-                buffer[idx] ^= (byte)((Key >> 20) & 0xFF);
+                Config.Key = Config.IA1 * (Config.Key % mkey) + Config.IC1;
+                buffer[idx] ^= (byte)((Config.Key >> 20) & 0xFF);
             }
         }
     }
