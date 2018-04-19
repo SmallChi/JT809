@@ -13,7 +13,8 @@ namespace JT809.Protocol.ProtocolPacket
         public const int CrcByteLength = 2;
         public const byte BeginFlag = 0X5B;
         public const byte EndFlag = 0X5D;
-        public Header Header { get; private set; }
+        public Header Header { get; set; }
+        public MessageBody MessageBody { get; set; }
         private ushort CRCCheckCode { get; set; }
     }
 }
