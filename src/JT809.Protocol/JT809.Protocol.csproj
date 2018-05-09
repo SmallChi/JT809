@@ -9,8 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Encrypt\" />
-    <Folder Include="ProtocolPacket\Message\SlaveLink\" />
+    <Compile Remove="Encrypt\**" />
+    <Compile Remove="Escape\**" />
+    <Compile Remove="ProtocolPacket\Message\**" />
+    <EmbeddedResource Remove="Encrypt\**" />
+    <EmbeddedResource Remove="Escape\**" />
+    <EmbeddedResource Remove="ProtocolPacket\Message\**" />
+    <None Remove="Encrypt\**" />
+    <None Remove="Escape\**" />
+    <None Remove="ProtocolPacket\Message\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="IEncrypt.cs" />
+    <Compile Remove="IEscape.cs" />
   </ItemGroup>
 
 </Project>

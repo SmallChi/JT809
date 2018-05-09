@@ -36,10 +36,7 @@ namespace JT809.Protocol.Escape
             }
             dataList.Add(bodyBuffer[bodyBuffer.Length - 1]);
             var tempBuffe = dataList.ToArray();
-            if (encrypt != null)
-            {
-                encrypt.Encrypt(tempBuffe);
-            }
+
             return tempBuffe;
         }
 

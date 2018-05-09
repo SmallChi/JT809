@@ -1,11 +1,13 @@
-﻿using System;
+﻿using JT809.Protocol.Enums;
+using System;
+using System.IO;
 
 namespace JT809.Protocol.ProtocolPacket
 {
     /// <summary>
     /// Message Header 数据头
     /// </summary>
-    public class Header
+    public class Header: BufferedEntityBase
     {
         /// <summary>
         /// 固定为22个字节长度
@@ -34,16 +36,31 @@ namespace JT809.Protocol.ProtocolPacket
         /// <summary>
         /// 业务数据类型
         /// </summary>
-        public ushort BusinessID { get; private set; }
+        public BusinessType BusinessID { get; private set; }
         /// <summary>
         /// 下级平台接入码，上级平台给下级平台分配唯一标识码。
         /// </summary>
         public uint GNSSCENTERID { get; set; }
         public Version Version { get; private set; }
-        public EncryptEnum EncryptEnum { get; private set; }
+        public EncryptOpitions EncryptOpitions { get; private set; }
         /// <summary>
         /// 数据加密的密匙，长度为 4 个字节。
         /// </summary>
         public uint EncryptKey { get; private set; } = 0X00;
+
+        protected override void InitializeProperties(object[] properties, int startIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnInitializePropertiesFromReadBuffer(BinaryReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnWriteToBuffer(BinaryWriter writer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
