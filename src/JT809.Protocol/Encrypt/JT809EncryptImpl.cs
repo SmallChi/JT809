@@ -36,6 +36,6 @@ namespace JT809.Protocol.Encrypt
                 Config.Key = Config.IA1 * (Config.Key % mkey) + Config.IC1;
                 buffer[idx] ^= (byte)((Config.Key >> 20) & 0xFF);
             }
-        }
+        } 
     }
 }

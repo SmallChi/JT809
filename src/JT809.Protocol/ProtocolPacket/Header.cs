@@ -42,11 +42,14 @@ namespace JT809.Protocol.ProtocolPacket
         /// </summary>
         public uint GNSSCENTERID { get; set; }
         public Version Version { get; private set; }
-        public EncryptOpitions EncryptOpitions { get; private set; }
+        public EncryptOpitions EncryptOpition { get; private set; }
         /// <summary>
         /// 数据加密的密匙，长度为 4 个字节。
         /// </summary>
         public uint EncryptKey { get; private set; } = 0X00;
+
+        public Header(byte[] buffer) : base(buffer) { CounterOnRecieveGenerater++; }
+
 
         protected override void InitializeProperties(object[] properties, int startIndex)
         {

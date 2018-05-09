@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using JT809.Protocol.Enums;
+using JT809.Protocol.Exceptions;
 using JT809.Protocol.ProtocolPacket.Extensions;
 
 namespace JT809.Protocol.ProtocolPacket
@@ -39,7 +41,20 @@ namespace JT809.Protocol.ProtocolPacket
             var content01 = this.UnEscape(content00);
             var crc16 = this.CRC16_CCITT(content01, 0, content01.Length - Crc16ByteLength);
             CRC16 = BitConverter.ToUInt16(new[] { content01[content01.Length - 1], content01[content01.Length - 2] }, 0);
-            if (CRC16 != crc16) throw new InvalidDataException("CRC16 check invalid.");
+            if (CRC16 != crc16) throw new JT809Exception(ErrorCode.CRC16CheckInvalid);
+            Header = new Header(content01);
+            var bodyBuffer00 = new byte[content01.Length - Header.HeaderFixedByteLength - Crc16ByteLength];
+            Array.Copy(content01, Header.HeaderFixedByteLength, bodyBuffer00, 0, bodyBuffer00.Length);
+            //Default
+            byte[] bodyBuffer01 = bodyBuffer00;
+            switch (Header.EncryptOpition)
+            {
+                case EncryptOpitions.None:
+                    break;
+                case EncryptOpitions.Common:
+                  //  bodyBuffer01 = this.EncryptExt(Header.KeyForCommonEncrypt, bodyBuffer01, bodyBuffer01.Length, Config.Value.ServiceGB809Info.MasterLinkInfo.M1, Config.Value.ServiceGB809Info.MasterLinkInfo.IA1, Config.Value.ServiceGB809Info.MasterLinkInfo.IC1);
+                    break;
+            }
         }
 
         protected override void OnWriteToBuffer(BinaryWriter writer)
