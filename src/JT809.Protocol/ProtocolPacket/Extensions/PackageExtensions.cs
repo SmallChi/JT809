@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using JT809.Protocol.Configs;
+using System.Collections.Generic;
 
 
 namespace JT809.Protocol.ProtocolPacket.Extensions
@@ -95,6 +96,24 @@ namespace JT809.Protocol.ProtocolPacket.Extensions
             }
             crc &= 0xffff;
             return crc;
+        }
+        internal static byte[] Encrypt(this Package packege, byte[] buffer, int size, JT809EncryptConfig Config)
+        {
+            if (0 == Config.Key)
+            {
+                Config.Key = 1;
+            }
+            uint mkey = Config.M1;
+            if (0 == mkey)
+            {
+                mkey = 1;
+            }
+            for (int idx = 0; idx < size; idx++)
+            {
+                Config.Key = Config.IA1 * (Config.Key % mkey) + Config.IC1;
+                buffer[idx] ^= (byte)((Config.Key >> 20) & 0xFF);
+            }
+            return buffer;
         }
     }
 }

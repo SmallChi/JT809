@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using JT809.Protocol.Configs;
 using JT809.Protocol.Enums;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.ProtocolPacket.Extensions;
@@ -17,6 +18,8 @@ namespace JT809.Protocol.ProtocolPacket
         public const int Crc16ByteLength = 2;
         public const byte BeginFlag = 0X5B;
         public const byte EndFlag = 0X5D;
+
+        public JT809EncryptConfig Config;
 
         public Header Header { get; private set; }
 
@@ -52,14 +55,21 @@ namespace JT809.Protocol.ProtocolPacket
                 case EncryptOpitions.None:
                     break;
                 case EncryptOpitions.Common:
-                  //  bodyBuffer01 = this.EncryptExt(Header.KeyForCommonEncrypt, bodyBuffer01, bodyBuffer01.Length, Config.Value.ServiceGB809Info.MasterLinkInfo.M1, Config.Value.ServiceGB809Info.MasterLinkInfo.IA1, Config.Value.ServiceGB809Info.MasterLinkInfo.IC1);
+                    bodyBuffer01 = this.Encrypt(bodyBuffer01, bodyBuffer01.Length, Config);
                     break;
             }
+            if (Header.Length != (bodyBuffer01.Length + NotDataLength)) throw new JT809Exception(ErrorCode.HeaderLengthNotEqualBodyLength);
+            Body = GenerateBody(Header.BusinessID, bodyBuffer01);
         }
 
         protected override void OnWriteToBuffer(BinaryWriter writer)
         {
             throw new NotImplementedException();
+        }
+
+        public static MessageBody GenerateBody(BusinessType businessID, byte[] bodyBuffer)
+        {
+            return Activator.CreateInstance(typeof(object), bodyBuffer) as MessageBody;
         }
     }
 }
