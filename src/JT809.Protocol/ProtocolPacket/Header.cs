@@ -1,4 +1,5 @@
-﻿using JT809.Protocol.Enums;
+﻿using JT809.Protocol.Configs;
+using JT809.Protocol.Enums;
 using System;
 using System.IO;
 
@@ -40,8 +41,8 @@ namespace JT809.Protocol.ProtocolPacket
         /// <summary>
         /// 下级平台接入码，上级平台给下级平台分配唯一标识码。
         /// </summary>
-        public uint GNSSCENTERID { get; set; }
-        public Version Version { get; private set; }
+        public uint SessionId { get; set; }
+        public JT809Version JT809Version { get; private set; }
         public EncryptOpitions EncryptOpition { get; private set; }
         /// <summary>
         /// 数据加密的密匙，长度为 4 个字节。
@@ -50,20 +51,51 @@ namespace JT809.Protocol.ProtocolPacket
 
         public Header(byte[] buffer) : base(buffer) { CounterOnRecieveGenerater++; }
 
+        internal Header(uint length, uint number, BusinessType businessID, JT809Config jt809Config) : base(length, number, businessID, jt809Config)
+        { CounterOnSendGenerater++; }
+
+        public Header(uint length, BusinessType businessID, JT809Config jt809Config) : this(length, CounterOnSendGenerater, businessID, jt809Config) { }
 
         protected override void InitializeProperties(object[] properties, int startIndex)
         {
-            throw new NotImplementedException();
+            Length = (uint)properties[0] + Package.NotDataLength;
+            SN = (uint)properties[1];
+            BusinessID = (BusinessType)properties[2];
+            JT809Config jt809Config=(JT809Config)properties[3];
+            SessionId = jt809Config.SessionId;
+            JT809Version = jt809Config.JT809Version;
+            EncryptOpition = jt809Config.JT809EncryptConfig==null? EncryptOpitions.None: EncryptOpitions.Common;
+            if(jt809Config.JT809EncryptConfig == null)
+            {
+                EncryptOpition = EncryptOpitions.None;
+            }
+            else
+            {
+                EncryptOpition = EncryptOpitions.Common;
+                EncryptKey = jt809Config.JT809EncryptConfig.Key;
+            }
         }
 
         protected override void OnInitializePropertiesFromReadBuffer(BinaryReader reader)
         {
-            throw new NotImplementedException();
+            Length = reader.ReadUInt32Little();
+            SN = reader.ReadUInt32Little();
+            BusinessID = (BusinessType)reader.ReadUInt16Little();
+            SessionId = reader.ReadUInt32Little();
+            JT809Version = new JT809Version(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
+            EncryptOpition = (EncryptOpitions)reader.ReadByte();
+            EncryptKey = reader.ReadUInt32Little();
         }
 
         protected override void OnWriteToBuffer(BinaryWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteLittle(Length);
+            writer.WriteLittle(SN);
+            writer.WriteLittle((ushort)BusinessID);
+            writer.WriteLittle(SessionId);
+            writer.WriteLittle(JT809Version.Buffer);
+            writer.WriteLittle((byte)EncryptOpition);
+            writer.WriteLittle(EncryptKey);
         }
     }
 }

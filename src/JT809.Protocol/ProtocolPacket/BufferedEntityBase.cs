@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace JT809.Protocol.ProtocolPacket
 {
@@ -28,10 +26,24 @@ namespace JT809.Protocol.ProtocolPacket
             InitializeProperties(properties, 0);
             ToBuffer();
         }
+
         protected BufferedEntityBase(byte[] buffer)
         {
             Buffer = buffer;
             InitializePropertiesFromBuffer();
+        }
+
+        public static byte[] SetMatchBytes(byte[] bufferIn, int lengthMatch, byte mask = 0X00)
+        {
+            if (bufferIn.Length != lengthMatch)
+            {
+                var tempBuffer = new byte[lengthMatch];
+                Array.ForEach(tempBuffer, b => b = mask);//TODO : Maybe mask error
+                var copyLength = bufferIn.Length > lengthMatch ? lengthMatch : bufferIn.Length;
+                Array.Copy(bufferIn, 0, tempBuffer, 0, copyLength);
+                return tempBuffer;
+            }
+            return bufferIn;
         }
 
         protected abstract void InitializeProperties(object[] properties, int startIndex);

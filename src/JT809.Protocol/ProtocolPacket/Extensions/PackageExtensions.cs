@@ -9,6 +9,28 @@ namespace JT809.Protocol.ProtocolPacket.Extensions
     /// </summary>
     public static class PackageExtensions
     {
+        const ushort cnCRC_CCITT = 0x1021; //CRC校验多项式
+        static ulong[] CRC = new ulong[256]; //建立CRC16表 
+        static PackageExtensions()
+        {
+            ushort i, j;
+            ushort nData;
+            ushort nAccum;
+            for (i = 0; i < 256; i++)
+            {
+                nData = (ushort)(i << 8);
+                nAccum = 0;
+                for (j = 0; j < 8; j++)
+                {
+                    if (((nData ^ nAccum) & 0x8000) > 0)
+                        nAccum = (ushort)((nAccum << 1) ^ cnCRC_CCITT);
+                    else
+                        nAccum <<= 1;
+                    nData <<= 1;
+                }
+                CRC[i] = (ulong)nAccum;
+            }
+        }
         internal static byte[] Escape(this Package packege, byte[] bytes)
         {
             List<byte> dataList = new List<byte>();
@@ -80,22 +102,22 @@ namespace JT809.Protocol.ProtocolPacket.Extensions
             var tempBuffe = dataList.ToArray();
             return tempBuffe;
         }
+        /// <summary>
+        /// 从数据头到校验码前的 CRC 1 G-CCITT 的校验值，遵循人端排序方式的规定。
+        /// </summary>
+        /// <param name="packege"></param>
+        /// <param name="ucbuf"></param>
+        /// <param name="offset"></param>
+        /// <param name="iLen"></param>
+        /// <returns></returns>
         internal static ushort CRC16_CCITT(this Package packege, byte[] ucbuf, int offset, int iLen)
         {
-            ushort crc = 0xFFFF;
-            ushort polynomial = 0x1021;
-            for (int j = 0; j < iLen; ++j)
+            ushort checkCode = 0xFFFF;
+            for (int j = offset; j < iLen; ++j)
             {
-                for (int i = 0; i < 8; i++)
-                {
-                    bool bit = ((ucbuf[j + offset] >> (7 - i) & 1) == 1);
-                    bool c15 = ((crc >> 15 & 1) == 1);
-                    crc <<= 1;
-                    if (c15 ^ bit) crc ^= polynomial;
-                }
+                checkCode = (ushort)((checkCode << 8) ^ (ushort)CRC[(checkCode >> 8) ^ ucbuf[j]]);
             }
-            crc &= 0xffff;
-            return crc;
+            return checkCode;
         }
         internal static byte[] Encrypt(this Package packege, byte[] buffer, int size, JT809EncryptConfig Config)
         {

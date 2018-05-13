@@ -9,5 +9,7 @@ namespace JT809.Protocol.ProtocolPacket
     /// </summary>
     public abstract class MessageBody: BufferedEntityBase
     {
+        protected MessageBody(params object[] properties) : base(properties){}
+        protected MessageBody(byte[] buffer):base(buffer){}
     }
 }
