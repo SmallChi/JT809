@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -9,20 +10,44 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configs\**" />
     <Compile Remove="Encrypt\**" />
+    <Compile Remove="JT809Enums\**" />
     <Compile Remove="Escape\**" />
-    <Compile Remove="ProtocolPacket\Message\**" />
+    <Compile Remove="ProtocolPacket\**" />
+    <EmbeddedResource Remove="Configs\**" />
     <EmbeddedResource Remove="Encrypt\**" />
+    <EmbeddedResource Remove="JT809Enums\**" />
     <EmbeddedResource Remove="Escape\**" />
-    <EmbeddedResource Remove="ProtocolPacket\Message\**" />
+    <EmbeddedResource Remove="ProtocolPacket\**" />
+    <None Remove="Configs\**" />
     <None Remove="Encrypt\**" />
+    <None Remove="JT809Enums\**" />
     <None Remove="Escape\**" />
-    <None Remove="ProtocolPacket\Message\**" />
+    <None Remove="ProtocolPacket\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Constants.cs" />
     <Compile Remove="IEncrypt.cs" />
     <Compile Remove="IEscape.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="JT809Enums\JT809ErrorCode.cs" />
+    <Compile Include="JT809Enums\JT809BusinessType.cs" />
+    <Compile Include="JT809Enums\JT809SubBusinessType.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="JT809Properties\" />
   </ItemGroup>
 
 </Project>
