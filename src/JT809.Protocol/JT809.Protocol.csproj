@@ -10,17 +10,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Configs\**" />
+    <Compile Remove="JT809Configs\**" />
     <Compile Remove="Encrypt\**" />
     <Compile Remove="JT809Enums\**" />
     <Compile Remove="Escape\**" />
     <Compile Remove="ProtocolPacket\**" />
-    <EmbeddedResource Remove="Configs\**" />
+    <EmbeddedResource Remove="JT809Configs\**" />
     <EmbeddedResource Remove="Encrypt\**" />
     <EmbeddedResource Remove="JT809Enums\**" />
     <EmbeddedResource Remove="Escape\**" />
     <EmbeddedResource Remove="ProtocolPacket\**" />
-    <None Remove="Configs\**" />
+    <None Remove="JT809Configs\**" />
     <None Remove="Encrypt\**" />
     <None Remove="JT809Enums\**" />
     <None Remove="Escape\**" />
@@ -29,11 +29,11 @@
 
   <ItemGroup>
     <Compile Remove="Constants.cs" />
-    <Compile Remove="IEncrypt.cs" />
     <Compile Remove="IEscape.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="JT809Configs\JT809EncryptOptions.cs" />
     <Compile Include="JT809Enums\JT809ErrorCode.cs" />
     <Compile Include="JT809Enums\JT809BusinessType.cs" />
     <Compile Include="JT809Enums\JT809SubBusinessType.cs" />
