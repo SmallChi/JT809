@@ -268,6 +268,22 @@ namespace JT809.Protocol.JT809Extensions
             return codeBytes.Length;
         }
 
+        public static int WriteStringPadLeftLittle(IMemoryOwner<byte> memoryOwner, int offset, string data,int len)
+        {
+            data = data.PadLeft(len, '\0');
+            byte[] codeBytes = encoding.GetBytes(data);
+            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
+            return codeBytes.Length;
+        }
+
+        public static int WriteStringPadRightLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        {
+            data = data.PadRight(len, '\0');
+            byte[] codeBytes = encoding.GetBytes(data);
+            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
+            return codeBytes.Length;
+        }
+
         public static int WriteBCDLittle(ref byte[] write, int offset, string data, int digit, int len)
         {
             ReadOnlySpan<char> bcd = data.PadLeft(len, '0').AsSpan();

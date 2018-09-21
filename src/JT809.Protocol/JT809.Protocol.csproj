@@ -37,6 +37,7 @@
     <Compile Include="JT809Enums\JT809ErrorCode.cs" />
     <Compile Include="JT809Enums\JT809BusinessType.cs" />
     <Compile Include="JT809Enums\JT809SubBusinessType.cs" />
+    <Compile Include="JT809Enums\JT809_0x1002_Result.cs" />
   </ItemGroup>
 
   <ItemGroup>

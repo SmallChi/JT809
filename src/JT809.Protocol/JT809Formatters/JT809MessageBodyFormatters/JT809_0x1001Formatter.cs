@@ -24,8 +24,8 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
         public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1001 value)
         {
             offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.UserId);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.Password.PadRight(8,'\0'));
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.DownLinkIP.PadRight(32, '\0'));
+            offset += JT809BinaryExtensions.WriteStringPadRightLittle(memoryOwner, offset, value.Password,8);
+            offset += JT809BinaryExtensions.WriteStringPadRightLittle(memoryOwner, offset, value.DownLinkIP,32);
             offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.DownLinkPort);
             return offset;
         }

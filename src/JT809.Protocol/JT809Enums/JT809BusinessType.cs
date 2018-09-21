@@ -23,16 +23,19 @@ namespace JT809.Protocol.JT809Enums
         ///主链路登录应答消息  
         ///</summary>
         [Description("主链路登录应答消息")]
+        [JT809BodiesType(typeof(JT809_0x1002))]
         UP_CONNECT_RSP = 0x1002,
         ///<summary>
         ///主链路注销请求消息  
         ///</summary>
         [Description("主链路注销请求消息")]
+        [JT809BodiesType(typeof(JT809_0x1003))]
         UP_DISCONNECT_REQ = 0x1003,
         ///<summary>
         ///主链路注销应答消息  
         ///</summary>
         [Description("主链路注销应答消息")]
+        [JT809BodiesType(typeof(JT809_0x1004))]
         UP_DISCONNECT_RSP = 0x1004,
         ///<summary>
         ///主链路连接保持请求消息  
