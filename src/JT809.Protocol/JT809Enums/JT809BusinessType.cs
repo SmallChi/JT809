@@ -89,21 +89,25 @@ namespace JT809.Protocol.JT809Enums
         ///从链路连接保持请求消息  
         ///</summary>
         [Description("从链路连接保持请求消息")]
+        [JT809BodiesType(typeof(JT809_0x9005))]
         DOWN_LINKTEST_REQ = 0x9005,
         ///<summary>
         ///从链路连接保持应答消息  
         ///</summary>
         [Description("从链路连接保持应答消息")]
+        [JT809BodiesType(typeof(JT809_0x9006))]
         DOWN_LINKTEST_RSP = 0x9006,
         ///<summary>
         ///从链路断开通知消息  
         ///</summary>
         [Description("从链路断开通知消息")]
+        [JT809BodiesType(typeof(JT809_0x9007))]
         DOWN_DISCONNECT_INFORM = 0x9007,
         ///<summary>
         ///上级平台主动关闭链路通知消息  
         ///</summary>
         [Description("上级平台主动关闭链路通知消息")]
+        [JT809BodiesType(typeof(JT809_0x9008))]
         DOWN_CLOSELINK_INFORM = 0x9008,
         #endregion
         #region 信息统计类
