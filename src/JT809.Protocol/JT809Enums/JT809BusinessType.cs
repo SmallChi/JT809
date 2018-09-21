@@ -59,26 +59,31 @@ namespace JT809.Protocol.JT809Enums
         ///下级平台主动关闭链路通知消息  
         ///</summary>
         [Description("下级平台主动关闭链路通知消息")]
+        [JT809BodiesType(typeof(JT809_0x1008))]
         UP_CLOSELINK_INFORM = 0x1008,
         ///<summary>
         ///从链路连接请求消息  
         ///</summary>
         [Description("从链路连接请求消息")]
+        [JT809BodiesType(typeof(JT809_0x9001))]
         DOWN_CONNECT_REQ = 0x9001,
         ///<summary>
         ///从链路连接应答消息  
         ///</summary>
         [Description("从链路连接应答消息")]
+        [JT809BodiesType(typeof(JT809_0x9002))]
         DOWN_CONNECT_RSP = 0x9002,
         ///<summary>
         ///从链路注销请求消息  
         ///</summary>
         [Description("从链路注销请求消息")]
+        [JT809BodiesType(typeof(JT809_0x9003))]
         DOWN_DISCONNECT_REQ = 0x9003,
         ///<summary>
         ///从链路注销应答消息  
         ///</summary>
         [Description("从链路注销应答消息")]
+        [JT809BodiesType(typeof(JT809_0x9004))]
         DOWN_DISCONNECT_RSP = 0x9004,
         ///<summary>
         ///从链路连接保持请求消息  
