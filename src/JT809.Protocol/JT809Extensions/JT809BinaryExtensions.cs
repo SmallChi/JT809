@@ -7,7 +7,7 @@ using System.Buffers;
 
 namespace JT809.Protocol.JT809Extensions
 {
-    public  static  class JT809BinaryExtensions
+    public static class JT809BinaryExtensions
     {
         /// <summary>
         /// 日期限制于2000年
@@ -74,7 +74,7 @@ namespace JT809.Protocol.JT809Extensions
         //    WriteLittle(write, (int)(Math.Pow(10, 6) * latlng), offset, 4);
         //}
 
-        public static long ReadBCD(ReadOnlySpan<byte> buf,ref int offset, int len)
+        public static long ReadBCD(ReadOnlySpan<byte> buf, ref int offset, int len)
         {
             long result = 0;
             try
@@ -91,9 +91,9 @@ namespace JT809.Protocol.JT809Extensions
             return result;
         }
 
-        public static DateTime ReadDateTimeLittle(ReadOnlySpan<byte> buf,ref int offset)
+        public static DateTime ReadDateTimeLittle(ReadOnlySpan<byte> buf, ref int offset)
         {
-            DateTime dateTime= new DateTime(
+            DateTime dateTime = new DateTime(
                 (buf[offset]).ReadBCD32(1) + DateLimitYear,
                 (buf[offset + 1]).ReadBCD32(1),
                 (buf[offset + 2]).ReadBCD32(1),
@@ -116,15 +116,30 @@ namespace JT809.Protocol.JT809Extensions
 
         public static int ReadInt32Little(ReadOnlySpan<byte> read, ref int offset)
         {
-            int value= (read[offset] << 24) | (read[offset + 1] << 16) | (read[offset + 2] << 8) | read[offset + 3];
+            int value = (read[offset] << 24) | (read[offset + 1] << 16) | (read[offset + 2] << 8) | read[offset + 3];
             offset = offset + 4;
             return value;
         }
 
         public static uint ReadUInt32Little(ReadOnlySpan<byte> read, ref int offset)
         {
-            uint value =(uint) ((read[offset] << 24) | (read[offset + 1] << 16) | (read[offset + 2] << 8) | read[offset + 3]);
+            uint value = (uint)((read[offset] << 24) | (read[offset + 1] << 16) | (read[offset + 2] << 8) | read[offset + 3]);
             offset = offset + 4;
+            return value;
+        }
+
+        public static ulong ReadUInt64Little(ReadOnlySpan<byte> read, ref int offset)
+        {
+            ulong value = (ulong)(
+                (read[offset] << 56) |
+                (read[offset + 1] << 48) |
+                (read[offset + 2] << 40) |
+                (read[offset + 3] << 32) |
+                (read[offset + 4] << 24) |
+                (read[offset + 5] << 16) |
+                (read[offset + 6] << 8) |
+                 read[offset + 7]);
+            offset = offset + 8;
             return value;
         }
 
@@ -142,7 +157,7 @@ namespace JT809.Protocol.JT809Extensions
             return value;
         }
 
-        public static byte[] ReadBytesLittle(ReadOnlySpan<byte> read, ref int offset,int len)
+        public static byte[] ReadBytesLittle(ReadOnlySpan<byte> read, ref int offset, int len)
         {
             ReadOnlySpan<byte> temp = read.Slice(offset, len);
             offset = offset + len;
@@ -216,6 +231,19 @@ namespace JT809.Protocol.JT809Extensions
             return 4;
         }
 
+        public static int WriteUInt64Little(IMemoryOwner<byte> memoryOwner, int offset, ulong data)
+        {
+            memoryOwner.Memory.Span[offset] = (byte)(data >> 56);
+            memoryOwner.Memory.Span[offset + 1] = (byte)(data >> 48);
+            memoryOwner.Memory.Span[offset + 2] = (byte)(data >> 40);
+            memoryOwner.Memory.Span[offset + 3] = (byte)(data >> 32);
+            memoryOwner.Memory.Span[offset + 4] = (byte)(data >> 24);
+            memoryOwner.Memory.Span[offset + 5] = (byte)(data >> 16);
+            memoryOwner.Memory.Span[offset + 6] = (byte)(data >> 8);
+            memoryOwner.Memory.Span[offset + 7] = (byte)data;
+            return 8;
+        }
+
         public static int WriteUInt16Little(ref byte[] write, int offset, ushort data)
         {
             write[offset] = (byte)(data >> 8);
@@ -268,7 +296,7 @@ namespace JT809.Protocol.JT809Extensions
             return codeBytes.Length;
         }
 
-        public static int WriteStringPadLeftLittle(IMemoryOwner<byte> memoryOwner, int offset, string data,int len)
+        public static int WriteStringPadLeftLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
         {
             data = data.PadLeft(len, '\0');
             byte[] codeBytes = encoding.GetBytes(data);

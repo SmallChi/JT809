@@ -115,6 +115,7 @@ namespace JT809.Protocol.JT809Enums
         ///接收定位信息数量通知消息  
         ///</summary>
         [Description("接收定位信息数量通知消息")]
+        [JT809BodiesType(typeof(JT809_0x9101))]
         DOWN_TOTAL_RECV_BACK_MSG = 0x9101,
         #endregion
         #region 车辆动态信息交换
