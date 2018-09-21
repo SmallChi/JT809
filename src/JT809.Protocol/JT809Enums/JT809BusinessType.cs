@@ -41,16 +41,19 @@ namespace JT809.Protocol.JT809Enums
         ///主链路连接保持请求消息  
         ///</summary>
         [Description("主链路连接保持请求消息")]
+        [JT809BodiesType(typeof(JT809_0x1005))]
         UP_LINKTEST_REQ = 0x1005,
         ///<summary>
         ///主链路连接保持应答消息  
         ///</summary>
         [Description("主链路连接保持应答消息")]
+        [JT809BodiesType(typeof(JT809_0x1006))]
         UP_LINKTEST_RSP = 0x1006,
         ///<summary>
         ///主链路断开通知消息  
         ///</summary>
         [Description("主链路断开通知消息")]
+        [JT809BodiesType(typeof(JT809_0x1007))]
         UP_DISCONNECT_INFORM = 0x1007,
         ///<summary>
         ///下级平台主动关闭链路通知消息  
