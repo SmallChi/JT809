@@ -11,6 +11,8 @@ namespace JT809.Protocol.JT809Formatters
 {
     public class JT809PackageFormatter : IJT809Formatter<JT809Package>
     {
+        public object JT808BinaryExtensions { get; private set; }
+
         public JT809Package Deserialize(ReadOnlySpan<byte> bytes, out int readSize)
         {
             int offset = 0;
@@ -42,16 +44,6 @@ namespace JT809.Protocol.JT809Formatters
                 throw new JT809Exception(JT809ErrorCode.HeaderParseError, $"offset>{offset.ToString()}", ex);
             }
             offset += readSize;
-            // 4.是否加密
-            switch (jT809Package.Header.EncryptFlag)
-            {
-                case JT809Header_Encrypt.None:
-                    break;
-                case JT809Header_Encrypt.Common:
-#warning 加密尚未实现
-                    
-                    break;
-            }
             // 5.数据体处理
             //  5.1 判断是否有数据体（总长度-固定长度）> 0
             if ((jT809Package.Header.MsgLength - JT809Package.FixedByteLength) > 0)
@@ -62,10 +54,18 @@ namespace JT809.Protocol.JT809Formatters
                 {
                     try
                     {
-                        var a = buffer.Slice(offset);
-                        var b = buffer.Slice(offset,checkIndex - offset);
-                        //5.2 处理消息体
-                        jT809Package.Bodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), buffer.Slice(offset, checkIndex - offset), out readSize);
+                        // 5.2 是否加密
+                        switch (jT809Package.Header.EncryptFlag)
+                        {
+                            case JT809Header_Encrypt.None:
+                                //5.3 处理消息体
+                                jT809Package.Bodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), buffer.Slice(offset, checkIndex - offset), out readSize);
+                                break;
+                            case JT809Header_Encrypt.Common:
+                                byte[] bodiesData = JT809GlobalConfig.Instance.JT809Encrypt.Decrypt(buffer.Slice(offset, checkIndex - offset).ToArray());
+                                jT809Package.Bodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), bodiesData, out readSize);
+                                break;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -94,18 +94,16 @@ namespace JT809.Protocol.JT809Formatters
             byte[] messageBodyData=null;
             if (messageBodyOffset != 0)
             {
+                messageBodyData = memoryOwner.Memory.Slice(0, messageBodyOffset).Span.ToArray();
                 // 1.2 数据加密
                 switch (value.Header.EncryptFlag)
                 {
                     case JT809Header_Encrypt.None:
                         break;
                     case JT809Header_Encrypt.Common:
-#warning 加密尚未实现
-                        
+                        messageBodyData = JT809GlobalConfig.Instance.JT809Encrypt.Encrypt(messageBodyData);
                         break;
                 }
-                // 1.3 数据内容进行转义
-                messageBodyData = JT809Escape(memoryOwner.Memory.Slice(0, messageBodyOffset).Span);
             }
             // ------------------------------------开始组包
             // 1.起始符
@@ -132,7 +130,11 @@ namespace JT809.Protocol.JT809Formatters
             offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, memoryOwner.Memory.Span.ToCRC16_CCITT(1, offset));
             // 5.终止符
             offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.EndFlag);
-            return offset;
+            // 6.转义
+            byte[] temp = JT809Escape(memoryOwner.Memory.Slice(0, offset).Span);
+            memoryOwner.Memory.Span.Clear();
+            JT809BinaryExtensions.CopyTo(temp, memoryOwner.Memory.Span, 0);
+            return temp.Length;
         }
 
         private static ReadOnlySpan<byte> JT809DeEscape(ReadOnlySpan<byte> buffer)
