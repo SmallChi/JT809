@@ -12,6 +12,8 @@ namespace JT809.Protocol.JT809Enums
         SerializeError=1004,
         DeserializeError=1005,
         HeaderParseError=1006,
-        BodiesParseError=1007
+        BodiesParseError=1007,
+        SubBodiesParseError = 1008,
+        GetAttributeError=1009
     }
 }

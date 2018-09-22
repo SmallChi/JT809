@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using JT809.Protocol.JT809Attributes;
+using JT809.Protocol.JT809SubMessageBody;
+using System.ComponentModel;
 
 namespace JT809.Protocol.JT809Enums
 {
@@ -12,6 +14,7 @@ namespace JT809.Protocol.JT809Enums
         /// 上传车辆注册信息
         /// </summary>
         [Description("上传车辆注册信息")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1201))]
         UP_EXG_MSG_REGISTER = 0x1201,
         ///<summary>
         ///实时上传车辆定位信息  
