@@ -58,7 +58,7 @@ namespace JT809.Protocol.JT809Extensions
         public static string ReadStringLittle(ReadOnlySpan<byte> read, ref int offset, int len)
         {
             string value = encoding.GetString(read.Slice(offset, len).ToArray());
-            offset += value.Length;
+            offset += len;
             return value.Trim('\0');
         }
 
@@ -68,11 +68,6 @@ namespace JT809.Protocol.JT809Extensions
             offset += value.Length;
             return value.Trim('\0');
         }
-
-        //public static void WriteLatLng(byte[] write, int offset,double latlng)
-        //{
-        //    WriteLittle(write, (int)(Math.Pow(10, 6) * latlng), offset, 4);
-        //}
 
         public static long ReadBCD(ReadOnlySpan<byte> buf, ref int offset, int len)
         {
@@ -164,15 +159,42 @@ namespace JT809.Protocol.JT809Extensions
             return temp.ToArray();
         }
 
-        public static int WriteLittle(ref byte[] write, int offset, DateTime date)
+        /// <summary>
+        /// 数字编码 大端模式、高位在前
+        /// </summary>
+        /// <param name="read"></param>
+        /// <param name="offset"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public static string ReadBigNumberLittle(ReadOnlySpan<byte> read, ref int offset, int len)
         {
-            write[offset] = ((byte)(date.Year - DateLimitYear)).ToBcdByte();
-            write[offset + 1] = ((byte)(date.Month)).ToBcdByte();
-            write[offset + 2] = ((byte)(date.Day)).ToBcdByte();
-            write[offset + 3] = ((byte)(date.Hour)).ToBcdByte();
-            write[offset + 4] = ((byte)(date.Minute)).ToBcdByte();
-            write[offset + 5] = ((byte)(date.Second)).ToBcdByte();
-            return 6;
+            ulong result = 0;
+            for (int i = 0; i < len; i++)
+            {
+                ulong currentData = (ulong)read[offset+i] << (8 * (len - i - 1));
+                result += currentData;
+            }
+            offset += len;
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// 数字编码 小端模式、低位在前
+        /// </summary>
+        /// <param name="read"></param>
+        /// <param name="offset"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public static string ReadLowNumberLittle(ReadOnlySpan<byte> read, ref int offset, int len)
+        {
+            ulong result = 0;
+            for (int i = 0; i < len; i++)
+            {
+                ulong currentData = (ulong)read[offset+i] << (8 * i);
+                result += currentData;
+            }
+            offset += len;
+            return result.ToString();
         }
 
         public static int WriteDateTime6Little(IMemoryOwner<byte> memoryOwner, int offset, DateTime date)
@@ -186,30 +208,12 @@ namespace JT809.Protocol.JT809Extensions
             return 6;
         }
 
-        public static int WriteDateLittle(ref byte[] write, int offset, DateTime date)
-        {
-            write[offset] = (byte)(date.Year >> 8);
-            write[offset + 1] = (byte)date.Year;
-            write[offset + 2] = ((byte)(date.Month)).ToBcdByte();
-            write[offset + 3] = ((byte)(date.Day)).ToBcdByte();
-            return 4;
-        }
-
         public static int WriteDateTime4Little(IMemoryOwner<byte> memoryOwner, int offset, DateTime date)
         {
             memoryOwner.Memory.Span[offset] = (byte)(date.Year >> 8);
             memoryOwner.Memory.Span[offset + 1] = (byte)date.Year;
             memoryOwner.Memory.Span[offset + 2] = ((byte)(date.Month)).ToBcdByte();
             memoryOwner.Memory.Span[offset + 3] = ((byte)(date.Day)).ToBcdByte();
-            return 4;
-        }
-
-        public static int WriteLittle(ref byte[] write, int offset, int data)
-        {
-            write[offset] = (byte)(data >> 24);
-            write[offset + 1] = (byte)(data >> 16);
-            write[offset + 2] = (byte)(data >> 8);
-            write[offset + 3] = (byte)data;
             return 4;
         }
 
@@ -244,24 +248,11 @@ namespace JT809.Protocol.JT809Extensions
             return 8;
         }
 
-        public static int WriteUInt16Little(ref byte[] write, int offset, ushort data)
-        {
-            write[offset] = (byte)(data >> 8);
-            write[offset + 1] = (byte)data;
-            return 2;
-        }
-
         public static int WriteUInt16Little(IMemoryOwner<byte> memoryOwner, int offset, ushort data)
         {
             memoryOwner.Memory.Span[offset] = (byte)(data >> 8);
             memoryOwner.Memory.Span[offset + 1] = (byte)data;
             return 2;
-        }
-
-        public static int WriteLittle(ref byte[] write, int offset, byte data)
-        {
-            write[offset] = data;
-            return 1;
         }
 
         public static int WriteByteLittle(IMemoryOwner<byte> memoryOwner, int offset, byte data)
@@ -276,24 +267,32 @@ namespace JT809.Protocol.JT809Extensions
             return data.Length;
         }
 
-        public static int WriteLittle(ref byte[] write, int offset, byte[] data)
-        {
-            Buffer.BlockCopy(data, 0, write, offset, data.Length);
-            return data.Length;
-        }
-
-        public static int WriteLittle(ref byte[] write, int offset, string data)
-        {
-            byte[] codeBytes = encoding.GetBytes(data);
-            Buffer.BlockCopy(codeBytes, 0, write, offset, codeBytes.Length);
-            return codeBytes.Length;
-        }
-
         public static int WriteStringLittle(IMemoryOwner<byte> memoryOwner, int offset, string data)
         {
             byte[] codeBytes = encoding.GetBytes(data);
             CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
             return codeBytes.Length;
+        }
+
+        public static int WriteStringLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        {
+            byte[] bytes = null;
+            if (string.IsNullOrEmpty(data))
+            {
+                bytes = new byte[0];
+            }
+            else
+            {
+                bytes = encoding.GetBytes(data);
+            }
+            byte[] rBytes = new byte[len];
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                if (i >= len) break;
+                rBytes[i] = bytes[i];
+            }
+            CopyTo(rBytes, memoryOwner.Memory.Span, offset);
+            return rBytes.Length;
         }
 
         public static int WriteStringPadLeftLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
@@ -330,6 +329,44 @@ namespace JT809.Protocol.JT809Extensions
                 memoryOwner.Memory.Span[offset + i] = Convert.ToByte(bcd.Slice(i * 2, 2).ToString(), 16);
             }
             return digit;
+        }
+
+        /// <summary>
+        /// 数字编码 大端模式、高位在前
+        /// </summary>
+        /// <param name="memoryOwner"></param>
+        /// <param name="offset"></param>
+        /// <param name="data"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public static int WriteBigNumberLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        {
+            ulong number = string.IsNullOrEmpty(data) ? 0 : (ulong)double.Parse(data);
+            for (int i = len - 1; i >= 0; i--)
+            {
+                memoryOwner.Memory.Span[offset+i] = (byte)(number & 0xFF);  //取低8位
+                number = number >> 8;
+            }
+            return len;
+        }
+
+        /// <summary>
+        /// 数字编码 小端模式、低位在前
+        /// </summary>
+        /// <param name="memoryOwner"></param>
+        /// <param name="offset"></param>
+        /// <param name="data"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public static int WriteLowNumberLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        {
+            ulong number = string.IsNullOrEmpty(data) ? 0 : (ulong)double.Parse(data);
+            for (int i = 0; i < len; i++)
+            {
+                memoryOwner.Memory.Span[offset + i] = (byte)(number & 0xFF); //取低8位
+                number = number >> 8;
+            }
+            return len;
         }
 
         public static IEnumerable<byte> ToBytes(this string data, Encoding coding)

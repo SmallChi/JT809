@@ -123,6 +123,7 @@ namespace JT809.Protocol.JT809Enums
         ///主链路动态信息交换消息  
         ///</summary>
         [Description("主链路动态信息交换消息")]
+        [JT809BodiesType(typeof(JT809_0x1200))]
         UP_EXG_MSG = 0x1200,
         ///<summary>
         ///从链路动态信息交换消息  

@@ -39,7 +39,7 @@ namespace JT809.Protocol
         {
             var formatter = JT809FormatterExtensions.GetFormatter<T>();
             var pool = MemoryPool<byte>.Shared;
-            IMemoryOwner<byte> buffer = pool.Rent(10240);
+            IMemoryOwner<byte> buffer = pool.Rent(4096);
             try
             {
                 var len = formatter.Serialize(buffer, 0, obj);
