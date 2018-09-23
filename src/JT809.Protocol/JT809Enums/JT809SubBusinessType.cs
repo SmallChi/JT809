@@ -20,6 +20,7 @@ namespace JT809.Protocol.JT809Enums
         ///实时上传车辆定位信息  
         ///</summary>
         [Description("实时上传车辆定位信息")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1202))]
         UP_EXG_MSG_REAL_LOCATION = 0x1202,
         ///<summary>
         ///车辆定位信息自动补报	
