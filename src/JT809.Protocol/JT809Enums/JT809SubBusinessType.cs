@@ -26,6 +26,7 @@ namespace JT809.Protocol.JT809Enums
         ///车辆定位信息自动补报	
         ///</summary>
         [Description("车辆定位信息自动补报")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1203))]
         UP_EXG_MSG_HISTORY_LOCATION = 0x1203,
         ///<summary>
         ///启动车辆定位信息交换应答	
