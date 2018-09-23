@@ -44,6 +44,7 @@
     <Compile Include="JT809Enums\JT809_0x1008_ReasonCode.cs" />
     <Compile Include="JT809Enums\JT809_0x9002_Result.cs" />
     <Compile Include="JT809Enums\JT809_0x9008_ReasonCode.cs" />
+    <Compile Include="JT809Enums\JT809_VehiclePositionExcrypt.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,10 +52,6 @@
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Memory" Version="4.5.1" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="JT809Properties\" />
   </ItemGroup>
 
 </Project>

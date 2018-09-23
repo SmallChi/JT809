@@ -49,6 +49,14 @@ namespace JT809.Protocol.JT809Extensions
             return result * (int)Math.Pow(100, dig - 1);
         }
 
+        public static int ReadBCD32(ReadOnlySpan<byte> read, ref int offset, int len)
+        {
+            int result = Convert.ToInt32(read[offset].ToString("X"));
+            offset += len;
+            return result * (int)Math.Pow(100, len - 1);
+        }
+
+
         public static long ReadBCD64(this byte data, byte dig)
         {
             long result = Convert.ToInt64(data.ToString("X"));
@@ -309,16 +317,6 @@ namespace JT809.Protocol.JT809Extensions
             byte[] codeBytes = encoding.GetBytes(data);
             CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
             return codeBytes.Length;
-        }
-
-        public static int WriteBCDLittle(ref byte[] write, int offset, string data, int digit, int len)
-        {
-            ReadOnlySpan<char> bcd = data.PadLeft(len, '0').AsSpan();
-            for (int i = 0; i < digit; i++)
-            {
-                write[offset + i] = Convert.ToByte(bcd.Slice(i * 2, 2).ToString(), 16);
-            }
-            return digit;
         }
 
         public static int WriteBCDLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int digit, int len)
