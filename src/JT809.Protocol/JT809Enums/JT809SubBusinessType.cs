@@ -50,31 +50,37 @@ namespace JT809.Protocol.JT809Enums
         ///取消交换指定车辆定位信息请求	
         ///</summary>
         [Description("取消交换指定车辆定位信息请求")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1208))]
         UP_EXG_MSG_APPLY_FOR_MONITOR_END = 0x1208,
         ///<summary>
         ///补发车辆定位信息请求	
         ///</summary>
         [Description("补发车辆定位信息请求")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1209))]
         UP_EXG_MSG_APPLY_HISGNSSDATA_REQ = 0x1209,
         ///<summary>
         ///上报车辆驾驶员身份识别信息应答	
         ///</summary>
         [Description("上报车辆驾驶员身份识别信息应答")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x120A))]
         UP_EXG_MSG_REPORT_DRIVER_INFO_ACK = 0x120A,
         ///<summary>
         ///上报车辆电子运单应答	
         ///</summary>
         [Description("上报车辆电子运单应答")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x120B))]
         UP_EXG_MSG_TAKE_EWAYBILL_ACK = 0x120B,
         ///<summary>
         ///主动上报驾驶员身份信息	
         ///</summary>
         [Description("主动上报驾驶员身份信息")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x120C))]
         UP_EXG_MSG_REPORT_DRIVER_INFO = 0x120C,
         ///<summary>
         ///主动上报车辆电子运单信息	
         ///</summary>
         [Description("主动上报车辆电子运单信息")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x120D))]
         UP_EXG_MSG_REPORT_EWAYBILL_INFO = 0x120D,
         #endregion
 
