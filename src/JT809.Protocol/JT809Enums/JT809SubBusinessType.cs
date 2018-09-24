@@ -32,16 +32,19 @@ namespace JT809.Protocol.JT809Enums
         ///启动车辆定位信息交换应答	
         ///</summary>
         [Description("启动车辆定位信息交换应答")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1205))]
         UP_EXG_MSG_RETURN_STARTUP_ACK = 0x1205,
         ///<summary>
         ///结束车辆定位信息交换应答	
         ///</summary>
         [Description("结束车辆定位信息交换应答")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1206))]
         UP_EXG_MSG_RETURN_END_ACK = 0x1206,
         ///<summary>
         ///申请交换指定车辆定位信息请求	
         ///</summary>
         [Description("申请交换指定车辆定位信息请求")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x1207))]
         UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP = 0x1207,
         ///<summary>
         ///取消交换指定车辆定位信息请求	

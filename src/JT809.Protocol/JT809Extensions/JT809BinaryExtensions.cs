@@ -18,6 +18,8 @@ namespace JT809.Protocol.JT809Extensions
 
         private static ulong[] CRC = new ulong[256]; //建立CRC16表 
 
+        private static readonly DateTime UTCBaseTime = new DateTime(1970, 1, 1);
+
         static JT809BinaryExtensions()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -115,6 +117,18 @@ namespace JT809.Protocol.JT809Extensions
                     (buf[offset + 3]).ReadBCD32(1));
             offset = offset + 4;
             return dateTime;
+        }
+
+        public static DateTime ReadUTCDateTimeLittle(ReadOnlySpan<byte> buf, ref int offset)
+        {
+            ulong result = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                ulong currentData = (ulong)buf[offset+i] << (8 * (8 - i - 1));
+                result += currentData;
+            }
+            offset += 8;
+            return UTCBaseTime.AddSeconds(result).AddHours(8);
         }
 
         public static int ReadInt32Little(ReadOnlySpan<byte> read, ref int offset)
@@ -365,6 +379,18 @@ namespace JT809.Protocol.JT809Extensions
                 number = number >> 8;
             }
             return len;
+        }
+
+        public static int WriteUTCDateTimeLittle(IMemoryOwner<byte> memoryOwner, int offset, DateTime date)
+        {
+            ulong totalSecends = (ulong)(date.AddHours(-8) - UTCBaseTime).TotalSeconds;
+            //高位在前
+            for (int i = 7; i >= 0; i--)
+            {
+                memoryOwner.Memory.Span[offset+i] = (byte)(totalSecends & 0xFF);  //取低8位
+                totalSecends = totalSecends >> 8;
+            }
+            return 8;
         }
 
         public static IEnumerable<byte> ToBytes(this string data, Encoding coding)
