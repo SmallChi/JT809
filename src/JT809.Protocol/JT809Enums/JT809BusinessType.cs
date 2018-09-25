@@ -151,24 +151,27 @@ namespace JT809.Protocol.JT809Enums
         ///主链路报警信息交互消息  
         ///</summary>
         [Description("主链路报警信息交互消息")]
+        [JT809BodiesType(typeof(JT809_0x1400))]
         UP_WARN_MSG = 0x1400,
         ///<summary>
         ///从链路报警信息交互消息  
         ///</summary>
         [Description("从链路报警信息交互消息")]
+        [JT809BodiesType(typeof(JT809_0x9400))]
         DOWN_WARN_MSG = 0x9400,
         #endregion
-
         #region 车辆监管类 
         ///<summary>
         ///主链路车辆监管消息  
         ///</summary>
         [Description("主链路车辆监管消息")]
+        [JT809BodiesType(typeof(JT809_0x1500))]
         UP_CTRL_MSG = 0x1500,
         ///<summary>
         ///从链路车辆监管消息  
         ///</summary>
         [Description("从链路车辆监管消息")]
+        [JT809BodiesType(typeof(JT809_0x9500))]
         DOWN_CTRL_MSG = 0x9500,
         #endregion
         #region 车辆静态信息交换类
@@ -176,11 +179,13 @@ namespace JT809.Protocol.JT809Enums
         ///主链路静态信息交换消息  
         ///</summary>
         [Description("主链路静态信息交换消息")]
+        [JT809BodiesType(typeof(JT809_0x1600))]
         UP_BASE_MSG = 0x1600,
         ///<summary>
         ///从链路静态信息交换消息  
         ///</summary>
         [Description("从链路静态信息交换消息")]
+        [JT809BodiesType(typeof(JT809_0x9600))]
         DOWN_BASE_MSG = 0x9600,
         #endregion
     }

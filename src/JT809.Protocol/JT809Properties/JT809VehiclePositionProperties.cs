@@ -13,7 +13,7 @@ namespace JT809.Protocol.JT809Properties
         /// <summary>
         /// 该字段标识传输的定位信息是否使用国家测绘局批准的地图保密插件进行加密。
         /// </summary>
-        public JT809_VehiclePositionExcrypt Encrypt { get; set; }
+        public JT809_VehiclePositionEncrypt Encrypt { get; set; }
         /// <summary>
         /// 日
         /// </summary>

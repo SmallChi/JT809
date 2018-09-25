@@ -14,7 +14,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
         {
             int offset = 0;
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202.VehiclePosition.Encrypt = (JT809_VehiclePositionExcrypt)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
+            jT809_0X1200_0X1202.VehiclePosition.Encrypt = (JT809_VehiclePositionEncrypt)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809_0X1200_0X1202.VehiclePosition.Day= JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809_0X1200_0X1202.VehiclePosition.Month = JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809_0X1200_0X1202.VehiclePosition.Year = JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);

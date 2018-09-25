@@ -182,16 +182,19 @@ namespace JT809.Protocol.JT809Enums
         ///报警督办应答	
         ///</summary>
         [Description("报警督办应答")]
+        [JT809BodiesType(typeof(JT809_0x1400_0x1401))]
         UP_WARN_MSG_URGE_TODO_ACK = 0x1401,
         ///<summary>
         ///上报报警信息	
         ///</summary>
         [Description("上报报警信息")]
+        [JT809BodiesType(typeof(JT809_0x1400_0x1402))]
         UP_WARN_MSG_ADPT_INFO = 0x1402,
         ///<summary>
         ///主动上报报警处理结果信息	
         ///</summary>
         [Description("主动上报报警处理结果信息")]
+        [JT809BodiesType(typeof(JT809_0x1400_0x1403))]
         UP_WARN_MSG_ADPT_TODO_INFO = 0x1403,
         #endregion
 
@@ -200,16 +203,19 @@ namespace JT809.Protocol.JT809Enums
         ///报警督办请求	
         ///</summary>
         [Description("报警督办请求")]
+        [JT809BodiesType(typeof(JT809_0x9400_0x9401))]
         DOWN_WARN_MSG_URGE_TODO_REQ = 0x9401,
         ///<summary>
         ///报警预警	
         ///</summary>
         [Description("报警预警")]
+        [JT809BodiesType(typeof(JT809_0x9400_0x9402))]
         DOWN_WARN_MSG_INFORM_TIPS = 0x9402,
         ///<summary>
         ///实时交换报警信息 	
         ///</summary>
         [Description("实时交换报警信息")]
+        [JT809BodiesType(typeof(JT809_0x9400_0x9403))]
         DOWN_WARN_MSG_EXG_INFORM = 0x9403,
         #endregion
 
@@ -218,26 +224,31 @@ namespace JT809.Protocol.JT809Enums
         ///车辆单向监听应答	
         ///</summary>
         [Description("车辆单向监听应答")]
+        [JT809BodiesType(typeof(JT809_0x1500_0x1501))]
         UP_CTRL_MSG_MONITOR_VEHICLE_ACK = 0x1501,
         ///<summary>
         ///车辆拍照应答	
         ///</summary>
         [Description("车辆拍照应答")]
+        [JT809BodiesType(typeof(JT809_0x1500_0x1502))]
         UP_CTRL_MSG_TAKE_PHOTO_ACK = 0x1502,
         ///<summary>
         ///下发车辆报文应答	
         ///</summary>
         [Description("下发车辆报文应答")]
+        //[JT809BodiesType(typeof(JT809_0x1500_0x1503))]
         UP_CTRL_MSG_TEXT_INFO_ACK = 0x1503,
         ///<summary>
         ///上报车辆行驶记录应答	
         ///</summary>
         [Description("上报车辆行驶记录应答")]
+        //[JT809BodiesType(typeof(JT809_0x1500_0x1504))]
         UP_CTRL_MSG_TAKE_TRAVEL_ACK = 0x1504,
         ///<summary>
         ///车辆应急接入监管平台应答消息	
         ///</summary>
         [Description("车辆应急接入监管平台应答消息")]
+        //[JT809BodiesType(typeof(JT809_0x1500_0x1505))]
         UP_CTRL_MSG_EMERGENCY_MONITORING_ACK = 0x1505,
         #endregion
 
@@ -274,6 +285,7 @@ namespace JT809.Protocol.JT809Enums
         ///补报车辆静态信息应答	
         ///</summary>
         [Description("补报车辆静态信息应答")]
+        [JT809BodiesType(typeof(JT809_0x1600_0x1601))]
         UP_BASE_MSG_VEHICLE_ADDED_ACK = 0x1601,
         #endregion
 
@@ -282,6 +294,7 @@ namespace JT809.Protocol.JT809Enums
         ///补报车辆静态信息请求	
         ///</summary>
         [Description("补报车辆静态信息请求")]
+        [JT809BodiesType(typeof(JT809_0x9600_0x9601))]
         DOWN_BASE_MSG_VEHICLE_ADDED = 0x9601,
         #endregion
     }
