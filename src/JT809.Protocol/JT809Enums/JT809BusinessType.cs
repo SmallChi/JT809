@@ -137,11 +137,13 @@ namespace JT809.Protocol.JT809Enums
         ///主链路平台间信息交互消息  
         ///</summary>
         [Description("主链路平台间信息交互消息")]
+        [JT809BodiesType(typeof(JT809_0x1300))]
         UP_PLATFORM_MSG = 0x1300,
         ///<summary>
         ///从链路平台间信息交互消息  
         ///</summary>
         [Description("从链路平台间信息交互消息")]
+        [JT809BodiesType(typeof(JT809_0x9300))]
         DOWN_PLATFORM_MSG = 0x9300,
         #endregion
         #region 车辆报警信息交互类
@@ -156,6 +158,7 @@ namespace JT809.Protocol.JT809Enums
         [Description("从链路报警信息交互消息")]
         DOWN_WARN_MSG = 0x9400,
         #endregion
+
         #region 车辆监管类 
         ///<summary>
         ///主链路车辆监管消息  

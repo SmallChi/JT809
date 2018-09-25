@@ -152,11 +152,13 @@ namespace JT809.Protocol.JT809Enums
         ///平台查岗应答	
         ///</summary>
         [Description("平台查岗应答")]
+        [JT809BodiesType(typeof(JT809_0x1300_0x1301))]
         UP_PLATFORM_MSG_POST_QUERY_ACK = 0x1301,
         ///<summary>
         ///下发平台间报文应答	
         ///</summary>
         [Description("下发平台间报文应答")]
+        [JT809BodiesType(typeof(JT809_0x1300_0x1302))]
         UP_PLATFORM_MSG_INFO_ACK = 0x1302,
         #endregion
 
@@ -165,11 +167,13 @@ namespace JT809.Protocol.JT809Enums
         ///平台查岗请求	
         ///</summary>
         [Description("平台查岗请求")]
+        [JT809BodiesType(typeof(JT809_0x9300_0x9301))]
         DOWN_PLATFORM_MSG_POST_QUERY_REQ = 0x9301,
         ///<summary>
         ///下发平台间报文请求	
         ///</summary>
         [Description("下发平台间报文请求")]
+        [JT809BodiesType(typeof(JT809_0x9300_0x9302))]
         DOWN_PLATFORM_MSG_INFO_REQ = 0x9302,
         #endregion
 
