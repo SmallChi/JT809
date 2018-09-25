@@ -126,9 +126,10 @@ namespace JT809.Protocol.JT809Enums
         [JT809BodiesType(typeof(JT809_0x1200))]
         UP_EXG_MSG = 0x1200,
         ///<summary>
-        ///从链路动态信息交换消息  
+        ///从链路动态信息交换消息
         ///</summary>
         [Description("从链路动态信息交换消息")]
+        [JT809BodiesType(typeof(JT809_0x9200))]
         DOWN_EXG_MSG = 0x9200,
         #endregion
         #region 平台间信息交互类

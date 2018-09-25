@@ -89,51 +89,61 @@ namespace JT809.Protocol.JT809Enums
         ///交换车辆定位信息	
         ///</summary>
         [Description("交换车辆定位信息")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9202))]
         DOWN_EXG_MSG_CAR_LOCATION = 0x9202,
         ///<summary>
         ///车辆定位信息交换补发	
         ///</summary>
         [Description("车辆定位信息交换补发")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9203))]
         DOWN_EXG_MSG_HISTORY_ARCOSSAREA = 0x9203,
         ///<summary>
         ///交换车辆静态信息	
         ///</summary>
         [Description("交换车辆静态信息")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9204))]
         DOWN_EXG_MSG_CAR_INFO = 0x9204,
         ///<summary>
         ///启动车辆定位信息交换请求	
         ///</summary>
         [Description("启动车辆定位信息交换请求")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9205))]
         DOWN_EXG_MSG_RETURN_STARTUP = 0x9205,
         ///<summary>
         ///结束车辆定位信息交换请求	
         ///</summary>
         [Description("结束车辆定位信息交换请求")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9206))]
         DOWN_EXG_MSG_RETURN_END = 0x9206,
         ///<summary>
         ///申请交换指定车辆定位信息应答	
         ///</summary>
         [Description("申请交换指定车辆定位信息应答")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9207))]
         DOWN_EXG_MSG_APPLY_FOR_MONITOR_STARTUP_ACK = 0x9207,
         ///<summary>
         ///取消交换指定车辆定位信息应答	
         ///</summary>
         [Description("取消交换指定车辆定位信息应答")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9208))]
         DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK = 0x9208,
         ///<summary>
         ///补发车辆定位信息应答	
         ///</summary>
         [Description("补发车辆定位信息应答")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x9209))]
         DOWN_EXG_MSG_APPLY_HISGNSSDATA_ACK = 0x9209,
         ///<summary>
         ///上报车辆驾驶员身份识别信息请求	
         ///</summary>
         [Description("上报车辆驾驶员身份识别信息请求")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x920A))]
         DOWN_EXG_MSG_REPORT_DRIVER_INFO = 0x920A,
         ///<summary>
         ///上报车辆电子运单请求	
         ///</summary>
         [Description("上报车辆电子运单请求")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x920B))]
         DOWN_EXG_MSG_TAKE_EWAYBILL_REQ = 0x920B,
         #endregion
 

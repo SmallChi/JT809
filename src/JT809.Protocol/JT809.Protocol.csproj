@@ -40,6 +40,11 @@
     <Compile Include="JT809Enums\JT809VehicleColorType.cs" />
     <Compile Include="JT809Enums\JT809_0x1002_Result.cs" />
     <Compile Include="JT809Enums\JT809_0x1007_ErrorCode.cs" />
+    <Compile Include="JT809Enums\JT809_0x9209_Result.cs" />
+    <Compile Include="JT809Enums\JT809_0x9208_Result.cs" />
+    <Compile Include="JT809Enums\JT809_0x9207_Result.cs" />
+    <Compile Include="JT809Enums\JT809_0x9206_ReasonCode.cs" />
+    <Compile Include="JT809Enums\JT809_0x9205_ReasonCode.cs" />
     <Compile Include="JT809Enums\JT809_0x9007_ReasonCode.cs" />
     <Compile Include="JT809Enums\JT809_0x1008_ReasonCode.cs" />
     <Compile Include="JT809Enums\JT809_0x9002_Result.cs" />
