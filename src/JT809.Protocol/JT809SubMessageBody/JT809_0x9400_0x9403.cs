@@ -19,7 +19,7 @@ namespace JT809.Protocol.JT809SubMessageBody
         /// <summary>
         /// 报警信息来源
         /// </summary>
-        public JT809_0x9403_WarnSrc WarnSrc { get; set; }
+        public JT809WarnSrc WarnSrc { get; set; }
         /// <summary>
         /// 报警类型
         /// </summary>

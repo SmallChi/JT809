@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Copyright>Copyright 2016-2018.</Copyright>
+    <Authors>SmallChi</Authors>
+    <PackageId>JT809</PackageId>
+    <Product>JT809</Product>
+    <Description>JT809</Description>
+    <PackageReleaseNotes>JT809</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -39,15 +46,12 @@
     <Compile Include="JT809Enums\JT809BusinessType.cs" />
     <Compile Include="JT809Enums\JT809SubBusinessType.cs" />
     <Compile Include="JT809Enums\JT809VehicleColorType.cs" />
+    <Compile Include="JT809Enums\JT809WarnSrc.cs" />
     <Compile Include="JT809Enums\JT809_0x1502_PhotoRspFlag.cs" />
     <Compile Include="JT809Enums\JT809_0x1501_Result.cs" />
     <Compile Include="JT809Enums\JT809_0x1505_Result.cs" />
     <Compile Include="JT809Enums\JT809_0x1503_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x9403_WarnSrc.cs" />
-    <Compile Include="JT809Enums\JT809_0x9402_WarnSrc.cs" />
-    <Compile Include="JT809Enums\JT809_0x9401_WarnSrc.cs" />
     <Compile Include="JT809Enums\JT809_0x1403_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x1402_WarnSrc.cs" />
     <Compile Include="JT809Enums\JT809_0x1401_Result.cs" />
     <Compile Include="JT809Enums\JT809_0x1002_Result.cs" />
     <Compile Include="JT809Enums\JT809_0x1007_ErrorCode.cs" />

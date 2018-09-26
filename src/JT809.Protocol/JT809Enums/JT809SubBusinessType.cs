@@ -9,6 +9,7 @@ namespace JT809.Protocol.JT809Enums
     ///</summary>
     public enum JT809SubBusinessType : ushort
     {
+        None=0x0000,
         #region 主链路动态信息交换消息 UP_EXG_MSG
         /// <summary>
         /// 上传车辆注册信息
