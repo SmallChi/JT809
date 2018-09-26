@@ -43,7 +43,7 @@ namespace JT809.Protocol.JT809Extensions
             }
         }
 
-        private static Encoding encoding;
+        public static Encoding encoding;
 
         public static int ReadBCD32(this byte data, byte dig)
         {

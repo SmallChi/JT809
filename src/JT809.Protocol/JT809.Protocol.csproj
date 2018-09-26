@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Copyright>Copyright 2016-2018.</Copyright>
+    <Authors>SmallChi</Authors>
+    <PackageId>JT809</PackageId>
+    <Product>JT809</Product>
+    <Description>JT809</Description>
+    <PackageReleaseNotes>JT809</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
