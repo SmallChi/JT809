@@ -7,7 +7,7 @@ namespace JT809.Protocol.JT809Enums
     /// <summary>
     /// 报警信息来源
     /// </summary>
-    public enum JT809_0x9401_WarnSrc : byte
+    public enum JT809WarnSrc : byte
     {
         车载终端 = 0x00,
         企业监控平台 = 0x01,

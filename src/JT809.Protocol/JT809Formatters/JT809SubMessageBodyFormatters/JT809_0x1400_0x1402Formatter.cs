@@ -13,7 +13,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
         {
             int offset = 0;
             JT809_0x1400_0x1402 jT809_0X1400_0X1402 = new JT809_0x1400_0x1402();
-            jT809_0X1400_0X1402.WarnSrc = (JT809Enums.JT809_0x1402_WarnSrc)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
+            jT809_0X1400_0X1402.WarnSrc = (JT809Enums.JT809WarnSrc)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809_0X1400_0X1402.WarnType= JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
             jT809_0X1400_0X1402.WarnTime = JT809BinaryExtensions.ReadUTCDateTimeLittle(bytes, ref offset);
             jT809_0X1400_0X1402.InfoID= JT809BinaryExtensions.ReadUInt32Little(bytes, ref offset);
