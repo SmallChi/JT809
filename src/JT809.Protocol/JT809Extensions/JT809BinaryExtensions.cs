@@ -181,6 +181,13 @@ namespace JT809.Protocol.JT809Extensions
             return temp.ToArray();
         }
 
+        public static byte[] ReadBytesLittle(ReadOnlySpan<byte> read, ref int offset)
+        {
+            ReadOnlySpan<byte> temp = read.Slice(offset);
+            offset = offset + temp.Length;
+            return temp.ToArray();
+        }
+
         /// <summary>
         /// 数字编码 大端模式、高位在前
         /// </summary>

@@ -34,12 +34,15 @@
 
   <ItemGroup>
     <Compile Include="JT809Configs\JT809EncryptOptions.cs" />
+    <Compile Include="JT809Enums\JT809CommandType.cs" />
     <Compile Include="JT809Enums\JT809ErrorCode.cs" />
     <Compile Include="JT809Enums\JT809BusinessType.cs" />
     <Compile Include="JT809Enums\JT809SubBusinessType.cs" />
     <Compile Include="JT809Enums\JT809VehicleColorType.cs" />
     <Compile Include="JT809Enums\JT809_0x1502_PhotoRspFlag.cs" />
     <Compile Include="JT809Enums\JT809_0x1501_Result.cs" />
+    <Compile Include="JT809Enums\JT809_0x1505_Result.cs" />
+    <Compile Include="JT809Enums\JT809_0x1503_Result.cs" />
     <Compile Include="JT809Enums\JT809_0x9403_WarnSrc.cs" />
     <Compile Include="JT809Enums\JT809_0x9402_WarnSrc.cs" />
     <Compile Include="JT809Enums\JT809_0x9401_WarnSrc.cs" />
