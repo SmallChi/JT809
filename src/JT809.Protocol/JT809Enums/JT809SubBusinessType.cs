@@ -236,19 +236,19 @@ namespace JT809.Protocol.JT809Enums
         ///下发车辆报文应答	
         ///</summary>
         [Description("下发车辆报文应答")]
-        //[JT809BodiesType(typeof(JT809_0x1500_0x1503))]
+        [JT809BodiesType(typeof(JT809_0x1500_0x1503))]
         UP_CTRL_MSG_TEXT_INFO_ACK = 0x1503,
         ///<summary>
         ///上报车辆行驶记录应答	
         ///</summary>
         [Description("上报车辆行驶记录应答")]
-        //[JT809BodiesType(typeof(JT809_0x1500_0x1504))]
+        [JT809BodiesType(typeof(JT809_0x1500_0x1504))]
         UP_CTRL_MSG_TAKE_TRAVEL_ACK = 0x1504,
         ///<summary>
         ///车辆应急接入监管平台应答消息	
         ///</summary>
         [Description("车辆应急接入监管平台应答消息")]
-        //[JT809BodiesType(typeof(JT809_0x1500_0x1505))]
+        [JT809BodiesType(typeof(JT809_0x1500_0x1505))]
         UP_CTRL_MSG_EMERGENCY_MONITORING_ACK = 0x1505,
         #endregion
 
@@ -257,26 +257,31 @@ namespace JT809.Protocol.JT809Enums
         ///车辆单向监听请求	
         ///</summary>
         [Description("车辆单向监听请求")]
+        [JT809BodiesType(typeof(JT809_0x9500_0x9501))]
         DOWN_CTRL_MSG_MONITOR_VEHICLE_REQ = 0x9501,
         ///<summary>
         ///车辆拍照请求	
         ///</summary>
         [Description("车辆拍照请求")]
+        [JT809BodiesType(typeof(JT809_0x9500_0x9502))]
         DOWN_CTRL_MSG_TAKE_PHOTO_REQ = 0x9502,
         ///<summary>
         ///下发车辆报文请求	
         ///</summary>
         [Description("下发车辆报文请求")]
+        [JT809BodiesType(typeof(JT809_0x9500_0x9503))]
         DOWN_CTRL_MSG_TEXT_INFO = 0x9503,
         ///<summary>
         ///上报车辆行驶记录请求	
         ///</summary>
         [Description("上报车辆行驶记录请求")]
+        [JT809BodiesType(typeof(JT809_0x9500_0x9504))]
         DOWN_CTRL_MSG_TAKE_TRAVEL_REQ = 0x9504,
         ///<summary>
         ///车辆应急接入监管平台请求消息	
         ///</summary>
         [Description("车辆应急接入监管平台请求消息")]
+        [JT809BodiesType(typeof(JT809_0x9500_0x9505))]
         DOWN_CTRL_MSG_EMERGENCY_MONITORING_REQ = 0x9505,
         #endregion
 
