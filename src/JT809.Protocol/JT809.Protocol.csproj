@@ -45,6 +45,8 @@
 
   <ItemGroup>
     <Compile Include="JT809Configs\JT809EncryptOptions.cs" />
+    <Compile Include="JT809Enums\JT808_Alarm.cs" />
+    <Compile Include="JT809Enums\JT808_Status.cs" />
     <Compile Include="JT809Enums\JT809CommandType.cs" />
     <Compile Include="JT809Enums\JT809ErrorCode.cs" />
     <Compile Include="JT809Enums\JT809BusinessType.cs" />

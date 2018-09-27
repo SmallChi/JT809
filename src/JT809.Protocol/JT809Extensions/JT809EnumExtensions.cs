@@ -151,5 +151,58 @@ namespace JT809.Protocol.JT809Extensions
                 return default;
             }
         }
+
+        /// <summary>
+        /// 根据值获取对应枚举类型集合
+        /// </summary>
+        /// <typeparam name="T">具体枚举类型</typeparam>
+        /// <param name="value">枚举值</param>
+        /// <param name="digit">位数(8,16,32)</param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetEnumTypes<T>(this int value,int digit) where T : Enum
+        {
+            return GetEnumTypes<T>(value, digit,true);
+        }
+
+        /// <summary>
+        /// 根据值获取对应枚举类型集合
+        /// </summary>
+        /// <typeparam name="T">具体枚举类型</typeparam>
+        /// <param name="value">枚举值</param>
+        /// <param name="digit">位数(8,16,32)</param>
+        /// <param name="ignoreUnknown">是否忽略未知数据</param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetEnumTypes<T>(this int value, int digit,bool ignoreUnknown) where T : Enum
+        {
+            List<T> values = new List<T>();
+            for (int i = 0; i < digit; i++)
+            {
+                if (Math.Pow(2, i) <= value) continue;
+                values.Add((T)Enum.ToObject(typeof(T), (int)Math.Pow(2, i - 1)));
+                value = value - (int)Math.Pow(2, i - 1);
+                i = 0;
+                if (value <= 0) break;
+            }
+            if (ignoreUnknown)
+            {
+                List<T> results = new List<T>();
+                foreach (var item in values)
+                {
+                    foreach (string itemChild in Enum.GetNames(typeof(T)))
+                    {
+                        if (item.ToString() == itemChild)
+                        {
+                            results.Add(item);
+                            break;
+                        }
+                    }
+                }
+                return results;
+            }
+            else
+            {
+                return values;
+            }
+        }
     }
 }
