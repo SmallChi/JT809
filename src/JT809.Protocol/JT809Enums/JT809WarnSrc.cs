@@ -9,9 +9,9 @@ namespace JT809.Protocol.JT809Enums
     /// </summary>
     public enum JT809WarnSrc : byte
     {
-        车载终端 = 0x00,
-        企业监控平台 = 0x01,
-        政府监管平台 = 0x02,
+        车载终端 = 0x01,
+        企业监控平台 = 0x02,
+        政府监管平台 = 0x03,
         其他 =0x09
     }
 }

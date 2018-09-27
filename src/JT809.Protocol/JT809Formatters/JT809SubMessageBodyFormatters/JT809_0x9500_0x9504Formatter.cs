@@ -33,8 +33,8 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
                 case JT809Enums.JT809CommandType.采集记录仪外部供电记录:
                 case JT809Enums.JT809CommandType.采集记录仪参数修改记录:
                 case JT809Enums.JT809CommandType.采集记录仪速度状态日志:
-                    jT809_0X9500_0X9504.StartTime = JT809BinaryExtensions.ReadDateTimeLittle(bytes, ref offset);
-                    jT809_0X9500_0X9504.EndTime = JT809BinaryExtensions.ReadDateTimeLittle(bytes, ref offset);
+                    jT809_0X9500_0X9504.StartTime = JT809BinaryExtensions.ReadDateTime6Little(bytes, ref offset);
+                    jT809_0X9500_0X9504.EndTime = JT809BinaryExtensions.ReadDateTime6Little(bytes, ref offset);
                     jT809_0X9500_0X9504.Max = JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
                     break;
             }

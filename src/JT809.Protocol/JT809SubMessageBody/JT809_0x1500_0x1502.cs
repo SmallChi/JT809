@@ -16,6 +16,10 @@ namespace JT809.Protocol.JT809SubMessageBody
     [JT809Formatter(typeof(JT809_0x1500_0x1502Formatter))]
     public class JT809_0x1500_0x1502:JT809SubBodies
     {
+        public JT809_0x1500_0x1502()
+        {
+            VehiclePosition = new JT809VehiclePositionProperties();
+        }
         /// <summary>
         /// 拍照应答标识
         /// </summary>

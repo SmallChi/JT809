@@ -35,7 +35,10 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             jT809_0X1500_0X1502.PhotoLen = JT809BinaryExtensions.ReadUInt32Little(bytes, ref offset);
             jT809_0X1500_0X1502.SizeType = JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809_0X1500_0X1502.Type = JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
-            jT809_0X1500_0X1502.Photo = JT809BinaryExtensions.ReadBytesLittle(bytes, ref offset);
+            if (jT809_0X1500_0X1502.PhotoLen > 0)
+            {
+                jT809_0X1500_0X1502.Photo = JT809BinaryExtensions.ReadBytesLittle(bytes, ref offset, (int)jT809_0X1500_0X1502.PhotoLen);
+            }
             readSize = offset;
             return jT809_0X1500_0X1502;
         }
@@ -60,10 +63,14 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VehiclePosition.State);
             offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VehiclePosition.Alarm);
             offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.LensID);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.PhotoLen);
+            bool isPhoto = (value.Photo != null && value.Photo.Length > 0);
+            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, isPhoto ? (uint)value.Photo.Length : 0);
             offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.SizeType);
             offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.Type);
-            offset += JT809BinaryExtensions.WriteBytesLittle(memoryOwner, offset, value.Photo);
+            if (isPhoto)
+            {
+                offset += JT809BinaryExtensions.WriteBytesLittle(memoryOwner, offset, value.Photo);
+            }
             return offset;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using JT809.Protocol.JT809Attributes;
+using JT809.Protocol.JT809Enums;
 using JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace JT809.Protocol.JT809SubMessageBody
         /// <summary>
         /// 命令字
         /// </summary>
-        public byte CommandType { get; set; }
+        public JT809CommandType CommandType { get; set; }
         /// <summary>
         /// 车辆行驶记录数据体长度
         /// </summary>

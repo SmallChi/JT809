@@ -25,7 +25,7 @@ namespace JT809.Protocol.JT809SubMessageBody
         /// </summary>
         public ushort WarnType { get; set; }
         /// <summary>
-        /// 报警时间
+        /// 报警时间 UTCDateTime
         /// </summary>
         public DateTime WarnTime { get; set; }
         /// <summary>

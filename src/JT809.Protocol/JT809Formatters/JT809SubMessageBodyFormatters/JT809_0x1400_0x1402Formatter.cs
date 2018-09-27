@@ -14,7 +14,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             int offset = 0;
             JT809_0x1400_0x1402 jT809_0X1400_0X1402 = new JT809_0x1400_0x1402();
             jT809_0X1400_0X1402.WarnSrc = (JT809Enums.JT809WarnSrc)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
-            jT809_0X1400_0X1402.WarnType= JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
+            jT809_0X1400_0X1402.WarnType=(JT809Enums.JT809WarnType) JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
             jT809_0X1400_0X1402.WarnTime = JT809BinaryExtensions.ReadUTCDateTimeLittle(bytes, ref offset);
             jT809_0X1400_0X1402.InfoID= JT809BinaryExtensions.ReadUInt32Little(bytes, ref offset);
             jT809_0X1400_0X1402.InfoLength = JT809BinaryExtensions.ReadUInt32Little(bytes, ref offset);
@@ -26,7 +26,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
         public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1400_0x1402 value)
         {
             offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.WarnSrc);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset,value.WarnType);
+            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset,(ushort)value.WarnType);
             offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.WarnTime);
             offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.InfoID);
             // 先计算内容长度（汉字为两个字节）

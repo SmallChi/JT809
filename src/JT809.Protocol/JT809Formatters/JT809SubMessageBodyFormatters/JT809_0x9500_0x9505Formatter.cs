@@ -13,21 +13,21 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
         {
             int offset = 0;
             JT809_0x9500_0x9505 jT809_0X9500_0X9505 = new JT809_0x9500_0x9505();
-            jT809_0X9500_0X9505.AuthenticationCode= JT809BinaryExtensions.ReadBCD32(bytes, ref offset,10).ToString();
+            jT809_0X9500_0X9505.AuthenticationCode= JT809BinaryExtensions.ReadBCDLittle(bytes, ref offset,10);
             jT809_0X9500_0X9505.AccessPointName = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset, 20);
             jT809_0X9500_0X9505.UserName = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset,49);
             jT809_0X9500_0X9505.Password = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset,22);
             jT809_0X9500_0X9505.ServerIP = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset, 32);
             jT809_0X9500_0X9505.TcpPort = JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
             jT809_0X9500_0X9505.UdpPort = JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
-            jT809_0X9500_0X9505.EndTime = JT809BinaryExtensions.ReadDateTimeLittle(bytes, ref offset);
+            jT809_0X9500_0X9505.EndTime = JT809BinaryExtensions.ReadUTCDateTimeLittle(bytes, ref offset);
             readSize = offset;
             return jT809_0X9500_0X9505;
         }
 
         public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9500_0x9505 value)
         {
-            offset += JT809BinaryExtensions.WriteBCDLittle(memoryOwner, offset, value.AuthenticationCode,4,10);
+            offset += JT809BinaryExtensions.WriteBCDLittle(memoryOwner, offset, value.AuthenticationCode,10,20);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.AccessPointName,20);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.UserName, 49);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.Password, 22);

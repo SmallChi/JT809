@@ -1,4 +1,5 @@
-﻿using JT809.Protocol.JT809Extensions;
+﻿using JT809.Protocol.JT809Enums;
+using JT809.Protocol.JT809Extensions;
 using JT809.Protocol.JT809SubMessageBody;
 using System;
 using System.Buffers;
@@ -13,7 +14,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
         {
             int offset = 0;
             JT809_0x1500_0x1504 jT809_0X1500_0X1504 = new JT809_0x1500_0x1504();
-            jT809_0X1500_0X1504.CommandType = JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
+            jT809_0X1500_0X1504.CommandType = (JT809CommandType)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809_0X1500_0X1504.TraveldataLength= JT809BinaryExtensions.ReadUInt32Little(bytes, ref offset);
             jT809_0X1500_0X1504.TraveldataInfo = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset, (int)jT809_0X1500_0X1504.TraveldataLength);
             readSize = offset;
@@ -22,7 +23,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
 
         public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1500_0x1504 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.CommandType);
+            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.CommandType);
             // 先计算内容长度（汉字为两个字节）
             offset += 4;
             int byteLength = JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.TraveldataInfo);

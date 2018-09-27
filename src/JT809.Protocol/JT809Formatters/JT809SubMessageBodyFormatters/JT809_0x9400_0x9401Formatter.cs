@@ -14,10 +14,10 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             int offset = 0;
             JT809_0x9400_0x9401 jT809_0X9400_0X9401 = new JT809_0x9400_0x9401();
             jT809_0X9400_0X9401.WarnSrc = (JT809Enums.JT809WarnSrc)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
-            jT809_0X9400_0X9401.WarnType = JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
+            jT809_0X9400_0X9401.WarnType =(JT809Enums.JT809WarnType) JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
             jT809_0X9400_0X9401.WarnTime = JT809BinaryExtensions.ReadUTCDateTimeLittle(bytes, ref offset);
-            jT809_0X9400_0X9401.SupervisionID = JT809BinaryExtensions.ReadUInt32Little(bytes, ref offset);
-            jT809_0X9400_0X9401.SupervisionEndtime = JT809BinaryExtensions.ReadUTCDateTimeLittle(bytes, ref offset);
+            jT809_0X9400_0X9401.SupervisionID = JT809BinaryExtensions.ReadHexStringLittle(bytes, ref offset,4);
+            jT809_0X9400_0X9401.SupervisionEndTime = JT809BinaryExtensions.ReadUTCDateTimeLittle(bytes, ref offset);
             jT809_0X9400_0X9401.SupervisionLevel = JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809_0X9400_0X9401.Supervisor = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset,16);
             jT809_0X9400_0X9401.SupervisorTel = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset,20);
@@ -29,10 +29,10 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
         public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9400_0x9401 value)
         {
             offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.WarnSrc);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.WarnType);
+            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, (ushort)value.WarnType);
             offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.WarnTime);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.SupervisionID);
-            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.SupervisionEndtime);
+            offset += JT809BinaryExtensions.WriteHexStringLittle(memoryOwner, offset, value.SupervisionID,4);
+            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.SupervisionEndTime);
             offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.SupervisionLevel);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.Supervisor,16);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.SupervisorTel,20);

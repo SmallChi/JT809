@@ -22,19 +22,19 @@ namespace JT809.Protocol.JT809SubMessageBody
         /// <summary>
         /// 报警类型
         /// </summary>
-        public ushort WarnType { get; set; }
+        public JT809WarnType WarnType { get; set; }
         /// <summary>
-        /// 报警时间
+        /// 报警时间UTCDateTime
         /// </summary>
         public DateTime WarnTime { get; set; }
         /// <summary>
-        /// 报警督办ID
+        /// 报警督办ID HexString
         /// </summary>
-        public uint SupervisionID { get; set; }
+        public string SupervisionID { get; set; }
         /// <summary>
         /// 督办截止时间
         /// </summary>
-        public DateTime SupervisionEndtime { get; set; }
+        public DateTime SupervisionEndTime { get; set; }
         /// <summary>
         /// 督办级别
         /// </summary>
