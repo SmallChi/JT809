@@ -15,7 +15,7 @@ namespace JT809.Protocol.JT809SubMessageBody
     public class JT809_0x9200_0x9203:JT809SubBodies
     {
         /// <summary>
-        /// 卫星定位数据个数 1<=GNSS_CNT<=5。
+        /// 卫星定位数据个数 1大于GNSS_CNT小于5
         /// </summary>
         public byte GNSSCount { get; set; }
         /// <summary>

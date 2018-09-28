@@ -1,10 +1,10 @@
-# JT809协议
+﻿# JT809协议
 
 ## 瞎逼逼：
 
 > 该JT809协议是参考[MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp)一款二进制序列化器，借鉴其思想，不得不说站在巨人的肩膀上搬砖就是爽歪歪。
 
-> 在github上面搜索竟然没有针对.NET开源的809协议库，难度做GPS行业的.NET很少人吗？可能是藏着，掖着<(￣3￣)>  <(￣3￣)>  <(￣3￣)> 。
+> 在github上面搜索竟然没有针对.NET开源的809协议库，难道做GPS行业的.NET很少人吗？可能是藏着，掖着<(￣3￣)>  <(￣3￣)>  <(￣3￣)> 。
 
 > 不得不说这GB的文档，太坑了。。。
 
@@ -13,7 +13,7 @@
 ## 前提条件
 
 1. 掌握进制转换：二进制转十六进制；
-2. 掌握什么叫BCD编码、Hex编码；
+2. 掌握BCD编码、Hex编码；
 3. 掌握各种位移、异或；
 4. 掌握常用反射；
 5. 掌握快速ctrl+c、ctrl+v；
@@ -31,7 +31,7 @@
 
 |数据长度|报文序列号|业务数据类型|下级平台接入码|协议版本号标识|报文加密标识位|数据加密的密匙|
 |:------:|:------:|:------:|:------:|:------:|:------:|:------:|
-| MsgLength | MsgSN | MsgID | MsgGNSSCENTERID | Version | EndFlag |EncryptFlag | EncryptKey |
+| MsgLength | MsgSN | MsgID | MsgGNSSCENTERID | Version |EncryptFlag | EncryptKey |
 
 ### 数据体[JT809Bodies]
 
@@ -180,6 +180,36 @@ Assert.Equal("12345678901", jT809_0x9400_0x9401.SupervisorTel);
 Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
 
 ```
+
+## 使用BenchmarkDotNet性能测试报告（只是玩玩，不能当真）
+
+``` ini
+BenchmarkDotNet=v0.11.1, OS=Windows 7 SP1 (6.1.7601.0)
+Intel Core i5-5200U CPU 2.20GHz (Max: 2.18GHz) (Broadwell), 1 CPU, 4 logical and 2 physical cores
+Frequency=2143505 Hz, Resolution=466.5256 ns, Timer=TSC
+.NET Core SDK=2.1.401
+  [Host]     : .NET Core 2.1.2 (CoreCLR 4.6.26628.05, CoreFX 4.6.26629.01), 64bit RyuJIT
+  Job-VCXLHD : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3133.0
+  Job-WATJMQ : .NET Core 2.1.2 (CoreCLR 4.6.26628.05, CoreFX 4.6.26629.01), 64bit RyuJIT
+
+Platform=AnyCpu  Server=True  
+
+```
+|                                  Method | Runtime |     Toolchain |      N |         Mean |       Error |      StdDev |       Median |       Gen 0 |    Allocated |
+|---------------------------------------- |-------- |-------------- |------- |-------------:|------------:|------------:|-------------:|------------:|-------------:|
+| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** |    **100** |     **6.023 ms** |   **0.1358 ms** |   **0.3939 ms** |     **5.890 ms** |           **-** |       **520 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default |    100 |     7.548 ms |   0.1737 ms |   0.5067 ms |     7.479 ms |           - |       536 KB |
+| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 |    100 |     4.405 ms |   0.0874 ms |   0.2332 ms |     4.372 ms |     23.4375 |    465.18 KB |
+|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 |    100 |     5.178 ms |   0.1031 ms |   0.2107 ms |     5.131 ms |     23.4375 |    466.74 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** |  **10000** |   **569.689 ms** |  **11.3421 ms** |  **28.0348 ms** |   **560.844 ms** |  **33000.0000** |  **50755.41 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default |  10000 |   709.679 ms |  14.0759 ms |  32.0580 ms |   705.015 ms |  34000.0000 |  52365.04 KB |
+| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 |  10000 |   435.974 ms |   8.6721 ms |  23.2971 ms |   432.058 ms |   2000.0000 |   46516.3 KB |
+|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 |  10000 |   559.733 ms |  16.1688 ms |  46.3913 ms |   552.344 ms |   2000.0000 |  46672.55 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** | **100000** | **6,167.859 ms** | **182.6382 ms** | **512.1372 ms** | **6,133.157 ms** | **330000.0000** | **507097.91 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default | 100000 | 7,558.213 ms | 179.7646 ms | 518.6620 ms | 7,478.251 ms | 340000.0000 | 523420.85 KB |
+| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 | 100000 | 5,064.515 ms | 179.1875 ms | 511.2320 ms | 4,932.761 ms |  27000.0000 | 465045.28 KB |
+|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 | 100000 | 5,108.023 ms |  99.7554 ms | 126.1587 ms | 5,071.244 ms |  26000.0000 | 466693.55 KB |
+
 
 ## JT809协议消息对照表
 
@@ -330,3 +360,4 @@ Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
 |:------:|:------:|:------:|:------:|
 |  1  | 0x9600  |  √   |  从链路静态信息交换消息  |
 |  2  | 0x9601  |  √   |  补报车辆静态信息应答  |
+

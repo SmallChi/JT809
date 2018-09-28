@@ -9,7 +9,6 @@ namespace JT809.Protocol.JT809Extensions
         /// <summary>
         /// 从数据头到校验码前的 CRC 1 G-CCITT 的校验值，遵循人端排序方式的规定。
         /// </summary>
-        /// <param name="packege"></param>
         /// <param name="ucbuf"></param>
         /// <param name="offset"></param>
         /// <param name="iLen"></param>
@@ -27,7 +26,6 @@ namespace JT809.Protocol.JT809Extensions
         /// <summary>
         /// 从数据头到校验码前的 CRC 1 G-CCITT 的校验值，遵循人端排序方式的规定。
         /// </summary>
-        /// <param name="packege"></param>
         /// <param name="ucbuf"></param>
         /// <param name="offset"></param>
         /// <param name="iLen"></param>

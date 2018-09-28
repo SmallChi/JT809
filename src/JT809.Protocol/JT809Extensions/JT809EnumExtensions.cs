@@ -89,7 +89,7 @@ namespace JT809.Protocol.JT809Extensions
         /// <summary>
         /// 获取DescriptionAttribute特性枚举及描述
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         public static Dictionary<string, string> GetDescriptionAttributeDictionary(this Enum value)
         {
@@ -106,7 +106,7 @@ namespace JT809.Protocol.JT809Extensions
         /// <summary>
         /// 获取DisplayNameAttribute特性枚举值的描述
         /// </summary>
-        /// <param name="obj">枚举值</param>
+        /// <param name="value">枚举值</param>
         /// <returns></returns>
         public static string GetDisplayName(this Enum value)
         {
@@ -117,7 +117,7 @@ namespace JT809.Protocol.JT809Extensions
         /// <summary>
         /// 获取DisplayNameAttribute特性枚举及描述
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         public static Dictionary<string, string> GetDisplayNameAttributeDictionary(this Enum value)
         {

@@ -7,7 +7,8 @@ using System.Text;
 namespace JT809.Protocol.JT809Extensions
 {
     /// <summary>
-    /// <see cref="https://www.codeproject.com/tips/447938/high-performance-csharp-byte-array-to-hex-string-t"/>
+    /// 
+    /// ref:"www.codeproject.com/tips/447938/high-performance-csharp-byte-array-to-hex-string-t"
     /// </summary>
     public static  partial class JT809BinaryExtensions
     {
