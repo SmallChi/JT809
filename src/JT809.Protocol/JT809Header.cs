@@ -35,7 +35,7 @@ namespace JT809.Protocol
         /// </summary>
         public uint MsgGNSSCENTERID { get; set; }
         /// <summary>
-        /// 协议版本好标识，上下级平台之间采用的标准协议版
+        /// 协议版本号标识，上下级平台之间采用的标准协议版
         /// 编号；长度为 3 个字节来表示，0x01 0x02 0x0F 标识
         /// 的版本号是 v1.2.15，以此类推。
         /// </summary>
