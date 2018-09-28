@@ -181,6 +181,10 @@ Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
 
 ```
 
+## NuGet安装
+
+Install-Package JT809
+
 ## 使用BenchmarkDotNet性能测试报告（只是玩玩，不能当真）
 
 ``` ini
