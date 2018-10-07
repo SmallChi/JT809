@@ -77,7 +77,7 @@ namespace JT809.Protocol.JT809Extensions
             208, 224, 240
         };
 
-        public static string ToHexString(byte[] source)
+        public static string ToHexString(this byte[] source)
         {
             return ToHexString(source, false);
         }
@@ -229,7 +229,7 @@ namespace JT809.Protocol.JT809Extensions
             }
         }
 
-        public unsafe static byte[] FromHexString(string source)
+        public unsafe static byte[] FromHexString(this string source)
         {
             // return an empty array in case of null or empty source
             if (string.IsNullOrEmpty(source))

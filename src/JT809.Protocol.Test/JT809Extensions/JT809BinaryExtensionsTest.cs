@@ -1,4 +1,4 @@
-﻿using JT809.Protocol.Enums;
+﻿using JT809.Protocol.JT809Enums;
 using JT809.Protocol.JT809Extensions;
 using System;
 using System.Collections.Generic;

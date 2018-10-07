@@ -9,20 +9,6 @@ namespace JT809.Protocol.JT809Extensions
 {
     public static  partial class JT809BinaryExtensions
     {
-        public static string ReadStringLittle(ReadOnlySpan<byte> read, ref int offset, int len)
-        {
-            string value = encoding.GetString(read.Slice(offset, len).ToArray());
-            offset += len;
-            return value.Trim('\0');
-        }
-
-        public static string ReadStringLittle(ReadOnlySpan<byte> read, ref int offset)
-        {
-            string value = encoding.GetString(read.Slice(offset).ToArray());
-            offset += value.Length;
-            return value.Trim('\0');
-        }
-
         public static int ReadInt32Little(ReadOnlySpan<byte> read, ref int offset)
         {
             int value = (read[offset] << 24) | (read[offset + 1] << 16) | (read[offset + 2] << 8) | read[offset + 3];
@@ -168,50 +154,6 @@ namespace JT809.Protocol.JT809Extensions
             return data.Length;
         }
 
-        public static int WriteStringLittle(IMemoryOwner<byte> memoryOwner, int offset, string data)
-        {
-            byte[] codeBytes = encoding.GetBytes(data);
-            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
-            return codeBytes.Length;
-        }
-
-        public static int WriteStringLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
-        {
-            byte[] bytes = null;
-            if (string.IsNullOrEmpty(data))
-            {
-                bytes = new byte[0];
-            }
-            else
-            {
-                bytes = encoding.GetBytes(data);
-            }
-            byte[] rBytes = new byte[len];
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                if (i >= len) break;
-                rBytes[i] = bytes[i];
-            }
-            CopyTo(rBytes, memoryOwner.Memory.Span, offset);
-            return rBytes.Length;
-        }
-
-        public static int WriteStringPadLeftLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
-        {
-            data = data.PadLeft(len, '\0');
-            byte[] codeBytes = encoding.GetBytes(data);
-            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
-            return codeBytes.Length;
-        }
-
-        public static int WriteStringPadRightLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
-        {
-            data = data.PadRight(len, '\0');
-            byte[] codeBytes = encoding.GetBytes(data);
-            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
-            return codeBytes.Length;
-        }
-
         /// <summary>
         /// 数字编码 大端模式、高位在前
         /// </summary>
@@ -270,22 +212,6 @@ namespace JT809.Protocol.JT809Extensions
                 n++;
             }
             return bytes;
-        }
-
-        public static byte ToBcdByte(this byte buf)
-        {
-            return (byte)Convert.ToInt32(buf.ToString(), 16);
-        }
-
-        /// <summary>
-        /// 字节数组字符串
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <param name="separator">默认 " "</param>
-        /// <returns></returns>
-        public static string ToHexString(this byte[] bytes, string separator = " ")
-        {
-            return string.Join(separator, bytes.Select(s => s.ToString("X2")));
         }
 
         /// <summary>

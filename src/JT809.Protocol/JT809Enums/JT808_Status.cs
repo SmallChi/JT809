@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JT809.Protocol.Enums
+namespace JT809.Protocol.JT809Enums
 {
     [Flags]
     public enum JT808_Status : uint

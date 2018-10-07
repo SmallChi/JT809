@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JT809.Protocol.Enums
+namespace JT809.Protocol.JT809Enums
 {
     /// <summary>
     /// 报警标志

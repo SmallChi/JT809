@@ -1,14 +1,11 @@
 ﻿# JT809协议
 
-## 瞎逼逼：
+## 瞎逼逼
 
-> 该JT809协议是参考[MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp)一款二进制序列化器，借鉴其思想，不得不说站在巨人的肩膀上搬砖就是爽歪歪。
-
-> 在github上面搜索竟然没有针对.NET开源的809协议库，难道做GPS行业的.NET很少人吗？可能是藏着，掖着<(￣3￣)>  <(￣3￣)>  <(￣3￣)> 。
-
-> 不得不说这GB的文档，太坑了。。。
-
-> 现在有了[JT808](https://github.com/SmallChi/GPSPlatform/blob/master/JT808.md)的基础，对JT809就只剩搬砖了。
+1. 该JT809协议是参考[MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp)一款二进制序列化器，借鉴其思想，不得不说站在巨人的肩膀上搬砖就是爽歪歪。
+2. 搜索了很多资源没有针对.NET开源的809协议库，难道做GPS行业的.NET很少人吗？可能是藏着，掖着<(￣3￣)>  <(￣3￣)>  <(￣3￣)> 。
+3. 不得不说这GB的文档，太坑了。。。
+4. 现在有了[JT808](https://github.com/SmallChi/GPSPlatform/blob/master/JT808.md)的基础，对JT809就只剩搬砖了。
 
 ## 前提条件
 
@@ -22,6 +19,7 @@
 ## JT809数据结构解析
 
 ### 数据包[JT809Package]
+
 |头标识|数据头|数据体|CRC校验码|尾标识
 |:------:|:------:|:------:|:------:|:------:|
 |  BeginFlag  | JT809Header  |  JT809Bodies  | CRCCode | EndFlag |
@@ -48,6 +46,7 @@
 ***注意：数据内容(除去头和尾标识)进行转义判断***
 
 转义规则如下:
+
 1. 若数据内容中有出现字符 0x5b 的，需替换为字符 0x5a 紧跟字符 0x01;
 2. 若数据内容中有出现字符 0x5a 的，需替换为字符 0x5a 紧跟字符 0x02;
 3. 若数据内容中有出现字符 0x5d 的，需替换为字符 0x5e 紧跟字符 0x01;
@@ -57,11 +56,12 @@
 
 ### 举个栗子
 
-1. 组包：
+#### 1.组包：
+
 > 业务数据类型 MsgID:从链路报警信息交互消息
 > 子业务类型标识 SubBusinessType:报警督办请求消息
 
-```
+``` code
 JT809Package jT809Package = new JT809Package();
 
 jT809Package.Header = new JT809Header
@@ -104,8 +104,9 @@ string hex = data.ToHexString();
 // 5B 00 00 00 92 00 00 06 82 94 00 01 33 EF B8 01 00 00 00 00 00 27 0F D4 C1 41 31 32 33 34 35 00 00 00 00 00 00 00 00 00 00 00 00 00 02 94 01 00 00 00 5C 01 00 02 00 00 00 00 5A 01 AC 3F 40 12 3F FA A1 00 00 00 00 5A 01 AC 4D 50 03 73 6D 61 6C 6C 63 68 69 00 00 00 00 00 00 00 00 31 32 33 34 35 36 37 38 39 30 31 00 00 00 00 00 00 00 00 00 31 32 33 34 35 36 40 71 71 2E 63 6F 6D 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 BA D8 5D
 ```
 
-2. 手动解包：
-```
+#### 2.手动解包：
+
+``` data
 1.原包：
 5B 00 00 00 92 00 00 06 82 94 00 01 33 EF B8 01 00 00 00 00 00 27 0F D4 C1 41 31 32 33 34 35 00 00 00 00 00 00 00 00 00 00 00 00 00 02 94 01 00 00 00 5C 01 00 02 00 00 00 00 (5A 01) AC 3F 40 12 3F FA A1 00 00 00 00 (5A 01) AC 4D 50 03 73 6D 61 6C 6C 63 68 69 00 00 00 00 00 00 00 00 31 32 33 34 35 36 37 38 39 30 31 00 00 00 00 00 00 00 00 00 31 32 33 34 35 36 40 71 71 2E 63 6F 6D 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 BA D8 5D
 
@@ -143,8 +144,9 @@ BA D8       --CRC校验码
 5D          --尾标识
 ```
 
-3. 程序解包：
-```
+#### 3.程序解包：
+
+``` data
 //1.转成byte数组
 var bytes = "5B 00 00 00 92 00 00 06 82 94 00 01 33 EF B8 01 00 00 00 00 00 27 0F D4 C1 41 31 32 33 34 35 00 00 00 00 00 00 00 00 00 00 00 00 00 02 94 01 00 00 00 5C 01 00 02 00 00 00 00 5A 01 AC 3F 40 12 3F FA A1 00 00 00 00 5A 01 AC 4D 50 03 73 6D 61 6C 6C 63 68 69 00 00 00 00 00 00 00 00 31 32 33 34 35 36 37 38 39 30 31 00 00 00 00 00 00 00 00 00 31 32 33 34 35 36 40 71 71 2E 63 6F 6D 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 BA D8 5D".ToHexBytes();
 
@@ -188,32 +190,30 @@ Install-Package JT809
 ## 使用BenchmarkDotNet性能测试报告（只是玩玩，不能当真）
 
 ``` ini
-BenchmarkDotNet=v0.11.1, OS=Windows 7 SP1 (6.1.7601.0)
-Intel Core i5-5200U CPU 2.20GHz (Max: 2.18GHz) (Broadwell), 1 CPU, 4 logical and 2 physical cores
-Frequency=2143505 Hz, Resolution=466.5256 ns, Timer=TSC
-.NET Core SDK=2.1.401
-  [Host]     : .NET Core 2.1.2 (CoreCLR 4.6.26628.05, CoreFX 4.6.26629.01), 64bit RyuJIT
-  Job-VCXLHD : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3133.0
-  Job-WATJMQ : .NET Core 2.1.2 (CoreCLR 4.6.26628.05, CoreFX 4.6.26629.01), 64bit RyuJIT
+BenchmarkDotNet=v0.11.1, OS=Windows 10.0.17134.228 (1803/April2018Update/Redstone4)
+Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
+.NET Core SDK=2.1.402
+  [Host]     : .NET Core 2.1.4 (CoreCLR 4.6.26814.03, CoreFX 4.6.26814.02), 64bit RyuJIT
+  Job-FMFELU : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3132.0
+  Job-TADNYV : .NET Core 2.1.4 (CoreCLR 4.6.26814.03, CoreFX 4.6.26814.02), 64bit RyuJIT
 
-Platform=AnyCpu  Server=True  
-
+Platform=AnyCpu  Server=True
 ```
-|                                  Method | Runtime |     Toolchain |      N |         Mean |       Error |      StdDev |       Median |       Gen 0 |    Allocated |
-|---------------------------------------- |-------- |-------------- |------- |-------------:|------------:|------------:|-------------:|------------:|-------------:|
-| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** |    **100** |     **6.023 ms** |   **0.1358 ms** |   **0.3939 ms** |     **5.890 ms** |           **-** |       **520 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default |    100 |     7.548 ms |   0.1737 ms |   0.5067 ms |     7.479 ms |           - |       536 KB |
-| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 |    100 |     4.405 ms |   0.0874 ms |   0.2332 ms |     4.372 ms |     23.4375 |    465.18 KB |
-|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 |    100 |     5.178 ms |   0.1031 ms |   0.2107 ms |     5.131 ms |     23.4375 |    466.74 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** |  **10000** |   **569.689 ms** |  **11.3421 ms** |  **28.0348 ms** |   **560.844 ms** |  **33000.0000** |  **50755.41 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default |  10000 |   709.679 ms |  14.0759 ms |  32.0580 ms |   705.015 ms |  34000.0000 |  52365.04 KB |
-| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 |  10000 |   435.974 ms |   8.6721 ms |  23.2971 ms |   432.058 ms |   2000.0000 |   46516.3 KB |
-|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 |  10000 |   559.733 ms |  16.1688 ms |  46.3913 ms |   552.344 ms |   2000.0000 |  46672.55 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** | **100000** | **6,167.859 ms** | **182.6382 ms** | **512.1372 ms** | **6,133.157 ms** | **330000.0000** | **507097.91 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default | 100000 | 7,558.213 ms | 179.7646 ms | 518.6620 ms | 7,478.251 ms | 340000.0000 | 523420.85 KB |
-| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 | 100000 | 5,064.515 ms | 179.1875 ms | 511.2320 ms | 4,932.761 ms |  27000.0000 | 465045.28 KB |
-|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 | 100000 | 5,108.023 ms |  99.7554 ms | 126.1587 ms | 5,071.244 ms |  26000.0000 | 466693.55 KB |
 
+|                                  Method | Runtime |     Toolchain |      N |         Mean |      Error |     StdDev |      Gen 0 |    Allocated |
+|---------------------------------------- |-------- |-------------- |------- |-------------:|-----------:|-----------:|-----------:|-------------:|
+| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** |    **100** |     **3.274 ms** |  **0.0603 ms** |  **0.0535 ms** |    **82.0313** |    **507.41 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default |    100 |     3.863 ms |  0.0314 ms |  0.0293 ms |    82.0313 |    522.64 KB |
+| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 |    100 |     2.445 ms |  0.0402 ms |  0.0376 ms |          - |    464.89 KB |
+|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 |    100 |     2.789 ms |  0.0326 ms |  0.0272 ms |          - |    466.45 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** |  **10000** |   **329.457 ms** |  **1.6247 ms** |  **1.2685 ms** |  **8000.0000** |  **50808.81 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default |  10000 |   386.584 ms |  2.2065 ms |  1.9560 ms |  8000.0000 |  52296.78 KB |
+| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 |  10000 |   239.150 ms |  1.6893 ms |  1.4975 ms |          - |  46495.02 KB |
+|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 |  10000 |   275.206 ms |  2.5906 ms |  2.4233 ms |          - |  46651.27 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |     **Clr** |       **Default** | **100000** | **3,253.840 ms** |  **9.0636 ms** |  **8.4781 ms** | **82000.0000** | **507671.31 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |     Clr |       Default | 100000 | 4,070.297 ms | 79.1599 ms | 94.2342 ms | 85000.0000 | 522556.27 KB |
+| JT809_0x9400_0x9401_Package_Deserialize |    Core | .NET Core 2.1 | 100000 | 2,425.372 ms | 37.3067 ms | 34.8967 ms |  2000.0000 | 464875.67 KB |
+|   JT809_0x9400_0x9401_Package_Serialize |    Core | .NET Core 2.1 | 100000 | 2,823.721 ms | 42.6518 ms | 39.8965 ms |  2000.0000 | 466438.17 KB |
 
 ## JT809协议消息对照表
 
@@ -364,4 +364,3 @@ Platform=AnyCpu  Server=True
 |:------:|:------:|:------:|:------:|
 |  1  | 0x9600  |  √   |  从链路静态信息交换消息  |
 |  2  | 0x9601  |  √   |  补报车辆静态信息应答  |
-
