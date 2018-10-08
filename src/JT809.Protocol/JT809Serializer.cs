@@ -25,6 +25,7 @@ namespace JT809.Protocol
                 // 源码：System.Memory.MemoryPool 
                 // private static readonly MemoryPool<T> s_shared = new ArrayMemoryPool<T>();
                 // 单例内存池 不需要手动释放资源
+                // buffer.Dispose() 相当于调用ArrayPool<T>.Shared.Return(array)
                 buffer.Dispose();
             }
         }
@@ -50,6 +51,7 @@ namespace JT809.Protocol
                 // 源码：System.Memory.MemoryPool 
                 // private static readonly MemoryPool<T> s_shared = new ArrayMemoryPool<T>();
                 // 单例内存池 不需要手动释放资源
+                // buffer.Dispose() 相当于调用ArrayPool<T>.Shared.Return(array)
                 buffer.Dispose();
             }
         }
