@@ -4,6 +4,8 @@ using System.Text;
 using Xunit;
 using JT809.Protocol;
 using JT809.Protocol.JT809Extensions;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace JT809.Protocol.Test
 {
@@ -36,6 +38,20 @@ namespace JT809.Protocol.Test
             Assert.Equal(new JT809Header_Version().ToString(), jT809Header.Version.ToString());
             Assert.Equal(JT809Header_Encrypt.None, jT809Header.EncryptFlag);
             Assert.Equal((uint)0, jT809Header.EncryptKey);
+        }
+
+        [Fact]
+        public void Test3()
+        {    
+            Parallel.For(0, 1000, (i) => 
+            {
+                JT809GlobalConfig.Instance.MsgSNDistributed.Increment();
+            });
+            Parallel.For(0, 1000, (i) =>
+            {
+                JT809GlobalConfig.Instance.MsgSNDistributed.Increment();
+            });
+            var sn = JT809GlobalConfig.Instance.MsgSNDistributed.Increment();
         }
     }
 }

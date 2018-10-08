@@ -54,11 +54,12 @@
 
 反转义的原因：确认JT809协议的TCP消息边界。
 
-### 举个栗子
+### 举个栗子1
 
 #### 1.组包：
 
 > 业务数据类型 MsgID:从链路报警信息交互消息
+> 
 > 子业务类型标识 SubBusinessType:报警督办请求消息
 
 ``` code
@@ -183,7 +184,42 @@ Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
 
 ```
 
+### 举个栗子3
+``` data2
+// 设置全局配置
+JT809GlobalConfig.Instance.SetHeaderOptions(new JT809Configs.JT809HeaderOptions
+{
+    EncryptKey= 9999,
+    MsgGNSSCENTERID= 20180920
+});
+
+// 根据业务类型创建对应包
+JT809Package jT809Package = JT809BusinessType.DOWN_WARN_MSG.Create(new JT809_0x9400
+{
+    VehicleNo = "粤A12345",
+    VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
+    SubBusinessType = JT809Enums.JT809SubBusinessType.DOWN_WARN_MSG_URGE_TODO_REQ,
+    JT809SubBodies = new JT809_0x9400_0x9401
+    {
+        WarnSrc = JT809WarnSrc.车载终端,
+        WarnType = JT809WarnType.疲劳驾驶报警,
+        WarnTime = DateTime.Parse("2018-09-27 10:24:00"),
+        SupervisionID = "123FFAA1",
+        SupervisionEndTime = DateTime.Parse("2018-09-27 11:24:00"),
+        SupervisionLevel = 3,
+        Supervisor = "smallchi",
+        SupervisorTel = "12345678901",
+        SupervisorEmail = "123456@qq.com"
+    }
+});
+var hex = JT809Serializer.Serialize(jT809Package);
+```
+
 ## NuGet安装
+
+| Package Name |  Version | Downloads
+|--------------|  ------- | ----
+| JT809 | ![](https://img.shields.io/nuget/v/JT809.svg) | ![](https://img.shields.io/nuget/dt/JT809.svg)
 
 Install-Package JT809
 

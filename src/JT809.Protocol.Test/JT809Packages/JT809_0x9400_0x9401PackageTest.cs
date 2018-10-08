@@ -83,5 +83,36 @@ namespace JT809.Protocol.Test.JT809Packages
             Assert.Equal("12345678901", jT809_0x9400_0x9401.SupervisorTel);
             Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
         }
+
+        [Fact]
+        public void Test3()
+        {
+            JT809GlobalConfig.Instance.SetHeaderOptions(new JT809Configs.JT809HeaderOptions
+            {
+                 EncryptKey= 9999,
+                 MsgGNSSCENTERID= 20180920
+            });
+            JT809Package jT809Package = JT809BusinessType.DOWN_WARN_MSG.Create(new JT809_0x9400
+            {
+                VehicleNo = "粤A12345",
+                VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
+                SubBusinessType = JT809Enums.JT809SubBusinessType.DOWN_WARN_MSG_URGE_TODO_REQ,
+                JT809SubBodies = new JT809_0x9400_0x9401
+                {
+                     WarnSrc = JT809WarnSrc.车载终端,
+                     WarnType = JT809WarnType.疲劳驾驶报警,
+                     WarnTime = DateTime.Parse("2018-09-27 10:24:00"),
+                     SupervisionID = "123FFAA1",
+                     SupervisionEndTime = DateTime.Parse("2018-09-27 11:24:00"),
+                     SupervisionLevel = 3,
+                     Supervisor = "smallchi",
+                     SupervisorTel = "12345678901",
+                     SupervisorEmail = "123456@qq.com"
+                }
+             });
+            jT809Package.Header.MsgSN = 1666;
+            var hex = JT809Serializer.Serialize(jT809Package).ToHexString();
+            //"5B000000920000068294000133EFB8010000000000270FD4C1413132333435000000000000000000000000000294010000005C010002000000005A01AC3F40123FFAA1000000005A01AC4D5003736D616C6C636869000000000000000031323334353637383930310000000000000000003132333435364071712E636F6D00000000000000000000000000000000000000BAD85D"
+        }
     }
 }

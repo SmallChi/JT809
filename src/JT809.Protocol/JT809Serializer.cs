@@ -10,11 +10,11 @@ namespace JT809.Protocol
 {
     public static class JT809Serializer
     {
-        public static byte[] Serialize(JT809Package jT809Package)
+        public static byte[] Serialize(JT809Package jT809Package, int minBufferSize = 4096)
         {
             var formatter = JT809FormatterExtensions.GetFormatter<JT809Package>();
             var pool = MemoryPool<byte>.Shared;
-            IMemoryOwner<byte> buffer = pool.Rent(4096);
+            IMemoryOwner<byte> buffer = pool.Rent(minBufferSize);
             try
             {
                 var len = formatter.Serialize(buffer, 0, jT809Package);
@@ -35,11 +35,11 @@ namespace JT809.Protocol
             return formatter.Deserialize(bytes, out int readSize);
         }
 
-        public static byte[] Serialize<T>(T obj)
+        public static byte[] Serialize<T>(T obj, int minBufferSize = 4096)
         {
             var formatter = JT809FormatterExtensions.GetFormatter<T>();
             var pool = MemoryPool<byte>.Shared;
-            IMemoryOwner<byte> buffer = pool.Rent(4096);
+            IMemoryOwner<byte> buffer = pool.Rent(minBufferSize);
             try
             {
                 var len = formatter.Serialize(buffer, 0, obj);

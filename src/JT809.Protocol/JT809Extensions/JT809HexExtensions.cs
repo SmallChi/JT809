@@ -79,6 +79,7 @@ namespace JT809.Protocol.JT809Extensions
 
         public static string ToHexString(this byte[] source)
         {
+            //return string.Join(separator, source.Select(s => s.ToString("X2")));
             return ToHexString(source, false);
         }
 

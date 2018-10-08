@@ -13,7 +13,7 @@ namespace JT809.Protocol.Test.JT809Packages
     {
         public JT809_0x1001EncryptPackageTest()
         {
-            JT809GlobalConfig.Instance.SetJT809Encrypt(new JT809EncryptImpl(new JT809Configs.JT809EncryptOptions()
+            JT809GlobalConfig.Instance.SetEncrypt(new JT809EncryptImpl(new JT809Configs.JT809EncryptOptions()
             {
                 IA1 = 20000000,
                 IC1 = 20000000,

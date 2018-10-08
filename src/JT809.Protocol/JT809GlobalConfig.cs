@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JT809.Protocol.JT809Configs;
+using JT809.Protocol.JT809Internal;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +10,11 @@ namespace JT809.Protocol
     {
         private static readonly Lazy<JT809GlobalConfig> instance = new Lazy<JT809GlobalConfig>(() => new JT809GlobalConfig());
 
-        private JT809GlobalConfig(){}
+        private JT809GlobalConfig()
+        {
+            MsgSNDistributed = new DefaultMsgSNDistributedImpl();
+            HeaderOptions = new JT809HeaderOptions();
+        }
 
         public static JT809GlobalConfig Instance
         {
@@ -18,11 +24,27 @@ namespace JT809.Protocol
             }
         }
 
-        public IJT809Encrypt JT809Encrypt { get; private set; }
+        public IJT809Encrypt Encrypt { get; private set; }
 
-        public JT809GlobalConfig SetJT809Encrypt(IJT809Encrypt jT809Encrypt)
+        public IMsgSNDistributed MsgSNDistributed {get;private set;}
+
+        public JT809HeaderOptions HeaderOptions { get; private set; }
+
+        public JT809GlobalConfig SetEncrypt(IJT809Encrypt jT809Encrypt)
         {
-            instance.Value.JT809Encrypt = jT809Encrypt;
+            instance.Value.Encrypt = jT809Encrypt;
+            return instance.Value;
+        }
+
+        public JT809GlobalConfig SetMsgSNDistributed(IMsgSNDistributed msgSNDistributed)
+        {
+            instance.Value.MsgSNDistributed = msgSNDistributed;
+            return instance.Value;
+        }
+
+        public JT809GlobalConfig SetHeaderOptions(JT809HeaderOptions jT809HeaderOptions)
+        {
+            instance.Value.HeaderOptions = jT809HeaderOptions;
             return instance.Value;
         }
     }
