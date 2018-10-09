@@ -14,6 +14,7 @@ namespace JT809.Protocol
         {
             MsgSNDistributed = new DefaultMsgSNDistributedImpl();
             HeaderOptions = new JT809HeaderOptions();
+            SkipCRCCode = false;
         }
 
         public static JT809GlobalConfig Instance
@@ -29,22 +30,50 @@ namespace JT809.Protocol
         public IMsgSNDistributed MsgSNDistributed {get;private set;}
 
         public JT809HeaderOptions HeaderOptions { get; private set; }
-
+        /// <summary>
+        /// 跳过校验码
+        /// 默认：false
+        /// </summary>
+        public bool SkipCRCCode { get; private set; }
+        /// <summary>
+        /// 设置加密算法实现
+        /// </summary>
+        /// <param name="jT809Encrypt"></param>
+        /// <returns></returns>
         public JT809GlobalConfig SetEncrypt(IJT809Encrypt jT809Encrypt)
         {
             instance.Value.Encrypt = jT809Encrypt;
             return instance.Value;
         }
-
+        /// <summary>
+        /// 设置消息序列号
+        /// </summary>
+        /// <param name="msgSNDistributed"></param>
+        /// <returns></returns>
         public JT809GlobalConfig SetMsgSNDistributed(IMsgSNDistributed msgSNDistributed)
         {
             instance.Value.MsgSNDistributed = msgSNDistributed;
             return instance.Value;
         }
-
+        /// <summary>
+        /// 设置头部选项
+        /// </summary>
+        /// <param name="jT809HeaderOptions"></param>
+        /// <returns></returns>
         public JT809GlobalConfig SetHeaderOptions(JT809HeaderOptions jT809HeaderOptions)
         {
             instance.Value.HeaderOptions = jT809HeaderOptions;
+            return instance.Value;
+        }
+        /// <summary>
+        /// 设置跳过校验码
+        /// 场景：测试的时候，可能需要收到改数据，所以测试的时候有用
+        /// </summary>
+        /// <param name="skipCRCCode"></param>
+        /// <returns></returns>
+        public JT809GlobalConfig SetSkipCRCCode(bool skipCRCCode)
+        {
+            instance.Value.SkipCRCCode = skipCRCCode;
             return instance.Value;
         }
     }

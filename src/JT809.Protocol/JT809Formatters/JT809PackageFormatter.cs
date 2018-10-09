@@ -29,9 +29,12 @@ namespace JT809.Protocol.JT809Formatters
             //  2.3. 从消息头到校验码前一个字节
             ushort checkCode = buffer.ToCRC16_CCITT(1, checkIndex);
             //  2.4. 验证校验码
-            if (jT809Package.CRCCode != checkCode)
+            if (!JT809GlobalConfig.Instance.SkipCRCCode)
             {
-                throw new JT809Exception(JT809ErrorCode.CRC16CheckInvalid,$"{jT809Package.CRCCode.ToString()}!={checkCode.ToString()}");
+                if (jT809Package.CRCCode != checkCode)
+                {
+                    throw new JT809Exception(JT809ErrorCode.CRC16CheckInvalid, $"{jT809Package.CRCCode.ToString()}!={checkCode.ToString()}");
+                }
             }
             jT809Package.BeginFlag = JT809BinaryExtensions.ReadByteLittle(buffer, ref offset);
             // 3.初始化消息头

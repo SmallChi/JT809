@@ -12,28 +12,12 @@ namespace JT809.Protocol
     {
         public static byte[] Serialize(JT809Package jT809Package, int minBufferSize = 4096)
         {
-            var formatter = JT809FormatterExtensions.GetFormatter<JT809Package>();
-            var pool = MemoryPool<byte>.Shared;
-            IMemoryOwner<byte> buffer = pool.Rent(minBufferSize);
-            try
-            {
-                var len = formatter.Serialize(buffer, 0, jT809Package);
-                return buffer.Memory.Slice(0, len).ToArray();
-            }
-            finally
-            {
-                // 源码：System.Memory.MemoryPool 
-                // private static readonly MemoryPool<T> s_shared = new ArrayMemoryPool<T>();
-                // 单例内存池 不需要手动释放资源
-                // buffer.Dispose() 相当于调用ArrayPool<T>.Shared.Return(array)
-                buffer.Dispose();
-            }
+            return Serialize(jT809Package, minBufferSize);
         }
 
         public static JT809Package Deserialize(ReadOnlySpan<byte> bytes)
         {
-            var formatter = JT809FormatterExtensions.GetFormatter<JT809Package>();
-            return formatter.Deserialize(bytes, out int readSize);
+            return Deserialize<JT809Package>(bytes);
         }
 
         public static byte[] Serialize<T>(T obj, int minBufferSize = 4096)
