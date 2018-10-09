@@ -51,7 +51,7 @@ namespace JT809.Protocol.Benchmark
                     EncryptKey = 9999,
                     EncryptFlag = JT809Header_Encrypt.None,
                     Version = new JT809Header_Version(1, 0, 0),
-                    MsgID = JT809Enums.JT809BusinessType.DOWN_WARN_MSG,
+                    BusinessType = JT809Enums.JT809BusinessType.从链路报警信息交互消息,
                     MsgGNSSCENTERID = 20180920,
                 };
 
@@ -59,7 +59,7 @@ namespace JT809.Protocol.Benchmark
                 {
                     VehicleNo = "粤A12345",
                     VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
-                    SubBusinessType = JT809Enums.JT809SubBusinessType.DOWN_WARN_MSG_URGE_TODO_REQ,
+                    SubBusinessType = JT809Enums.JT809SubBusinessType.报警督办请求,
                 };
 
                 JT809_0x9400_0x9401 jT809_0x9400_0x9401 = new JT809_0x9400_0x9401

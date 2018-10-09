@@ -52,7 +52,7 @@ namespace JT809.Protocol.JT809Formatters
             if ((jT809Package.Header.MsgLength - JT809Package.FixedByteLength) > 0)
             {
                 //JT809.Protocol.JT809Enums.JT809BusinessType 映射对应消息特性
-                JT809BodiesTypeAttribute jT809BodiesTypeAttribute = jT809Package.Header.MsgID.GetAttribute<JT809BodiesTypeAttribute>();
+                JT809BodiesTypeAttribute jT809BodiesTypeAttribute = jT809Package.Header.BusinessType.GetAttribute<JT809BodiesTypeAttribute>();
                 if (jT809BodiesTypeAttribute != null)
                 {
                     try
@@ -85,7 +85,7 @@ namespace JT809.Protocol.JT809Formatters
         {
             // 1. 先序列化数据体，根据数据体的长度赋值给头部，在序列化头部。
             int messageBodyOffset = 0;
-            JT809BodiesTypeAttribute jT809BodiesTypeAttribute = value.Header.MsgID.GetAttribute<JT809BodiesTypeAttribute>();
+            JT809BodiesTypeAttribute jT809BodiesTypeAttribute = value.Header.BusinessType.GetAttribute<JT809BodiesTypeAttribute>();
             if (jT809BodiesTypeAttribute != null)
             {
                 if (value.Bodies != null)

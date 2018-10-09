@@ -14,179 +14,233 @@ namespace JT809.Protocol.JT809Enums
     {
         #region 链路管理类
         ///<summary>
-        ///主链路登录请求消息  
+        ///主链路登录请求消息
+        ///UP_CONNECT_REQ
         ///</summary>
         [Description("主链路登录请求消息")]
         [JT809BodiesType(typeof(JT809_0x1001))]
-        UP_CONNECT_REQ = 0x1001,
+        [JT809BusinessTypeDescription("UP_CONNECT_REQ", "主链路登录请求消息")]
+        主链路登录请求消息 = 0x1001,
         ///<summary>
         ///主链路登录应答消息  
+        ///UP_CONNECT_RSP
         ///</summary>
         [Description("主链路登录应答消息")]
+        [JT809BusinessTypeDescription("UP_CONNECT_RSP", "主链路登录应答消息")]
         [JT809BodiesType(typeof(JT809_0x1002))]
-        UP_CONNECT_RSP = 0x1002,
+        主链路登录应答消息 = 0x1002,
         ///<summary>
-        ///主链路注销请求消息  
+        ///主链路注销请求消息 
+        ///UP_DISCONNECT_REQ
         ///</summary>
         [Description("主链路注销请求消息")]
+        [JT809BusinessTypeDescription("UP_DISCONNECT_REQ", "主链路注销请求消息")]
         [JT809BodiesType(typeof(JT809_0x1003))]
-        UP_DISCONNECT_REQ = 0x1003,
+        主链路注销请求消息 = 0x1003,
         ///<summary>
-        ///主链路注销应答消息  
+        ///主链路注销应答消息 
+        ///UP_DISCONNECT_RSP
         ///</summary>
         [Description("主链路注销应答消息")]
         [JT809BodiesType(typeof(JT809_0x1004))]
-        UP_DISCONNECT_RSP = 0x1004,
+        [JT809BusinessTypeDescription("UP_DISCONNECT_RSP", "主链路注销应答消息")]
+        主链路注销应答消息 = 0x1004,
         ///<summary>
         ///主链路连接保持请求消息  
+        ///UP_LINKTEST_REQ
         ///</summary>
         [Description("主链路连接保持请求消息")]
         [JT809BodiesType(typeof(JT809_0x1005))]
-        UP_LINKTEST_REQ = 0x1005,
+        [JT809BusinessTypeDescription("UP_LINKTEST_REQ", "主链路连接保持请求消息")]
+        主链路连接保持请求消息 = 0x1005,
         ///<summary>
         ///主链路连接保持应答消息  
+        ///UP_LINKTEST_RSP
         ///</summary>
         [Description("主链路连接保持应答消息")]
         [JT809BodiesType(typeof(JT809_0x1006))]
-        UP_LINKTEST_RSP = 0x1006,
+        [JT809BusinessTypeDescription("UP_LINKTEST_RSP", "主链路连接保持应答消息")]
+        主链路连接保持应答消息 = 0x1006,
         ///<summary>
-        ///主链路断开通知消息  
+        ///主链路断开通知消息 
+        ///UP_DISCONNECT_INFORM
         ///</summary>
         [Description("主链路断开通知消息")]
         [JT809BodiesType(typeof(JT809_0x1007))]
-        UP_DISCONNECT_INFORM = 0x1007,
+        [JT809BusinessTypeDescription("UP_DISCONNECT_INFORM", "主链路断开通知消息")]
+        主链路断开通知消息 = 0x1007,
         ///<summary>
         ///下级平台主动关闭链路通知消息  
+        ///UP_CLOSELINK_INFORM
         ///</summary>
         [Description("下级平台主动关闭链路通知消息")]
         [JT809BodiesType(typeof(JT809_0x1008))]
-        UP_CLOSELINK_INFORM = 0x1008,
+        [JT809BusinessTypeDescription("UP_CLOSELINK_INFORM", "下级平台主动关闭链路通知消息")]
+        下级平台主动关闭链路通知消息 = 0x1008,
         ///<summary>
         ///从链路连接请求消息  
+        ///DOWN_CONNECT_REQ
         ///</summary>
         [Description("从链路连接请求消息")]
         [JT809BodiesType(typeof(JT809_0x9001))]
-        DOWN_CONNECT_REQ = 0x9001,
+        [JT809BusinessTypeDescription("DOWN_CONNECT_REQ", "从链路连接请求消息")]
+        从链路连接请求消息 = 0x9001,
         ///<summary>
-        ///从链路连接应答消息  
+        ///从链路连接应答消息 
+        ///DOWN_CONNECT_RSP
         ///</summary>
         [Description("从链路连接应答消息")]
         [JT809BodiesType(typeof(JT809_0x9002))]
-        DOWN_CONNECT_RSP = 0x9002,
+        [JT809BusinessTypeDescription("DOWN_CONNECT_RSP", "从链路连接应答消息")]
+        从链路连接应答消息 = 0x9002,
         ///<summary>
         ///从链路注销请求消息  
+        ///DOWN_DISCONNECT_REQ
         ///</summary>
         [Description("从链路注销请求消息")]
         [JT809BodiesType(typeof(JT809_0x9003))]
-        DOWN_DISCONNECT_REQ = 0x9003,
+        [JT809BusinessTypeDescription("DOWN_DISCONNECT_REQ", "从链路注销请求消息")]
+        从链路注销请求消息 = 0x9003,
         ///<summary>
         ///从链路注销应答消息  
+        ///DOWN_DISCONNECT_RSP
         ///</summary>
         [Description("从链路注销应答消息")]
         [JT809BodiesType(typeof(JT809_0x9004))]
-        DOWN_DISCONNECT_RSP = 0x9004,
+        [JT809BusinessTypeDescription("DOWN_DISCONNECT_RSP", "从链路注销应答消息")]
+        从链路注销应答消息 = 0x9004,
         ///<summary>
         ///从链路连接保持请求消息  
+        ///DOWN_LINKTEST_REQ
         ///</summary>
         [Description("从链路连接保持请求消息")]
         [JT809BodiesType(typeof(JT809_0x9005))]
-        DOWN_LINKTEST_REQ = 0x9005,
+        [JT809BusinessTypeDescription("DOWN_LINKTEST_REQ", "从链路连接保持请求消息")]
+        从链路连接保持请求消息 = 0x9005,
         ///<summary>
-        ///从链路连接保持应答消息  
+        ///从链路连接保持应答消息 
+        ///DOWN_LINKTEST_RSP
         ///</summary>
         [Description("从链路连接保持应答消息")]
         [JT809BodiesType(typeof(JT809_0x9006))]
-        DOWN_LINKTEST_RSP = 0x9006,
+        [JT809BusinessTypeDescription("DOWN_LINKTEST_RSP", "从链路连接保持应答消息")]
+        从链路连接保持应答消息 = 0x9006,
         ///<summary>
         ///从链路断开通知消息  
+        ///DOWN_DISCONNECT_INFORM
         ///</summary>
         [Description("从链路断开通知消息")]
         [JT809BodiesType(typeof(JT809_0x9007))]
-        DOWN_DISCONNECT_INFORM = 0x9007,
+        [JT809BusinessTypeDescription("DOWN_DISCONNECT_INFORM", "从链路断开通知消息")]
+        从链路断开通知消息 = 0x9007,
         ///<summary>
-        ///上级平台主动关闭链路通知消息  
+        ///上级平台主动关闭链路通知消息
+        ///DOWN_CLOSELINK_INFORM
         ///</summary>
         [Description("上级平台主动关闭链路通知消息")]
         [JT809BodiesType(typeof(JT809_0x9008))]
-        DOWN_CLOSELINK_INFORM = 0x9008,
+        [JT809BusinessTypeDescription("DOWN_CLOSELINK_INFORM", "上级平台主动关闭链路通知消息")]
+        上级平台主动关闭链路通知消息 = 0x9008,
         #endregion
         #region 信息统计类
         ///<summary>
-        ///接收定位信息数量通知消息  
+        ///接收定位信息数量通知消息
+        ///DOWN_TOTAL_RECV_BACK_MSG
         ///</summary>
         [Description("接收定位信息数量通知消息")]
         [JT809BodiesType(typeof(JT809_0x9101))]
-        DOWN_TOTAL_RECV_BACK_MSG = 0x9101,
+        [JT809BusinessTypeDescription("DOWN_TOTAL_RECV_BACK_MSG", "接收定位信息数量通知消息")]
+        接收定位信息数量通知消息 = 0x9101,
         #endregion
         #region 车辆动态信息交换
         ///<summary>
-        ///主链路动态信息交换消息  
+        ///主链路动态信息交换消息 
+        ///UP_EXG_MSG
         ///</summary>
         [Description("主链路动态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x1200))]
-        UP_EXG_MSG = 0x1200,
+        [JT809BusinessTypeDescription("UP_EXG_MSG", "主链路动态信息交换消息")]
+        主链路动态信息交换消息 = 0x1200,
         ///<summary>
         ///从链路动态信息交换消息
+        ///DOWN_EXG_MSG
         ///</summary>
         [Description("从链路动态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x9200))]
-        DOWN_EXG_MSG = 0x9200,
+        [JT809BusinessTypeDescription("DOWN_EXG_MSG", "从链路动态信息交换消息")]
+        从链路动态信息交换消息 = 0x9200,
         #endregion
         #region 平台间信息交互类
         ///<summary>
         ///主链路平台间信息交互消息  
+        ///UP_PLATFORM_MSG
         ///</summary>
         [Description("主链路平台间信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x1300))]
-        UP_PLATFORM_MSG = 0x1300,
+        [JT809BusinessTypeDescription("UP_PLATFORM_MSG", "主链路平台间信息交互消息")]
+        主链路平台间信息交互消息 = 0x1300,
         ///<summary>
         ///从链路平台间信息交互消息  
+        ///DOWN_PLATFORM_MSG
         ///</summary>
         [Description("从链路平台间信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x9300))]
-        DOWN_PLATFORM_MSG = 0x9300,
+        [JT809BusinessTypeDescription("DOWN_PLATFORM_MSG", "从链路平台间信息交互消息")]
+        从链路平台间信息交互消息 = 0x9300,
         #endregion
         #region 车辆报警信息交互类
         ///<summary>
         ///主链路报警信息交互消息  
+        ///UP_WARN_MSG
         ///</summary>
         [Description("主链路报警信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x1400))]
-        UP_WARN_MSG = 0x1400,
+        [JT809BusinessTypeDescription("UP_WARN_MSG", "主链路报警信息交互消息")]
+        主链路报警信息交互消息 = 0x1400,
         ///<summary>
-        ///从链路报警信息交互消息  
+        ///从链路报警信息交互消息 
+        ///DOWN_WARN_MSG
         ///</summary>
         [Description("从链路报警信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x9400))]
-        DOWN_WARN_MSG = 0x9400,
+        [JT809BusinessTypeDescription("DOWN_WARN_MSG", "从链路报警信息交互消息")]
+        从链路报警信息交互消息 = 0x9400,
         #endregion
         #region 车辆监管类 
         ///<summary>
-        ///主链路车辆监管消息  
+        ///主链路车辆监管消息 
+        ///UP_CTRL_MSG
         ///</summary>
         [Description("主链路车辆监管消息")]
         [JT809BodiesType(typeof(JT809_0x1500))]
-        UP_CTRL_MSG = 0x1500,
+        [JT809BusinessTypeDescription("UP_CTRL_MSG", "主链路车辆监管消息")]
+        主链路车辆监管消息 = 0x1500,
         ///<summary>
-        ///从链路车辆监管消息  
+        ///从链路车辆监管消息
+        ///DOWN_CTRL_MSG
         ///</summary>
         [Description("从链路车辆监管消息")]
         [JT809BodiesType(typeof(JT809_0x9500))]
-        DOWN_CTRL_MSG = 0x9500,
+        [JT809BusinessTypeDescription("DOWN_CTRL_MSG", "从链路车辆监管消息")]
+        从链路车辆监管消息 = 0x9500,
         #endregion
         #region 车辆静态信息交换类
         ///<summary>
-        ///主链路静态信息交换消息  
+        ///主链路静态信息交换消息 
+        ///UP_BASE_MSG
         ///</summary>
         [Description("主链路静态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x1600))]
-        UP_BASE_MSG = 0x1600,
+        [JT809BusinessTypeDescription("UP_BASE_MSG", "主链路静态信息交换消息")]
+        主链路静态信息交换消息 = 0x1600,
         ///<summary>
-        ///从链路静态信息交换消息  
+        ///从链路静态信息交换消息
+        ///DOWN_BASE_MSG
         ///</summary>
         [Description("从链路静态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x9600))]
-        DOWN_BASE_MSG = 0x9600,
+        [JT809BusinessTypeDescription("DOWN_BASE_MSG", "从链路静态信息交换消息")]
+        从链路静态信息交换消息 = 0x9600,
         #endregion
     }
 }

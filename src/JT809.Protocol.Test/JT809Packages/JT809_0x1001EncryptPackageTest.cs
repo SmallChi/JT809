@@ -31,7 +31,7 @@ namespace JT809.Protocol.Test.JT809Packages
                 EncryptFlag= JT809Header_Encrypt.Common,
                 MsgSN= 133,
                 EncryptKey=5819,
-                MsgID= JT809Enums.JT809BusinessType.UP_CONNECT_REQ,
+                BusinessType= JT809Enums.JT809BusinessType.主链路登录请求消息,
                 MsgGNSSCENTERID= 20180920,
             };
             JT809_0x1001 jT809_0X1001 = new JT809_0x1001();
@@ -55,7 +55,7 @@ namespace JT809.Protocol.Test.JT809Packages
             Assert.Equal((uint)133, jT809Package.Header.MsgSN);
             Assert.Equal((uint)5819, jT809Package.Header.EncryptKey);
             Assert.Equal((uint)20180920, jT809Package.Header.MsgGNSSCENTERID);
-            Assert.Equal(JT809Enums.JT809BusinessType.UP_CONNECT_REQ, jT809Package.Header.MsgID);
+            Assert.Equal(JT809Enums.JT809BusinessType.主链路登录请求消息, jT809Package.Header.BusinessType);
             Assert.Equal(new JT809Header_Version().ToString(), jT809Package.Header.Version.ToString());
             JT809_0x1001 jT809_0X1001 = (JT809_0x1001)jT809Package.Bodies;
             Assert.Equal((uint)20180920, jT809_0X1001.UserId);

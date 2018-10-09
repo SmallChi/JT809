@@ -16,7 +16,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
         public void Test1()
         {
             JT809_0x1300 jT809Bodies = new JT809_0x1300();
-            jT809Bodies.SubBusinessType = JT809Enums.JT809SubBusinessType.UP_PLATFORM_MSG_POST_QUERY_ACK;
+            jT809Bodies.SubBusinessType = JT809Enums.JT809SubBusinessType.平台查岗应答;
             jT809Bodies.JT809SubBodies = new JT809_0x1300_0x1301
             {
                   ObjectID="111",
@@ -33,7 +33,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
         {
             var bytes = "13 01 00 00 00 1B 01 31 31 31 00 00 00 00 00 00 00 00 00 00 00 04 D2 00 00 00 06 32 32 68 61 32 32".ToHexBytes();
             JT809_0x1300 jT809Bodies = JT809Serializer.Deserialize<JT809_0x1300>(bytes);
-            Assert.Equal(JT809Enums.JT809SubBusinessType.UP_PLATFORM_MSG_POST_QUERY_ACK, jT809Bodies.SubBusinessType);
+            Assert.Equal(JT809Enums.JT809SubBusinessType.平台查岗应答, jT809Bodies.SubBusinessType);
             JT809_0x1300_0x1301 jT809SubBodies = (JT809_0x1300_0x1301)jT809Bodies.JT809SubBodies;
             Assert.Equal("111", jT809SubBodies.ObjectID);
             Assert.Equal("22ha22", jT809SubBodies.InfoContent);

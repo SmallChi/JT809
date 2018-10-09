@@ -29,7 +29,7 @@ namespace JT809.Protocol
         /// <summary>
         /// 业务数据类型
         /// </summary>
-        public JT809BusinessType MsgID { get; set; }
+        public JT809BusinessType BusinessType { get; set; }
         /// <summary>
         /// 下级平台接入码，上级平台给下级平台分配唯一标识码。
         /// </summary>
