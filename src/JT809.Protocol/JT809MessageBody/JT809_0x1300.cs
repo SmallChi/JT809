@@ -12,7 +12,7 @@ namespace JT809.Protocol.JT809MessageBody
     /// <para>描述:下级平台向上级平台发送平台间交互信息</para>
     /// </summary>
     [JT809Formatter(typeof(JT809_0x1300Formatter))]
-    public class JT809_0x1300:JT809Bodies
+    public class JT809_0x1300: JT809ExchangeMessageBodies
     {
         
     }

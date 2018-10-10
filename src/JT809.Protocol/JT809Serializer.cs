@@ -12,7 +12,7 @@ namespace JT809.Protocol
     {
         public static byte[] Serialize(JT809Package jT809Package, int minBufferSize = 4096)
         {
-            return Serialize(jT809Package, minBufferSize);
+            return Serialize<JT809Package>(jT809Package, minBufferSize);
         }
 
         public static JT809Package Deserialize(ReadOnlySpan<byte> bytes)

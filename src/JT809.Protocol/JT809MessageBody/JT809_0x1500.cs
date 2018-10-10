@@ -12,7 +12,7 @@ namespace JT809.Protocol.JT809MessageBody
     /// <para>描述:下级平台向上级平台发送车辆监管业务</para>
     /// </summary>
     [JT809Formatter(typeof(JT809BodiesFormatter<JT809_0x1500>))]
-    public class JT809_0x1500:JT809Bodies
+    public class JT809_0x1500: JT809ExchangeMessageBodies
     {
         
     }

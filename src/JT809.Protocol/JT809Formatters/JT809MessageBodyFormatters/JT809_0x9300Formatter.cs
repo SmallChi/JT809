@@ -26,7 +26,7 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
             }
             try
             {
-                jT809_0X9300.JT809SubBodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), bytes.Slice(offset, (int)jT809_0X9300.DataLength), out readSize);
+                jT809_0X9300.SubBodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), bytes.Slice(offset, (int)jT809_0X9300.DataLength), out readSize);
             }
             catch
             {
@@ -50,7 +50,7 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
             {
                 // 先写入内容，然后在根据内容反写内容长度
                 offset = offset + 4;
-                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), memoryOwner, offset, value.JT809SubBodies);
+                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), memoryOwner, offset, value.SubBodies);
                 JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset - 4, (uint)(contentOffset - offset));
                 offset = contentOffset;
             }

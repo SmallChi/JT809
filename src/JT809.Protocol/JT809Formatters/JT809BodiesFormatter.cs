@@ -10,7 +10,7 @@ using System.Text;
 namespace JT809.Protocol.JT809Formatters
 {
     public class JT809BodiesFormatter<TJT809Bodies> : IJT809Formatter<TJT809Bodies>
-       where TJT809Bodies: JT809Bodies,new ()
+       where TJT809Bodies: JT809ExchangeMessageBodies, new ()
     {
         public TJT809Bodies Deserialize(ReadOnlySpan<byte> bytes, out int readSize)
         {
@@ -28,7 +28,7 @@ namespace JT809.Protocol.JT809Formatters
             }
             try
             {
-                jT809Bodies.JT809SubBodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), bytes.Slice(offset, (int)jT809Bodies.DataLength), out readSize);
+                jT809Bodies.SubBodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), bytes.Slice(offset, (int)jT809Bodies.DataLength), out readSize);
             }
             catch
             {
@@ -53,7 +53,7 @@ namespace JT809.Protocol.JT809Formatters
             {
                 // 先写入内容，然后在根据内容反写内容长度
                 offset = offset + 4;
-                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), memoryOwner, offset, value.JT809SubBodies);
+                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), memoryOwner, offset, value.SubBodies);
                 JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset - 4, (uint)(contentOffset- offset));
                 offset = contentOffset;
             }

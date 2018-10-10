@@ -28,7 +28,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
                 TerminalModelType = "11111111",
                 TerminalSimCode = "222222222222"
             };
-            jT809_0X1200.JT809SubBodies = jT809_0X1200_0X1201;
+            jT809_0X1200.SubBodies = jT809_0X1200_0X1201;
             var hex = JT809Serializer.Serialize(jT809_0X1200).ToHexString();
             //"D4 C1 41 31 32 33 34 35 00 00 00 00 00 00 00 00 00 00 00 00 00 01 12 01 00 00 00 3D 00 00 00 00 00 00 00 42 3A 35 C7 00 00 00 00 00 00 00 42 3A 35 C7 31 31 31 31 31 31 31 31 00 00 00 00 00 00 00 00 00 00 00 00 31 31 31 31 31 41 41 32 32 32 32 32 32 32 32 32 32 32 32"
             //"D4 C1 41 31 32 33 34 35 00 00 00 00 00 00 00 00 00 00 00 00 00 01 12 01 00 00 00 3D 00 00 00 00 00 00 00 42 3A 35 C7 00 00 00 00 00 00 00 42 3A 35 C7 31 31 31 31 31 31 31 31 00 00 00 00 00 00 00 00 00 00 00 00 31 31 31 31 31 61 61 32 32 32 32 32 32 32 32 32 32 32 32"
@@ -43,7 +43,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             Assert.Equal(JT809Enums.JT809VehicleColorType.蓝色, jT809_0X9001.VehicleColor);
             Assert.Equal(JT809Enums.JT809SubBusinessType.上传车辆注册信息, jT809_0X9001.SubBusinessType);
             Assert.Equal((ushort)61, jT809_0X9001.DataLength);
-            JT809_0x1200_0x1201 jT809_0X1200_0X1201 = jT809_0X9001.JT809SubBodies as JT809_0x1200_0x1201;
+            JT809_0x1200_0x1201 jT809_0X1200_0X1201 = jT809_0X9001.SubBodies as JT809_0x1200_0x1201;
             Assert.Equal("1111111111", jT809_0X1200_0X1201.PlateformId);
             Assert.Equal("1111111111", jT809_0X1200_0X1201.ProducerId);
             Assert.Equal("11111AA", jT809_0X1200_0X1201.TerminalId);

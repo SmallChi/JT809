@@ -27,7 +27,7 @@ namespace JT809.Protocol.Test.JT809Packages
                 MsgGNSSCENTERID = 20180920,
             };
 
-            jT809Package.Bodies = new JT809_0x9400
+            JT809_0x9400 bodies = new JT809_0x9400
             {
                   VehicleNo="粤A12345",
                   VehicleColor= JT809Enums.JT809VehicleColorType.黄色,
@@ -46,8 +46,8 @@ namespace JT809.Protocol.Test.JT809Packages
                 SupervisorTel = "12345678901",
                 SupervisorEmail = "123456@qq.com"
             };
-            jT809Package.Bodies.JT809SubBodies = jT809_0x9400_0x9401;
-
+            bodies.SubBodies = jT809_0x9400_0x9401;
+            jT809Package.Bodies = bodies;
             var hex = JT809Serializer.Serialize(jT809Package).ToHexString();
             //"5B 00 00 00 92 00 00 06 82 94 00 01 33 EF B8 01 00 00 00 00 00 27 0F D4 C1 41 31 32 33 34 35 00 00 00 00 00 00 00 00 00 00 00 00 00 02 94 01 00 00 00 5C 01 00 02 00 00 00 00 5A 01 AC 3F 40 12 3F FA A1 00 00 00 00 5A 01 AC 4D 50 03 73 6D 61 6C 6C 63 68 69 00 00 00 00 00 00 00 00 31 32 33 34 35 36 37 38 39 30 31 00 00 00 00 00 00 00 00 00 31 32 33 34 35 36 40 71 71 2E 63 6F 6D 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 BA D8 5D"
         }
@@ -72,7 +72,7 @@ namespace JT809.Protocol.Test.JT809Packages
             Assert.Equal(JT809Enums.JT809SubBusinessType.报警督办请求, jT809_0X400.SubBusinessType);
             Assert.Equal((uint)92, jT809_0X400.DataLength);
 
-            JT809_0x9400_0x9401 jT809_0x9400_0x9401 = (JT809_0x9400_0x9401)jT809_0X400.JT809SubBodies;
+            JT809_0x9400_0x9401 jT809_0x9400_0x9401 = (JT809_0x9400_0x9401)jT809_0X400.SubBodies;
             Assert.Equal(JT809WarnSrc.车载终端, jT809_0x9400_0x9401.WarnSrc);
             Assert.Equal(JT809WarnType.疲劳驾驶报警, jT809_0x9400_0x9401.WarnType);
             Assert.Equal(DateTime.Parse("2018-09-27 10:24:00"), jT809_0x9400_0x9401.WarnTime);
@@ -97,7 +97,7 @@ namespace JT809.Protocol.Test.JT809Packages
                 VehicleNo = "粤A12345",
                 VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
                 SubBusinessType = JT809Enums.JT809SubBusinessType.报警督办请求,
-                JT809SubBodies = new JT809_0x9400_0x9401
+                SubBodies = new JT809_0x9400_0x9401
                 {
                      WarnSrc = JT809WarnSrc.车载终端,
                      WarnType = JT809WarnType.疲劳驾驶报警,

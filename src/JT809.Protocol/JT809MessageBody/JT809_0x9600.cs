@@ -16,7 +16,7 @@ namespace JT809.Protocol.JT809MessageBody
     /// <para>描述:上级平台向下级平台发送车辆静态信息交换业务</para>
     /// </summary>
     [JT809Formatter(typeof(JT809BodiesFormatter<JT809_0x9600>))]
-    public class JT809_0x9600:JT809Bodies
+    public class JT809_0x9600: JT809ExchangeMessageBodies
     {
         
     }

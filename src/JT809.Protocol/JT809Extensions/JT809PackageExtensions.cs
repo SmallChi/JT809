@@ -7,13 +7,6 @@ namespace JT809.Protocol.JT809Extensions
 {
     public static class JT809PackageExtensions
     {
-        /// <summary>
-        /// 创建JT809Package对应的数据体
-        /// </summary>
-        /// <typeparam name="TJT809Bodies"></typeparam>
-        /// <param name="msgID"></param>
-        /// <param name="jT809Bodies"></param>
-        /// <returns></returns>
         public static JT809Package Create<TJT809Bodies>(this JT809BusinessType jT809BusinessType, TJT809Bodies jT809Bodies)
             where TJT809Bodies: JT809Bodies
         {
@@ -30,11 +23,7 @@ namespace JT809.Protocol.JT809Extensions
              };
             return jT809Package;
         }
-        /// <summary>
-        /// 创建JT809Package对应的数据体
-        /// </summary>
-        /// <param name="jt809BusinessType"></param>
-        /// <returns></returns>
+
         public static JT809Package Create(this JT809BusinessType jT809BusinessType)
         {
             JT809Package jT809Package = new JT809Package();

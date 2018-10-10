@@ -55,7 +55,7 @@ namespace JT809.Protocol.Benchmark
                     MsgGNSSCENTERID = 20180920,
                 };
 
-                jT809Package.Bodies = new JT809_0x9400
+                JT809_0x9400 bodies = new JT809_0x9400
                 {
                     VehicleNo = "粤A12345",
                     VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
@@ -74,8 +74,8 @@ namespace JT809.Protocol.Benchmark
                     SupervisorTel = "12345678901",
                     SupervisorEmail = "123456@qq.com"
                 };
-                jT809Package.Bodies.JT809SubBodies = jT809_0x9400_0x9401;
-
+                bodies.SubBodies = jT809_0x9400_0x9401;
+                jT809Package.Bodies = bodies;
                 var hex = JT809Serializer.Serialize(jT809Package);
             }
         }
