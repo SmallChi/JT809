@@ -15,8 +15,7 @@ namespace JT809.Protocol.JT809Enums
         #region 链路管理类
         ///<summary>
         ///主链路登录请求消息
-        ///<para>UP_CONNECT_REQ</para>
-        ///<para>JT809_0x1001</para>
+        ///UP_CONNECT_REQ
         ///</summary>
         [Description("主链路登录请求消息")]
         [JT809BodiesType(typeof(JT809_0x1001))]
@@ -24,8 +23,7 @@ namespace JT809.Protocol.JT809Enums
         主链路登录请求消息 = 0x1001,
         ///<summary>
         ///主链路登录应答消息  
-        ///<para>UP_CONNECT_RSP</para>
-        ///<para>JT809_0x1002</para>
+        ///UP_CONNECT_RSP
         ///</summary>
         [Description("主链路登录应答消息")]
         [JT809BusinessTypeDescription("UP_CONNECT_RSP", "主链路登录应答消息")]
@@ -33,8 +31,7 @@ namespace JT809.Protocol.JT809Enums
         主链路登录应答消息 = 0x1002,
         ///<summary>
         ///主链路注销请求消息 
-        ///<para>UP_DISCONNECT_REQ</para>
-        ///<para>JT809_0x1003</para> 
+        ///UP_DISCONNECT_REQ
         ///</summary>
         [Description("主链路注销请求消息")]
         [JT809BusinessTypeDescription("UP_DISCONNECT_REQ", "主链路注销请求消息")]
@@ -43,8 +40,6 @@ namespace JT809.Protocol.JT809Enums
         ///<summary>
         ///主链路注销应答消息 
         ///UP_DISCONNECT_RSP
-        ///<para>UP_DISCONNECT_RSP</para>
-        ///<para>JT809_0x1004</para>  
         ///</summary>
         [Description("主链路注销应答消息")]
         [JT809BodiesType(typeof(JT809_0x1004))]
@@ -52,8 +47,7 @@ namespace JT809.Protocol.JT809Enums
         主链路注销应答消息 = 0x1004,
         ///<summary>
         ///主链路连接保持请求消息  
-        ///<para>UP_LINKTEST_REQ</para>
-        ///<para>JT809_0x1005</para>   
+        ///UP_LINKTEST_REQ
         ///</summary>
         [Description("主链路连接保持请求消息")]
         [JT809BodiesType(typeof(JT809_0x1005))]
@@ -61,8 +55,7 @@ namespace JT809.Protocol.JT809Enums
         主链路连接保持请求消息 = 0x1005,
         ///<summary>
         ///主链路连接保持应答消息  
-        ///<para>UP_LINKTEST_RSP</para>
-        ///<para>JT809_0x1006</para>   
+        ///UP_LINKTEST_RSP
         ///</summary>
         [Description("主链路连接保持应答消息")]
         [JT809BodiesType(typeof(JT809_0x1006))]
@@ -70,8 +63,7 @@ namespace JT809.Protocol.JT809Enums
         主链路连接保持应答消息 = 0x1006,
         ///<summary>
         ///主链路断开通知消息 
-        ///<para>UP_DISCONNECT_INFORM</para>
-        ///<para>JT809_0x1007</para>   
+        ///UP_DISCONNECT_INFORM
         ///</summary>
         [Description("主链路断开通知消息")]
         [JT809BodiesType(typeof(JT809_0x1007))]
@@ -79,8 +71,7 @@ namespace JT809.Protocol.JT809Enums
         主链路断开通知消息 = 0x1007,
         ///<summary>
         ///下级平台主动关闭链路通知消息  
-        ///<para>UP_CLOSELINK_INFORM</para>
-        ///<para>JT809_0x1008</para>   
+        ///UP_CLOSELINK_INFORM
         ///</summary>
         [Description("下级平台主动关闭链路通知消息")]
         [JT809BodiesType(typeof(JT809_0x1008))]
@@ -88,8 +79,7 @@ namespace JT809.Protocol.JT809Enums
         下级平台主动关闭链路通知消息 = 0x1008,
         ///<summary>
         ///从链路连接请求消息  
-        ///<para>DOWN_CONNECT_REQ</para>
-        ///<para>JT809_0x9001</para>   
+        ///DOWN_CONNECT_REQ
         ///</summary>
         [Description("从链路连接请求消息")]
         [JT809BodiesType(typeof(JT809_0x9001))]
@@ -97,8 +87,7 @@ namespace JT809.Protocol.JT809Enums
         从链路连接请求消息 = 0x9001,
         ///<summary>
         ///从链路连接应答消息 
-        ///<para>DOWN_CONNECT_RSP</para>
-        ///<para>JT809_0x9002</para>   
+        ///DOWN_CONNECT_RSP
         ///</summary>
         [Description("从链路连接应答消息")]
         [JT809BodiesType(typeof(JT809_0x9002))]
@@ -106,8 +95,7 @@ namespace JT809.Protocol.JT809Enums
         从链路连接应答消息 = 0x9002,
         ///<summary>
         ///从链路注销请求消息  
-        ///<para>DOWN_DISCONNECT_REQ</para>
-        ///<para>JT809_0x9003</para>  
+        ///DOWN_DISCONNECT_REQ
         ///</summary>
         [Description("从链路注销请求消息")]
         [JT809BodiesType(typeof(JT809_0x9003))]
@@ -115,8 +103,7 @@ namespace JT809.Protocol.JT809Enums
         从链路注销请求消息 = 0x9003,
         ///<summary>
         ///从链路注销应答消息  
-        ///<para>DOWN_DISCONNECT_RSP</para>
-        ///<para>JT809_0x9004</para>  
+        ///DOWN_DISCONNECT_RSP
         ///</summary>
         [Description("从链路注销应答消息")]
         [JT809BodiesType(typeof(JT809_0x9004))]
@@ -124,8 +111,7 @@ namespace JT809.Protocol.JT809Enums
         从链路注销应答消息 = 0x9004,
         ///<summary>
         ///从链路连接保持请求消息  
-        ///<para>DOWN_LINKTEST_REQ</para>
-        ///<para>JT809_0x9005</para>  
+        ///DOWN_LINKTEST_REQ
         ///</summary>
         [Description("从链路连接保持请求消息")]
         [JT809BodiesType(typeof(JT809_0x9005))]
@@ -133,8 +119,7 @@ namespace JT809.Protocol.JT809Enums
         从链路连接保持请求消息 = 0x9005,
         ///<summary>
         ///从链路连接保持应答消息 
-        ///<para>DOWN_LINKTEST_RSP</para>
-        ///<para>JT809_0x9006</para>  
+        ///DOWN_LINKTEST_RSP
         ///</summary>
         [Description("从链路连接保持应答消息")]
         [JT809BodiesType(typeof(JT809_0x9006))]
@@ -142,8 +127,7 @@ namespace JT809.Protocol.JT809Enums
         从链路连接保持应答消息 = 0x9006,
         ///<summary>
         ///从链路断开通知消息  
-        ///<para>DOWN_DISCONNECT_INFORM</para>
-        ///<para>JT809_0x9007</para>  
+        ///DOWN_DISCONNECT_INFORM
         ///</summary>
         [Description("从链路断开通知消息")]
         [JT809BodiesType(typeof(JT809_0x9007))]
@@ -151,8 +135,7 @@ namespace JT809.Protocol.JT809Enums
         从链路断开通知消息 = 0x9007,
         ///<summary>
         ///上级平台主动关闭链路通知消息
-        ///<para>DOWN_CLOSELINK_INFORM</para>
-        ///<para>JT809_0x9008</para>  
+        ///DOWN_CLOSELINK_INFORM
         ///</summary>
         [Description("上级平台主动关闭链路通知消息")]
         [JT809BodiesType(typeof(JT809_0x9008))]
@@ -162,8 +145,7 @@ namespace JT809.Protocol.JT809Enums
         #region 信息统计类
         ///<summary>
         ///接收定位信息数量通知消息
-        ///<para>DOWN_TOTAL_RECV_BACK_MSG</para>
-        ///<para>JT809_0x9101</para>  
+        ///DOWN_TOTAL_RECV_BACK_MSG
         ///</summary>
         [Description("接收定位信息数量通知消息")]
         [JT809BodiesType(typeof(JT809_0x9101))]
@@ -173,8 +155,7 @@ namespace JT809.Protocol.JT809Enums
         #region 车辆动态信息交换
         ///<summary>
         ///主链路动态信息交换消息 
-        ///<para>UP_EXG_MSG</para>
-        ///<para>JT809_0x1200</para>  
+        ///UP_EXG_MSG
         ///</summary>
         [Description("主链路动态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x1200))]
@@ -182,8 +163,7 @@ namespace JT809.Protocol.JT809Enums
         主链路动态信息交换消息 = 0x1200,
         ///<summary>
         ///从链路动态信息交换消息
-        ///<para>DOWN_EXG_MSG</para>
-        ///<para>JT809_0x9200</para>  
+        ///DOWN_EXG_MSG
         ///</summary>
         [Description("从链路动态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x9200))]
@@ -193,8 +173,7 @@ namespace JT809.Protocol.JT809Enums
         #region 平台间信息交互类
         ///<summary>
         ///主链路平台间信息交互消息  
-        ///<para>UP_PLATFORM_MSG</para>
-        ///<para>JT809_0x1300</para>  
+        ///UP_PLATFORM_MSG
         ///</summary>
         [Description("主链路平台间信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x1300))]
@@ -202,8 +181,7 @@ namespace JT809.Protocol.JT809Enums
         主链路平台间信息交互消息 = 0x1300,
         ///<summary>
         ///从链路平台间信息交互消息  
-        ///<para>DOWN_PLATFORM_MSG</para>
-        ///<para>JT809_0x9300</para>  
+        ///DOWN_PLATFORM_MSG
         ///</summary>
         [Description("从链路平台间信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x9300))]
@@ -213,8 +191,7 @@ namespace JT809.Protocol.JT809Enums
         #region 车辆报警信息交互类
         ///<summary>
         ///主链路报警信息交互消息  
-        ///<para>UP_WARN_MSG</para>
-        ///<para>JT809_0x1400</para>  
+        ///UP_WARN_MSG
         ///</summary>
         [Description("主链路报警信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x1400))]
@@ -222,8 +199,7 @@ namespace JT809.Protocol.JT809Enums
         主链路报警信息交互消息 = 0x1400,
         ///<summary>
         ///从链路报警信息交互消息 
-        ///<para>DOWN_WARN_MSG</para>
-        ///<para>JT809_0x9400</para>  
+        ///DOWN_WARN_MSG
         ///</summary>
         [Description("从链路报警信息交互消息")]
         [JT809BodiesType(typeof(JT809_0x9400))]
@@ -233,8 +209,7 @@ namespace JT809.Protocol.JT809Enums
         #region 车辆监管类 
         ///<summary>
         ///主链路车辆监管消息 
-        ///<para>UP_CTRL_MSG</para>
-        ///<para>JT809_0x1500</para>  
+        ///UP_CTRL_MSG
         ///</summary>
         [Description("主链路车辆监管消息")]
         [JT809BodiesType(typeof(JT809_0x1500))]
@@ -242,8 +217,7 @@ namespace JT809.Protocol.JT809Enums
         主链路车辆监管消息 = 0x1500,
         ///<summary>
         ///从链路车辆监管消息
-        ///<para>DOWN_CTRL_MSG</para>
-        ///<para>JT809_0x9500</para>  
+        ///DOWN_CTRL_MSG
         ///</summary>
         [Description("从链路车辆监管消息")]
         [JT809BodiesType(typeof(JT809_0x9500))]
@@ -253,8 +227,7 @@ namespace JT809.Protocol.JT809Enums
         #region 车辆静态信息交换类
         ///<summary>
         ///主链路静态信息交换消息 
-        ///<para>UP_BASE_MSG</para>
-        ///<para>JT809_0x1600</para>  
+        ///UP_BASE_MSG
         ///</summary>
         [Description("主链路静态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x1600))]
@@ -262,8 +235,7 @@ namespace JT809.Protocol.JT809Enums
         主链路静态信息交换消息 = 0x1600,
         ///<summary>
         ///从链路静态信息交换消息
-        ///<para>DOWN_BASE_MSG</para>
-        ///<para>JT809_0x9600</para>  
+        ///DOWN_BASE_MSG
         ///</summary>
         [Description("从链路静态信息交换消息")]
         [JT809BodiesType(typeof(JT809_0x9600))]
