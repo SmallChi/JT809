@@ -185,8 +185,7 @@ Assert.Equal("12345678901", jT809_0x9400_0x9401.SupervisorTel);
 Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
 
 ```
-
-### 举个栗子3
+### 举个栗子2
 ``` data2
 // 设置全局配置
 JT809GlobalConfig.Instance.SetHeaderOptions(new JT809Configs.JT809HeaderOptions
@@ -216,14 +215,42 @@ JT809Package jT809Package = JT809BusinessType.从链路报警信息交互消息.
 });
 var hex = JT809Serializer.Serialize(jT809Package);
 ```
+### 举个栗子3
+``` data3
+static void Main(string[] args)
+{
+    // 设置全局配置
+    JT809GlobalConfig.Instance
+            // 设置加密算法
+            .SetEncrypt(new JT809EncryptImpl(
+                new JT809Configs.JT809EncryptOptions()
+                {
+                    IA1 = 20000000,
+                    IC1 = 20000000,
+                    M1 = 30000000,
+                    Key = 256178
+                })
+            )
+            // 设置头部信息
+            .SetHeaderOptions(new JT809Configs.JT809HeaderOptions
+            {
+                EncryptFlag = JT809Header_Encrypt.Common,
+                Version = new JT809Header_Version(2, 3, 2),
+                EncryptKey = 9999,
+                MsgGNSSCENTERID = 20180920
+            }
+            )
+            // 设置是否跳过校验和
+            .SetSkipCRCCode(false);
+    // todo:
+}
+```
 
 ## NuGet安装
 
 | Package Name |  Version | Downloads
 |--------------|  ------- | ----
-| JT809 | ![](https://img.shields.io/nuget/v/JT809.svg) | ![](https://img.shields.io/nuget/dt/JT809.svg)
-
-Install-Package JT809
+| Install-Package JT809 | ![](https://img.shields.io/nuget/v/JT809.svg) | ![](https://img.shields.io/nuget/dt/JT809.svg)
 
 ## 使用BenchmarkDotNet性能测试报告（只是玩玩，不能当真）
 
