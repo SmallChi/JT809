@@ -38,8 +38,9 @@ namespace JT809.Protocol
         /// 协议版本号标识，上下级平台之间采用的标准协议版
         /// 编号；长度为 3 个字节来表示，0x01 0x02 0x0F 标识
         /// 的版本号是 v1.2.15，以此类推。
+        /// BCD编码
         /// </summary>
-        public JT809Header_Version Version { get; set; } = new JT809Header_Version();
+        public string Version { get; set; } = "010000";
         /// <summary>
         /// 报文加密标识位 b: 0 表示报文不加密，1 表示报文加密。
         /// </summary>

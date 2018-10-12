@@ -14,17 +14,17 @@ namespace JT809.Protocol.JT809Encrypt
             this.jT809EncryptOptions = jT809EncryptOptions;
         }
 
-        public byte[] Decrypt(byte[] buffer)
+        public byte[] Decrypt(byte[] buffer, uint privateKey)
         {
-             return Encrypt(buffer);
+             return Encrypt(buffer, privateKey);
         }
 
-        public byte[] Encrypt(byte[] buffer)
+        public byte[] Encrypt(byte[] buffer, uint privateKey)
         {
             byte[] data = new byte[buffer.Length];
-            if (0 == jT809EncryptOptions.Key)
+            if (0 == privateKey)
             {
-                jT809EncryptOptions.Key = 1;
+                privateKey = 1;
             }
             uint mkey = jT809EncryptOptions.M1;
             if (0 == mkey)
@@ -33,8 +33,8 @@ namespace JT809.Protocol.JT809Encrypt
             }
             for (int idx = 0; idx < buffer.Length; idx++)
             {
-                jT809EncryptOptions.Key = jT809EncryptOptions.IA1 * (jT809EncryptOptions.Key % mkey) + jT809EncryptOptions.IC1;
-                buffer[idx] ^= (byte)((jT809EncryptOptions.Key >> 20) & 0xFF);
+                privateKey = jT809EncryptOptions.IA1 * (privateKey % mkey) + jT809EncryptOptions.IC1;
+                buffer[idx] ^= (byte)((privateKey >> 20) & 0xFF);
                 data[idx] = buffer[idx];
             }
             return data;

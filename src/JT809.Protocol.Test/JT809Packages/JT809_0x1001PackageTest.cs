@@ -54,7 +54,7 @@ namespace JT809.Protocol.Test.JT809Packages
             Assert.Equal((uint)9999, jT809Package.Header.EncryptKey);
             Assert.Equal((uint)20180920, jT809Package.Header.MsgGNSSCENTERID);
             Assert.Equal(JT809Enums.JT809BusinessType.主链路登录请求消息, jT809Package.Header.BusinessType);
-            Assert.Equal(new JT809Header_Version().ToString(), jT809Package.Header.Version.ToString());
+            Assert.Equal("010000", jT809Package.Header.Version);
             JT809_0x1001 jT809_0X1001 = (JT809_0x1001)jT809Package.Bodies;
             Assert.Equal((uint)20180920, jT809_0X1001.UserId);
             Assert.Equal("20180920", jT809_0X1001.Password);

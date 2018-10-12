@@ -22,7 +22,7 @@ namespace JT809.Protocol.Test.JT809Packages
                 MsgSN = 1666,
                 EncryptKey = 9999,
                 EncryptFlag= JT809Header_Encrypt.None,
-                Version = new JT809Header_Version(1, 0, 0),
+                Version = "010000",
                 BusinessType = JT809Enums.JT809BusinessType.从链路报警信息交互消息,
                 MsgGNSSCENTERID = 20180920,
             };
@@ -64,7 +64,7 @@ namespace JT809.Protocol.Test.JT809Packages
             Assert.Equal(JT809Header_Encrypt.None, jT809Package.Header.EncryptFlag);
             Assert.Equal((uint)20180920, jT809Package.Header.MsgGNSSCENTERID);
             Assert.Equal(JT809Enums.JT809BusinessType.从链路报警信息交互消息, jT809Package.Header.BusinessType);
-            Assert.Equal(new JT809Header_Version().ToString(), jT809Package.Header.Version.ToString());
+            Assert.Equal("010000", jT809Package.Header.Version);
 
             JT809_0x9400 jT809_0X400 = (JT809_0x9400)jT809Package.Bodies;
             Assert.Equal("粤A12345", jT809_0X400.VehicleNo);
