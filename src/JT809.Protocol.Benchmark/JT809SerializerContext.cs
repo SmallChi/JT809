@@ -50,7 +50,7 @@ namespace JT809.Protocol.Benchmark
                     MsgSN = 1666,
                     EncryptKey = 9999,
                     EncryptFlag = JT809Header_Encrypt.None,
-                    Version = "010000",
+                    Version = new JT809Header_Version(1, 0, 0),
                     BusinessType = JT809Enums.JT809BusinessType.从链路报警信息交互消息,
                     MsgGNSSCENTERID = 20180920,
                 };

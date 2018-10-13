@@ -17,7 +17,8 @@ namespace JT809.Protocol.Test.JT809Packages
             {
                 IA1 = 20000000,
                 IC1 = 20000000,
-                M1 = 30000000
+                M1 = 30000000,
+                Key = 256178,
             }));
         }
 
@@ -29,7 +30,7 @@ namespace JT809.Protocol.Test.JT809Packages
             {
                 EncryptFlag= JT809Header_Encrypt.Common,
                 MsgSN= 133,
-                EncryptKey= 256178,
+                EncryptKey=5819,
                 BusinessType= JT809Enums.JT809BusinessType.主链路登录请求消息,
                 MsgGNSSCENTERID= 20180920,
             };
@@ -46,15 +47,16 @@ namespace JT809.Protocol.Test.JT809Packages
         [Fact]
         public void Test2()
         {
-            var bytes = "5B000000480000008510010133EFB8010000010003E8B2D37D9CC4900C77DC78F8676527D8AE12243CFB64CC2FBA619AEFAD33ACCB3256F67BFF19DF33097841098665703FE36E5D".ToStr2HexBytes();
+            var bytes = "5B 00 00 00 48 00 00 00 85 10 01 01 33 EF B8 01 00 00 01 00 00 16 BB D3 7D 9C C4 90 0C 77 DC 78 F8 67 65 27 D8 AE 12 24 3C FB 64 CC 2F BA 61 9A EF AD 33 AC CB 32 56 F6 7B FF 19 DF 33 09 78 41 09 86 65 70 3F 2E B5 5D".ToHexBytes();
             JT809Package jT809Package = JT809Serializer.Deserialize(bytes);
             Assert.Equal(JT809Header_Encrypt.Common, jT809Package.Header.EncryptFlag);
-            Assert.Equal((uint)256178, jT809Package.Header.EncryptKey);
+            Assert.Equal((uint)5819, jT809Package.Header.EncryptKey);
             Assert.Equal((uint)72, jT809Package.Header.MsgLength);
             Assert.Equal((uint)133, jT809Package.Header.MsgSN);
+            Assert.Equal((uint)5819, jT809Package.Header.EncryptKey);
             Assert.Equal((uint)20180920, jT809Package.Header.MsgGNSSCENTERID);
             Assert.Equal(JT809Enums.JT809BusinessType.主链路登录请求消息, jT809Package.Header.BusinessType);
-            Assert.Equal("010000", jT809Package.Header.Version);
+            Assert.Equal(new JT809Header_Version().ToString(), jT809Package.Header.Version.ToString());
             JT809_0x1001 jT809_0X1001 = (JT809_0x1001)jT809Package.Bodies;
             Assert.Equal((uint)20180920, jT809_0X1001.UserId);
             Assert.Equal("20180920", jT809_0X1001.Password);

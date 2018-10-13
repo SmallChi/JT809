@@ -27,7 +27,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
 
         public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9500_0x9505 value)
         {
-            offset += JT809BinaryExtensions.WriteBCDLittle(memoryOwner, offset, value.AuthenticationCode,20);
+            offset += JT809BinaryExtensions.WriteBCDLittle(memoryOwner, offset, value.AuthenticationCode,10,20);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.AccessPointName,20);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.UserName, 49);
             offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.Password, 22);

@@ -65,7 +65,7 @@ namespace JT809.Protocol.JT809Formatters
                                 jT809Package.Bodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), buffer.Slice(offset, checkIndex - offset), out readSize);
                                 break;
                             case JT809Header_Encrypt.Common:
-                                byte[] bodiesData = JT809GlobalConfig.Instance.Encrypt.Decrypt(buffer.Slice(offset, checkIndex - offset).ToArray(), jT809Package.Header.EncryptKey);
+                                byte[] bodiesData = JT809GlobalConfig.Instance.Encrypt.Decrypt(buffer.Slice(offset, checkIndex - offset).ToArray());
                                 jT809Package.Bodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), bodiesData, out readSize);
                                 break;
                         }
@@ -104,7 +104,7 @@ namespace JT809.Protocol.JT809Formatters
                     case JT809Header_Encrypt.None:
                         break;
                     case JT809Header_Encrypt.Common:
-                        messageBodyData = JT809GlobalConfig.Instance.Encrypt.Encrypt(messageBodyData, value.Header.EncryptKey);
+                        messageBodyData = JT809GlobalConfig.Instance.Encrypt.Encrypt(messageBodyData);
                         break;
                 }
             }

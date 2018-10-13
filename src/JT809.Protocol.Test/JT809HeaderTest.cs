@@ -19,7 +19,7 @@ namespace JT809.Protocol.Test
             jT809Header.MsgSN = 1024;
             jT809Header.BusinessType = JT809Enums.JT809BusinessType.从链路静态信息交换消息;
             jT809Header.MsgGNSSCENTERID = 1200;
-            jT809Header.Version = "010000";
+            jT809Header.Version = new JT809Header_Version();
             jT809Header.EncryptFlag = JT809Header_Encrypt.None;
             jT809Header.EncryptKey = 0;
             var hex = JT809Serializer.Serialize(jT809Header).ToHexString();
@@ -35,23 +35,9 @@ namespace JT809.Protocol.Test
             Assert.Equal((uint)1024, jT809Header.MsgSN);
             Assert.Equal(JT809Enums.JT809BusinessType.从链路静态信息交换消息, jT809Header.BusinessType);
             Assert.Equal((uint)1200, jT809Header.MsgGNSSCENTERID);
-            Assert.Equal("010000", jT809Header.Version);
+            Assert.Equal(new JT809Header_Version().ToString(), jT809Header.Version.ToString());
             Assert.Equal(JT809Header_Encrypt.None, jT809Header.EncryptFlag);
             Assert.Equal((uint)0, jT809Header.EncryptKey);
-        }
-
-        [Fact]
-        public void Test4()
-        {
-            JT809Header jT809Header = new JT809Header();
-            jT809Header.MsgLength = 24;
-            jT809Header.MsgSN = 1024;
-            jT809Header.BusinessType = JT809Enums.JT809BusinessType.从链路静态信息交换消息;
-            jT809Header.MsgGNSSCENTERID = 1200;
-            jT809Header.Version = "0F0A0B";
-            jT809Header.EncryptFlag = JT809Header_Encrypt.None;
-            jT809Header.EncryptKey = 0;
-            var hex = JT809Serializer.Serialize(jT809Header).ToHexString();
         }
 
         [Fact]

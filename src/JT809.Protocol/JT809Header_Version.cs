@@ -4,13 +4,9 @@ using System.Text;
 
 namespace JT809.Protocol
 {
-    /// <summary>
-    /// 协议版本号标识
-    /// BCD编码
-    /// </summary>
     public class JT809Header_Version
     {
-        public byte[] Buffer { get;} = new byte[3];
+        public byte[] Buffer { get; } = new byte[3];
         private const int MajorIndex = 0;
         private const int MinorIndex = 1;
         private const int BuildIndex = 2;
@@ -19,19 +15,19 @@ namespace JT809.Protocol
         public byte Major
         {
             get { return Buffer[MajorIndex]; }
-            set { Buffer[MajorIndex] = value; }
+            private set { Buffer[MajorIndex] = value; }
         }
 
         public byte Minor
         {
             get { return Buffer[MinorIndex]; }
-            set { Buffer[MinorIndex] = value; }
+            private set { Buffer[MinorIndex] = value; }
         }
 
         public byte Build
         {
             get { return Buffer[BuildIndex]; }
-            set { Buffer[BuildIndex] = value; }
+            private set { Buffer[BuildIndex] = value; }
         }
 
         /// <summary>
