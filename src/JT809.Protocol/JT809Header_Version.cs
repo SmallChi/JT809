@@ -4,6 +4,10 @@ using System.Text;
 
 namespace JT809.Protocol
 {
+    /// <summary>
+    /// 协议版本号标识
+    /// Hex编码
+    /// </summary>
     public class JT809Header_Version
     {
         public byte[] Buffer { get; } = new byte[3];
@@ -32,6 +36,7 @@ namespace JT809.Protocol
 
         /// <summary>
         /// 默认1.0.0版本
+        /// Hex编码
         /// </summary>
         public JT809Header_Version()
         {
@@ -39,14 +44,22 @@ namespace JT809.Protocol
             Minor = 0;
             Build = 0;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="major">0x00~0xFF</param>
+        /// <param name="minor">0x00~0xFF</param>
+        /// <param name="buid">0x00~0xFF</param>
         public JT809Header_Version(byte major, byte minor, byte buid)
         {
             Major = major;
             Minor = minor;
             Build = buid;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bytes">[0x00~0xFF,0x00~0xFF,0x00~0xFF]</param>
         public JT809Header_Version(byte[] bytes)
         {
             Major = bytes[0];

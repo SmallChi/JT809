@@ -118,27 +118,9 @@ namespace JT809.Protocol.JT809Extensions
         /// <param name="hexString"></param>
         /// <param name="separator"></param>
         /// <returns></returns>
-        public static byte[] ToHexBytes(this string hexString, string separator = " ")
+        public static byte[] ToHexBytes(this string hexString)
         {
-            return hexString.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries).Select(s => Convert.ToByte(s, 16)).ToArray();
-        }
-
-        /// <summary>
-        /// 16进制字符串转16进制数组
-        /// </summary>
-        /// <param name="hexString"></param>
-        /// <returns></returns>
-        public static byte[] ToStr2HexBytes(this string hexString)
-        {
-            //byte[] buf = new byte[hexString.Length / 2];
-            //for (int i = 0; i < hexString.Length; i++)
-            //{
-            //    if (i % 2 == 0)
-            //    {
-            //        buf[i / 2] = Convert.ToByte(hexString.Substring(i, 2), 16) ;
-            //    }
-
-            //}
+            hexString = hexString.Replace(" ", "");
             byte[] buf = new byte[hexString.Length / 2];
             ReadOnlySpan<char> readOnlySpan = hexString.AsSpan();
             for (int i = 0; i < hexString.Length; i++)
@@ -149,13 +131,6 @@ namespace JT809.Protocol.JT809Extensions
                 }
             }
             return buf;
-            //List<byte> bytes = new List<byte>();
-            //while (hexString.Length>0)
-            //{
-            //    bytes.Add(Convert.ToByte(hexString.AsSpan(0, 2).ToString(), 16));
-            //    hexString = hexString.Remove(0,2);
-            //}
-            //return Regex.Replace(hexString, @"(\w{2})", "$1 ").Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(s => Convert.ToByte(s, 16)).ToArray();
         }
 
         public unsafe static string ReadHexStringLittle(ReadOnlySpan<byte> read, ref int offset, int len)

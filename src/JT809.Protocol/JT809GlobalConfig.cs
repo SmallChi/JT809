@@ -1,4 +1,5 @@
 ﻿using JT809.Protocol.JT809Configs;
+using JT809.Protocol.JT809Encrypt;
 using JT809.Protocol.JT809Internal;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,9 @@ namespace JT809.Protocol
 
         public IJT809Encrypt Encrypt { get; private set; }
 
-        public IMsgSNDistributed MsgSNDistributed {get;private set;}
+        public JT809EncryptOptions EncryptOptions { get; private set; }
+
+        public IMsgSNDistributed MsgSNDistributed { get; private set; }
 
         public JT809HeaderOptions HeaderOptions { get; private set; }
         /// <summary>
@@ -35,6 +38,19 @@ namespace JT809.Protocol
         /// 默认：false
         /// </summary>
         public bool SkipCRCCode { get; private set; }
+        /// <summary>
+        /// 设置加密算法选项值
+        /// 不同的上下级平台之间，加密的算法是一致的，但是针对 M1, IA1, IC1 的不同。
+        /// 数据先经过加密而后解密。
+        /// </summary>
+        /// <param name="jT809Encrypt"></param>
+        /// <returns></returns>
+        public JT809GlobalConfig SetEncryptOptions(JT809EncryptOptions jT809EncryptOptions)
+        {
+            instance.Value.Encrypt = new JT809EncryptImpl(jT809EncryptOptions);
+            instance.Value.EncryptOptions = jT809EncryptOptions;
+            return instance.Value;
+        }
         /// <summary>
         /// 设置加密算法实现
         /// </summary>

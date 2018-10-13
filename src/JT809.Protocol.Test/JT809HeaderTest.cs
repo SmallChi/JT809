@@ -53,5 +53,19 @@ namespace JT809.Protocol.Test
             });
             var sn = JT809GlobalConfig.Instance.MsgSNDistributed.Increment();
         }
+
+        [Fact]
+        public void Test4()
+        {
+            JT809Header jT809Header = new JT809Header();
+            jT809Header.MsgLength = 24;
+            jT809Header.MsgSN = 1024;
+            jT809Header.BusinessType = JT809Enums.JT809BusinessType.从链路静态信息交换消息;
+            jT809Header.MsgGNSSCENTERID = 1200; 
+            jT809Header.Version = new JT809Header_Version (0xFF,0xAA,0xBB);
+            jT809Header.EncryptFlag = JT809Header_Encrypt.None;
+            jT809Header.EncryptKey = 0;
+            var hex = JT809Serializer.Serialize(jT809Header).ToHexString();
+        }
     }
 }
