@@ -14,8 +14,7 @@
     <PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/SmallChi/JT809/blob/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.5</Version>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
