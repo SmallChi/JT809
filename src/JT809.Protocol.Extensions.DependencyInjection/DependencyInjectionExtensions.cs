@@ -18,24 +18,11 @@ namespace JT809.Protocol.Extensions.DependencyInjection
             services.Configure<JT809Options>(configuration);
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             JT809Options options = serviceProvider.GetRequiredService<IOptions<JT809Options>>().Value;
-            var versions = options.Version.Split(new string []{ "." }, StringSplitOptions.RemoveEmptyEntries);
-            if (versions.Length == 3)
-            {
-                options.HeaderOptions.Version = new JT809Header_Version(byte.Parse(versions[0]), byte.Parse(versions[1]), byte.Parse(versions[2]));
-            }
-            else if(versions.Length == 2)
-            {
-                options.HeaderOptions.Version = new JT809Header_Version(byte.Parse(versions[0]), byte.Parse(versions[1]),0);
-            }
-            else if (versions.Length == 1)
-            {
-                options.HeaderOptions.Version = new JT809Header_Version(byte.Parse(versions[0]), 0, 0);
-            }
             JT809GlobalConfig.Instance.SetHeaderOptions(options.HeaderOptions);
             JT809GlobalConfig.Instance.SetSkipCRCCode(options.SkipCRCCode);
             if (options.HeaderOptions.EncryptFlag == JT809Header_Encrypt.Common)
             {
-                JT809GlobalConfig.Instance.SetEncrypt(new JT809EncryptImpl(options.EncryptOptions));
+                JT809GlobalConfig.Instance.SetEncryptOptions(options.EncryptOptions);
             }
             try
             {
@@ -45,6 +32,26 @@ namespace JT809.Protocol.Extensions.DependencyInjection
             catch
             {
                 
+            }
+            return services;
+        }
+
+        public static IServiceCollection AddJT809Configure(this IServiceCollection services, JT809Options  jT809Options)
+        {
+            JT809GlobalConfig.Instance.SetHeaderOptions(jT809Options.HeaderOptions);
+            JT809GlobalConfig.Instance.SetSkipCRCCode(jT809Options.SkipCRCCode);
+            if (jT809Options.HeaderOptions.EncryptFlag == JT809Header_Encrypt.Common)
+            {
+                JT809GlobalConfig.Instance.SetEncryptOptions(jT809Options.EncryptOptions);
+            }
+            try
+            {
+                var msgSNDistributedImpl = services.BuildServiceProvider().GetRequiredService<IMsgSNDistributed>();
+                JT809GlobalConfig.Instance.SetMsgSNDistributed(msgSNDistributedImpl);
+            }
+            catch
+            {
+
             }
             return services;
         }

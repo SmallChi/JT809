@@ -59,7 +59,7 @@
 #### 1.组包：
 
 > 业务数据类型 BusinessType:从链路报警信息交互消息
-> 
+>
 > 子业务类型标识 SubBusinessType:报警督办请求消息
 
 ``` code
@@ -185,7 +185,9 @@ Assert.Equal("12345678901", jT809_0x9400_0x9401.SupervisorTel);
 Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
 
 ```
+
 ### 举个栗子2
+
 ``` data2
 // 设置全局配置
 JT809GlobalConfig.Instance.SetHeaderOptions(new JT809Configs.JT809HeaderOptions
@@ -215,7 +217,9 @@ JT809Package jT809Package = JT809BusinessType.从链路报警信息交互消息.
 });
 var hex = JT809Serializer.Serialize(jT809Package);
 ```
+
 ### 举个栗子3
+
 ``` data3
 static void Main(string[] args)
 {
@@ -227,8 +231,7 @@ static void Main(string[] args)
                 {
                     IA1 = 20000000,
                     IC1 = 20000000,
-                    M1 = 30000000,
-                    Key = 256178
+                    M1 = 30000000
                 })
             )
             // 设置头部信息
@@ -246,11 +249,53 @@ static void Main(string[] args)
 }
 ```
 
+### 举个栗子4
+
+``` data DI
+// 使用依赖注入的方式实现配置
+// Install-Package JT809.Extensions.DependencyInjection
+static async Task  Main(string[] args)
+{
+    var serverHostBuilder = new HostBuilder()
+        .ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            config.SetBasePath(AppDomain.CurrentDomain.BaseDirectory);
+            config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        })
+        .ConfigureServices((hostContext, services) =>
+        {
+            // 方式1：
+            //services.AddJT809Configure(hostContext.Configuration.GetSection("JT809Options"));
+            // 方式2:
+            services.AddJT809Configure(new JT809Options
+            {
+                HeaderOptions=new JT809Configs.JT809HeaderOptions {
+                    MsgGNSSCENTERID=20181012,
+                    EncryptFlag= JT809Header_Encrypt.Common,
+                    EncryptKey= 9999,
+                    Version = new  JT809Header_Version{
+                        Major=2,
+                        Minor=1,
+                        Build= 2
+                    }
+                },
+                EncryptOptions = new JT809Configs.JT809EncryptOptions {
+                    IA1 = 20000000,
+                    IC1 = 20000000,
+                    M1 = 30000000
+                }
+            });
+        });
+    await serverHostBuilder.RunConsoleAsync();
+}
+```
+
 ## NuGet安装
 
 | Package Name |  Version | Downloads
 |--------------|  ------- | ----
-| Install-Package JT809 | ![](https://img.shields.io/nuget/v/JT809.svg) | ![](https://img.shields.io/nuget/dt/JT809.svg)
+| Install-Package JT809 | ![JT809](https://img.shields.io/nuget/v/JT809.svg) | ![JT809](https://img.shields.io/nuget/dt/JT809.svg)
+| Install-Package JT809.Extensions.DependencyInjection | ![JT809.Ext](https://img.shields.io/nuget/v/JT809.Extensions.DependencyInjection.svg) | ![JT809.Ext](https://img.shields.io/nuget/dt/JT809.Extensions.DependencyInjection.svg)
 
 ## 使用BenchmarkDotNet性能测试报告（只是玩玩，不能当真）
 

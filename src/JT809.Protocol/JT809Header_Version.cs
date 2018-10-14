@@ -19,19 +19,19 @@ namespace JT809.Protocol
         public byte Major
         {
             get { return Buffer[MajorIndex]; }
-            private set { Buffer[MajorIndex] = value; }
+            set { Buffer[MajorIndex] = value; }
         }
 
         public byte Minor
         {
             get { return Buffer[MinorIndex]; }
-            private set { Buffer[MinorIndex] = value; }
+            set { Buffer[MinorIndex] = value; }
         }
 
         public byte Build
         {
             get { return Buffer[BuildIndex]; }
-            private set { Buffer[BuildIndex] = value; }
+            set { Buffer[BuildIndex] = value; }
         }
 
         /// <summary>

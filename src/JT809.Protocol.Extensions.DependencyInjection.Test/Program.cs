@@ -19,7 +19,27 @@ namespace JT809.Protocol.Extensions.DependencyInjection.Test
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddJT809Configure(hostContext.Configuration.GetSection("JT809Options"));
+                    // 方式1：
+                    //services.AddJT809Configure(hostContext.Configuration.GetSection("JT809Options"));
+                    // 方式2:
+                    services.AddJT809Configure(new JT809Options
+                    {
+                        HeaderOptions=new JT809Configs.JT809HeaderOptions {
+                          MsgGNSSCENTERID=20181012,
+                          EncryptFlag= JT809Header_Encrypt.Common,
+                          EncryptKey= 9999,
+                          Version = new  JT809Header_Version{
+                            Major=2,
+                            Minor=1,
+                            Build= 2
+                          }
+                        },
+                        EncryptOptions = new JT809Configs.JT809EncryptOptions {
+                          M1= 10000000,
+                          IA1=20000000,
+                          IC1=30000000
+                        }
+                    });
                 });
             await serverHostBuilder.RunConsoleAsync();
         }
