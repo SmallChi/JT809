@@ -83,7 +83,7 @@ namespace JT809.Protocol.JT809Extensions
             return ToHexString(source, false);
         }
 
-        public static int WriteHexStringLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        public static int WriteHexStringLittle(byte[] bytes, int offset, string data, int len)
         {
             if (data == null) data = "";
             data = data.Replace(" ", "");
@@ -105,7 +105,7 @@ namespace JT809.Protocol.JT809Extensions
             int byteIndex = 0;
             while (startIndex < data.Length && byteIndex < length)
             {
-                memoryOwner.Memory.Span[offset+byteIndex] = Convert.ToByte(data.Substring(startIndex, 2), 16);
+                bytes[offset+byteIndex] = Convert.ToByte(data.Substring(startIndex, 2), 16);
                 startIndex += 2;
                 byteIndex++;
             }

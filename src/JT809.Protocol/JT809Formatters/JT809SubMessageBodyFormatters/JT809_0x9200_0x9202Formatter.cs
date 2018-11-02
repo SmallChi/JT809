@@ -34,24 +34,24 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X1200_0x9202;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9200_0x9202 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9200_0x9202 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset,(byte) value.VehiclePosition.Encrypt);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.VehiclePosition.Day);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.VehiclePosition.Month);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.VehiclePosition.Year);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.VehiclePosition.Hour);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.VehiclePosition.Minute);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.VehiclePosition.Second);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VehiclePosition.Lon);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VehiclePosition.Lat);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.VehiclePosition.Vec1);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.VehiclePosition.Vec2);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VehiclePosition.Vec3);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.VehiclePosition.Direction);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.VehiclePosition.Altitude);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VehiclePosition.State);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VehiclePosition.Alarm);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset,(byte) value.VehiclePosition.Encrypt);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.VehiclePosition.Day);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.VehiclePosition.Month);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.VehiclePosition.Year);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.VehiclePosition.Hour);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.VehiclePosition.Minute);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.VehiclePosition.Second);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.VehiclePosition.Lon);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.VehiclePosition.Lat);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.VehiclePosition.Vec1);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.VehiclePosition.Vec2);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.VehiclePosition.Vec3);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.VehiclePosition.Direction);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.VehiclePosition.Altitude);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.VehiclePosition.State);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.VehiclePosition.Alarm);
             return offset;
           }
     }

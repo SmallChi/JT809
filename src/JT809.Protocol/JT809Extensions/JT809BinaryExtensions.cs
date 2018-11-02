@@ -104,53 +104,53 @@ namespace JT809.Protocol.JT809Extensions
             return result.ToString();
         }
 
-        public static int WriteInt32Little(IMemoryOwner<byte> memoryOwner, int offset, int data)
+        public static int WriteInt32Little(byte[] bytes, int offset, int data)
         {
-            memoryOwner.Memory.Span[offset] = (byte)(data >> 24);
-            memoryOwner.Memory.Span[offset + 1] = (byte)(data >> 16);
-            memoryOwner.Memory.Span[offset + 2] = (byte)(data >> 8);
-            memoryOwner.Memory.Span[offset + 3] = (byte)data;
+            bytes[offset] = (byte)(data >> 24);
+            bytes[offset + 1] = (byte)(data >> 16);
+            bytes[offset + 2] = (byte)(data >> 8);
+            bytes[offset + 3] = (byte)data;
             return 4;
         }
 
-        public static int WriteUInt32Little(IMemoryOwner<byte> memoryOwner, int offset, uint data)
+        public static int WriteUInt32Little(byte[] bytes, int offset, uint data)
         {
-            memoryOwner.Memory.Span[offset] = (byte)(data >> 24);
-            memoryOwner.Memory.Span[offset + 1] = (byte)(data >> 16);
-            memoryOwner.Memory.Span[offset + 2] = (byte)(data >> 8);
-            memoryOwner.Memory.Span[offset + 3] = (byte)data;
+            bytes[offset] = (byte)(data >> 24);
+            bytes[offset + 1] = (byte)(data >> 16);
+            bytes[offset + 2] = (byte)(data >> 8);
+            bytes[offset + 3] = (byte)data;
             return 4;
         }
 
-        public static int WriteUInt64Little(IMemoryOwner<byte> memoryOwner, int offset, ulong data)
+        public static int WriteUInt64Little(byte[] bytes, int offset, ulong data)
         {
-            memoryOwner.Memory.Span[offset] = (byte)(data >> 56);
-            memoryOwner.Memory.Span[offset + 1] = (byte)(data >> 48);
-            memoryOwner.Memory.Span[offset + 2] = (byte)(data >> 40);
-            memoryOwner.Memory.Span[offset + 3] = (byte)(data >> 32);
-            memoryOwner.Memory.Span[offset + 4] = (byte)(data >> 24);
-            memoryOwner.Memory.Span[offset + 5] = (byte)(data >> 16);
-            memoryOwner.Memory.Span[offset + 6] = (byte)(data >> 8);
-            memoryOwner.Memory.Span[offset + 7] = (byte)data;
+            bytes[offset] = (byte)(data >> 56);
+            bytes[offset + 1] = (byte)(data >> 48);
+            bytes[offset + 2] = (byte)(data >> 40);
+            bytes[offset + 3] = (byte)(data >> 32);
+            bytes[offset + 4] = (byte)(data >> 24);
+            bytes[offset + 5] = (byte)(data >> 16);
+            bytes[offset + 6] = (byte)(data >> 8);
+            bytes[offset + 7] = (byte)data;
             return 8;
         }
 
-        public static int WriteUInt16Little(IMemoryOwner<byte> memoryOwner, int offset, ushort data)
+        public static int WriteUInt16Little(byte[] bytes, int offset, ushort data)
         {
-            memoryOwner.Memory.Span[offset] = (byte)(data >> 8);
-            memoryOwner.Memory.Span[offset + 1] = (byte)data;
+            bytes[offset] = (byte)(data >> 8);
+            bytes[offset + 1] = (byte)data;
             return 2;
         }
 
-        public static int WriteByteLittle(IMemoryOwner<byte> memoryOwner, int offset, byte data)
+        public static int WriteByteLittle(byte[] bytes, int offset, byte data)
         {
-            memoryOwner.Memory.Span[offset] = data;
+            bytes[offset] = data;
             return 1;
         }
 
-        public static int WriteBytesLittle(IMemoryOwner<byte> memoryOwner, int offset, byte[] data)
+        public static int WriteBytesLittle(byte[] bytes, int offset, byte[] data)
         {
-            CopyTo(data, memoryOwner.Memory.Span, offset);
+            Array.Copy(data, 0, bytes, offset, data.Length);
             return data.Length;
         }
 
@@ -162,12 +162,12 @@ namespace JT809.Protocol.JT809Extensions
         /// <param name="data"></param>
         /// <param name="len"></param>
         /// <returns></returns>
-        public static int WriteBigNumberLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        public static int WriteBigNumberLittle(byte[] bytes, int offset, string data, int len)
         {
             ulong number = string.IsNullOrEmpty(data) ? 0 : (ulong)double.Parse(data);
             for (int i = len - 1; i >= 0; i--)
             {
-                memoryOwner.Memory.Span[offset+i] = (byte)(number & 0xFF);  //取低8位
+                bytes[offset+i] = (byte)(number & 0xFF);  //取低8位
                 number = number >> 8;
             }
             return len;
@@ -181,12 +181,12 @@ namespace JT809.Protocol.JT809Extensions
         /// <param name="data"></param>
         /// <param name="len"></param>
         /// <returns></returns>
-        public static int WriteLowNumberLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        public static int WriteLowNumberLittle(byte[] bytes, int offset, string data, int len)
         {
             ulong number = string.IsNullOrEmpty(data) ? 0 : (ulong)double.Parse(data);
             for (int i = 0; i < len; i++)
             {
-                memoryOwner.Memory.Span[offset + i] = (byte)(number & 0xFF); //取低8位
+                bytes[offset + i] = (byte)(number & 0xFF); //取低8位
                 number = number >> 8;
             }
             return len;

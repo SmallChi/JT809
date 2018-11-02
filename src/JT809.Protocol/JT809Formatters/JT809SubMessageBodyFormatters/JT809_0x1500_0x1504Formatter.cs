@@ -21,13 +21,13 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X1500_0X1504;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1500_0x1504 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x1500_0x1504 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.CommandType);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.CommandType);
             // 先计算内容长度（汉字为两个字节）
             offset += 4;
-            int byteLength = JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.TraveldataInfo);
-            JT809BinaryExtensions.WriteInt32Little(memoryOwner, offset - 4, byteLength);
+            int byteLength = JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.TraveldataInfo);
+            JT809BinaryExtensions.WriteInt32Little(bytes, offset - 4, byteLength);
             offset += byteLength;
             return offset;
         }

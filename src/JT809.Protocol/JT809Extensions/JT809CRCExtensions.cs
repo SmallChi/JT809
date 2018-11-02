@@ -13,7 +13,7 @@ namespace JT809.Protocol.JT809Extensions
         /// <param name="offset"></param>
         /// <param name="iLen"></param>
         /// <returns></returns>
-        public static ushort ToCRC16_CCITT(this Span<byte> ucbuf, int offset, int iLen)
+        public static ushort ToCRC16_CCITT(this byte[] ucbuf, int offset, int iLen)
         {
             ushort checkCode = 0xFFFF;
             for (int j = offset; j < iLen; ++j)

@@ -19,10 +19,9 @@ namespace JT809.Protocol.JT809Extensions
             return bcdSb.ToString();
         }
 
-        public static int WriteBCDLittle(IMemoryOwner<byte> memoryOwner, int offset, string data,int len)
+        public static int WriteBCDLittle(byte[] bytes, int offset, string data,int len)
         {
             string bcdText = data == null ? "" : data;
-            byte[] bytes = new byte[len];
             int startIndex = 0;
             int noOfZero = len * 2 - bcdText.Length;
             if (noOfZero > 0)
@@ -32,7 +31,7 @@ namespace JT809.Protocol.JT809Extensions
             int byteIndex = 0;
             while (startIndex < bcdText.Length && byteIndex < len)
             {
-                memoryOwner.Memory.Span[startIndex + offset] = Convert.ToByte(bcdText.Substring(startIndex, 2), 16);
+                bytes[startIndex + offset] = Convert.ToByte(bcdText.Substring(startIndex, 2), 16);
                 startIndex += 2;
                 byteIndex++;
             }

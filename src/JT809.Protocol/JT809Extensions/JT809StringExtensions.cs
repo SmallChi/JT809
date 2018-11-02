@@ -23,47 +23,47 @@ namespace JT809.Protocol.JT809Extensions
             return value.Trim('\0');
         }
 
-        public static int WriteStringLittle(IMemoryOwner<byte> memoryOwner, int offset, string data)
+        public static int WriteStringLittle(byte[] bytes, int offset, string data)
         {
             byte[] codeBytes = encoding.GetBytes(data);
-            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
+            Array.Copy(codeBytes, 0, bytes, offset, codeBytes.Length);
             return codeBytes.Length;
         }
 
-        public static int WriteStringLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        public static int WriteStringLittle(byte[] bytes, int offset, string data, int len)
         {
-            byte[] bytes = null;
+            byte[] tempBytes = null;
             if (string.IsNullOrEmpty(data))
             {
-                bytes = new byte[0];
+                tempBytes = new byte[0];
             }
             else
             {
-                bytes = encoding.GetBytes(data);
+                tempBytes = encoding.GetBytes(data);
             }
             byte[] rBytes = new byte[len];
-            for (int i = 0; i < bytes.Length; i++)
+            for (int i = 0; i < tempBytes.Length; i++)
             {
                 if (i >= len) break;
-                rBytes[i] = bytes[i];
+                rBytes[i] = tempBytes[i];
             }
-            CopyTo(rBytes, memoryOwner.Memory.Span, offset);
+            Array.Copy(rBytes, 0, bytes, offset, rBytes.Length);
             return rBytes.Length;
         }
 
-        public static int WriteStringPadLeftLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        public static int WriteStringPadLeftLittle(byte[] bytes, int offset, string data, int len)
         {
             data = data.PadLeft(len, '\0');
             byte[] codeBytes = encoding.GetBytes(data);
-            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
+            Array.Copy(codeBytes, 0, bytes, offset, codeBytes.Length);
             return codeBytes.Length;
         }
 
-        public static int WriteStringPadRightLittle(IMemoryOwner<byte> memoryOwner, int offset, string data, int len)
+        public static int WriteStringPadRightLittle(byte[] bytes, int offset, string data, int len)
         {
             data = data.PadRight(len, '\0');
             byte[] codeBytes = encoding.GetBytes(data);
-            CopyTo(codeBytes, memoryOwner.Memory.Span, offset);
+            Array.Copy(codeBytes, 0, bytes, offset, codeBytes.Length);
             return codeBytes.Length;
         }
     }

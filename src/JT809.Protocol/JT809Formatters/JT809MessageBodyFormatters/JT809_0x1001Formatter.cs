@@ -21,12 +21,12 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
             return jT809_0X1001;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1001 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x1001 value)
         {
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.UserId);
-            offset += JT809BinaryExtensions.WriteStringPadRightLittle(memoryOwner, offset, value.Password,8);
-            offset += JT809BinaryExtensions.WriteStringPadRightLittle(memoryOwner, offset, value.DownLinkIP,32);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.DownLinkPort);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.UserId);
+            offset += JT809BinaryExtensions.WriteStringPadRightLittle(bytes, offset, value.Password,8);
+            offset += JT809BinaryExtensions.WriteStringPadRightLittle(bytes, offset, value.DownLinkIP,32);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.DownLinkPort);
             return offset;
         }
     }

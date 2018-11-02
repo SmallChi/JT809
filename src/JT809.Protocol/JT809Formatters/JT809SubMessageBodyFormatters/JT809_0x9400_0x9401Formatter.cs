@@ -26,17 +26,17 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X9400_0X9401;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9400_0x9401 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9400_0x9401 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.WarnSrc);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, (ushort)value.WarnType);
-            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.WarnTime);
-            offset += JT809BinaryExtensions.WriteHexStringLittle(memoryOwner, offset, value.SupervisionID,4);
-            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.SupervisionEndTime);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.SupervisionLevel);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.Supervisor,16);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.SupervisorTel,20);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.SupervisorEmail,32);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.WarnSrc);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, (ushort)value.WarnType);
+            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(bytes, offset, value.WarnTime);
+            offset += JT809BinaryExtensions.WriteHexStringLittle(bytes, offset, value.SupervisionID,4);
+            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(bytes, offset, value.SupervisionEndTime);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.SupervisionLevel);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.Supervisor,16);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.SupervisorTel,20);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.SupervisorEmail,32);
             return offset;
         }
     }

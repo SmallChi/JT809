@@ -24,13 +24,13 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X1200_0X1201;
         }  
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1200_0x1201 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x1200_0x1201 value)
         {
-            offset += JT809BinaryExtensions.WriteBigNumberLittle(memoryOwner, offset, value.PlateformId,11);
-            offset += JT809BinaryExtensions.WriteBigNumberLittle(memoryOwner, offset, value.ProducerId, 11);
-            offset += JT809BinaryExtensions.WriteStringPadRightLittle(memoryOwner, offset, value.TerminalModelType, 20);
-            offset += JT809BinaryExtensions.WriteStringPadRightLittle(memoryOwner, offset, value.TerminalId.ToUpper(), 7);
-            offset += JT809BinaryExtensions.WriteStringPadRightLittle(memoryOwner, offset, value.TerminalSimCode, 12);
+            offset += JT809BinaryExtensions.WriteBigNumberLittle(bytes, offset, value.PlateformId,11);
+            offset += JT809BinaryExtensions.WriteBigNumberLittle(bytes, offset, value.ProducerId, 11);
+            offset += JT809BinaryExtensions.WriteStringPadRightLittle(bytes, offset, value.TerminalModelType, 20);
+            offset += JT809BinaryExtensions.WriteStringPadRightLittle(bytes, offset, value.TerminalId.ToUpper(), 7);
+            offset += JT809BinaryExtensions.WriteStringPadRightLittle(bytes, offset, value.TerminalSimCode, 12);
             return offset;
         }
     }

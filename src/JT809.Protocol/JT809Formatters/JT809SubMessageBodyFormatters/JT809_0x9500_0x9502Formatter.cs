@@ -19,10 +19,10 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X9500_0X9502;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9500_0x9502 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9500_0x9502 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.LensID);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.SizeType);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.LensID);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.SizeType);
             return offset;
         }
     }

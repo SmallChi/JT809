@@ -23,16 +23,16 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X1400_0X1402;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1400_0x1402 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x1400_0x1402 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.WarnSrc);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset,(ushort)value.WarnType);
-            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.WarnTime);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.InfoID);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.WarnSrc);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset,(ushort)value.WarnType);
+            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(bytes, offset, value.WarnTime);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.InfoID);
             // 先计算内容长度（汉字为两个字节）
             offset += 4;
-            int byteLength = JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.InfoContent);
-            JT809BinaryExtensions.WriteInt32Little(memoryOwner, offset - 4, byteLength);
+            int byteLength = JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.InfoContent);
+            JT809BinaryExtensions.WriteInt32Little(bytes, offset - 4, byteLength);
             offset += byteLength;
             return offset;
         }

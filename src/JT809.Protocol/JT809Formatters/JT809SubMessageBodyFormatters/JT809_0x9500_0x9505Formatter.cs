@@ -25,16 +25,16 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X9500_0X9505;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9500_0x9505 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9500_0x9505 value)
         {
-            offset += JT809BinaryExtensions.WriteBCDLittle(memoryOwner, offset, value.AuthenticationCode,20);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.AccessPointName,20);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.UserName, 49);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.Password, 22);
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.ServerIP, 32);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.TcpPort);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.UdpPort);
-            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(memoryOwner, offset, value.EndTime);
+            offset += JT809BinaryExtensions.WriteBCDLittle(bytes, offset, value.AuthenticationCode,20);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.AccessPointName,20);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.UserName, 49);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.Password, 22);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.ServerIP, 32);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.TcpPort);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.UdpPort);
+            offset += JT809BinaryExtensions.WriteUTCDateTimeLittle(bytes, offset, value.EndTime);
             return offset;
         }
     }

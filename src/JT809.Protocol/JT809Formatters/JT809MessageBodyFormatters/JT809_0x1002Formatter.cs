@@ -20,10 +20,10 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
             return jT809_0X1002;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x1002 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x1002 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.Result);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VerifyCode);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.Result);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.VerifyCode);
             return offset;
         }
     }

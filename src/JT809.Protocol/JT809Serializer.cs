@@ -1,6 +1,4 @@
-﻿using JT809.Protocol.JT809Enums;
-using JT809.Protocol.JT809Exceptions;
-using JT809.Protocol.JT809Extensions;
+﻿using JT809.Protocol.JT809Extensions;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
@@ -8,9 +6,13 @@ using System.Text;
 
 namespace JT809.Protocol
 {
+    /// <summary>
+    /// 
+    /// ref:https://adamsitnik.com/Array-Pool/
+    /// </summary>
     public static class JT809Serializer
     {
-        public static byte[] Serialize(JT809Package jT809Package, int minBufferSize = 4096)
+        public static byte[] Serialize(JT809Package jT809Package, int minBufferSize = 1024)
         {
             return Serialize<JT809Package>(jT809Package, minBufferSize);
         }
@@ -20,23 +22,18 @@ namespace JT809.Protocol
             return Deserialize<JT809Package>(bytes);
         }
 
-        public static byte[] Serialize<T>(T obj, int minBufferSize = 4096)
+        public static byte[] Serialize<T>(T obj, int minBufferSize = 1024)
         {
             var formatter = JT809FormatterExtensions.GetFormatter<T>();
-            var pool = MemoryPool<byte>.Shared;
-            IMemoryOwner<byte> buffer = pool.Rent(minBufferSize);
+            byte[] buffer = JT809ArrayPool.Rent(minBufferSize);
             try
             {
-                var len = formatter.Serialize(buffer, 0, obj);
-                return buffer.Memory.Slice(0, len).ToArray();
+                var len = formatter.Serialize(ref buffer, 0, obj);
+                return buffer.AsSpan(0, len).ToArray();
             }
             finally
             {
-                // 源码：System.Memory.MemoryPool 
-                // private static readonly MemoryPool<T> s_shared = new ArrayMemoryPool<T>();
-                // 单例内存池 不需要手动释放资源
-                // buffer.Dispose() 相当于调用ArrayPool<T>.Shared.Return(array)
-                buffer.Dispose();
+                JT809ArrayPool.Return(buffer);
             }
         }
 

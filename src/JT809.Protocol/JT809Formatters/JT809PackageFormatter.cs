@@ -81,7 +81,7 @@ namespace JT809.Protocol.JT809Formatters
             return jT809Package;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809Package value)
+        public int Serialize(ref byte[] bytes, int offset, JT809Package value)
         {
             // 1. 先序列化数据体，根据数据体的长度赋值给头部，在序列化头部。
             int messageBodyOffset = 0;
@@ -91,13 +91,13 @@ namespace JT809.Protocol.JT809Formatters
                 if (value.Bodies != null)
                 {
                     // 1.1 处理数据体
-                    messageBodyOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), memoryOwner, messageBodyOffset, value.Bodies);
+                    messageBodyOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), ref bytes, messageBodyOffset, value.Bodies);
                 }
             }
             byte[] messageBodyData=null;
             if (messageBodyOffset != 0)
             {
-                messageBodyData = memoryOwner.Memory.Slice(0, messageBodyOffset).Span.ToArray();
+                messageBodyData = bytes.AsSpan(0, messageBodyOffset).ToArray();
                 // 1.2 数据加密
                 switch (value.Header.EncryptFlag)
                 {
@@ -110,7 +110,7 @@ namespace JT809.Protocol.JT809Formatters
             }
             // ------------------------------------开始组包
             // 1.起始符
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.BeginFlag);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.BeginFlag);
             // 2.赋值头数据长度
             if (messageBodyOffset != 0)
             {
@@ -121,22 +121,21 @@ namespace JT809.Protocol.JT809Formatters
                 value.Header.MsgLength = JT809Package.FixedByteLength;
             }
             // 2.1写入头部数据
-            offset = JT809FormatterExtensions.GetFormatter<JT809Header>().Serialize(memoryOwner, offset, value.Header);
+            offset = JT809FormatterExtensions.GetFormatter<JT809Header>().Serialize(ref bytes, offset, value.Header);
             if (messageBodyOffset != 0)
             {
                 // 3. 写入数据体
-                JT809BinaryExtensions.CopyTo(messageBodyData, memoryOwner.Memory.Span, offset);
+                Array.Copy(messageBodyData, 0, bytes, offset, messageBodyData.Length);
                 offset += messageBodyData.Length;
                 messageBodyData = null;
             }
             // 4.校验码
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, memoryOwner.Memory.Span.ToCRC16_CCITT(1, offset));
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, bytes.ToCRC16_CCITT(1, offset));
             // 5.终止符
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, value.EndFlag);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.EndFlag);
             // 6.转义
-            byte[] temp = JT809Escape(memoryOwner.Memory.Slice(0, offset).Span);
-            memoryOwner.Memory.Span.Clear();
-            JT809BinaryExtensions.CopyTo(temp, memoryOwner.Memory.Span, 0);
+            byte[] temp = JT809Escape(bytes.AsSpan(0, offset));
+            Array.Copy(temp, 0, bytes, 0, temp.Length);
             return temp.Length;
         }
 

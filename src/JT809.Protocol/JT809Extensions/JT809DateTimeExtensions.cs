@@ -79,13 +79,13 @@ namespace JT809.Protocol.JT809Extensions
             return UTCBaseTime.AddSeconds(result).AddHours(8);
         }
 
-        public static int WriteUTCDateTimeLittle(IMemoryOwner<byte> memoryOwner, int offset, DateTime date)
+        public static int WriteUTCDateTimeLittle(byte[] bytes, int offset, DateTime date)
         {
             ulong totalSecends = (ulong)(date.AddHours(-8) - UTCBaseTime).TotalSeconds;
             //高位在前
             for (int i = 7; i >= 0; i--)
             {
-                memoryOwner.Memory.Span[offset + i] = (byte)(totalSecends & 0xFF);  //取低8位
+                bytes[offset + i] = (byte)(totalSecends & 0xFF);  //取低8位
                 totalSecends = totalSecends >> 8;
             }
             return 8;
@@ -99,14 +99,14 @@ namespace JT809.Protocol.JT809Extensions
         /// <param name="date"></param>
         /// <param name="fromBase">BCD：10  HEX：16</param>
         /// <returns></returns>
-        public static int WriteDateTime6Little(IMemoryOwner<byte> memoryOwner, int offset, DateTime date,int fromBase=16)
+        public static int WriteDateTime6Little(byte[] bytes, int offset, DateTime date,int fromBase=16)
         {
-            memoryOwner.Memory.Span[offset] = Convert.ToByte(date.ToString("yy"), fromBase);
-            memoryOwner.Memory.Span[offset + 1] = Convert.ToByte(date.ToString("MM"), fromBase);
-            memoryOwner.Memory.Span[offset + 2] = Convert.ToByte(date.ToString("dd"), fromBase);
-            memoryOwner.Memory.Span[offset + 3] = Convert.ToByte(date.ToString("HH"), fromBase);
-            memoryOwner.Memory.Span[offset + 4] = Convert.ToByte(date.ToString("mm"), fromBase);
-            memoryOwner.Memory.Span[offset + 5] = Convert.ToByte(date.ToString("ss"), fromBase);
+            bytes[offset] = Convert.ToByte(date.ToString("yy"), fromBase);
+            bytes[offset + 1] = Convert.ToByte(date.ToString("MM"), fromBase);
+            bytes[offset + 2] = Convert.ToByte(date.ToString("dd"), fromBase);
+            bytes[offset + 3] = Convert.ToByte(date.ToString("HH"), fromBase);
+            bytes[offset + 4] = Convert.ToByte(date.ToString("mm"), fromBase);
+            bytes[offset + 5] = Convert.ToByte(date.ToString("ss"), fromBase);
             return 6;
         }
 
@@ -118,11 +118,11 @@ namespace JT809.Protocol.JT809Extensions
         /// <param name="date"></param>
         /// <param name="fromBase">BCD：10  HEX：16</param>
         /// <returns></returns>
-        public static int WriteDateTime4Little(IMemoryOwner<byte> memoryOwner, int offset, DateTime date, int fromBase = 16)
+        public static int WriteDateTime4Little(byte[] bytes, int offset, DateTime date, int fromBase = 16)
         {
-            memoryOwner.Memory.Span[offset] = Convert.ToByte(date.ToString("yy"), fromBase);
-            memoryOwner.Memory.Span[offset + 1] = Convert.ToByte(date.ToString("MM"), fromBase);
-            memoryOwner.Memory.Span[offset + 2] = Convert.ToByte(date.ToString("dd"), fromBase);
+            bytes[offset] = Convert.ToByte(date.ToString("yy"), fromBase);
+            bytes[offset + 1] = Convert.ToByte(date.ToString("MM"), fromBase);
+            bytes[offset + 2] = Convert.ToByte(date.ToString("dd"), fromBase);
             return 4;
         }
     }

@@ -38,11 +38,11 @@ namespace JT809.Protocol.JT809Formatters
             return jT809Bodies;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, TJT809Bodies value)
+        public int Serialize(ref byte[] bytes, int offset, TJT809Bodies value)
         {
-            offset += JT809BinaryExtensions.WriteStringLittle(memoryOwner, offset, value.VehicleNo, 21);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.VehicleColor);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, (ushort)value.SubBusinessType);
+            offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.VehicleNo, 21);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.VehicleColor);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, (ushort)value.SubBusinessType);
             //JT809.Protocol.JT809Enums.JT809BusinessType 映射对应消息特性
             JT809BodiesTypeAttribute jT809SubBodiesTypeAttribute = value.SubBusinessType.GetAttribute<JT809BodiesTypeAttribute>();
             if (jT809SubBodiesTypeAttribute == null)
@@ -53,8 +53,8 @@ namespace JT809.Protocol.JT809Formatters
             {
                 // 先写入内容，然后在根据内容反写内容长度
                 offset = offset + 4;
-                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), memoryOwner, offset, value.SubBodies);
-                JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset - 4, (uint)(contentOffset- offset));
+                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), ref bytes, offset, value.SubBodies);
+                JT809BinaryExtensions.WriteUInt32Little(bytes, offset - 4, (uint)(contentOffset- offset));
                 offset = contentOffset;
             }
             catch

@@ -24,15 +24,15 @@ namespace JT809.Protocol.JT809Formatters
             return jT809Header;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809Header value)
+        public int Serialize(ref byte[] bytes, int offset, JT809Header value)
         {
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.MsgLength);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.MsgSN);
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, (ushort)value.BusinessType);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.MsgGNSSCENTERID);
-            offset += JT809BinaryExtensions.WriteBytesLittle(memoryOwner, offset, value.Version.Buffer);
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.EncryptFlag);
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.EncryptKey);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.MsgLength);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.MsgSN);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, (ushort)value.BusinessType);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.MsgGNSSCENTERID);
+            offset += JT809BinaryExtensions.WriteBytesLittle(bytes, offset, value.Version.Buffer);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.EncryptFlag);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.EncryptKey);
             return offset;
         }
     }

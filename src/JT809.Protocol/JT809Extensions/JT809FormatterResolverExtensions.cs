@@ -17,7 +17,7 @@ namespace JT809.Protocol.JT809Extensions
     /// </summary>
     public static class JT809FormatterResolverExtensions
     {
-        delegate int JT809SerializeMethod(object dynamicFormatter, IMemoryOwner<byte> memoryOwner, int offset, object value);
+        delegate int JT809SerializeMethod(object dynamicFormatter, ref byte[] bytes, int offset, object value);
 
         delegate dynamic JT809DeserializeMethod(object dynamicFormatter, ReadOnlySpan<byte> bytes,  out int readSize);
 
@@ -28,7 +28,7 @@ namespace JT809.Protocol.JT809Extensions
         //T Deserialize(ReadOnlySpan<byte> bytes, out int readSize);
         //int Serialize(IMemoryOwner<byte> memoryOwner, int offset, T value);
 
-        public static int JT809DynamicSerialize(object objFormatter, IMemoryOwner<byte> memoryOwner, int offset, dynamic value)
+        public static int JT809DynamicSerialize(object objFormatter,ref byte[] bytes, int offset, dynamic value)
         {
             Type type = value.GetType();
             var ti = type.GetTypeInfo();
@@ -39,10 +39,10 @@ namespace JT809.Protocol.JT809Extensions
                 {
                     var formatterType = typeof(IJT809Formatter<>).MakeGenericType(t);
                     var param0 = Expression.Parameter(typeof(object), "formatter");
-                    var param1 = Expression.Parameter(typeof(IMemoryOwner<byte>), "memoryOwner");
+                    var param1 = Expression.Parameter(typeof(byte[]).MakeByRefType(), "bytes");
                     var param2 = Expression.Parameter(typeof(int), "offset");
                     var param3 = Expression.Parameter(typeof(object), "value");
-                    var serializeMethodInfo = formatterType.GetRuntimeMethod("Serialize", new[] { typeof(IMemoryOwner<byte>), typeof(int), t});
+                    var serializeMethodInfo = formatterType.GetRuntimeMethod("Serialize", new[] { typeof(byte[]).MakeByRefType(), typeof(int), t});
                     var body = Expression.Call(
                         Expression.Convert(param0, formatterType),
                         serializeMethodInfo,
@@ -54,7 +54,7 @@ namespace JT809.Protocol.JT809Extensions
                 }
                 jT809Serializers.TryAdd(t, formatterAndDelegate);
             }
-            return formatterAndDelegate.SerializeMethod(formatterAndDelegate.Value, memoryOwner, offset, value);
+            return formatterAndDelegate.SerializeMethod(formatterAndDelegate.Value, ref bytes, offset, value);
         }
 
         public static dynamic JT809DynamicDeserialize(object objFormatter,ReadOnlySpan<byte> bytes, out int readSize)

@@ -42,9 +42,9 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X9500_0X9504;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9500_0x9504 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9500_0x9504 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.Command);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.Command);
             switch (value.Command)
             {
                 case JT809Enums.JT809CommandType.记录仪标准版本:
@@ -64,9 +64,9 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
                 case JT809Enums.JT809CommandType.采集记录仪外部供电记录:
                 case JT809Enums.JT809CommandType.采集记录仪参数修改记录:
                 case JT809Enums.JT809CommandType.采集记录仪速度状态日志:
-                    offset +=  JT809BinaryExtensions.WriteDateTime6Little(memoryOwner,  offset, value.StartTime);
-                    offset +=  JT809BinaryExtensions.WriteDateTime6Little(memoryOwner, offset, value.EndTime);
-                    offset +=  JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, value.Max);
+                    offset +=  JT809BinaryExtensions.WriteDateTime6Little(bytes,  offset, value.StartTime);
+                    offset +=  JT809BinaryExtensions.WriteDateTime6Little(bytes, offset, value.EndTime);
+                    offset +=  JT809BinaryExtensions.WriteUInt16Little(bytes, offset, value.Max);
                     break;
             }
             return offset;

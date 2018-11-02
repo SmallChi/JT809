@@ -18,9 +18,9 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
             return jT809_0X9001;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9001 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9001 value)
         {
-            offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.VerifyCode);
+            offset += JT809BinaryExtensions.WriteUInt32Little(bytes, offset, value.VerifyCode);
             return offset;
         }
     }

@@ -36,9 +36,9 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
             return jT809_0X9300;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9300 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9300 value)
         {
-            offset += JT809BinaryExtensions.WriteUInt16Little(memoryOwner, offset, (ushort)value.SubBusinessType);
+            offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, (ushort)value.SubBusinessType);
             //offset += JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset, value.DataLength);
             //JT809.Protocol.JT809Enums.JT809BusinessType 映射对应消息特性
             JT809BodiesTypeAttribute jT809SubBodiesTypeAttribute = value.SubBusinessType.GetAttribute<JT809BodiesTypeAttribute>();
@@ -50,8 +50,8 @@ namespace JT809.Protocol.JT809Formatters.JT809MessageBodyFormatters
             {
                 // 先写入内容，然后在根据内容反写内容长度
                 offset = offset + 4;
-                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), memoryOwner, offset, value.SubBodies);
-                JT809BinaryExtensions.WriteUInt32Little(memoryOwner, offset - 4, (uint)(contentOffset - offset));
+                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType),ref bytes, offset, value.SubBodies);
+                JT809BinaryExtensions.WriteUInt32Little(bytes, offset - 4, (uint)(contentOffset - offset));
                 offset = contentOffset;
             }
             catch

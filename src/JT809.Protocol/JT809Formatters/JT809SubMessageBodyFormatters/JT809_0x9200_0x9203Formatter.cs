@@ -50,14 +50,14 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             return jT809_0X1200_0x9203;
         }
 
-        public int Serialize(IMemoryOwner<byte> memoryOwner, int offset, JT809_0x9200_0x9203 value)
+        public int Serialize(ref byte[] bytes, int offset, JT809_0x9200_0x9203 value)
         {
-            offset += JT809BinaryExtensions.WriteByteLittle(memoryOwner, offset, (byte)value.GNSS.Count);
+            offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.GNSS.Count);
             foreach(var item in value.GNSS)
             {
                 try
                 {
-                    int positionOffset = JT809FormatterExtensions.GetFormatter<JT809_0x9200_0x9202>().Serialize(memoryOwner, offset, item);
+                    int positionOffset = JT809FormatterExtensions.GetFormatter<JT809_0x9200_0x9202>().Serialize(ref bytes, offset, item);
                     offset = positionOffset;
                 }
                 catch (Exception ex)
