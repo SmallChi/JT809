@@ -199,7 +199,7 @@ namespace JT809.Protocol.JT809Extensions
 
         public static IEnumerable<byte> ToBytes(this string data)
         {
-            return ToBytes(data, encoding);
+            return ToBytes(data, JT809GlobalConfig.Instance.Encoding);
         }
 
         public static IEnumerable<byte> ToBytes(this int data, int len)

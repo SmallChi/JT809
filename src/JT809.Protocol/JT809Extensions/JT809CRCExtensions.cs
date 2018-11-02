@@ -18,7 +18,7 @@ namespace JT809.Protocol.JT809Extensions
             ushort checkCode = 0xFFFF;
             for (int j = offset; j < iLen; ++j)
             {
-                checkCode = (ushort)((checkCode << 8) ^ (ushort)CRC[(checkCode >> 8) ^ ucbuf[j]]);
+                checkCode = (ushort)((checkCode << 8) ^ (ushort)JT809GlobalConfig.Instance.CRC[(checkCode >> 8) ^ ucbuf[j]]);
             }
             return checkCode;
         }
@@ -35,7 +35,7 @@ namespace JT809.Protocol.JT809Extensions
             ushort checkCode = 0xFFFF;
             for (int j = offset; j < iLen; ++j)
             {
-                checkCode = (ushort)((checkCode << 8) ^ (ushort)CRC[(checkCode >> 8) ^ ucbuf[j]]);
+                checkCode = (ushort)((checkCode << 8) ^ (ushort)JT809GlobalConfig.Instance.CRC[(checkCode >> 8) ^ ucbuf[j]]);
             }
             return checkCode;
         }

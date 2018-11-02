@@ -13,7 +13,7 @@ namespace JT809.Protocol.Test.JT809Extensions
         public void Test1()
         {
             string vno = "粤A12345";
-            byte[] bytes = JT809BinaryExtensions.encoding.GetBytes(vno);
+            byte[] bytes = JT809GlobalConfig.Instance.Encoding.GetBytes(vno);
             Assert.Equal(7,vno.Length);
             Assert.Equal(8, bytes.Length);
         }

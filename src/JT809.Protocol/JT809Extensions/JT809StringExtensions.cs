@@ -11,21 +11,21 @@ namespace JT809.Protocol.JT809Extensions
     {
         public static string ReadStringLittle(ReadOnlySpan<byte> read, ref int offset, int len)
         {
-            string value = encoding.GetString(read.Slice(offset, len).ToArray());
+            string value = JT809GlobalConfig.Instance.Encoding.GetString(read.Slice(offset, len).ToArray());
             offset += len;
             return value.Trim('\0');
         }
 
         public static string ReadStringLittle(ReadOnlySpan<byte> read, ref int offset)
         {
-            string value = encoding.GetString(read.Slice(offset).ToArray());
+            string value = JT809GlobalConfig.Instance.Encoding.GetString(read.Slice(offset).ToArray());
             offset += value.Length;
             return value.Trim('\0');
         }
 
         public static int WriteStringLittle(byte[] bytes, int offset, string data)
         {
-            byte[] codeBytes = encoding.GetBytes(data);
+            byte[] codeBytes = JT809GlobalConfig.Instance.Encoding.GetBytes(data);
             Array.Copy(codeBytes, 0, bytes, offset, codeBytes.Length);
             return codeBytes.Length;
         }
@@ -39,7 +39,7 @@ namespace JT809.Protocol.JT809Extensions
             }
             else
             {
-                tempBytes = encoding.GetBytes(data);
+                tempBytes = JT809GlobalConfig.Instance.Encoding.GetBytes(data);
             }
             byte[] rBytes = new byte[len];
             for (int i = 0; i < tempBytes.Length; i++)
@@ -54,7 +54,7 @@ namespace JT809.Protocol.JT809Extensions
         public static int WriteStringPadLeftLittle(byte[] bytes, int offset, string data, int len)
         {
             data = data.PadLeft(len, '\0');
-            byte[] codeBytes = encoding.GetBytes(data);
+            byte[] codeBytes = JT809GlobalConfig.Instance.Encoding.GetBytes(data);
             Array.Copy(codeBytes, 0, bytes, offset, codeBytes.Length);
             return codeBytes.Length;
         }
@@ -62,7 +62,7 @@ namespace JT809.Protocol.JT809Extensions
         public static int WriteStringPadRightLittle(byte[] bytes, int offset, string data, int len)
         {
             data = data.PadRight(len, '\0');
-            byte[] codeBytes = encoding.GetBytes(data);
+            byte[] codeBytes = JT809GlobalConfig.Instance.Encoding.GetBytes(data);
             Array.Copy(codeBytes, 0, bytes, offset, codeBytes.Length);
             return codeBytes.Length;
         }

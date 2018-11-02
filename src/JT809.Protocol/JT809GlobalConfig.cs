@@ -13,10 +13,15 @@ namespace JT809.Protocol
 
         private JT809GlobalConfig()
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding = Encoding.GetEncoding("GBK");
             MsgSNDistributed = new DefaultMsgSNDistributedImpl();
             HeaderOptions = new JT809HeaderOptions();
             SkipCRCCode = false;
+            initCrcTable();
         }
+
+        public Encoding Encoding;
 
         public static JT809GlobalConfig Instance
         {
@@ -91,6 +96,32 @@ namespace JT809.Protocol
         {
             instance.Value.SkipCRCCode = skipCRCCode;
             return instance.Value;
+        }
+
+        private const ushort cnCRC_CCITT = 0x1021; //CRC校验多项式
+
+        public ulong[] CRC;  //建立CRC16表 
+
+        private void initCrcTable()
+        {
+            CRC = new ulong[256];
+            ushort i, j;
+            ushort nData;
+            ushort nAccum;
+            for (i = 0; i < 256; i++)
+            {
+                nData = (ushort)(i << 8);
+                nAccum = 0;
+                for (j = 0; j < 8; j++)
+                {
+                    if (((nData ^ nAccum) & 0x8000) > 0)
+                        nAccum = (ushort)((nAccum << 1) ^ cnCRC_CCITT);
+                    else
+                        nAccum <<= 1;
+                    nData <<= 1;
+                }
+                CRC[i] = (ulong)nAccum;
+            }
         }
     }
 }
