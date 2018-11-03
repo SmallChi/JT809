@@ -23,6 +23,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             };
             var hex = JT809Serializer.Serialize(jT809_0x1400_0x1403).ToHexString();
             // "00 00 0D 10 03"
+            Assert.Equal("00000D1003",hex);
         }
 
         [Fact]

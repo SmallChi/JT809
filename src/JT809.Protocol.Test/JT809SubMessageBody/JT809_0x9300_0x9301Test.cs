@@ -25,6 +25,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             };
             var hex = JT809Serializer.Serialize(jT809_0x9300_0x9301).ToHexString();
             // "02 73 6D 61 6C 6C 63 68 69 00 00 00 00 00 00 0D 10 00 00 00 05 72 65 70 6C 79"
+            Assert.Equal("02736D616C6C6368690000000000000D10000000057265706C79", hex);
         }
 
         [Fact]

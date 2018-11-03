@@ -20,6 +20,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             jT809_0X1001.DownLinkIP = "127.0.0.1";
             jT809_0X1001.DownLinkPort = 809;
             var hex = JT809Serializer.Serialize(jT809_0X1001).ToHexString();
+            Assert.Equal("0133EFB832303138303932303132372E302E302E3100000000000000000000000000000000000000000000000329", hex);
             //5B 
             //00 00 00 48 
             //00 00 00 85 

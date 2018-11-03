@@ -13,7 +13,7 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
         {
             int offset = 0;
             JT809_0x9500_0x9505 jT809_0X9500_0X9505 = new JT809_0x9500_0x9505();
-            jT809_0X9500_0X9505.AuthenticationCode= JT809BinaryExtensions.ReadBCDLittle(bytes, ref offset,10);
+            jT809_0X9500_0X9505.AuthenticationCode= JT809BinaryExtensions.ReadBCDLittle(bytes, ref offset,20);
             jT809_0X9500_0X9505.AccessPointName = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset, 20);
             jT809_0X9500_0X9505.UserName = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset,49);
             jT809_0X9500_0X9505.Password = JT809BinaryExtensions.ReadStringLittle(bytes, ref offset,22);

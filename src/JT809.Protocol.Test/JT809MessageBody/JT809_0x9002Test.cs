@@ -17,6 +17,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x9002 jT809_0X9002 = new JT809_0x9002();
             jT809_0X9002.Result =  JT809Enums.JT809_0x9002_Result.成功;
             var hex = JT809Serializer.Serialize(jT809_0X9002).ToHexString();
+            Assert.Equal("00", hex);
         }
 
         [Fact]

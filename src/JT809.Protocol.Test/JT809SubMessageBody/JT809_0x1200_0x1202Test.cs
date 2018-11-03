@@ -33,6 +33,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             jT809_0X1200_0X1202.VehiclePosition.Alarm = 257;
             var hex = JT809Serializer.Serialize(jT809_0X1200_0X1202).ToHexString();
             //"00 13 07 07 DC 0F 0F 0F 07 EF 4D 80 01 70 18 40 00 32 00 33 00 00 00 96 00 2D 00 2D 00 00 00 03 00 00 01 01"
+            Assert.Equal("00130707DC0F0F0F07EF4D80017018400032003300000096002D002D0000000300000101", hex);
         }
 
         [Fact]

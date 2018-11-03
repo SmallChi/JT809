@@ -10,32 +10,36 @@ namespace JT809.Protocol.JT809Extensions
     {
         public static string ReadBCDLittle(ReadOnlySpan<byte> buf, ref int offset, int len)
         {
-            StringBuilder bcdSb = new StringBuilder(len*2);
-            for(int i = 0; i < len; i++)
+            int count = len / 2;
+            StringBuilder bcdSb = new StringBuilder(count);
+            for (int i = 0; i < count; i++)
             {
                 bcdSb.Append(buf[offset + i].ToString("X2"));
             }
-            offset = offset + len;
-            return bcdSb.ToString();
+            offset = offset + count;
+            return bcdSb.ToString().TrimStart('0');
         }
 
-        public static int WriteBCDLittle(byte[] bytes, int offset, string data,int len)
+        public static int WriteBCDLittle(byte[] bytes, int offset, string data, int len)
         {
             string bcdText = data == null ? "" : data;
             int startIndex = 0;
-            int noOfZero = len * 2 - bcdText.Length;
+            int noOfZero = len - bcdText.Length;
             if (noOfZero > 0)
             {
                 bcdText = bcdText.Insert(startIndex, new string('0', noOfZero));
             }
             int byteIndex = 0;
-            while (startIndex < bcdText.Length && byteIndex < len)
+            int count = len / 2;
+            byte[] tempBytes = new byte[count];
+            while (startIndex < bcdText.Length && byteIndex < count)
             {
-                bytes[startIndex + offset] = Convert.ToByte(bcdText.Substring(startIndex, 2), 16);
+                tempBytes[byteIndex] = Convert.ToByte(bcdText.Substring(startIndex, 2), 16);
                 startIndex += 2;
                 byteIndex++;
             }
-            return len;
+            Array.Copy(tempBytes, 0, bytes, offset, tempBytes.Length);
+            return count;
         }
     }
 }

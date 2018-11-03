@@ -17,6 +17,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x1007 jT809_0X1007 = new JT809_0x1007();
             jT809_0X1007.ErrorCode = JT809Enums.JT809_0x1007_ErrorCode.主链路断开;
             var hex = JT809Serializer.Serialize(jT809_0X1007).ToHexString();
+            Assert.Equal("00", hex);
         }
 
         [Fact]

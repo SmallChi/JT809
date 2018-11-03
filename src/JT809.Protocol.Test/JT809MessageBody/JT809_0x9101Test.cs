@@ -19,6 +19,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             jT809_0X9101.StartTime = 1537513862;
             jT809_0X9101.EndTime = 1537531862;
             var hex = JT809Serializer.Serialize(jT809_0X9101).ToHexString();
+            Assert.Equal("00002710000000005BA49986000000005BA4DFD6",hex);
         }
 
         [Fact]

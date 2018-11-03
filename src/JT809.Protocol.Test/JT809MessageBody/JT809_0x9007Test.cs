@@ -17,6 +17,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x9007 jT809_0X9007 = new JT809_0x9007();
             jT809_0X9007.ReasonCode =  JT809Enums.JT809_0x9007_ReasonCode.无法连接下级平台指定的服务IP与端口;
             var hex = JT809Serializer.Serialize(jT809_0X9007).ToHexString();
+            Assert.Equal("00", hex);
         }
 
         [Fact]

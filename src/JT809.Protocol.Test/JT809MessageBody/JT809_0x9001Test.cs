@@ -17,6 +17,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x9001 jT809_0X9001 = new JT809_0x9001();
             jT809_0X9001.VerifyCode = 45454;
             var hex = JT809Serializer.Serialize(jT809_0X9001).ToHexString();
+            Assert.Equal("0000B18E", hex);
         }
 
         [Fact]

@@ -17,6 +17,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x9008 jT809_0X9008 = new JT809_0x9008();
             jT809_0X9008.ReasonCode = JT809Enums.JT809_0x9008_ReasonCode.其它原因;
             var hex = JT809Serializer.Serialize(jT809_0X9008).ToHexString();
+            Assert.Equal("01", hex);
         }
 
         [Fact]

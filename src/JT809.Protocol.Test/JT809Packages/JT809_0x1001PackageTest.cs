@@ -28,6 +28,7 @@ namespace JT809.Protocol.Test.JT809Packages
             jT809_0X1001.DownLinkPort = 809;
             jT809Package.Bodies = jT809_0X1001;
             var hex = JT809Serializer.Serialize(jT809Package).ToHexString();
+            Assert.Equal("5B000000480000008510010133EFB8010000000000270F0133EFB832303138303932303132372E302E302E31000000000000000000000000000000000000000000000003296A915D", hex);
             //"5B 
             //00 00 00 48 
             //00 00 00 85 
@@ -65,6 +66,7 @@ namespace JT809.Protocol.Test.JT809Packages
         [Fact]
         public void Test3()
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             //字符'0'：char c = '0'; 它的ASCII码实际上是48。
             //字符'\0' : ASCII码为0，表示一个字符串结束的标志。
             //"5B 00 00 00 48 00 00 00 85 10 01 01 33 EF B8 01 00 00 00 00 00 27 0F 30 01 33 EF B8 32 30 31 38 30 39 32 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 31 32 37 2E 30 2E 30 2E 31 03 29 7D 38 5D"

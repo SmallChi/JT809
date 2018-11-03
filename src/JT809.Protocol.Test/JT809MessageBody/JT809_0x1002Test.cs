@@ -19,6 +19,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             jT809_0X1002.VerifyCode = 54456;
             var hex = JT809Serializer.Serialize(jT809_0X1002).ToHexString();
             //"00 00 00 D4 B8"
+            Assert.Equal("000000D4B8", hex);
         }
 
         [Fact]

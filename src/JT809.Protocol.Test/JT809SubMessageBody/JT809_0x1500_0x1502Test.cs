@@ -44,6 +44,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             };
             var hex = JT809Serializer.Serialize(jT809_0x1500_0x1502).ToHexString();
             //"01 00 13 07 07 DC 0F 0F 0F 07 EF 4D 80 01 70 18 40 00 35 00 2D 00 00 04 D2 00 2D 00 2D 00 00 00 01 00 00 00 01 7B 00 00 00 00 01 01"
+            Assert.Equal("0100130707DC0F0F0F07EF4D80017018400035002D000004D2002D002D00000001000000017B000000000101", hex);
         }
 
         [Fact]

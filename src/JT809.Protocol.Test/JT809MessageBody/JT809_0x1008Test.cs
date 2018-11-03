@@ -17,6 +17,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x1008 jT809_0X1008 = new JT809_0x1008();
             jT809_0X1008.ReasonCode = JT809Enums.JT809_0x1008_ReasonCode.网关重启;
             var hex = JT809Serializer.Serialize(jT809_0X1008).ToHexString();
+            Assert.Equal("00", hex);
         }
 
         [Fact]

@@ -23,6 +23,7 @@ namespace JT809.Protocol.Test
             jT809Header.EncryptFlag = JT809Header_Encrypt.None;
             jT809Header.EncryptKey = 0;
             var hex = JT809Serializer.Serialize(jT809Header).ToHexString();
+            Assert.Equal("00000018000004009600000004B00100000000000000", hex);
             //"00 00 00 18 00 00 04 00 96 00 00 00 04 B0 01 00 00 00 00 00 00 00"
         }
 
@@ -66,6 +67,7 @@ namespace JT809.Protocol.Test
             jT809Header.EncryptFlag = JT809Header_Encrypt.None;
             jT809Header.EncryptKey = 0;
             var hex = JT809Serializer.Serialize(jT809Header).ToHexString();
+            Assert.Equal("00000018000004009600000004B0FFAABB0000000000", hex);
         }
     }
 }
