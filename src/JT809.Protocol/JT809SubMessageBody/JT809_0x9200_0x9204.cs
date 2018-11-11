@@ -15,7 +15,7 @@ namespace JT809.Protocol.JT809SubMessageBody
     public class JT809_0x9200_0x9204
     {
         /// <summary>
-        /// 车牌号
+        /// 车辆信息
         /// </summary>
         public string CarInfo { get; set; }
     }

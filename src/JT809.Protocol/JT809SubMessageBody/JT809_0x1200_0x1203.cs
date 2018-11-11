@@ -26,6 +26,6 @@ namespace JT809.Protocol.JT809SubMessageBody
         /// <summary>
         /// 卫星定位数据集合
         /// </summary>
-        public IList<JT809_0x1200_0x1202> GNSS { get; set; }
+        public List<JT809_0x1200_0x1202> GNSS { get; set; }
     }
 }

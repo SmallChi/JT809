@@ -23,7 +23,7 @@ namespace JT809.Protocol.JT809SubMessageBody
         /// <summary>
         /// 报警类型
         /// </summary>
-        public ushort WarnType { get; set; }
+        public JT809WarnType WarnType { get; set; }
         /// <summary>
         /// 报警时间
         /// </summary>

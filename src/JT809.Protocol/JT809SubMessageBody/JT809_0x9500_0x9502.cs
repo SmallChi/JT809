@@ -20,6 +20,14 @@ namespace JT809.Protocol.JT809SubMessageBody
         public byte LensID { get; set; }
         /// <summary>
         /// 图片大小
+        /// Ox01:320x240:
+        /// Ox02:640x480:
+        /// Ox03;:800x600:
+        /// Ox04:1024x768:
+        /// Ox05:176x 144[QCIF];
+        /// 0x06:704x288[CIF];
+        /// 0x07:704x288[HALF D];
+        /// Ox08:704576[DI]
         /// </summary>
         public byte SizeType { get; set; }
     }

@@ -16,9 +16,9 @@ namespace JT809.Protocol.JT809Formatters.JT809SubMessageBodyFormatters
             int offset = 0;
             JT809_0x1200_0x1203 jT809_0X1200_0X1203 = new JT809_0x1200_0x1203();
             jT809_0X1200_0X1203.GNSSCount= JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
+            jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
             if (jT809_0X1200_0X1203.GNSSCount > 0)
             {
-                jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
                 int bufReadSize;
                 int tempOffset = 0;
                 for (int i = 0; i < jT809_0X1200_0X1203.GNSSCount; i++)
