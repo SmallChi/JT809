@@ -95,6 +95,11 @@ namespace JT809.Protocol.Benchmark
             {
                 Force = false // 不要在每次迭代之后强制GC收集
             }).With(CsProjCoreToolchain.NetCoreApp21).With(Platform.AnyCpu));
+
+            Add(Job.Default.With(new GcMode()
+            {
+                Force = false // 不要在每次迭代之后强制GC收集
+            }).With(CsProjCoreToolchain.NetCoreApp22).With(Platform.AnyCpu));
         }
     }
 }
