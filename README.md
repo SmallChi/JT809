@@ -296,10 +296,10 @@ static async Task  Main(string[] args)
 
 ``` ini
 
-BenchmarkDotNet=v0.11.3, OS=Windows 10.0.17134.407 (1803/April2018Update/Redstone4)
+BenchmarkDotNet=v0.11.3, OS=Windows 10.0.17134.471 (1803/April2018Update/Redstone4)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3221.0
-  Job-FVMQGI : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3221.0
+  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3260.0
+  Job-FVMQGI : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3260.0
   Job-YJYJYV : .NET Core 2.1.6 (CoreCLR 4.6.27019.06, CoreFX 4.6.27019.05), 64bit RyuJIT
   Job-LGLQDK : .NET Core 2.2.0 (CoreCLR 4.6.27110.04, CoreFX 4.6.27110.04), 64bit RyuJIT
 
@@ -308,24 +308,24 @@ Platform=AnyCpu  Runtime=Clr  Server=False
 ```
 |                                  Method |     Toolchain |      N |         Mean |      Error |     StdDev | Gen 0/1k Op | Gen 1/1k Op | Gen 2/1k Op | Allocated Memory/Op |
 |---------------------------------------- |-------------- |------- |-------------:|-----------:|-----------:|------------:|------------:|------------:|--------------------:|
-| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** |    **100** |     **3.369 ms** |  **0.0674 ms** |  **0.0922 ms** |     **82.0313** |           **-** |           **-** |            **518.1 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |       Default |    100 |     3.827 ms |  0.0654 ms |  0.0611 ms |     85.9375 |           - |           - |           530.82 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.1 |    100 |     2.576 ms |  0.0399 ms |  0.0373 ms |     74.2188 |           - |           - |           473.79 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.1 |    100 |     2.824 ms |  0.0186 ms |  0.0155 ms |     74.2188 |           - |           - |           478.53 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 |    100 |     3.001 ms |  0.0583 ms |  0.0836 ms |     74.2188 |           - |           - |           473.79 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |    100 |     2.910 ms |  0.0538 ms |  0.1134 ms |     74.2188 |           - |           - |           478.53 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** |  **10000** |   **334.539 ms** |  **6.5878 ms** |  **8.3314 ms** |   **8000.0000** |           **-** |           **-** |         **51824.64 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |       Default |  10000 |   381.300 ms |  7.3802 ms | 10.1021 ms |   8000.0000 |           - |           - |         53096.92 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.1 |  10000 |   253.226 ms |  4.0024 ms |  3.7438 ms |   7500.0000 |           - |           - |         47388.31 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.1 |  10000 |   280.549 ms |  2.5347 ms |  2.1166 ms |   7000.0000 |           - |           - |         47856.41 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 |  10000 |   255.770 ms |  4.5918 ms |  4.2952 ms |   7666.6667 |           - |           - |         47373.46 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |  10000 |   277.237 ms |  4.1863 ms |  3.7111 ms |   7000.0000 |           - |           - |         47856.41 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** | **100000** | **3,421.100 ms** | **60.2529 ms** | **56.3606 ms** |  **84000.0000** |           **-** |           **-** |        **518001.22 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |       Default | 100000 | 3,835.231 ms | 92.0594 ms | 81.6082 ms |  86000.0000 |           - |           - |        530520.48 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.1 | 100000 | 2,541.372 ms | 17.8771 ms | 16.7222 ms |  77000.0000 |           - |           - |        473526.63 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.1 | 100000 | 2,887.954 ms | 33.4766 ms | 29.6762 ms |  77000.0000 |           - |           - |           478520 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 | 100000 | 2,463.615 ms | 28.8452 ms | 26.9818 ms |  77000.0000 |           - |           - |        473526.63 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 | 100000 | 2,738.785 ms | 19.2409 ms | 17.9979 ms |  77000.0000 |           - |           - |           478520 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** |    **100** |     **3.267 ms** |  **0.0236 ms** |  **0.0221 ms** |     **70.3125** |           **-** |           **-** |           **447.72 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |       Default |    100 |     3.778 ms |  0.0547 ms |  0.0511 ms |     74.2188 |           - |           - |           460.91 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.1 |    100 |     2.428 ms |  0.0193 ms |  0.0171 ms |     62.5000 |           - |           - |            403.5 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.1 |    100 |     2.654 ms |  0.0328 ms |  0.0291 ms |     66.4063 |           - |           - |           408.03 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 |    100 |     2.466 ms |  0.0149 ms |  0.0116 ms |     62.5000 |           - |           - |            403.5 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |    100 |     2.658 ms |  0.0418 ms |  0.0371 ms |     66.4063 |           - |           - |           408.03 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** |  **10000** |   **328.718 ms** |  **5.0276 ms** |  **4.4569 ms** |   **7000.0000** |           **-** |           **-** |         **44784.51 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |       Default |  10000 |   375.466 ms |  7.4380 ms |  8.5656 ms |   7000.0000 |           - |           - |         46096.55 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.1 |  10000 |   242.558 ms |  1.8886 ms |  1.6742 ms |   6333.3333 |           - |           - |         40344.32 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.1 |  10000 |   271.849 ms |  5.6158 ms |  7.8726 ms |   6000.0000 |           - |           - |         40837.81 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 |  10000 |   249.261 ms |  4.8036 ms |  4.4933 ms |   6500.0000 |           - |           - |         40360.23 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |  10000 |   274.853 ms |  5.2753 ms |  5.6445 ms |   6000.0000 |           - |           - |         40837.81 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** | **100000** | **3,245.827 ms** | **52.6422 ms** | **49.2415 ms** |  **72000.0000** |           **-** |           **-** |        **447679.84 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |       Default | 100000 | 3,613.713 ms | 15.8729 ms | 14.0709 ms |  75000.0000 |           - |           - |        460885.07 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.1 | 100000 | 2,403.299 ms |  3.0808 ms |  2.4053 ms |  65000.0000 |           - |           - |        403220.45 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.1 | 100000 | 2,683.482 ms | 37.0471 ms | 34.6539 ms |  66000.0000 |           - |           - |        407869.06 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 | 100000 | 2,527.455 ms |  4.3616 ms |  3.6421 ms |  65000.0000 |           - |           - |        403220.45 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 | 100000 | 2,734.308 ms |  9.2382 ms |  8.1894 ms |  66000.0000 |           - |           - |        407869.06 KB |
 
 ## JT809协议消息对照表
 

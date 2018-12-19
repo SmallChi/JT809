@@ -11,8 +11,6 @@ namespace JT809.Protocol.JT809Formatters
 {
     public class JT809PackageFormatter : IJT809Formatter<JT809Package>
     {
-        public object JT808BinaryExtensions { get; private set; }
-
         public JT809Package Deserialize(ReadOnlySpan<byte> bytes, out int readSize)
         {
             int offset = 0;
@@ -26,11 +24,11 @@ namespace JT809.Protocol.JT809Formatters
             //  2.2. 获取校验码
             int crcCodeOffset = 0;
             jT809Package.CRCCode = JT809BinaryExtensions.ReadUInt16Little(buffer.Slice(checkIndex,2),ref crcCodeOffset);
-            //  2.3. 从消息头到校验码前一个字节
-            ushort checkCode = buffer.ToCRC16_CCITT(1, checkIndex);
-            //  2.4. 验证校验码
             if (!JT809GlobalConfig.Instance.SkipCRCCode)
             {
+                //  2.3. 从消息头到校验码前一个字节
+                ushort checkCode = buffer.ToCRC16_CCITT(1, checkIndex);
+                //  2.4. 验证校验码
                 if (jT809Package.CRCCode != checkCode)
                 {
                     throw new JT809Exception(JT809ErrorCode.CRC16CheckInvalid, $"{jT809Package.CRCCode.ToString()}!={checkCode.ToString()}");
@@ -134,80 +132,87 @@ namespace JT809.Protocol.JT809Formatters
             // 5.终止符
             offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, value.EndFlag);
             // 6.转义
-            byte[] temp = JT809Escape(bytes.AsSpan(0, offset));
-            Array.Copy(temp, 0, bytes, 0, temp.Length);
-            return temp.Length;
+            return JT809Escape(ref bytes, offset);
         }
 
-        private static ReadOnlySpan<byte> JT809DeEscape(ReadOnlySpan<byte> buffer)
+        internal static ReadOnlySpan<byte> JT809DeEscape(ReadOnlySpan<byte> buffer)
         {
-            List<byte> dataList = new List<byte>();
-            dataList.Add(buffer[0]);
-            for (int i = 1; i < buffer.Length - 1; i++)
+            byte[] tmpBuffer = JT809ArrayPool.Rent(buffer.Length - 1);
+            try
             {
-                byte first = buffer[i];
-                byte second = buffer[i + 1];
-                if (first == 0x5a && second == 0x01)
+                int offset = 0;
+                tmpBuffer[offset++] = buffer[0];
+                for (int i = 1; i < buffer.Length - 1; i++)
                 {
-                    dataList.Add(0x5b);
-                    i++;
+                    byte first = buffer[i];
+                    byte second = buffer[i + 1];
+                    if (first == 0x5a && second == 0x01)
+                    {
+                        tmpBuffer[offset++] = 0x5b;
+                        i++;
+                    }
+                    else if (first == 0x5a && second == 0x02)
+                    {
+                        tmpBuffer[offset++] = 0x5a;
+                        i++;
+                    }
+                    else if (first == 0x5e && second == 0x01)
+                    {
+                        tmpBuffer[offset++] = 0x5d;
+                        i++;
+                    }
+                    else if (first == 0x5e && second == 0x02)
+                    {
+                        tmpBuffer[offset++] = 0x5e;
+                        i++;
+                    }
+                    else
+                    {
+                        tmpBuffer[offset++] = first;
+                    }
                 }
-                else if (first == 0x5a && second == 0x02)
-                {
-                    dataList.Add(0x5a);
-                    i++;
-                }
-                else if (first == 0x5e && second == 0x01)
-                {
-                    dataList.Add(0x5d);
-                    i++;
-                }
-                else if (first == 0x5e && second == 0x02)
-                {
-                    dataList.Add(0x5e);
-                    i++;
-                }
-                else
-                {
-                    dataList.Add(first);
-                }
+                tmpBuffer[offset++] = buffer[buffer.Length - 1];
+                return tmpBuffer.AsSpan(0, offset).ToArray(); 
             }
-            dataList.Add(buffer[buffer.Length - 1]);
-            return dataList.ToArray();
+            finally 
+            {
+                JT809ArrayPool.Return(tmpBuffer);
+            }
         }
 
-        private static byte[] JT809Escape(Span<byte> buf)
+        internal static int JT809Escape(ref byte[] buffer, int offset)
         {
-            List<byte> dataList = new List<byte>();
-            dataList.Add(buf[0]);
-            for (int i = 1; i < buf.Length - 1; i++)
+            byte[] tmpBuffer = buffer.AsSpan(0, offset).ToArray();
+            int tmpOffset = 0;
+            buffer[tmpOffset++] = tmpBuffer[0];
+            for (int i = 1; i < offset - 1; i++)
             {
-                var item = buf[i];
+                var item = tmpBuffer[i];
                 switch (item)
                 {
                     case 0x5b:
-                        dataList.Add(0x5a);
-                        dataList.Add(0x01);
+                        buffer[tmpOffset++] = 0x5a;
+                        buffer[tmpOffset++] = 0x01;
                         break;
                     case 0x5a:
-                        dataList.Add(0x5a);
-                        dataList.Add(0x02);
+                        buffer[tmpOffset++] = 0x5a;
+                        buffer[tmpOffset++] = 0x02;
                         break;
                     case 0x5d:
-                        dataList.Add(0x5e);
-                        dataList.Add(0x01);
+                        buffer[tmpOffset++] = 0x5e;
+                        buffer[tmpOffset++] = 0x01;
                         break;
                     case 0x5e:
-                        dataList.Add(0x5e);
-                        dataList.Add(0x02);
+                        buffer[tmpOffset++] = 0x5e;
+                        buffer[tmpOffset++] = 0x02;
                         break;
                     default:
-                        dataList.Add(item);
+                        buffer[tmpOffset++] = item;
                         break;
                 }
             }
-            dataList.Add(buf[buf.Length - 1]);
-            return dataList.ToArray();
+            buffer[tmpOffset++]= tmpBuffer[tmpBuffer.Length - 1];
+            return tmpOffset;
         }
     }
 }
