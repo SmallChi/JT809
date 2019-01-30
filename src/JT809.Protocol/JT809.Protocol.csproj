@@ -7,14 +7,14 @@
     <Authors>SmallChi</Authors>
     <PackageId>JT809</PackageId>
     <Product>JT809</Product>
-    <Description>JT809协议、GB809协议、道路运输车辆卫星定位系统平台数据交换</Description>
-    <PackageReleaseNotes>JT809协议、GB809协议、道路运输车辆卫星定位系统平台数据交换</PackageReleaseNotes>
+    <Description>JT809协议、GB809协议、道路运输车辆卫星定位系统平台数据交换协议</Description>
+    <PackageReleaseNotes>JT809协议、GB809协议、道路运输车辆卫星定位系统平台数据交换协议</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/SmallChi/JT809</RepositoryUrl>
     <PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/SmallChi/JT809/blob/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -91,8 +91,8 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="System.Buffers" Version="4.5.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="System.Memory" Version="4.5.1" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
+    <PackageReference Include="System.Memory" Version="4.5.2" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
   </ItemGroup>
 
 </Project>

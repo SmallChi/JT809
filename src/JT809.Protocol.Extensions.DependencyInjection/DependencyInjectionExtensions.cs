@@ -36,13 +36,13 @@ namespace JT809.Protocol.Extensions.DependencyInjection
             return services;
         }
 
-        public static IServiceCollection AddJT809Configure(this IServiceCollection services, JT809Options  jT809Options)
+        public static IServiceCollection AddJT809Configure(this IServiceCollection services, IOptions<JT809Options>  jT809Options)
         {
-            JT809GlobalConfig.Instance.SetHeaderOptions(jT809Options.HeaderOptions);
-            JT809GlobalConfig.Instance.SetSkipCRCCode(jT809Options.SkipCRCCode);
-            if (jT809Options.HeaderOptions.EncryptFlag == JT809Header_Encrypt.Common)
+            JT809GlobalConfig.Instance.SetHeaderOptions(jT809Options.Value.HeaderOptions);
+            JT809GlobalConfig.Instance.SetSkipCRCCode(jT809Options.Value.SkipCRCCode);
+            if (jT809Options.Value.HeaderOptions.EncryptFlag == JT809Header_Encrypt.Common)
             {
-                JT809GlobalConfig.Instance.SetEncryptOptions(jT809Options.EncryptOptions);
+                JT809GlobalConfig.Instance.SetEncryptOptions(jT809Options.Value.EncryptOptions);
             }
             try
             {

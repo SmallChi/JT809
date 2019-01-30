@@ -88,8 +88,6 @@ namespace JT809.Protocol.Benchmark
         {
             Add(Job.Default.WithGcServer(false).With(Runtime.Clr).With(Platform.AnyCpu));
 
-            Add(Job.Default.WithGcServer(false).With(CsProjCoreToolchain.NetCoreApp21).With(Platform.AnyCpu));
-
             Add(Job.Default.WithGcServer(false).With(CsProjCoreToolchain.NetCoreApp22).With(Platform.AnyCpu));
         }
     }
