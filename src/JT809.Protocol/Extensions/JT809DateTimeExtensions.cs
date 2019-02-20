@@ -94,7 +94,7 @@ namespace JT809.Protocol.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="memoryOwner"></param>
+        /// <param name="bytes"></param>
         /// <param name="offset"></param>
         /// <param name="date"></param>
         /// <param name="fromBase">BCD：10  HEX：16</param>
@@ -113,7 +113,7 @@ namespace JT809.Protocol.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="memoryOwner"></param>
+        /// <param name="bytes"></param>
         /// <param name="offset"></param>
         /// <param name="date"></param>
         /// <param name="fromBase">BCD：10  HEX：16</param>

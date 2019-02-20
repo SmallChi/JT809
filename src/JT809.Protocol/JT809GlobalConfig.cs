@@ -48,7 +48,7 @@ namespace JT809.Protocol
         /// 不同的上下级平台之间，加密的算法是一致的，但是针对 M1, IA1, IC1 的不同。
         /// 数据先经过加密而后解密。
         /// </summary>
-        /// <param name="jT809Encrypt"></param>
+        /// <param name="jT809EncryptOptions"></param>
         /// <returns></returns>
         public JT809GlobalConfig SetEncryptOptions(JT809EncryptOptions jT809EncryptOptions)
         {

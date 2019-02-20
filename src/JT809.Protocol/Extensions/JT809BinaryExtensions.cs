@@ -157,7 +157,7 @@ namespace JT809.Protocol.Extensions
         /// <summary>
         /// 数字编码 大端模式、高位在前
         /// </summary>
-        /// <param name="memoryOwner"></param>
+        /// <param name="bytes"></param>
         /// <param name="offset"></param>
         /// <param name="data"></param>
         /// <param name="len"></param>
@@ -176,7 +176,7 @@ namespace JT809.Protocol.Extensions
         /// <summary>
         /// 数字编码 小端模式、低位在前
         /// </summary>
-        /// <param name="memoryOwner"></param>
+        /// <param name="bytes"></param>
         /// <param name="offset"></param>
         /// <param name="data"></param>
         /// <param name="len"></param>
