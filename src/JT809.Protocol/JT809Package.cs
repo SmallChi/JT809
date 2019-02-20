@@ -1,5 +1,5 @@
-﻿using JT809.Protocol.JT809Attributes;
-using JT809.Protocol.JT809Formatters;
+﻿using JT809.Protocol.Attributes;
+using JT809.Protocol.Formatters;
 using System;
 using System.Collections.Generic;
 using System.Text;

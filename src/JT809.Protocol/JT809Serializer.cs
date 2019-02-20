@@ -1,4 +1,4 @@
-﻿using JT809.Protocol.JT809Extensions;
+﻿using JT809.Protocol.Extensions;
 using System;
 using System.Buffers;
 using System.Collections.Generic;

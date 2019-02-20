@@ -3,10 +3,10 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.CsProj;
-using JT809.Protocol.JT809Enums;
-using JT809.Protocol.JT809MessageBody;
-using JT809.Protocol.JT809SubMessageBody;
-using JT809.Protocol.JT809Extensions;
+using JT809.Protocol.Enums;
+using JT809.Protocol.MessageBody;
+using JT809.Protocol.SubMessageBody;
+using JT809.Protocol.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,15 +51,15 @@ namespace JT809.Protocol.Benchmark
                     EncryptKey = 9999,
                     EncryptFlag = JT809Header_Encrypt.None,
                     Version = new JT809Header_Version(1, 0, 0),
-                    BusinessType = JT809Enums.JT809BusinessType.从链路报警信息交互消息,
+                    BusinessType = JT809BusinessType.从链路报警信息交互消息,
                     MsgGNSSCENTERID = 20180920,
                 };
 
                 JT809_0x9400 bodies = new JT809_0x9400
                 {
                     VehicleNo = "粤A12345",
-                    VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
-                    SubBusinessType = JT809Enums.JT809SubBusinessType.报警督办请求,
+                    VehicleColor = JT809VehicleColorType.黄色,
+                    SubBusinessType = JT809SubBusinessType.报警督办请求,
                 };
 
                 JT809_0x9400_0x9401 jT809_0x9400_0x9401 = new JT809_0x9400_0x9401

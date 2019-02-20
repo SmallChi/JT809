@@ -1,4 +1,5 @@
-﻿using JT809.Protocol.Extensions.DependencyInjection.Options;
+﻿using JT809.Protocol.Configs;
+using JT809.Protocol.Extensions.DependencyInjection.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +25,7 @@ namespace JT809.Protocol.Extensions.DependencyInjection.Test
                     // 方式2:
                     services.AddJT809Configure(new JT809Options
                     {
-                        HeaderOptions=new JT809Configs.JT809HeaderOptions {
+                        HeaderOptions=new JT809HeaderOptions {
                           MsgGNSSCENTERID=20181012,
                           EncryptFlag= JT809Header_Encrypt.Common,
                           EncryptKey= 9999,
@@ -34,7 +35,7 @@ namespace JT809.Protocol.Extensions.DependencyInjection.Test
                             Build= 2
                           }
                         },
-                        EncryptOptions = new JT809Configs.JT809EncryptOptions {
+                        EncryptOptions = new JT809EncryptOptions {
                           M1= 10000000,
                           IA1=20000000,
                           IC1=30000000

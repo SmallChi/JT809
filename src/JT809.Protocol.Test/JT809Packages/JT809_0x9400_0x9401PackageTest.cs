@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using JT809.Protocol;
-using JT809.Protocol.JT809Extensions;
-using JT809.Protocol.JT809MessageBody;
-using JT809.Protocol.JT809SubMessageBody;
-using JT809.Protocol.JT809Enums;
+using JT809.Protocol.Extensions;
+using JT809.Protocol.MessageBody;
+using JT809.Protocol.SubMessageBody;
+using JT809.Protocol.Enums;
+using JT809.Protocol.Configs;
 
 namespace JT809.Protocol.Test.JT809Packages
 {
@@ -23,15 +24,15 @@ namespace JT809.Protocol.Test.JT809Packages
                 EncryptKey = 9999,
                 EncryptFlag= JT809Header_Encrypt.None,
                 Version = new JT809Header_Version(1, 0, 0),
-                BusinessType = JT809Enums.JT809BusinessType.从链路报警信息交互消息,
+                BusinessType = JT809BusinessType.从链路报警信息交互消息,
                 MsgGNSSCENTERID = 20180920,
             };
 
             JT809_0x9400 bodies = new JT809_0x9400
             {
                   VehicleNo="粤A12345",
-                  VehicleColor= JT809Enums.JT809VehicleColorType.黄色,
-                  SubBusinessType= JT809Enums.JT809SubBusinessType.报警督办请求,
+                  VehicleColor= JT809VehicleColorType.黄色,
+                  SubBusinessType= JT809SubBusinessType.报警督办请求,
             };
 
             JT809_0x9400_0x9401 jT809_0x9400_0x9401 = new JT809_0x9400_0x9401
@@ -64,13 +65,13 @@ namespace JT809.Protocol.Test.JT809Packages
             Assert.Equal((uint)9999, jT809Package.Header.EncryptKey);
             Assert.Equal(JT809Header_Encrypt.None, jT809Package.Header.EncryptFlag);
             Assert.Equal((uint)20180920, jT809Package.Header.MsgGNSSCENTERID);
-            Assert.Equal(JT809Enums.JT809BusinessType.从链路报警信息交互消息, jT809Package.Header.BusinessType);
+            Assert.Equal(JT809BusinessType.从链路报警信息交互消息, jT809Package.Header.BusinessType);
             Assert.Equal(new JT809Header_Version().ToString(), jT809Package.Header.Version.ToString());
 
             JT809_0x9400 jT809_0X400 = (JT809_0x9400)jT809Package.Bodies;
             Assert.Equal("粤A12345", jT809_0X400.VehicleNo);
-            Assert.Equal(JT809Enums.JT809VehicleColorType.黄色, jT809_0X400.VehicleColor);
-            Assert.Equal(JT809Enums.JT809SubBusinessType.报警督办请求, jT809_0X400.SubBusinessType);
+            Assert.Equal(JT809VehicleColorType.黄色, jT809_0X400.VehicleColor);
+            Assert.Equal(JT809SubBusinessType.报警督办请求, jT809_0X400.SubBusinessType);
             Assert.Equal((uint)92, jT809_0X400.DataLength);
 
             JT809_0x9400_0x9401 jT809_0x9400_0x9401 = (JT809_0x9400_0x9401)jT809_0X400.SubBodies;
@@ -88,7 +89,7 @@ namespace JT809.Protocol.Test.JT809Packages
         [Fact]
         public void Test3()
         {
-            JT809GlobalConfig.Instance.SetHeaderOptions(new JT809Configs.JT809HeaderOptions
+            JT809GlobalConfig.Instance.SetHeaderOptions(new JT809HeaderOptions
             {
                  EncryptKey= 9999,
                  MsgGNSSCENTERID= 20180920
@@ -96,8 +97,8 @@ namespace JT809.Protocol.Test.JT809Packages
             JT809Package jT809Package = JT809BusinessType.从链路报警信息交互消息.Create(new JT809_0x9400
             {
                 VehicleNo = "粤A12345",
-                VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
-                SubBusinessType = JT809Enums.JT809SubBusinessType.报警督办请求,
+                VehicleColor = JT809VehicleColorType.黄色,
+                SubBusinessType = JT809SubBusinessType.报警督办请求,
                 SubBodies = new JT809_0x9400_0x9401
                 {
                      WarnSrc = JT809WarnSrc.车载终端,

@@ -1,10 +1,10 @@
-﻿using JT809.Protocol.JT809Configs;
-using JT809.Protocol.JT809Encrypt;
+﻿using JT809.Protocol.Configs;
+using JT809.Protocol.Encrypt;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
-using JT809.Protocol.JT809Extensions;
+using JT809.Protocol.Extensions;
 
 namespace JT809.Protocol.Test.JT809Encrypt
 {

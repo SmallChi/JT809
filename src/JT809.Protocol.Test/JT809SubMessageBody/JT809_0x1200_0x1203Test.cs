@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using JT809.Protocol;
-using JT809.Protocol.JT809Extensions;
-using JT809.Protocol.JT809MessageBody;
-using JT809.Protocol.JT809Exceptions;
-using JT809.Protocol.JT809SubMessageBody;
+using JT809.Protocol.Extensions;
+using JT809.Protocol.MessageBody;
+using JT809.Protocol.Exceptions;
+using JT809.Protocol.SubMessageBody;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {

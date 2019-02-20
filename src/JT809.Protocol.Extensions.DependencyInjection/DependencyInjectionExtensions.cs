@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using JT809.Protocol.JT809Configs;
+using JT809.Protocol.Configs;
 using Microsoft.Extensions.Configuration;
-using JT809.Protocol.JT809Encrypt;
+using JT809.Protocol.Encrypt;
 using JT809.Protocol.Extensions.DependencyInjection.Options;
 using Microsoft.Extensions.Options;
 

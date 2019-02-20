@@ -30,19 +30,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="JT809Configs\**" />
-    <Compile Remove="Encrypt\**" />
-    <Compile Remove="JT809Enums\**" />
+    <Compile Remove="Configs\**" />
+    <Compile Remove="Enums\**" />
     <Compile Remove="Escape\**" />
     <Compile Remove="ProtocolPacket\**" />
-    <EmbeddedResource Remove="JT809Configs\**" />
-    <EmbeddedResource Remove="Encrypt\**" />
-    <EmbeddedResource Remove="JT809Enums\**" />
+    <EmbeddedResource Remove="Configs\**" />
+    <EmbeddedResource Remove="Enums\**" />
     <EmbeddedResource Remove="Escape\**" />
     <EmbeddedResource Remove="ProtocolPacket\**" />
-    <None Remove="JT809Configs\**" />
-    <None Remove="Encrypt\**" />
-    <None Remove="JT809Enums\**" />
+    <None Remove="Configs\**" />
+    <None Remove="Enums\**" />
     <None Remove="Escape\**" />
     <None Remove="ProtocolPacket\**" />
   </ItemGroup>
@@ -53,38 +50,38 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="JT809Configs\JT809EncryptOptions.cs" />
-    <Compile Include="JT809Configs\JT809HeaderOptions.cs" />
-    <Compile Include="JT809Enums\JT808_Alarm.cs" />
-    <Compile Include="JT809Enums\JT808_Status.cs" />
-    <Compile Include="JT809Enums\JT809CommandType.cs" />
-    <Compile Include="JT809Enums\JT809ErrorCode.cs" />
-    <Compile Include="JT809Enums\JT809BusinessType.cs" />
-    <Compile Include="JT809Enums\JT809SubBusinessType.cs" />
-    <Compile Include="JT809Enums\JT809VehicleColorType.cs" />
-    <Compile Include="JT809Enums\JT809WarnSrc.cs" />
-    <Compile Include="JT809Enums\JT809WarnType.cs" />
-    <Compile Include="JT809Enums\JT809_0x1502_PhotoRspFlag.cs" />
-    <Compile Include="JT809Enums\JT809_0x1501_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x1505_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x1503_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x1403_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x1401_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x1002_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x1007_ErrorCode.cs" />
-    <Compile Include="JT809Enums\JT809_0x9302_ObjectType.cs" />
-    <Compile Include="JT809Enums\JT809_0x9301_ObjectType.cs" />
-    <Compile Include="JT809Enums\JT809_0x1301_ObjectType.cs" />
-    <Compile Include="JT809Enums\JT809_0x9209_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x9208_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x9207_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x9206_ReasonCode.cs" />
-    <Compile Include="JT809Enums\JT809_0x9205_ReasonCode.cs" />
-    <Compile Include="JT809Enums\JT809_0x9007_ReasonCode.cs" />
-    <Compile Include="JT809Enums\JT809_0x1008_ReasonCode.cs" />
-    <Compile Include="JT809Enums\JT809_0x9002_Result.cs" />
-    <Compile Include="JT809Enums\JT809_0x9008_ReasonCode.cs" />
-    <Compile Include="JT809Enums\JT809_VehiclePositionEncrypt.cs" />
+    <Compile Include="Configs\JT809EncryptOptions.cs" />
+    <Compile Include="Configs\JT809HeaderOptions.cs" />
+    <Compile Include="Enums\JT808_Alarm.cs" />
+    <Compile Include="Enums\JT808_Status.cs" />
+    <Compile Include="Enums\JT809CommandType.cs" />
+    <Compile Include="Enums\JT809ErrorCode.cs" />
+    <Compile Include="Enums\JT809BusinessType.cs" />
+    <Compile Include="Enums\JT809SubBusinessType.cs" />
+    <Compile Include="Enums\JT809VehicleColorType.cs" />
+    <Compile Include="Enums\JT809WarnSrc.cs" />
+    <Compile Include="Enums\JT809WarnType.cs" />
+    <Compile Include="Enums\JT809_0x1502_PhotoRspFlag.cs" />
+    <Compile Include="Enums\JT809_0x1501_Result.cs" />
+    <Compile Include="Enums\JT809_0x1505_Result.cs" />
+    <Compile Include="Enums\JT809_0x1503_Result.cs" />
+    <Compile Include="Enums\JT809_0x1403_Result.cs" />
+    <Compile Include="Enums\JT809_0x1401_Result.cs" />
+    <Compile Include="Enums\JT809_0x1002_Result.cs" />
+    <Compile Include="Enums\JT809_0x1007_ErrorCode.cs" />
+    <Compile Include="Enums\JT809_0x9302_ObjectType.cs" />
+    <Compile Include="Enums\JT809_0x9301_ObjectType.cs" />
+    <Compile Include="Enums\JT809_0x1301_ObjectType.cs" />
+    <Compile Include="Enums\JT809_0x9209_Result.cs" />
+    <Compile Include="Enums\JT809_0x9208_Result.cs" />
+    <Compile Include="Enums\JT809_0x9207_Result.cs" />
+    <Compile Include="Enums\JT809_0x9206_ReasonCode.cs" />
+    <Compile Include="Enums\JT809_0x9205_ReasonCode.cs" />
+    <Compile Include="Enums\JT809_0x9007_ReasonCode.cs" />
+    <Compile Include="Enums\JT809_0x1008_ReasonCode.cs" />
+    <Compile Include="Enums\JT809_0x9002_Result.cs" />
+    <Compile Include="Enums\JT809_0x9008_ReasonCode.cs" />
+    <Compile Include="Enums\JT809_VehiclePositionEncrypt.cs" />
   </ItemGroup>
 
   <ItemGroup>

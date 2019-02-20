@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using JT809.Protocol;
-using JT809.Protocol.JT809Extensions;
-using JT809.Protocol.JT809MessageBody;
-using JT809.Protocol.JT809Exceptions;
-using JT809.Protocol.JT809SubMessageBody;
-using JT809.Protocol.JT809Enums;
+using JT809.Protocol.Extensions;
+using JT809.Protocol.MessageBody;
+using JT809.Protocol.Exceptions;
+using JT809.Protocol.SubMessageBody;
+using JT809.Protocol.Enums;
+using JT809.Protocol.Metadata;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
@@ -19,7 +20,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             JT809_0x1500_0x1502 jT809_0x1500_0x1502 = new JT809_0x1500_0x1502
             {
                     PhotoRspFlag= JT809_0x1502_PhotoRspFlag.完成拍照,
-                    VehiclePosition=new JT809Properties.JT809VehiclePositionProperties
+                    VehiclePosition=new JT809VehiclePositionProperties
                     {
                          Encrypt= JT809_VehiclePositionEncrypt.未加密,
                          Day=19,
