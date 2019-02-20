@@ -66,15 +66,15 @@ jT809Package.Header = new JT809Header
     EncryptKey = 9999,
     EncryptFlag= JT809Header_Encrypt.None,
     Version = new JT809Header_Version(1, 0, 0),
-    BusinessType = JT809Enums.JT809BusinessType.从链路报警信息交互消息,
+    BusinessType = JT809BusinessType.从链路报警信息交互消息,
     MsgGNSSCENTERID = 20180920,
 };
 
 JT809_0x9400 bodies = new JT809_0x9400
 {
     VehicleNo="粤A12345",
-    VehicleColor= JT809Enums.JT809VehicleColorType.黄色,
-    SubBusinessType= JT809Enums.JT809SubBusinessType.报警督办请求消息,
+    VehicleColor= JT809VehicleColorType.黄色,
+    SubBusinessType= JT809SubBusinessType.报警督办请求消息,
 };
 
 JT809_0x9400_0x9401 jT809_0x9400_0x9401 = new JT809_0x9400_0x9401
@@ -157,14 +157,14 @@ Assert.Equal((uint)1666, jT809Package.Header.MsgSN);
 Assert.Equal((uint)9999, jT809Package.Header.EncryptKey);
 Assert.Equal(JT809Header_Encrypt.None, jT809Package.Header.EncryptFlag);
 Assert.Equal((uint)20180920, jT809Package.Header.MsgGNSSCENTERID);
-Assert.Equal(JT809Enums.JT809BusinessType.从链路报警信息交互消息, jT809Package.Header.BusinessType);
+Assert.Equal(JT809BusinessType.从链路报警信息交互消息, jT809Package.Header.BusinessType);
 Assert.Equal(new JT809Header_Version(1, 0, 0).ToString(), jT809Package.Header.Version.ToString());
 
 //4.数据包体
 JT809_0x9400 jT809_0X400 = (JT809_0x9400)jT809Package.Bodies;
 Assert.Equal("粤A12345", jT809_0X400.VehicleNo);
-Assert.Equal(JT809Enums.JT809VehicleColorType.黄色, jT809_0X400.VehicleColor);
-Assert.Equal(JT809Enums.JT809SubBusinessType.报警督办请求消息, jT809_0X400.SubBusinessType);
+Assert.Equal(JT809VehicleColorType.黄色, jT809_0X400.VehicleColor);
+Assert.Equal(JT809SubBusinessType.报警督办请求消息, jT809_0X400.SubBusinessType);
 Assert.Equal((uint)92, jT809_0X400.DataLength);
 
 //5.子数据包体
@@ -185,7 +185,7 @@ Assert.Equal("123456@qq.com", jT809_0x9400_0x9401.SupervisorEmail);
 
 ``` data2
 // 设置全局配置
-JT809GlobalConfig.Instance.SetHeaderOptions(new JT809Configs.JT809HeaderOptions
+JT809GlobalConfig.Instance.SetHeaderOptions(new JT809HeaderOptions
 {
     EncryptKey= 9999,
     MsgGNSSCENTERID= 20180920
@@ -195,8 +195,8 @@ JT809GlobalConfig.Instance.SetHeaderOptions(new JT809Configs.JT809HeaderOptions
 JT809Package jT809Package = JT809BusinessType.从链路报警信息交互消息.Create(new JT809_0x9400
 {
     VehicleNo = "粤A12345",
-    VehicleColor = JT809Enums.JT809VehicleColorType.黄色,
-    SubBusinessType = JT809Enums.JT809SubBusinessType.报警督办请求消息,
+    VehicleColor = JT809VehicleColorType.黄色,
+    SubBusinessType = JT809SubBusinessType.报警督办请求消息,
     JT809SubBodies = new JT809_0x9400_0x9401
     {
         WarnSrc = JT809WarnSrc.车载终端,
@@ -222,7 +222,7 @@ static void Main(string[] args)
     JT809GlobalConfig.Instance
             // 设置加密算法
             .SetEncrypt(new JT809EncryptImpl(
-                new JT809Configs.JT809EncryptOptions()
+                new JT809EncryptOptions()
                 {
                     IA1 = 20000000,
                     IC1 = 20000000,
@@ -230,7 +230,7 @@ static void Main(string[] args)
                 })
             )
             // 设置头部信息
-            .SetHeaderOptions(new JT809Configs.JT809HeaderOptions
+            .SetHeaderOptions(new JT809HeaderOptions
             {
                 EncryptFlag = JT809Header_Encrypt.Common,
                 Version = new JT809Header_Version(2, 3, 2),
@@ -264,7 +264,7 @@ static async Task  Main(string[] args)
             // 方式2:
             services.AddJT809Configure(new JT809Options
             {
-                HeaderOptions=new JT809Configs.JT809HeaderOptions {
+                HeaderOptions=new JT809HeaderOptions {
                     MsgGNSSCENTERID=20181012,
                     EncryptFlag= JT809Header_Encrypt.Common,
                     EncryptKey= 9999,
