@@ -13,7 +13,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>描述:监控平台收到车载终端鉴权信息后，启动本命令向上级监管平台上传该车辆注册信息.各级监管平台再逐级向上级平台上传该信息</para>
     /// <para>本条消息服务端无需应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x1201Formatter))]
+    [JT809Formatter(typeof(JT809_0x1200_0x1201_Formatter))]
     public class JT809_0x1200_0x1201:JT809SubBodies
     {
         /// <summary>

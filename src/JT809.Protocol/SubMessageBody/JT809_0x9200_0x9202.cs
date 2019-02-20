@@ -12,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_EXG_MSG_CAR_LOCATION</para>
     /// <para>描述:上级平台通过该消息不间断地向车辆驶入区域所属的下级平台发送车辆定位信息，直到该车驶离该区域</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9200_0x9202Formatter))]
+    [JT809Formatter(typeof(JT809_0x9200_0x9202_Formatter))]
     public class JT809_0x9200_0x9202:JT809SubBodies
     {
         public JT809_0x9200_0x9202()

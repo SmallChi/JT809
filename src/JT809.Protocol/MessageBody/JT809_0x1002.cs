@@ -14,7 +14,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:UP_CONNCCT_RSP</para>
     /// <para>描述:上级平台对下级平台登录请求信息、进行安全验证后，返回相应的验证结果。</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1002Formatter))]
+    [JT809Formatter(typeof(JT809_0x1002_Formatter))]
     public class JT809_0x1002 : JT809Bodies
     {
         /// <summary>

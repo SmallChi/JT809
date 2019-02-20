@@ -11,7 +11,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_CXG_MSG_TAKE_EWAYBILL_ACK</para>
     /// <para>描述:下级平台应答上级平台发送的上报车辆电子运单请求消息，向上级平台上传车辆当前电子运单</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x120BFormatter))]
+    [JT809Formatter(typeof(JT809_0x1200_0x120B_Formatter))]
     public class JT809_0x1200_0x120B:JT809SubBodies
     {
         /// <summary>

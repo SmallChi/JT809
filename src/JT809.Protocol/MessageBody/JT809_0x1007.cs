@@ -16,7 +16,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>主链路连接保持应答消息,数据体为空</para>
     /// <para>本条消息无需被通知方应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1007Formatter))]
+    [JT809Formatter(typeof(JT809_0x1007_Formatter))]
     public class JT809_0x1007:JT809Bodies
     {
         /// <summary>

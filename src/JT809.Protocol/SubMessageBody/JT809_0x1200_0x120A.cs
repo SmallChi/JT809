@@ -11,7 +11,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_EXG_MSG_REPORT_DRIVER_INFO_ACK</para>
     /// <para>描述:下级平台应答上级平台发送的上报驾驶员身份识别信息请求消息，上传指定车辆的驾驶员身份识别信息数据</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x120AFormatter))]
+    [JT809Formatter(typeof(JT809_0x1200_0x120A_Formatter))]
     public class JT809_0x1200_0x120A:JT809SubBodies
     {
         /// <summary>

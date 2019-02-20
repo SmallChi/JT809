@@ -11,7 +11,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_CTRL_MSG_TAKE_PHOTO_REQ</para>
     /// <para>描述:上级平台向下级平台下发对某指定车辆的拍照请求消息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9500_0x9502Formatter))]
+    [JT809Formatter(typeof(JT809_0x9500_0x9502_Formatter))]
     public class JT809_0x9500_0x9502:JT809SubBodies
     {
         /// <summary>

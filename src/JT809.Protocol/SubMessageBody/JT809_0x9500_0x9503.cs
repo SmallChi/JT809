@@ -11,7 +11,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_CTRL_MSG_TEXT_INFO</para>
     /// <para>描述:用于上级平台向下级平台下发报文到某指定车辆</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9500_0x9503Formatter))]
+    [JT809Formatter(typeof(JT809_0x9500_0x9503_Formatter))]
     public class JT809_0x9500_0x9503:JT809SubBodies
     {
         /// <summary>

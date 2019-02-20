@@ -12,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_PLATFORM-MSG_POST_QUERY_REQ</para>
     /// <para>描述:上级平台不定期向下级平台发送平台查岗信息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9300_0x9301Formatter))]
+    [JT809Formatter(typeof(JT809_0x9300_0x9301_Formatter))]
     public class JT809_0x9300_0x9301:JT809SubBodies
     {
         /// <summary>

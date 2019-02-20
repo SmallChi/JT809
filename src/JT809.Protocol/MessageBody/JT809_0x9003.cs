@@ -13,7 +13,7 @@ namespace JT809.Protocol.MessageBody
     ///<para>业务数据类型标识:DOWN_DISCONNIrCT_REQ</para>
     ///<para>描述:从链路建立后，上级平台在取消该链路时，应向下级平台发送从链路注销请求消息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9003Formatter))]
+    [JT809Formatter(typeof(JT809_0x9003_Formatter))]
     public class JT809_0x9003: JT809Bodies
     {
         /// <summary>

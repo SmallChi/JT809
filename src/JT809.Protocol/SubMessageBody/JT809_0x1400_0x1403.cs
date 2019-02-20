@@ -13,7 +13,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>描述:下级平台向上级平台上报报警处理结果</para>
     /// <para>本条消息上级平台无需应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1400_0x1403Formatter))]
+    [JT809Formatter(typeof(JT809_0x1400_0x1403_Formatter))]
     public class JT809_0x1400_0x1403:JT809SubBodies
     {
         /// <summary>

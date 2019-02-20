@@ -12,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_EXG_MSG_APPLY_FOR_MONITOR_STARTUP_ACK</para>
     /// <para>描述：应答下级平台申请交换指定车辆定位信息,请求消息."即 UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9200_0x9207Formatter))]
+    [JT809Formatter(typeof(JT809_0x9200_0x9207_Formatter))]
     public class JT809_0x9200_0x9207:JT809SubBodies
     {
         /// <summary>

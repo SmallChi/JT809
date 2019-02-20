@@ -12,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOVJN_CTRL_MSG_TAKE_TRAVEL_REQ</para>
     /// <para>描述:上级平台向下级平台下发上报车辆行驶记录请求消息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9500_0x9504Formatter))]
+    [JT809Formatter(typeof(JT809_0x9500_0x9504_Formatter))]
     public class JT809_0x9500_0x9504:JT809SubBodies
     {
         /// <summary>

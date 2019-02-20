@@ -13,7 +13,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>描述:用于上级平台向车辆归属或车辆跨域下级平台下发相关车辆的报警顶警或运行提示信息</para>
     /// <para>本条消息下级平台无需应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9400_0x9402Formatter))]
+    [JT809Formatter(typeof(JT809_0x9400_0x9402_Formatter))]
     public class JT809_0x9400_0x9402:JT809SubBodies
     {
         /// <summary>

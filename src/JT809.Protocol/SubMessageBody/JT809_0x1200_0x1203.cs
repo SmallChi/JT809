@@ -16,7 +16,7 @@ namespace JT809.Protocol.SubMessageBody
     ///  本条消息上级平台采用定量回复，即收到一定数量的数据后，即通过从链路应答数据量。
     ///  </para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x1203Formatter))]
+    [JT809Formatter(typeof(JT809_0x1200_0x1203_Formatter))]
     public class JT809_0x1200_0x1203 : JT809SubBodies
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_WARN_MSG_URGE_TODO_ACK</para>
     /// <para>描述:下级平台应答上级平台下发的报警督办请求消息，向上.级平台上报车辆的报瞥处理结果</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1400_0x1401Formatter))]
+    [JT809Formatter(typeof(JT809_0x1400_0x1401_Formatter))]
     public class JT809_0x1400_0x1401:JT809SubBodies
     {
         /// <summary>

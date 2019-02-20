@@ -11,7 +11,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:DOWN_PLATFORM_MSG</para>
     /// <para>描述:上级平台向下级平台发送平台问交互信息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9300Formatter))]
+    [JT809Formatter(typeof(JT809_0x9300_Formatter))]
     public class JT809_0x9300: JT809ExchangeMessageBodies
     {
         

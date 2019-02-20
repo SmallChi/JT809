@@ -11,7 +11,7 @@ namespace JT809.Protocol.SubMessageBody
     /// 实时上传车辆定位信息
     /// <para>子业务类型标识:UP_EXG_MSG_REAL_LOCATION</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x1202Formatter))]
+    [JT809Formatter(typeof(JT809_0x1200_0x1202_Formatter))]
     public class JT809_0x1200_0x1202:JT809SubBodies
     {
         public JT809_0x1200_0x1202()

@@ -18,7 +18,7 @@ namespace JT809.Protocol.MessageBody
     /// </para>
     /// <para>本条消息无需被通知方应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9007Formatter))]
+    [JT809Formatter(typeof(JT809_0x9007_Formatter))]
     public class JT809_0x9007:JT809Bodies
     {
         /// <summary>

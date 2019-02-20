@@ -13,7 +13,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识: UP-CONNECT-REQ</para>
     /// <para>描述:下级平台向上级平台发送用户名和密码等登录信息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1001Formatter))]
+    [JT809Formatter(typeof(JT809_0x1001_Formatter))]
     public class JT809_0x1001: JT809Bodies
     {
         /// <summary>

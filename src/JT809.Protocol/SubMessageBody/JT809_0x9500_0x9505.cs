@@ -11,7 +11,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_CTRL_MSG_EMERGENCY_MONITORING_REQ</para>
     /// <para>描述:发生应急情况时，政府监管平台需要及时监控该车辆时，就向该车辆归属的下级平台发送该命令</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9500_0x9505Formatter))]
+    [JT809Formatter(typeof(JT809_0x9500_0x9505_Formatter))]
     public class JT809_0x9500_0x9505:JT809SubBodies
     {
         /// <summary>

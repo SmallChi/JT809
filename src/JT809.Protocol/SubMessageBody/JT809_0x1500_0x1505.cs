@@ -12,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识: UP_CTRL_MSG_EMERGENCY_MONITORING_ACK</para>
     /// <para>描述:下级平台应答上级平台下发的车辆应急接入监管平台请求消息应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1500_0x1505Formatter))]
+    [JT809Formatter(typeof(JT809_0x1500_0x1505_Formatter))]
     public class JT809_0x1500_0x1505:JT809SubBodies
     {
         /// <summary>

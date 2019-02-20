@@ -11,7 +11,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_EXG_MSG_APPLY-FOR_MONITOR_STARTUP</para>
     /// <para>描述:当下级平台需要在特定时问段内监控特殊车辆时，可上传此命令到上级平台申请对该车辆定位数据交换到下级平台，申请成功后，此车辆定位数据将在指定时间内交换到该平台(即使该车没有进入该平台所属区域也会交换)</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x1207Formatter))]
+    [JT809Formatter(typeof(JT809_0x1200_0x1207_Formatter))]
     public class JT809_0x1200_0x1207:JT809SubBodies
     {
         /// <summary>

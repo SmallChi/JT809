@@ -12,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_WARN_MSG_URGE_TODO_REQ</para>
     /// <para>描述:上级平台向车辆归属下级平台下发本消息，催促其及时处理相关车辆的报警信息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9400_0x9401Formatter))]
+    [JT809Formatter(typeof(JT809_0x9400_0x9401_Formatter))]
     public class JT809_0x9400_0x9401:JT809SubBodies
     {
         /// <summary>

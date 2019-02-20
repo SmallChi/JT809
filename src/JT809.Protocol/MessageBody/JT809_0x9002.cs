@@ -14,7 +14,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:DOWN_CONNNECT_RSP</para>
     /// <para>描述：下级平台作为服务器端向上级平台客户端返回从链路连接应答消息，上级平台在接收到该应答消息结果后</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9002Formatter))]
+    [JT809Formatter(typeof(JT809_0x9002_Formatter))]
     public class JT809_0x9002:JT809Bodies
     {
         /// <summary>

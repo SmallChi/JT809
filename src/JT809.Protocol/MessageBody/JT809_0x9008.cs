@@ -11,7 +11,7 @@ namespace JT809.Protocol.MessageBody
     /// 上级平台主动关闭链路通知消息
     /// <para>业务数据类型标识:DOWN_CLOSELINK_INFORM</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9008Formatter))]
+    [JT809Formatter(typeof(JT809_0x9008_Formatter))]
     public class JT809_0x9008:JT809Bodies
     {
         /// <summary>

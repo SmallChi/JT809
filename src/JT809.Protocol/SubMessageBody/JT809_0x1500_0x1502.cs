@@ -13,7 +13,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_ CTRL_ MSG _TAKE_ PHOTO_ ACK</para>
     /// <para>描述:下级平台应答上级平台发送的车辆拍照请求消息，上传图片信息到上级平台</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1500_0x1502Formatter))]
+    [JT809Formatter(typeof(JT809_0x1500_0x1502_Formatter))]
     public class JT809_0x1500_0x1502:JT809SubBodies
     {
         public JT809_0x1500_0x1502()

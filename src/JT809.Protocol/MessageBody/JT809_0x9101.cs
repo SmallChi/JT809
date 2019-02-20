@@ -14,7 +14,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>描述:上级平台向下级平台定星通知已经收到下级平台上传的车辆定位信息数量(如:每收到10,000 条车辆定位信息通知一次)</para>
     /// <para>本条消息不需下级平台应答。</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9101Formatter))]
+    [JT809Formatter(typeof(JT809_0x9101_Formatter))]
     public class JT809_0x9101:JT809Bodies
     {
         /// <summary>
