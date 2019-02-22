@@ -23,6 +23,17 @@ namespace JT809.Protocol.Extensions
         }
 
         /// <summary>
+        /// 转为 u16 整型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static ushort ToUInt16Value<T>(this T t) where T : struct
+        {
+            return Convert.ToUInt16(t);
+        }
+
+        /// <summary>
         /// 转为Byte
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -89,7 +100,7 @@ namespace JT809.Protocol.Extensions
         /// <summary>
         /// 获取DescriptionAttribute特性枚举及描述
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
         public static Dictionary<string, string> GetDescriptionAttributeDictionary(this Enum value)
         {
@@ -106,7 +117,7 @@ namespace JT809.Protocol.Extensions
         /// <summary>
         /// 获取DisplayNameAttribute特性枚举值的描述
         /// </summary>
-        /// <param name="value">枚举值</param>
+        /// <param name="obj">枚举值</param>
         /// <returns></returns>
         public static string GetDisplayName(this Enum value)
         {
@@ -117,7 +128,7 @@ namespace JT809.Protocol.Extensions
         /// <summary>
         /// 获取DisplayNameAttribute特性枚举及描述
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
         public static Dictionary<string, string> GetDisplayNameAttributeDictionary(this Enum value)
         {
@@ -158,21 +169,9 @@ namespace JT809.Protocol.Extensions
         /// <typeparam name="T">具体枚举类型</typeparam>
         /// <param name="value">枚举值</param>
         /// <param name="digit">位数(8,16,32)</param>
-        /// <returns></returns>
-        public static IEnumerable<T> GetEnumTypes<T>(this int value,int digit) where T : Enum
-        {
-            return GetEnumTypes<T>(value, digit,true);
-        }
-
-        /// <summary>
-        /// 根据值获取对应枚举类型集合
-        /// </summary>
-        /// <typeparam name="T">具体枚举类型</typeparam>
-        /// <param name="value">枚举值</param>
-        /// <param name="digit">位数(8,16,32)</param>
         /// <param name="ignoreUnknown">是否忽略未知数据</param>
         /// <returns></returns>
-        public static IEnumerable<T> GetEnumTypes<T>(this int value, int digit,bool ignoreUnknown) where T : Enum
+        public static IEnumerable<T> GetEnumTypes<T>(this int value, int digit, bool ignoreUnknown = false) where T : Enum
         {
             List<T> values = new List<T>();
             for (int i = 0; i < digit; i++)
