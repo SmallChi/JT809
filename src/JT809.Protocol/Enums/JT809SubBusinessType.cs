@@ -232,11 +232,12 @@ namespace JT809.Protocol.Enums
         #region 主链路报警信息交互消息 UP_WARN_MSG
         ///<summary>
         ///报警督办应答	
+        ///UP_WARN_MSG_URGE_TODO_ACK
         ///</summary>
         [Description("报警督办应答")]
         [JT809BodiesType(typeof(JT809_0x1400_0x1401))]
-        [JT809SubBusinessTypeDescription("DOWN_PLATFORM_MSG_INFO_REQ", "下发平台间报文请求", JT809BusinessType.主链路报警信息交互消息)]
-        UP_WARN_MSG_URGE_TODO_ACK = 0x1401,
+        [JT809SubBusinessTypeDescription("UP_WARN_MSG_URGE_TODO_ACK", "报警督办应答", JT809BusinessType.主链路报警信息交互消息)]
+        报警督办应答 = 0x1401,
         ///<summary>
         ///上报报警信息	
         ///UP_WARN_MSG_ADPT_INFO
