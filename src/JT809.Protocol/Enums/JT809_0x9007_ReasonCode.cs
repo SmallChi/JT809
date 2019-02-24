@@ -10,7 +10,7 @@ namespace JT809.Protocol.Enums
     public enum JT809_0x9007_ReasonCode : byte
     {
         无法连接下级平台指定的服务IP与端口 = 0x00,
-        级平台客户端与下级平台服务端断开 = 0x01,
+        上级平台客户端与下级平台服务端断开 = 0x01,
         其他原因=0x02
     }
 }
