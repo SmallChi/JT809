@@ -14,12 +14,21 @@ namespace JT809.Protocol
     {
         public static byte[] Serialize(JT809Package jT809Package, int minBufferSize = 1024)
         {
-            return Serialize<JT809Package>(jT809Package, minBufferSize);
+            byte[] buffer = JT809ArrayPool.Rent(minBufferSize);
+            try
+            {
+                var len = JT809FormatterExtensions.PackageFormatter.Serialize(ref buffer, 0, jT809Package);
+                return buffer.AsSpan(0, len).ToArray();
+            }
+            finally
+            {
+                JT809ArrayPool.Return(buffer);
+            }
         }
 
         public static JT809Package Deserialize(ReadOnlySpan<byte> bytes)
         {
-            return Deserialize<JT809Package>(bytes);
+            return JT809FormatterExtensions.PackageFormatter.Deserialize(bytes, out _);
         }
 
         public static byte[] Serialize<T>(T obj, int minBufferSize = 1024)
@@ -39,9 +48,7 @@ namespace JT809.Protocol
 
         public static T Deserialize<T>(ReadOnlySpan<byte> bytes)
         {
-            var formatter = JT809FormatterExtensions.GetFormatter<T>();
-            int readSize;
-            return formatter.Deserialize(bytes, out readSize);
+            return JT809FormatterExtensions.GetFormatter<T>().Deserialize(bytes, out _);
         }
     }
 }

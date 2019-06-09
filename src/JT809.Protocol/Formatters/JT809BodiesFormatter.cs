@@ -6,6 +6,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Text;
+using JT809.Protocol.Internal;
 
 namespace JT809.Protocol.Formatters
 {
@@ -20,15 +21,9 @@ namespace JT809.Protocol.Formatters
             jT809Bodies.VehicleColor = (JT809VehicleColorType)JT809BinaryExtensions.ReadByteLittle(bytes, ref offset);
             jT809Bodies.SubBusinessType = (JT809SubBusinessType)JT809BinaryExtensions.ReadUInt16Little(bytes, ref offset);
             jT809Bodies.DataLength = JT809BinaryExtensions.ReadUInt32Little(bytes, ref offset);
-            //JT809.Protocol.Enums.JT809BusinessType 映射对应消息特性
-            JT809BodiesTypeAttribute jT809SubBodiesTypeAttribute = jT809Bodies.SubBusinessType.GetAttribute<JT809BodiesTypeAttribute>();
-            if (jT809SubBodiesTypeAttribute == null)
-            {
-                throw new JT809Exception(JT809ErrorCode.GetAttributeError, $"JT809BodiesTypeAttribute Not Found>{jT809Bodies.SubBusinessType.ToString()}");
-            }
             try
             {
-                jT809Bodies.SubBodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), bytes.Slice(offset, (int)jT809Bodies.DataLength), out readSize);
+                jT809Bodies.SubBodies = jT809Bodies.SubBusinessType.Deserialize(bytes.Slice(offset, (int)jT809Bodies.DataLength), out readSize);
             }
             catch
             {
@@ -43,17 +38,11 @@ namespace JT809.Protocol.Formatters
             offset += JT809BinaryExtensions.WriteStringLittle(bytes, offset, value.VehicleNo, 21);
             offset += JT809BinaryExtensions.WriteByteLittle(bytes, offset, (byte)value.VehicleColor);
             offset += JT809BinaryExtensions.WriteUInt16Little(bytes, offset, (ushort)value.SubBusinessType);
-            //JT809.Protocol.Enums.JT809BusinessType 映射对应消息特性
-            JT809BodiesTypeAttribute jT809SubBodiesTypeAttribute = value.SubBusinessType.GetAttribute<JT809BodiesTypeAttribute>();
-            if (jT809SubBodiesTypeAttribute == null)
-            {
-                throw new JT809Exception(JT809ErrorCode.GetAttributeError, $"JT809BodiesTypeAttribute Not Found>{value.SubBusinessType.ToString()}");
-            }
             try
             {
                 // 先写入内容，然后在根据内容反写内容长度
                 offset = offset + 4;
-                int contentOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809SubBodiesTypeAttribute.JT809BodiesType), ref bytes, offset, value.SubBodies);
+                int contentOffset = value.SubBusinessType.Serialize(ref bytes, offset, value.SubBodies);
                 JT809BinaryExtensions.WriteUInt32Little(bytes, offset - 4, (uint)(contentOffset- offset));
                 offset = contentOffset;
             }

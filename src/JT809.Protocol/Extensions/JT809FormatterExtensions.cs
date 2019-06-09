@@ -46,5 +46,15 @@ namespace JT809.Protocol.Extensions
             }
             return formatter;
         }
+
+        static JT809FormatterExtensions()
+        {
+            PackageFormatter = (JT809PackageFormatter)GetFormatter<JT809Package>();
+            HeaderPackageFormatter = (JT809HeaderPackageFormatter)GetFormatter<JT809HeaderPackage>();
+            HeaderFormatter = (JT809HeaderFormatter)GetFormatter<JT809Header>();
+        }
+        public static JT809PackageFormatter PackageFormatter { get; }
+        public static JT809HeaderPackageFormatter HeaderPackageFormatter { get; }
+        public static JT809HeaderFormatter HeaderFormatter { get; }
     }
 }

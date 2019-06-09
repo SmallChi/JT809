@@ -7,7 +7,7 @@ using System.Text;
 
 namespace JT809.Protocol.Formatters.SubMessageBodyFormatters
 {
-    public class JT809_0x9600_0x1601_Formatter : IJT809Formatter<JT809_0x1600_0x1601>
+    public class JT809_0x1600_0x1601_Formatter : IJT809Formatter<JT809_0x1600_0x1601>
     {
         public JT809_0x1600_0x1601 Deserialize(ReadOnlySpan<byte> bytes, out int readSize)
         {

@@ -1,0 +1,51 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="netstandard" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="JT809.Protocol" #>
+<#@ import namespace="JT809.Protocol.Enums" #>
+<#@ import namespace="JT809.Protocol.Extensions" #>
+<#@ import namespace="JT809.Protocol.Attributes" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ output extension=".cs" #>
+
+<#
+	var types=Enum.GetNames(typeof(JT809SubBusinessType));
+#>
+using JT809.Protocol.Enums;
+
+namespace JT809.Protocol.Extensions
+{
+	/// <summary>
+	/// 子命令包
+	/// auto-generated
+	/// </summary>
+	public static partial class JT809SubPackageExtensions
+    {
+
+<#
+	foreach (var item in types)
+    {
+		JT809SubBusinessType jT809SubBusinessType = item.ToEnum<JT809SubBusinessType>();
+		if (jT809SubBusinessType == JT809SubBusinessType.None)  continue;
+		JT809BodiesTypeAttribute jT809SubBodiesTypeAttribute = jT809SubBusinessType.GetAttribute<JT809BodiesTypeAttribute>();
+		JT809SubBusinessTypeDescriptionAttribute jT809SubBusinessTypeDescriptionAttribute = jT809SubBusinessType.GetAttribute<JT809SubBusinessTypeDescriptionAttribute>();
+#>
+		/// <summary>
+		/// <#= jT809SubBusinessTypeDescriptionAttribute.BusinessType.ToString() #>
+		/// <#= jT809SubBusinessTypeDescriptionAttribute.Code #> - <#= jT809SubBusinessTypeDescriptionAttribute.Name #>
+		/// auto-generated
+		/// </summary>
+	    public static <#= jT809SubBodiesTypeAttribute.JT809BodiesType.FullName #> Create_<#= jT809SubBusinessTypeDescriptionAttribute.Name #>(this JT809SubBusinessType jT809SubBusinessType,<#= jT809SubBodiesTypeAttribute.JT809BodiesType.FullName #> subBodies)
+		{
+			return Create<<#= jT809SubBodiesTypeAttribute.JT809BodiesType.FullName#>>(jT809SubBusinessType,subBodies);
+		}
+<#
+    }
+#>
+	}
+}

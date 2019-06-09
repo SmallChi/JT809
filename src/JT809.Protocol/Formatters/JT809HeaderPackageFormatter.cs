@@ -6,7 +6,7 @@ using System;
 
 namespace JT809.Protocol.Formatters
 {
-    public class JT809HeaderPackageFromatter : IJT809Formatter<JT809HeaderPackage>
+    public class JT809HeaderPackageFormatter : IJT809Formatter<JT809HeaderPackage>
     {
         public JT809HeaderPackage Deserialize(ReadOnlySpan<byte> bytes, out int readSize)
         {
@@ -35,7 +35,7 @@ namespace JT809.Protocol.Formatters
             // 3.初始化消息头
             try
             {
-                jT809HeaderPackage.Header = JT809FormatterExtensions.GetFormatter<JT809Header>().Deserialize(buffer.Slice(offset, JT809Header.FixedByteLength), out readSize);
+                jT809HeaderPackage.Header = JT809FormatterExtensions.HeaderFormatter.Deserialize(buffer.Slice(offset, JT809Header.FixedByteLength), out readSize);
             }
             catch (Exception ex)
             {
@@ -46,29 +46,24 @@ namespace JT809.Protocol.Formatters
             //  5.1 判断是否有数据体（总长度-固定长度）> 0
             if ((jT809HeaderPackage.Header.MsgLength - JT809Package.FixedByteLength) > 0)
             {
-                //JT809.Protocol.Enums.JT809BusinessType 映射对应消息特性
-                JT809BodiesTypeAttribute jT809BodiesTypeAttribute = jT809HeaderPackage.Header.BusinessType.GetAttribute<JT809BodiesTypeAttribute>();
-                if (jT809BodiesTypeAttribute != null)
+                try
                 {
-                    try
+                    // 5.2 是否加密
+                    switch (jT809HeaderPackage.Header.EncryptFlag)
                     {
-                        // 5.2 是否加密
-                        switch (jT809HeaderPackage.Header.EncryptFlag)
-                        {
-                            case JT809Header_Encrypt.None:
-                                //5.3 处理消息体
-                                jT809HeaderPackage.Bodies = buffer.Slice(offset, checkIndex - offset).ToArray();
-                                break;
-                            case JT809Header_Encrypt.Common:
-                                byte[] bodiesData = JT809GlobalConfig.Instance.Encrypt.Decrypt(buffer.Slice(offset, checkIndex - offset).ToArray(), jT809HeaderPackage.Header.EncryptKey);
-                                jT809HeaderPackage.Bodies = bodiesData;
-                                break;
-                        }
+                        case JT809Header_Encrypt.None:
+                            //5.3 处理消息体
+                            jT809HeaderPackage.Bodies = buffer.Slice(offset, checkIndex - offset).ToArray();
+                            break;
+                        case JT809Header_Encrypt.Common:
+                            byte[] bodiesData = JT809GlobalConfig.Instance.Encrypt.Decrypt(buffer.Slice(offset, checkIndex - offset).ToArray(), jT809HeaderPackage.Header.EncryptKey);
+                            jT809HeaderPackage.Bodies = bodiesData;
+                            break;
                     }
-                    catch (Exception ex)
-                    {
-                        throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{offset.ToString()}", ex);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{offset.ToString()}", ex);
                 }
             }
             jT809HeaderPackage.EndFlag = buffer[buffer.Length - 1];

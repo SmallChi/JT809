@@ -9,7 +9,7 @@ namespace JT809.Protocol
     /// <summary>
     /// JT809头部数据包
     /// </summary>
-    [JT809Formatter(typeof(JT809HeaderPackageFromatter))]
+    [JT809Formatter(typeof(JT809HeaderPackageFormatter))]
     public class JT809HeaderPackage
     {
         public byte BeginFlag { get; set; } = JT809Package.BEGINFLAG;

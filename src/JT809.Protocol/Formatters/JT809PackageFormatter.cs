@@ -2,6 +2,7 @@
 using JT809.Protocol.Enums;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.Extensions;
+using JT809.Protocol.Internal;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace JT809.Protocol.Formatters
             // 3.初始化消息头
             try
             {
-                jT809Package.Header = JT809FormatterExtensions.GetFormatter<JT809Header>().Deserialize(buffer.Slice(offset, JT809Header.FixedByteLength), out readSize);
+                jT809Package.Header = JT809FormatterExtensions.HeaderFormatter.Deserialize(buffer.Slice(offset, JT809Header.FixedByteLength), out readSize);
             }
             catch (Exception ex)
             {
@@ -49,29 +50,24 @@ namespace JT809.Protocol.Formatters
             //  5.1 判断是否有数据体（总长度-固定长度）> 0
             if ((jT809Package.Header.MsgLength - JT809Package.FixedByteLength) > 0)
             {
-                //JT809.Protocol.Enums.JT809BusinessType 映射对应消息特性
-                JT809BodiesTypeAttribute jT809BodiesTypeAttribute = jT809Package.Header.BusinessType.GetAttribute<JT809BodiesTypeAttribute>();
-                if (jT809BodiesTypeAttribute != null)
+                try
                 {
-                    try
+                    // 5.2 是否加密
+                    switch (jT809Package.Header.EncryptFlag)
                     {
-                        // 5.2 是否加密
-                        switch (jT809Package.Header.EncryptFlag)
-                        {
-                            case JT809Header_Encrypt.None:
-                                //5.3 处理消息体
-                                jT809Package.Bodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), buffer.Slice(offset, checkIndex - offset), out readSize);
-                                break;
-                            case JT809Header_Encrypt.Common:
-                                byte[] bodiesData = JT809GlobalConfig.Instance.Encrypt.Decrypt(buffer.Slice(offset, checkIndex - offset).ToArray(), jT809Package.Header.EncryptKey);
-                                jT809Package.Bodies = JT809FormatterResolverExtensions.JT809DynamicDeserialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), bodiesData, out readSize);
-                                break;
-                        }
+                        case JT809Header_Encrypt.None:
+                            //5.3 处理消息体
+                            jT809Package.Bodies = jT809Package.Header.BusinessType.Deserialize(buffer.Slice(offset, checkIndex - offset), out readSize);
+                            break;
+                        case JT809Header_Encrypt.Common:
+                            byte[] bodiesData = JT809GlobalConfig.Instance.Encrypt.Decrypt(buffer.Slice(offset, checkIndex - offset).ToArray(), jT809Package.Header.EncryptKey);
+                            jT809Package.Bodies = jT809Package.Header.BusinessType.Deserialize(bodiesData, out readSize);
+                            break;
                     }
-                    catch (Exception ex)
-                    {
-                        throw new JT809Exception(JT809ErrorCode.BodiesParseError,$"offset>{offset.ToString()}", ex);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new JT809Exception(JT809ErrorCode.BodiesParseError,$"offset>{offset.ToString()}", ex);
                 }
             }
             jT809Package.EndFlag = buffer[buffer.Length - 1];
@@ -83,14 +79,10 @@ namespace JT809.Protocol.Formatters
         {
             // 1. 先序列化数据体，根据数据体的长度赋值给头部，在序列化头部。
             int messageBodyOffset = 0;
-            JT809BodiesTypeAttribute jT809BodiesTypeAttribute = value.Header.BusinessType.GetAttribute<JT809BodiesTypeAttribute>();
-            if (jT809BodiesTypeAttribute != null)
+            if (value.Bodies != null)
             {
-                if (value.Bodies != null)
-                {
-                    // 1.1 处理数据体
-                    messageBodyOffset = JT809FormatterResolverExtensions.JT809DynamicSerialize(JT809FormatterExtensions.GetFormatter(jT809BodiesTypeAttribute.JT809BodiesType), ref bytes, messageBodyOffset, value.Bodies);
-                }
+                // 1.1 处理数据体
+                messageBodyOffset = value.Header.BusinessType.Serialize(ref bytes, messageBodyOffset, value.Bodies);
             }
             byte[] messageBodyData=null;
             if (messageBodyOffset != 0)
@@ -119,7 +111,7 @@ namespace JT809.Protocol.Formatters
                 value.Header.MsgLength = JT809Package.FixedByteLength;
             }
             // 2.1写入头部数据
-            offset = JT809FormatterExtensions.GetFormatter<JT809Header>().Serialize(ref bytes, offset, value.Header);
+            offset = JT809FormatterExtensions.HeaderFormatter.Serialize(ref bytes, offset, value.Header);
             if (messageBodyOffset != 0)
             {
                 // 3. 写入数据体
