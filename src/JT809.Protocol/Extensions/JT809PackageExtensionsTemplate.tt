@@ -1,0 +1,63 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="netstandard" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="JT809.Protocol" #>
+<#@ import namespace="JT809.Protocol.Enums" #>
+<#@ import namespace="JT809.Protocol.Extensions" #>
+<#@ import namespace="JT809.Protocol.Attributes" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ output extension=".cs" #>
+
+<#
+	var types=Enum.GetNames(typeof(JT809BusinessType));
+#>
+using JT809.Protocol.Enums;
+
+namespace JT809.Protocol.Extensions
+{
+	public static partial class JT809PackageExtensions
+	{
+	<#
+	foreach (var item in types)
+    {
+		JT809BusinessType jT809BusinessType = item.ToEnum<JT809BusinessType>();
+		JT809BodiesTypeAttribute jT809BodiesTypeAttribute = jT809BusinessType.GetAttribute<JT809BodiesTypeAttribute>();
+		JT809BusinessTypeDescriptionAttribute jT809MsgIdDescriptionAttribute = jT809BusinessType.GetAttribute<JT809BusinessTypeDescriptionAttribute>();
+
+#>
+		/// <summary>
+		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= jT809MsgIdDescriptionAttribute.Name #>
+		/// auto-generated
+		/// </summary>
+	    public static JT809Package Create_<#= jT809MsgIdDescriptionAttribute.Name #>(this JT809BusinessType jT809BusinessType,<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
+		{
+			return Create<<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName#>>(jT809BusinessType,bodies);
+		}
+
+		/// <summary>
+		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= jT809MsgIdDescriptionAttribute.Name #>
+		/// auto-generated
+		/// </summary>
+	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, <#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
+		{
+			return Create<<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName#>>(jT809BusinessType,bodies);
+		}
+
+		/// <summary>
+		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= jT809MsgIdDescriptionAttribute.Name #>
+		/// auto-generated
+		/// </summary>
+	    public static JT809Package Create_<#= jT809MsgIdDescriptionAttribute.Name #>(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  <#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
+		{
+			return Create<<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName#>>(jT809BusinessType,jT809Header,bodies);
+		}
+<#
+    }
+#>
+	}
+}
