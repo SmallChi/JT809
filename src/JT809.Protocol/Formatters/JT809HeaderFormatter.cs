@@ -18,7 +18,7 @@ namespace JT809.Protocol.Formatters
             JT809Header jT809Header = new JT809Header();
             jT809Header.MsgLength = reader.ReadUInt32();
             jT809Header.MsgSN = reader.ReadUInt32();
-            jT809Header.BusinessType = (JT809BusinessType)reader.ReadUInt16();
+            jT809Header.BusinessType = reader.ReadUInt16();
             jT809Header.MsgGNSSCENTERID = reader.ReadUInt32();
             jT809Header.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
             jT809Header.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
@@ -30,7 +30,7 @@ namespace JT809.Protocol.Formatters
         {
             writer.WriteUInt32(value.MsgLength);
             writer.WriteUInt32( value.MsgSN);
-            writer.WriteUInt16((ushort)value.BusinessType);
+            writer.WriteUInt16(value.BusinessType);
             writer.WriteUInt32(value.MsgGNSSCENTERID);
             writer.WriteArray(value.Version.Buffer);
             writer.WriteByte((byte)value.EncryptFlag);

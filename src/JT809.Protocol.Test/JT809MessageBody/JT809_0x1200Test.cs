@@ -20,7 +20,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x1200 jT809_0X1200 = new JT809_0x1200();
             jT809_0X1200.VehicleNo= "粤A12345";
             jT809_0X1200.VehicleColor = JT809VehicleColorType.蓝色;
-            jT809_0X1200.SubBusinessType = JT809SubBusinessType.上传车辆注册信息;
+            jT809_0X1200.SubBusinessType = JT809SubBusinessType.上传车辆注册信息.ToUInt16Value();
             jT809_0X1200.DataLength = 61;
             JT809_0x1200_0x1201 jT809_0X1200_0X1201 = new JT809_0x1200_0x1201
             {
@@ -53,7 +53,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x1200 jT809_0X9001 = JT809Serializer.Deserialize<JT809_0x1200>(bytes);
             Assert.Equal("粤A12345", jT809_0X9001.VehicleNo);
             Assert.Equal(JT809VehicleColorType.蓝色, jT809_0X9001.VehicleColor);
-            Assert.Equal(JT809SubBusinessType.上传车辆注册信息, jT809_0X9001.SubBusinessType);
+            Assert.Equal(JT809SubBusinessType.上传车辆注册信息, (JT809SubBusinessType)jT809_0X9001.SubBusinessType);
             Assert.Equal((ushort)61, jT809_0X9001.DataLength);
             JT809_0x1200_0x1201 jT809_0X1200_0X1201 = jT809_0X9001.SubBodies as JT809_0x1200_0x1201;
             Assert.Equal("1111111111", jT809_0X1200_0X1201.PlateformId);

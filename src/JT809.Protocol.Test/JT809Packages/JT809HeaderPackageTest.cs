@@ -21,7 +21,7 @@ namespace JT809.Protocol.Test.JT809Packages
             Assert.Equal((uint)133, jT809HeaderPackage.Header.MsgSN);
             Assert.Equal((uint)9999, jT809HeaderPackage.Header.EncryptKey);
             Assert.Equal((uint)20180920, jT809HeaderPackage.Header.MsgGNSSCENTERID);
-            Assert.Equal(JT809BusinessType.主链路登录请求消息, jT809HeaderPackage.Header.BusinessType);
+            Assert.Equal(JT809BusinessType.主链路登录请求消息, (JT809BusinessType)jT809HeaderPackage.Header.BusinessType);
             Assert.Equal(new JT809Header_Version().ToString(), jT809HeaderPackage.Header.Version.ToString());
             JT809_0x1001 jT809_0X1001 = JT809Serializer.Deserialize<JT809_0x1001>(jT809HeaderPackage.Bodies);
             Assert.Equal((uint)20180920, jT809_0X1001.UserId);

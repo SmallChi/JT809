@@ -30,11 +30,15 @@ namespace JT809.Protocol.Formatters
             TJT809Bodies jT809Bodies = new TJT809Bodies();
             jT809Bodies.VehicleNo = reader.ReadString(21);
             jT809Bodies.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
-            jT809Bodies.SubBusinessType = (JT809SubBusinessType)reader.ReadUInt16();
+            jT809Bodies.SubBusinessType = reader.ReadUInt16();
             jT809Bodies.DataLength = reader.ReadUInt32();
             try
             {
-                jT809Bodies.SubBodies = jT809Bodies.SubBusinessType.Deserialize(ref reader, config);
+                Type jT809SubBodiesImplType = config.SubBusinessTypeFactory.GetSubBodiesImplTypeBySubBusinessType(jT809Bodies.SubBusinessType);
+                if (jT809SubBodiesImplType != null)
+                    jT809Bodies.SubBodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(
+                                 config.GetMessagePackFormatterByType(jT809SubBodiesImplType),
+                                 ref reader, config);
             }
             catch
             {
@@ -47,12 +51,18 @@ namespace JT809.Protocol.Formatters
         {
             writer.WriteStringPadRight(value.VehicleNo, 21);
             writer.WriteByte((byte)value.VehicleColor);
-            writer.WriteUInt16((ushort)value.SubBusinessType);
+            writer.WriteUInt16(value.SubBusinessType);
             try
             {
                 // 先写入内容，然后在根据内容反写内容长度
                 writer.Skip(4, out int subContentLengthPosition);
-                value.SubBusinessType.Serialize(ref writer,value.SubBodies, config);
+                if (value.SubBodies != null)
+                {
+                    JT809MessagePackFormatterResolverExtensions.JT809DynamicSerialize(
+                               config.GetMessagePackFormatterByType(value.SubBodies.GetType()),
+                               ref writer, value.SubBodies,
+                               config);
+                }
                 writer.WriteInt32Return(writer.GetCurrentPosition()- subContentLengthPosition - 4, subContentLengthPosition);
             }
             catch

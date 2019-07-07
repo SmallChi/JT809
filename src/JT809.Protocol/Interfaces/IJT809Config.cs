@@ -1,10 +1,12 @@
-﻿using JT809.Protocol.Configs;
+﻿using JT808.Protocol.Formatters;
+using JT809.Protocol.Configs;
+using JT809.Protocol.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace JT809.Protocol.Interfaces
+namespace JT809.Protocol
 {
     public interface IJT809Config
     {
@@ -35,6 +37,9 @@ namespace JT809.Protocol.Interfaces
         /// 加密选项
         /// </summary>
         JT809EncryptOptions EncryptOptions { get; set; }
+        IJT809BusinessTypeFactory BusinessTypeFactory { get; set; }
+        IJT809SubBusinessTypeFactory SubBusinessTypeFactory { get; set; }
+        IJT809FormatterFactory FormatterFactory { get; set; }
         /// <summary>
         /// 全局注册外部程序集
         /// </summary>

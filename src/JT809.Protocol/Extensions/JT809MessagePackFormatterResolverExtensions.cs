@@ -18,7 +18,7 @@ namespace JT809.Protocol.Extensions
     /// </summary>
     public static class JT809MessagePackFormatterResolverExtensions
     {
-        delegate int JT809SerializeMethod(object dynamicFormatter, ref JT809MessagePackWriter writer,object value, IJT809Config config);
+        delegate void JT809SerializeMethod(object dynamicFormatter, ref JT809MessagePackWriter writer,object value, IJT809Config config);
 
         delegate dynamic JT809DeserializeMethod(object dynamicFormatter, ref JT809MessagePackReader reader, IJT809Config config);
 
@@ -26,7 +26,7 @@ namespace JT809.Protocol.Extensions
 
         static readonly ConcurrentDictionary<Type, (object Value, JT809DeserializeMethod DeserializeMethod)> jT809Deserializes = new ConcurrentDictionary<Type, (object Value, JT809DeserializeMethod DeserializeMethod)>();
 
-        public static int JT809DynamicSerialize(object objFormatter, ref JT809MessagePackWriter writer, object value, IJT809Config config)
+        public static void JT809DynamicSerialize(object objFormatter, ref JT809MessagePackWriter writer, object value, IJT809Config config)
         {
             Type type = value.GetType();
             var ti = type.GetTypeInfo();
@@ -52,7 +52,7 @@ namespace JT809.Protocol.Extensions
                 }
                 jT809Serializers.TryAdd(t, formatterAndDelegate);
             }
-            return formatterAndDelegate.SerializeMethod(formatterAndDelegate.Value, ref writer, value, config);
+            formatterAndDelegate.SerializeMethod(formatterAndDelegate.Value, ref writer, value, config);
         }
 
         public static dynamic JT809DynamicDeserialize(object objFormatter, ref JT809MessagePackReader reader, IJT809Config config)

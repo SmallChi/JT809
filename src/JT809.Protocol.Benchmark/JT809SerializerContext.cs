@@ -52,7 +52,7 @@ namespace JT809.Protocol.Benchmark
                     EncryptKey = 9999,
                     EncryptFlag = JT809Header_Encrypt.None,
                     Version = new JT809Header_Version(1, 0, 0),
-                    BusinessType = JT809BusinessType.从链路报警信息交互消息,
+                    BusinessType = (ushort)JT809BusinessType.从链路报警信息交互消息,
                     MsgGNSSCENTERID = 20180920,
                 };
 
@@ -60,13 +60,13 @@ namespace JT809.Protocol.Benchmark
                 {
                     VehicleNo = "粤A12345",
                     VehicleColor = JT809VehicleColorType.黄色,
-                    SubBusinessType = JT809SubBusinessType.报警督办请求,
+                    SubBusinessType = JT809SubBusinessType.报警督办请求.ToUInt16Value(),
                 };
 
                 JT809_0x9400_0x9401 jT809_0x9400_0x9401 = new JT809_0x9400_0x9401
                 {
                     WarnSrc = JT809WarnSrc.车载终端,
-                    WarnType = JT809WarnType.疲劳驾驶报警,
+                    WarnType = JT809WarnType.疲劳驾驶报警.ToUInt16Value(),
                     WarnTime = DateTime.Parse("2018-09-27 10:24:00"),
                     SupervisionID = "123FFAA1",
                     SupervisionEndTime = DateTime.Parse("2018-09-27 11:24:00"),

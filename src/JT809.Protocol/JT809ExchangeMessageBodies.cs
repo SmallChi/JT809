@@ -23,7 +23,7 @@ namespace JT809.Protocol
         /// <summary>
         /// 子业务类型标识
         /// </summary>
-        public JT809SubBusinessType SubBusinessType { get; set; } = JT809SubBusinessType.None;
+        public ushort SubBusinessType { get; set; } 
         /// <summary>
         /// 后续数据长度
         /// </summary>

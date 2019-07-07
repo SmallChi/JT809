@@ -20,7 +20,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x1600 jT809Bodies = new JT809_0x1600();
             jT809Bodies.VehicleNo = "粤A12345";
             jT809Bodies.VehicleColor = JT809VehicleColorType.蓝色;
-            jT809Bodies.SubBusinessType = JT809SubBusinessType.补报车辆静态信息应答;
+            jT809Bodies.SubBusinessType = JT809SubBusinessType.补报车辆静态信息应答.ToUInt16Value();
             jT809Bodies.SubBodies = new JT809_0x1600_0x1601
             {
                 CarInfo = "什么鬼"
@@ -37,7 +37,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
             JT809_0x1600 jT809Bodies = JT809Serializer.Deserialize<JT809_0x1600>(bytes);
             Assert.Equal("粤A12345", jT809Bodies.VehicleNo);
             Assert.Equal(JT809VehicleColorType.蓝色, jT809Bodies.VehicleColor);
-            Assert.Equal(JT809SubBusinessType.补报车辆静态信息应答, jT809Bodies.SubBusinessType);
+            Assert.Equal(JT809SubBusinessType.补报车辆静态信息应答, (JT809SubBusinessType)jT809Bodies.SubBusinessType);
             Assert.Equal("什么鬼", ((JT809_0x1600_0x1601)jT809Bodies.SubBodies).CarInfo);
         }
     }

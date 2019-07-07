@@ -18,7 +18,7 @@ namespace JT809.Protocol.Formatters.SubMessageBodyFormatters
         {
             JT809_0x9400_0x9401 jT809_0X9400_0X9401 = new JT809_0x9400_0x9401();
             jT809_0X9400_0X9401.WarnSrc = (JT809WarnSrc)reader.ReadByte();
-            jT809_0X9400_0X9401.WarnType = (JT809WarnType)reader.ReadUInt16();
+            jT809_0X9400_0X9401.WarnType =reader.ReadUInt16();
             jT809_0X9400_0X9401.WarnTime = reader.ReadUTCDateTime();
             jT809_0X9400_0X9401.SupervisionID = reader.ReadHex(4);
             jT809_0X9400_0X9401.SupervisionEndTime = reader.ReadUTCDateTime();

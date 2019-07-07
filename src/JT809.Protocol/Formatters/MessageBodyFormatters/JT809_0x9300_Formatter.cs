@@ -20,12 +20,16 @@ namespace JT809.Protocol.Formatters.MessageBodyFormatters
         public JT809_0x9300 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9300 jT809_0X9300 = new JT809_0x9300();
-            jT809_0X9300.SubBusinessType = (JT809SubBusinessType)reader.ReadUInt16();
+            jT809_0X9300.SubBusinessType =reader.ReadUInt16();
             jT809_0X9300.DataLength = reader.ReadUInt32();
             //JT809.Protocol.Enums.JT809BusinessType 映射对应消息特性
             try
             {
-                jT809_0X9300.SubBodies = jT809_0X9300.SubBusinessType.Deserialize(ref reader, config);
+                Type jT809SubBodiesImplType = config.SubBusinessTypeFactory.GetSubBodiesImplTypeBySubBusinessType(jT809_0X9300.SubBusinessType);
+                if (jT809SubBodiesImplType != null)
+                    jT809_0X9300.SubBodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(
+                                 config.GetMessagePackFormatterByType(jT809SubBodiesImplType),
+                                 ref reader, config);
             }
             catch
             {
@@ -36,13 +40,19 @@ namespace JT809.Protocol.Formatters.MessageBodyFormatters
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9300 value, IJT809Config config)
         {
-            writer.WriteUInt16((ushort)value.SubBusinessType);
+            writer.WriteUInt16(value.SubBusinessType);
             //JT809.Protocol.Enums.JT809BusinessType 映射对应消息特性
             try
             {
                 // 先写入内容，然后在根据内容反写内容长度
                 writer.Skip(4, out int subContentLengthPosition);
-                value.SubBusinessType.Serialize(ref writer, value.SubBodies, config);
+                if (value.SubBodies != null)
+                {
+                    JT809MessagePackFormatterResolverExtensions.JT809DynamicSerialize(
+                               config.GetMessagePackFormatterByType(value.SubBodies.GetType()),
+                               ref writer, value.SubBodies,
+                               config);
+                }
                 writer.WriteInt32Return(writer.GetCurrentPosition() - subContentLengthPosition - 4, subContentLengthPosition);
             }
             catch

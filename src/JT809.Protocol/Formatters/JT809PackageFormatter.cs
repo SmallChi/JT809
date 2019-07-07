@@ -44,19 +44,27 @@ namespace JT809.Protocol.Formatters
             {
                 try
                 {
-                    // 5.2 是否加密
-                    switch (jT809Package.Header.EncryptFlag)
+                    Type jT809BodiesImplType = config.BusinessTypeFactory.GetBodiesImplTypeByBusinessType(jT809Package.Header.BusinessType, jT809Package.Header.MsgGNSSCENTERID);
+                    if (jT809BodiesImplType != null)
                     {
-                        case JT809Header_Encrypt.None:
-                            // 5.3 处理消息体
-                            jT809Package.Bodies = jT809Package.Header.BusinessType.Deserialize(ref reader, config);
-                            break;
-                        case JT809Header_Encrypt.Common:
-                            // 5.4. 处理加密消息体
-                            byte[] bodiesData = config.Encrypt.Decrypt(reader.ReadContent(), config.EncryptOptions, jT809Package.Header.EncryptKey);
-                            JT809MessagePackReader bodiesReader = new JT809MessagePackReader(bodiesData);
-                            jT809Package.Bodies = jT809Package.Header.BusinessType.Deserialize(ref bodiesReader, config);
-                            break;
+                        // 5.2 是否加密
+                        switch (jT809Package.Header.EncryptFlag)
+                        {
+                            case JT809Header_Encrypt.None:
+                                // 5.3 处理消息体
+                                jT809Package.Bodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(
+                                 config.GetMessagePackFormatterByType(jT809BodiesImplType),
+                                 ref reader, config);
+                                break;
+                            case JT809Header_Encrypt.Common:
+                                // 5.4. 处理加密消息体
+                                byte[] bodiesData = config.Encrypt.Decrypt(reader.ReadContent(), config.EncryptOptions, jT809Package.Header.EncryptKey);
+                                JT809MessagePackReader bodiesReader = new JT809MessagePackReader(bodiesData);
+                                jT809Package.Bodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(
+                                                                 config.GetMessagePackFormatterByType(jT809BodiesImplType),
+                                                                 ref bodiesReader, config);
+                                break;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -81,7 +89,7 @@ namespace JT809.Protocol.Formatters
             value.Header.MsgSN = value.Header.MsgSN > 0 ? value.Header.MsgSN : config.MsgSNDistributed.Increment();
             writer.WriteUInt32(value.Header.MsgSN);
             //  2.3.业务数据类型
-            writer.WriteUInt16((ushort)value.Header.BusinessType);
+            writer.WriteUInt16(value.Header.BusinessType);
             //  2.4.下级平台接入码
             writer.WriteUInt32(value.Header.MsgGNSSCENTERID);
             //  2.5.版本号
@@ -94,7 +102,13 @@ namespace JT809.Protocol.Formatters
             //  3.1.记录当前开始位置
             int startIndex = writer.GetCurrentPosition();
             //  3.2.写入数据对应数据体
-            value.Header.BusinessType.Serialize(ref writer, value.Bodies, config);
+            if (value.Bodies != null)
+            {
+                JT809MessagePackFormatterResolverExtensions.JT809DynamicSerialize(
+                           config.GetMessagePackFormatterByType(value.Bodies.GetType()),
+                           ref writer, value.Bodies,
+                           config);
+            }
             //  3.3.记录当前结束位置
             int endIndex = writer.GetCurrentPosition();
             int contentLength = endIndex - startIndex;
