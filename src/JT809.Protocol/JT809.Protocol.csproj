@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
     <license>https://github.com/SmallChi/JT809/blob/master/LICENSE</license>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
