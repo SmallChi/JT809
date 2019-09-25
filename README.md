@@ -248,30 +248,29 @@ static void Main(string[] args)
 
 ``` ini
 
-BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.557 (1809/October2018Update/Redstone5)
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3416.0
-  Job-FVMQGI : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3416.0
-  Job-LGLQDK : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.8.4010.0
+  Job-LGLQDK : .NET Core 2.2.7 (CoreCLR 4.6.28008.02, CoreFX 4.6.28008.03), 64bit RyuJIT
+  Job-ZHZJMS : .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), 64bit RyuJIT
 
-Platform=AnyCpu  Runtime=Clr  Server=False  
+Platform=AnyCpu  Server=False  
 
 ```
-|                                  Method |     Toolchain |      N |           Mean |         Error |        StdDev |         Median |      Gen 0 | Gen 1 | Gen 2 |    Allocated |
-|---------------------------------------- |-------------- |------- |---------------:|--------------:|--------------:|---------------:|-----------:|------:|------:|-------------:|
-| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** |    **100** |     **1,145.8 us** |     **22.830 us** |     **43.986 us** |     **1,144.3 us** |    **17.5781** |     **-** |     **-** |    **118.75 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |       Default |    100 |       757.9 us |      3.429 us |      2.863 us |       757.1 us |    12.6953 |     - |     - |      83.6 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 |    100 |       707.3 us |      2.582 us |      2.288 us |       707.7 us |    18.5547 |     - |     - |    118.75 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |    100 |       564.7 us |      1.691 us |      1.581 us |       564.8 us |    12.6953 |     - |     - |     83.59 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** |  **10000** |   **105,333.9 us** |    **614.531 us** |    **544.766 us** |   **105,205.9 us** |  **1800.0000** |     **-** |     **-** |  **11875.35 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |       Default |  10000 |    80,959.5 us |  1,036.250 us |    865.316 us |    80,677.3 us |  1285.7143 |     - |     - |   8360.25 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 |  10000 |    73,005.2 us |  1,432.367 us |  2,393.163 us |    73,562.0 us |  1857.1429 |     - |     - |     11875 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |  10000 |    54,773.7 us |    234.702 us |    208.057 us |    54,814.1 us |  1333.3333 |     - |     - |   8359.38 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |       **Default** | **100000** | **1,053,064.0 us** |  **4,933.821 us** |  **4,615.100 us** | **1,052,073.9 us** | **19000.0000** |     **-** |     **-** | **118753.65 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |       Default | 100000 |   792,674.1 us | 16,105.634 us | 39,507.395 us |   772,030.9 us | 13000.0000 |     - |     - |  83594.54 KB |
-| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 2.2 | 100000 |   722,564.1 us | 14,036.532 us | 15,601.568 us |   719,740.4 us | 19000.0000 |     - |     - |    118750 KB |
-|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 | 100000 |   588,767.7 us | 12,003.898 us | 31,832.636 us |   579,346.9 us | 13000.0000 |     - |     - |  83593.75 KB |
-
+|                                  Method |     Toolchain |      N |         Mean |        Error |       StdDev |      Gen 0 | Gen 1 | Gen 2 |    Allocated |
+|---------------------------------------- |-------------- |------- |-------------:|-------------:|-------------:|-----------:|------:|------:|-------------:|
+| **JT809_0x9400_0x9401_Package_Deserialize** | **.NET Core 2.2** |    **100** |     **708.1 us** |     **9.502 us** |     **8.888 us** |    **18.5547** |     **-** |     **-** |    **118.75 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |    100 |     579.5 us |     4.797 us |     4.487 us |    12.6953 |     - |     - |     83.59 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 3.0 |    100 |     625.4 us |     6.279 us |     5.874 us |    15.6250 |     - |     - |    100.79 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 3.0 |    100 |     493.5 us |     6.747 us |     5.981 us |    12.6953 |     - |     - |     83.59 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** | **.NET Core 2.2** |  **10000** |  **71,579.2 us** |   **479.153 us** |   **400.115 us** |  **1857.1429** |     **-** |     **-** |     **11875 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 |  10000 |  57,628.0 us | 1,132.986 us | 1,259.311 us |  1333.3333 |     - |     - |   8359.38 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 3.0 |  10000 |  62,621.4 us |   347.593 us |   308.132 us |  1625.0000 |     - |     - |  10078.74 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 3.0 |  10000 |  50,368.3 us |   603.232 us |   564.264 us |  1300.0000 |     - |     - |   8359.38 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** | **.NET Core 2.2** | **100000** | **699,234.2 us** | **4,387.105 us** | **3,889.054 us** | **19000.0000** |     **-** |     **-** |    **118750 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 2.2 | 100000 | 553,963.3 us | 5,945.857 us | 5,561.758 us | 13000.0000 |     - |     - |  83593.75 KB |
+| JT809_0x9400_0x9401_Package_Deserialize | .NET Core 3.0 | 100000 | 625,025.5 us | 2,921.895 us | 2,733.143 us | 16000.0000 |     - |     - | 100787.23 KB |
+|   JT809_0x9400_0x9401_Package_Serialize | .NET Core 3.0 | 100000 | 500,894.2 us | 2,459.516 us | 2,180.297 us | 13000.0000 |     - |     - |  83593.75 KB |
 
 ## JT809协议消息对照表
 
