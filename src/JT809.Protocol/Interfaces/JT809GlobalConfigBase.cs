@@ -9,9 +9,9 @@ using System.Text;
 
 namespace JT809.Protocol.Interfaces
 {
-    public abstract class GlobalConfigBase : IJT809Config
+    public abstract class JT809GlobalConfigBase : IJT809Config
     {
-        protected GlobalConfigBase()
+        protected JT809GlobalConfigBase()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             Encoding = Encoding.GetEncoding("GBK");

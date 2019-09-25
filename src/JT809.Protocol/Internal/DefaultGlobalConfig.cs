@@ -2,7 +2,7 @@
 
 namespace JT809.Protocol.Internal
 {
-    class DefaultGlobalConfig : GlobalConfigBase
+    class DefaultGlobalConfig : JT809GlobalConfigBase
     {
         public override string ConfigId => "Default";
     }

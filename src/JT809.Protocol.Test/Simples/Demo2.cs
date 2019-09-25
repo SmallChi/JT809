@@ -8,7 +8,7 @@ namespace JT809.Protocol.Test.Simples
 {
     public class Demo2
     {
-        class JT809GlobalConfig : GlobalConfigBase
+        class JT809GlobalConfig : JT809GlobalConfigBase
         {
             public override JT809EncryptOptions EncryptOptions { get; set; } = new JT809EncryptOptions()
             {

@@ -56,17 +56,17 @@ namespace JT809.Protocol.Test
         }
     }
 
-    public class DefaultConfig : GlobalConfigBase
+    public class DefaultConfig : JT809GlobalConfigBase
     {
         public override string ConfigId => "test";
     }
 
-    public class Config1 : GlobalConfigBase
+    public class Config1 : JT809GlobalConfigBase
     {
         public override string ConfigId => "Config1";
     }
 
-    public class Config2 : GlobalConfigBase
+    public class Config2 : JT809GlobalConfigBase
     {
         public override string ConfigId => "Config2";
     }
