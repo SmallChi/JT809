@@ -18,6 +18,7 @@ namespace JT809.Protocol.Formatters.MessageBodyFormatters
             JT809_0x1001 jT809_0X1001 = new JT809_0x1001();
             jT809_0X1001.UserId = reader.ReadUInt32();
             jT809_0X1001.Password = reader.ReadString(8);
+            jT809_0X1001.MsgGNSSCENTERID = reader.ReadUInt32();
             jT809_0X1001.DownLinkIP = reader.ReadString(32);
             jT809_0X1001.DownLinkPort = reader.ReadUInt16();
             return jT809_0X1001;
@@ -27,6 +28,7 @@ namespace JT809.Protocol.Formatters.MessageBodyFormatters
         {
             writer.WriteUInt32(value.UserId);
             writer.WriteStringPadRight(value.Password, 8);
+            writer.WriteUInt32(value.MsgGNSSCENTERID);
             writer.WriteStringPadRight(value.DownLinkIP, 32);
             writer.WriteUInt16(value.DownLinkPort);
         }

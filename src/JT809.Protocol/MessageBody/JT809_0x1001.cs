@@ -26,6 +26,10 @@ namespace JT809.Protocol.MessageBody
         /// </summary>
         public string Password { get; set; }
         /// <summary>
+        /// 下级平台接入码
+        /// </summary>
+        public uint MsgGNSSCENTERID { get; set; }
+        /// <summary>
         /// 下级平台提供对应的从链路服务端 IP 地址
         /// 32位
         /// </summary>
