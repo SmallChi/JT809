@@ -49,5 +49,9 @@ namespace JT809.Protocol
         /// 数据加密的密匙，长度为 4 个字节
         /// </summary>
         public uint EncryptKey { get; set; }
+        /// <summary>
+        /// 发送消息时的系统UTC时间，长度为8个字节
+        /// </summary>
+        public DateTime Time { get; set; } = DateTime.Now;
     }
 }

@@ -23,18 +23,20 @@ namespace JT809.Protocol.Formatters
             jT809Header.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
             jT809Header.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
             jT809Header.EncryptKey = reader.ReadUInt32();
+            jT809Header.Time = reader.ReadUTCDateTime();
             return jT809Header;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809Header value, IJT809Config config)
         {
             writer.WriteUInt32(value.MsgLength);
-            writer.WriteUInt32( value.MsgSN);
+            writer.WriteUInt32(value.MsgSN);
             writer.WriteUInt16(value.BusinessType);
             writer.WriteUInt32(value.MsgGNSSCENTERID);
             writer.WriteArray(value.Version.Buffer);
             writer.WriteByte((byte)value.EncryptFlag);
             writer.WriteUInt32(value.EncryptKey);
+            writer.WriteUTCDateTime(value.Time);
         }
     }
 }
