@@ -13,8 +13,8 @@
     <RepositoryUrl>https://github.com/SmallChi/JT809</RepositoryUrl>
     <PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
     <license>https://github.com/SmallChi/JT809/blob/master/LICENSE</license>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>2.1.3</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.1.4</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

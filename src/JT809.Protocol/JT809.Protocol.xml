@@ -1087,6 +1087,11 @@
             数据加密的密匙，长度为 4 个字节
             </summary>
         </member>
+        <member name="P:JT809.Protocol.JT809Header.Time">
+            <summary>
+            发送消息时的系统UTC时间，长度为8个字节
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.JT809HeaderPackage">
             <summary>
             JT809头部数据包
@@ -1165,6 +1170,11 @@
             <summary>
             密码
             8位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1001.MsgGNSSCENTERID">
+            <summary>
+            下级平台接入码
             </summary>
         </member>
         <member name="P:JT809.Protocol.MessageBody.JT809_0x1001.DownLinkIP">
