@@ -15,15 +15,17 @@ namespace JT809.Protocol.Formatters
 
         public JT809Header Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809Header jT809Header = new JT809Header();
-            jT809Header.MsgLength = reader.ReadUInt32();
-            jT809Header.MsgSN = reader.ReadUInt32();
-            jT809Header.BusinessType = reader.ReadUInt16();
-            jT809Header.MsgGNSSCENTERID = reader.ReadUInt32();
-            jT809Header.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
-            jT809Header.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
-            jT809Header.EncryptKey = reader.ReadUInt32();
-            jT809Header.Time = reader.ReadUTCDateTime();
+            JT809Header jT809Header = new JT809Header
+            {
+                MsgLength = reader.ReadUInt32(),
+                MsgSN = reader.ReadUInt32(),
+                BusinessType = reader.ReadUInt16(),
+                MsgGNSSCENTERID = reader.ReadUInt32(),
+                Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength)),
+                EncryptFlag = (JT809Header_Encrypt)reader.ReadByte(),
+                EncryptKey = reader.ReadUInt32(),
+                Time = reader.ReadUTCDateTime()
+            };
             return jT809Header;
         }
 

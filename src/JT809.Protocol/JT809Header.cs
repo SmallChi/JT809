@@ -12,14 +12,14 @@ namespace JT809.Protocol
     {
         /// <summary>
         /// 固定为22个字节长度
-        /// <para>MSG LENGTH + MSG_SN + MSG_ID + MSG_GNSSCENTERID + VERSION_FLAG + ENCRYPT_FLAG + ENCRYPT_KEY</para>
-        /// <para>4 + 4 + 2 + 4 + 3 + 1 + 4 = 22</para>
+        /// <para>MSG LENGTH + MSG_SN + MSG_ID + MSG_GNSSCENTERID + VERSION_FLAG + ENCRYPT_FLAG + ENCRYPT_KEY + TIME</para>
+        /// <para>4 + 4 + 2 + 4 + 3 + 1 + 4 + 8 = 30</para>
         /// </summary>
-        public const int FixedByteLength = 22;
+        public const int FixedByteLength = 30;
         /// <summary>
         /// 数据长度(包括头标识、数据头、数据体和尾标识)
         /// <para>头标识 + 数据头 + 数据体 + 尾标识</para>
-        /// <para>1 + 22 + n + 1</para>
+        /// <para>1 + 30 + n + 1</para>
         /// </summary>
         public uint MsgLength { get; set; }
         /// <summary>

@@ -19,12 +19,14 @@ namespace JT809.Protocol.Formatters
                 //  1.2. 验证校验码
                 if (!reader.CheckXorCodeVali)
                 {
-                    throw new JT809Exception(JT809ErrorCode.CRC16CheckInvalid, $"{reader.CalculateCheckXorCode.ToString()}!={reader.RealCheckXorCode.ToString()}");
+                    throw new JT809Exception(JT809ErrorCode.CRC16CheckInvalid, $"{reader.CalculateCheckXorCode}!={reader.RealCheckXorCode}");
                 }
             }
-            JT809HeaderPackage jT809Package = new JT809HeaderPackage();
-            // 2.读取起始头
-            jT809Package.BeginFlag = reader.ReadStart();
+            JT809HeaderPackage jT809Package = new JT809HeaderPackage
+            {
+                // 2.读取起始头
+                BeginFlag = reader.ReadStart()
+            };
             // 3.初始化消息头
             try
             {
@@ -32,7 +34,7 @@ namespace JT809.Protocol.Formatters
             }
             catch (Exception ex)
             {
-                throw new JT809Exception(JT809ErrorCode.HeaderParseError, $"offset>{reader.ReadCurrentRemainContentLength().ToString()}", ex);
+                throw new JT809Exception(JT809ErrorCode.HeaderParseError, $"offset>{reader.ReadCurrentRemainContentLength()}", ex);
             }
             // 5.数据体处理
             //  5.1 判断是否有数据体（总长度-固定长度）> 0
@@ -56,7 +58,7 @@ namespace JT809.Protocol.Formatters
                 }
                 catch (Exception ex)
                 {
-                    throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{reader.ReadCurrentRemainContentLength().ToString()}", ex);
+                    throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{reader.ReadCurrentRemainContentLength()}", ex);
                 }
             }
             jT809Package.CRCCode = reader.CalculateCheckXorCode;

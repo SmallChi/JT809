@@ -15,12 +15,14 @@ namespace JT809.Protocol.Formatters.MessageBodyFormatters
 
         public JT809_0x1001 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x1001 jT809_0X1001 = new JT809_0x1001();
-            jT809_0X1001.UserId = reader.ReadUInt32();
-            jT809_0X1001.Password = reader.ReadString(8);
-            jT809_0X1001.MsgGNSSCENTERID = reader.ReadUInt32();
-            jT809_0X1001.DownLinkIP = reader.ReadString(32);
-            jT809_0X1001.DownLinkPort = reader.ReadUInt16();
+            JT809_0x1001 jT809_0X1001 = new JT809_0x1001
+            {
+                UserId = reader.ReadUInt32(),
+                Password = reader.ReadString(8),
+                MsgGNSSCENTERID = reader.ReadUInt32(),
+                DownLinkIP = reader.ReadString(32),
+                DownLinkPort = reader.ReadUInt16()
+            };
             return jT809_0X1001;
         }
 
