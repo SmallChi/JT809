@@ -63,42 +63,77 @@ namespace JT809.Protocol.MessagePack
             int len = SrcBuffer.Length;
             allocateBuffer[offset++] = SrcBuffer[0];
             // 取出校验码看是否需要转义
-            ReadOnlySpan<byte> checkCodeBufferSpan1 = SrcBuffer.Slice(len - 3, 2);
-            int checkCodeLen = 0;
-            if (TryDecode(checkCodeBufferSpan1, out byte value1))
+            // 正常的    4A 4A 5D        
+            // 单个转义1 00 5A 02 4A 5D
+            // 单个转义2 00 4A 5A 02 5D
+            // 两个转义  5A 02 5A 02 5D
+            // 两个转义  5A 02 02 5A 02 5D
+            ReadOnlySpan<byte> checkCodeBufferSpan1 = SrcBuffer.Slice(len - 5, 4);
+            byte checkCodeLen = 0;
+            byte crcIndex = 0;
+            (int Index, byte Value) Crc1 =(-1,0);
+            (int Index, byte Value) Crc2 =(-1,0);
+            for (int i = 0; i < checkCodeBufferSpan1.Length; i++)
             {
-                //最后两位是转义的
-                byte[] tmpCrc2 = new byte[2];
-                checkCodeLen += 2;
-                tmpCrc2[1] = value1;
-                //从最后往前在取两位进行转义
-                ReadOnlySpan<byte> checkCodeBufferSpan2 = SrcBuffer.Slice(len - 5, 2);
-                if (TryDecode(checkCodeBufferSpan2, out byte value2))
+                if ((checkCodeBufferSpan1.Length - i) >= 2)
                 {
-                    //转义成功
-                    tmpCrc2[0] = value2;
-                    checkCodeLen += 2;
+                    if (TryDecode(checkCodeBufferSpan1.Slice(i, 2), out byte tmp))
+                    {
+                        if (crcIndex > 0)
+                        {
+                            Crc2.Index = i;
+                            Crc2.Value = tmp;
+                        }
+                        else
+                        {
+                            Crc1.Index = i;
+                            Crc1.Value = tmp;
+                        }
+                        crcIndex++;
+                        i++;
+                    }
+                }
+            }
+            if (Crc1.Index >= 0 && Crc2.Index > 0)
+            {
+                byte[] crc = new byte[2];
+                //有两个需要转义的
+                crc[0] = Crc1.Value;
+                crc[1] = Crc2.Value;
+                checkCodeLen += 4;
+                _realCheckCRCCode = ReadUInt16(crc);
+            }
+            else if(Crc1.Index >= 0 && Crc2.Index == -1)
+            {
+                byte[] crc = new byte[2];
+                if ((checkCodeBufferSpan1.Length - Crc1.Index) > 2)
+                {
+                    //最开始有一个需要转义的
+                    crc[0] = Crc1.Value;
+                    crc[1] = checkCodeBufferSpan1.Slice(Crc1.Index+2, 1)[0];
                 }
                 else
                 {
-                    //转义不成功取当前最后一位
-                    tmpCrc2[0] = checkCodeBufferSpan2[1];
-                    checkCodeLen += 1;
+                    //最末尾有一个需要转义的
+                    crc[0] = checkCodeBufferSpan1.Slice(Crc1.Index-1, 1)[0];
+                    crc[1] = Crc1.Value;
                 }
-                _realCheckCRCCode = ReadUInt16(tmpCrc2);
+                _realCheckCRCCode = ReadUInt16(crc);
+                //存在一个转义的
+                checkCodeLen += 3;
             }
             else
-            {   
+            {
                 //最后两位不是转义的
-                _realCheckCRCCode=ReadUInt16(checkCodeBufferSpan1);
                 checkCodeLen += 2;
+                _realCheckCRCCode=ReadUInt16(SrcBuffer.Slice(len - 3, 2));
             }
-            //转义数据长度
+            //转义数据长度=len-校验码长度-头-尾
             len = len - checkCodeLen - 1 - 1;
             ReadOnlySpan<byte> tmpBufferSpan = SrcBuffer.Slice(1, len);
             for (int i = 0; i < tmpBufferSpan.Length; i++)
             {
-                byte tmp = 0;
+                byte tmp;
                 if ((tmpBufferSpan.Length - i) >= 2)
                 {
                     if (TryDecode(tmpBufferSpan.Slice(i, 2), out tmp))
@@ -115,7 +150,7 @@ namespace JT809.Protocol.MessagePack
             }
             allocateBuffer[offset++] = (byte)(_calculateCheckCRCCode >> 8);
             allocateBuffer[offset++] = (byte)_calculateCheckCRCCode;
-            allocateBuffer[offset++] = SrcBuffer[SrcBuffer.Length- 1];
+            allocateBuffer[offset++] = SrcBuffer[SrcBuffer.Length - 1];
             _checkCRCCodeVali = (_calculateCheckCRCCode == _realCheckCRCCode);
             Reader = allocateBuffer.Slice(0, offset);
             _decoded = true;
@@ -128,7 +163,7 @@ namespace JT809.Protocol.MessagePack
             int len = SrcBuffer.Length;
             for (int i = 0; i < len; i++)
             {
-                byte tmp = 0;
+                byte tmp;
                 if ((SrcBuffer.Length - i) >= 2)
                 {
                     if (TryDecode(SrcBuffer.Slice(i, 2), out tmp))

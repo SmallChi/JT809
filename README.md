@@ -1,6 +1,6 @@
 ﻿# JT809协议
 
-[![MIT Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SmallChi/JT809/blob/master/LICENSE)[![Build Status](https://travis-ci.org/SmallChi/JT809.svg?branch=master)](https://travis-ci.org/SmallChi/JT809)
+[![MIT Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SmallChi/JT809/blob/master/LICENSE)![.NET Core](https://github.com/SmallChi/JT809/workflows/.NET%20Core/badge.svg?branch=master)
 
 ## 前提条件
 
