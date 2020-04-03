@@ -1,8 +1,8 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Formatters.MessageBodyFormatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
+using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
+
 
 namespace JT809.Protocol.MessageBody
 {
@@ -13,8 +13,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识: UP-CONNECT-REQ</para>
     /// <para>描述:下级平台向上级平台发送用户名和密码等登录信息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1001_Formatter))]
-    public class JT809_0x1001: JT809Bodies
+    public class JT809_0x1001: JT809Bodies,IJT809MessagePackFormatter<JT809_0x1001>
     {
         /// <summary>
         /// 用户名
@@ -34,5 +33,29 @@ namespace JT809.Protocol.MessageBody
         /// 下级平台提供对应的从链路服务器端口号
         /// </summary>
         public ushort DownLinkPort { get; set; }
+
+        public override ushort MsgId => JT809BusinessType.主链路登录请求消息.ToUInt16Value();
+
+        public override string Description => "主链路登录请求消息";
+
+        public override JT809_LinkType LinkType =>  JT809_LinkType.main;
+
+        public JT809_0x1001 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x1001 jT809_0X1001 = new JT809_0x1001();
+            jT809_0X1001.UserId = reader.ReadUInt32();
+            jT809_0X1001.Password = reader.ReadString(8);
+            jT809_0X1001.DownLinkIP = reader.ReadString(32);
+            jT809_0X1001.DownLinkPort = reader.ReadUInt16();
+            return jT809_0X1001;
+        }
+
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1001 value, IJT809Config config)
+        {
+            writer.WriteUInt32(value.UserId);
+            writer.WriteStringPadRight(value.Password, 8);
+            writer.WriteStringPadRight(value.DownLinkIP, 32);
+            writer.WriteUInt16(value.DownLinkPort);
+        }
     }
 }

@@ -1,8 +1,5 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Formatters.SubMessageBodyFormatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -11,8 +8,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_CTRL_MSG_TAKE_PHOTO_REQ</para>
     /// <para>描述:上级平台向下级平台下发对某指定车辆的拍照请求消息</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9500_0x9502_Formatter))]
-    public class JT809_0x9500_0x9502:JT809SubBodies
+    public class JT809_0x9500_0x9502:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9500_0x9502>
     {
         /// <summary>
         /// 镜头ID
@@ -30,5 +26,17 @@ namespace JT809.Protocol.SubMessageBody
         /// Ox08:704576[DI]
         /// </summary>
         public byte SizeType { get; set; }
+        public JT809_0x9500_0x9502 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x9500_0x9502 jT809_0X9500_0X9502 = new JT809_0x9500_0x9502();
+            jT809_0X9500_0X9502.LensID = reader.ReadByte();
+            jT809_0X9500_0X9502.SizeType = reader.ReadByte();
+            return jT809_0X9500_0X9502;
+        }
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9500_0x9502 value, IJT809Config config)
+        {
+            writer.WriteByte(value.LensID);
+            writer.WriteByte(value.SizeType);
+        }
     }
 }

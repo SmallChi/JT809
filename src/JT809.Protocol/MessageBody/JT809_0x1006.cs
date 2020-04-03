@@ -1,4 +1,5 @@
-﻿using JT809.Protocol.Attributes;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
 
 namespace JT809.Protocol.MessageBody
@@ -13,6 +14,9 @@ namespace JT809.Protocol.MessageBody
     /// </summary>
     public class JT809_0x1006:JT809Bodies
     {
-        
+        public override bool SkipSerialization => true;
+        public override ushort MsgId => JT809BusinessType.主链路连接保持应答消息.ToUInt16Value();
+        public override string Description => "主链路连接保持应答消息";
+        public override JT809_LinkType LinkType => JT809_LinkType.main;
     }
 }

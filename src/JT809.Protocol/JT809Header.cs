@@ -1,14 +1,9 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Enums;
-using JT809.Protocol.Formatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 
 namespace JT809.Protocol
 {
-    [JT809Formatter(typeof(JT809HeaderFormatter))]
-    public class JT809Header
+    public class JT809Header: IJT809MessagePackFormatter<JT809Header>
     {
         /// <summary>
         /// 固定为22个字节长度
@@ -49,5 +44,29 @@ namespace JT809.Protocol
         /// 数据加密的密匙，长度为 4 个字节
         /// </summary>
         public uint EncryptKey { get; set; }
+
+        public JT809Header Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809Header jT809Header = new JT809Header();
+            jT809Header.MsgLength = reader.ReadUInt32();
+            jT809Header.MsgSN = reader.ReadUInt32();
+            jT809Header.BusinessType = reader.ReadUInt16();
+            jT809Header.MsgGNSSCENTERID = reader.ReadUInt32();
+            jT809Header.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
+            jT809Header.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
+            jT809Header.EncryptKey = reader.ReadUInt32();
+            return jT809Header;
+        }
+
+        public void Serialize(ref JT809MessagePackWriter writer, JT809Header value, IJT809Config config)
+        {
+            writer.WriteUInt32(value.MsgLength);
+            writer.WriteUInt32(value.MsgSN);
+            writer.WriteUInt16(value.BusinessType);
+            writer.WriteUInt32(value.MsgGNSSCENTERID);
+            writer.WriteArray(value.Version.Buffer);
+            writer.WriteByte((byte)value.EncryptFlag);
+            writer.WriteUInt32(value.EncryptKey);
+        }
     }
 }

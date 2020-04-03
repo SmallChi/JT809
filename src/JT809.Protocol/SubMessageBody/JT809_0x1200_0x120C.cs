@@ -1,8 +1,5 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Formatters.SubMessageBodyFormatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -10,8 +7,7 @@ namespace JT809.Protocol.SubMessageBody
     /// 主动上报驾驶员身份信息消息
     /// <para>子业务类型标识:UP_EXG_MSG_REPORT_DRIVER_INFO</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x120C_Formatter))]
-    public class JT809_0x1200_0x120C:JT809SubBodies
+    public class JT809_0x1200_0x120C:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120C>
     {
         /// <summary>
         /// 驾驶员姓名
@@ -29,5 +25,23 @@ namespace JT809.Protocol.SubMessageBody
         /// 发证机构名称（备用）
         /// </summary>
         public string OrgName { get; set; }
+
+        public JT809_0x1200_0x120C Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x1200_0x120C jT809_0X1200_0X120C = new JT809_0x1200_0x120C();
+            jT809_0X1200_0X120C.DriverName = reader.ReadString(16);
+            jT809_0X1200_0X120C.DriverID = reader.ReadString(20);
+            jT809_0X1200_0X120C.Licence = reader.ReadString(40);
+            jT809_0X1200_0X120C.OrgName = reader.ReadString(200);
+            return jT809_0X1200_0X120C;
+        }
+
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1200_0x120C value, IJT809Config config)
+        {
+            writer.WriteStringPadRight(value.DriverName, 16);
+            writer.WriteStringPadRight(value.DriverID, 20);
+            writer.WriteStringPadRight(value.Licence, 40);
+            writer.WriteStringPadRight(value.OrgName, 200);
+        }
     }
 }

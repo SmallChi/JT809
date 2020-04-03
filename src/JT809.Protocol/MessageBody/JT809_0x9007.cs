@@ -1,9 +1,7 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Enums;
-using JT809.Protocol.Formatters.MessageBodyFormatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
+using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 
 namespace JT809.Protocol.MessageBody
 {
@@ -18,12 +16,24 @@ namespace JT809.Protocol.MessageBody
     /// </para>
     /// <para>本条消息无需被通知方应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9007_Formatter))]
-    public class JT809_0x9007:JT809Bodies
+    public class JT809_0x9007:JT809Bodies, IJT809MessagePackFormatter<JT809_0x9007>
     {
+        public override ushort MsgId => JT809BusinessType.从链路断开通知消息.ToUInt16Value();
+        public override string Description => "从链路断开通知消息";
+        public override JT809_LinkType LinkType => JT809_LinkType.main;
         /// <summary>
         /// 错误代码
         /// </summary>
         public JT809_0x9007_ReasonCode ReasonCode { get; set; }
+        public JT809_0x9007 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x9007 jT809_0X9007 = new JT809_0x9007();
+            jT809_0X9007.ReasonCode = (JT809_0x9007_ReasonCode)reader.ReadByte();
+            return jT809_0X9007;
+        }
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9007 value, IJT809Config config)
+        {
+            writer.WriteByte((byte)value.ReasonCode);
+        }
     }
 }

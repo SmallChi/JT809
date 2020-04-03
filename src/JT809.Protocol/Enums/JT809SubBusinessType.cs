@@ -17,7 +17,7 @@ namespace JT809.Protocol.Enums
         /// </summary>
         [Description("上传车辆注册信息")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1201))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REGISTER", "上传车辆注册信息", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REGISTER", "上传车辆注册信息", JT809BusinessType.主链路车辆动态信息交换业务)]
         上传车辆注册信息 = 0x1201,
         ///<summary>
         ///实时上传车辆定位信息  
@@ -25,7 +25,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("实时上传车辆定位信息")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1202))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REAL_LOCATION", "实时上传车辆定位信息", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REAL_LOCATION", "实时上传车辆定位信息", JT809BusinessType.主链路车辆动态信息交换业务)]
         实时上传车辆定位信息 = 0x1202,
         ///<summary>
         ///车辆定位信息自动补报
@@ -33,7 +33,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("车辆定位信息自动补报")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1203))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_HISTORY_LOCATION", "车辆定位信息自动补报", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_HISTORY_LOCATION", "车辆定位信息自动补报", JT809BusinessType.主链路车辆动态信息交换业务)]
         车辆定位信息自动补报 = 0x1203,
         ///<summary>
         ///启动车辆定位信息交换应答	
@@ -41,7 +41,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("启动车辆定位信息交换应答")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1205))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_RETURN_STARTUP_ACK", "启动车辆定位信息交换应答", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_RETURN_STARTUP_ACK", "启动车辆定位信息交换应答", JT809BusinessType.主链路车辆动态信息交换业务)]
         启动车辆定位信息交换应答 = 0x1205,
         ///<summary>
         ///结束车辆定位信息交换应答	
@@ -49,7 +49,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("结束车辆定位信息交换应答")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1206))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_RETURN_END_ACK", "结束车辆定位信息交换应答", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_RETURN_END_ACK", "结束车辆定位信息交换应答", JT809BusinessType.主链路车辆动态信息交换业务)]
         结束车辆定位信息交换应答 = 0x1206,
         ///<summary>
         ///申请交换指定车辆定位信息请求	
@@ -57,7 +57,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("申请交换指定车辆定位信息请求")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1207))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP", "申请交换指定车辆定位信息请求", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP", "申请交换指定车辆定位信息请求", JT809BusinessType.主链路车辆动态信息交换业务)]
         申请交换指定车辆定位信息请求 = 0x1207,
         ///<summary>
         ///取消交换指定车辆定位信息请求
@@ -65,7 +65,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("取消交换指定车辆定位信息请求")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1208))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_APPLY_FOR_MONITOR_END", "取消交换指定车辆定位信息请求", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_APPLY_FOR_MONITOR_END", "取消交换指定车辆定位信息请求", JT809BusinessType.主链路车辆动态信息交换业务)]
         取消交换指定车辆定位信息请求 = 0x1208,
         ///<summary>
         ///补发车辆定位信息请求
@@ -73,7 +73,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("补发车辆定位信息请求")]
         [JT809BodiesType(typeof(JT809_0x1200_0x1209))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_APPLY_HISGNSSDATA_REQ", "补发车辆定位信息请求", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_APPLY_HISGNSSDATA_REQ", "补发车辆定位信息请求", JT809BusinessType.主链路车辆动态信息交换业务)]
         补发车辆定位信息请求 = 0x1209,
         ///<summary>
         ///上报车辆驾驶员身份识别信息应答
@@ -81,7 +81,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("上报车辆驾驶员身份识别信息应答")]
         [JT809BodiesType(typeof(JT809_0x1200_0x120A))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REPORT_DRIVER_INFO_ACK", "上报车辆驾驶员身份识别信息应答", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REPORT_DRIVER_INFO_ACK", "上报车辆驾驶员身份识别信息应答", JT809BusinessType.主链路车辆动态信息交换业务)]
         上报车辆驾驶员身份识别信息应答 = 0x120A,
         ///<summary>
         ///上报车辆电子运单应答	
@@ -89,7 +89,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("上报车辆电子运单应答")]
         [JT809BodiesType(typeof(JT809_0x1200_0x120B))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_TAKE_EWAYBILL_ACK", "上报车辆电子运单应答", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_TAKE_EWAYBILL_ACK", "上报车辆电子运单应答", JT809BusinessType.主链路车辆动态信息交换业务)]
         上报车辆电子运单应答 = 0x120B,
         ///<summary>
         ///主动上报驾驶员身份信息	
@@ -97,7 +97,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("主动上报驾驶员身份信息")]
         [JT809BodiesType(typeof(JT809_0x1200_0x120C))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REPORT_DRIVER_INFO", "主动上报驾驶员身份信息", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REPORT_DRIVER_INFO", "主动上报驾驶员身份信息", JT809BusinessType.主链路车辆动态信息交换业务)]
         主动上报驾驶员身份信息 = 0x120C,
         ///<summary>
         ///主动上报车辆电子运单信息	
@@ -105,7 +105,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("主动上报车辆电子运单信息")]
         [JT809BodiesType(typeof(JT809_0x1200_0x120D))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REPORT_EWAYBILL_INFO", "主动上报车辆电子运单信息", JT809BusinessType.主链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_REPORT_EWAYBILL_INFO", "主动上报车辆电子运单信息", JT809BusinessType.主链路车辆动态信息交换业务)]
         主动上报车辆电子运单信息 = 0x120D,
         #endregion
 
@@ -116,7 +116,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("交换车辆定位信息")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9202))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_CAR_LOCATION", "交换车辆定位信息", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_CAR_LOCATION", "交换车辆定位信息", JT809BusinessType.从链路车辆动态信息交换业务)]
         交换车辆定位信息 = 0x9202,
         ///<summary>
         ///车辆定位信息交换补发	
@@ -124,7 +124,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("车辆定位信息交换补发")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9203))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_HISTORY_ARCOSSAREA", "车辆定位信息交换补发", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_HISTORY_ARCOSSAREA", "车辆定位信息交换补发", JT809BusinessType.从链路车辆动态信息交换业务)]
         车辆定位信息交换补发 = 0x9203,
         ///<summary>
         ///交换车辆静态信息
@@ -132,7 +132,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("交换车辆静态信息")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9204))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_CAR_INFO", "交换车辆静态信息", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_CAR_INFO", "交换车辆静态信息", JT809BusinessType.从链路车辆动态信息交换业务)]
         交换车辆静态信息 = 0x9204,
         ///<summary>
         ///启动车辆定位信息交换请求
@@ -140,14 +140,14 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("启动车辆定位信息交换请求")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9205))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_RETURN_STARTUP", "启动车辆定位信息交换请求", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_RETURN_STARTUP", "启动车辆定位信息交换请求", JT809BusinessType.从链路车辆动态信息交换业务)]
         启动车辆定位信息交换请求 = 0x9205,
         ///<summary>
         ///结束车辆定位信息交换请求	
         ///</summary>
         [Description("结束车辆定位信息交换请求")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9206))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_RETURN_END", "结束车辆定位信息交换请求", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_RETURN_END", "结束车辆定位信息交换请求", JT809BusinessType.从链路车辆动态信息交换业务)]
         结束车辆定位信息交换请求 = 0x9206,
         ///<summary>
         ///申请交换指定车辆定位信息应答	
@@ -155,7 +155,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("申请交换指定车辆定位信息应答")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9207))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_APPLY_FOR_MONITOR_STARTUP_ACK", "申请交换指定车辆定位信息应答", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_APPLY_FOR_MONITOR_STARTUP_ACK", "申请交换指定车辆定位信息应答", JT809BusinessType.从链路车辆动态信息交换业务)]
         申请交换指定车辆定位信息应答 = 0x9207,
         ///<summary>
         ///取消交换指定车辆定位信息应答	
@@ -163,7 +163,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("取消交换指定车辆定位信息应答")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9208))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK", "取消交换指定车辆定位信息应答", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK", "取消交换指定车辆定位信息应答", JT809BusinessType.从链路车辆动态信息交换业务)]
         取消交换指定车辆定位信息应答 = 0x9208,
         ///<summary>
         ///补发车辆定位信息应答	
@@ -171,7 +171,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("补发车辆定位信息应答")]
         [JT809BodiesType(typeof(JT809_0x9200_0x9209))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_APPLY_HISGNSSDATA_ACK", "补发车辆定位信息应答", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_APPLY_HISGNSSDATA_ACK", "补发车辆定位信息应答", JT809BusinessType.从链路车辆动态信息交换业务)]
         补发车辆定位信息应答 = 0x9209,
         ///<summary>
         ///上报车辆驾驶员身份识别信息请求	
@@ -179,7 +179,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("上报车辆驾驶员身份识别信息请求")]
         [JT809BodiesType(typeof(JT809_0x9200_0x920A))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_REPORT_DRIVER_INFO", "上报车辆驾驶员身份识别信息请求", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_REPORT_DRIVER_INFO", "上报车辆驾驶员身份识别信息请求", JT809BusinessType.从链路车辆动态信息交换业务)]
         上报车辆驾驶员身份识别信息请求 = 0x920A,
         ///<summary>
         ///上报车辆电子运单请求	
@@ -187,7 +187,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("上报车辆电子运单请求")]
         [JT809BodiesType(typeof(JT809_0x9200_0x920B))]
-        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_TAKE_EWAYBILL_REQ", "上报车辆电子运单请求", JT809BusinessType.从链路动态信息交换消息)]
+        [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_TAKE_EWAYBILL_REQ", "上报车辆电子运单请求", JT809BusinessType.从链路车辆动态信息交换业务)]
         上报车辆电子运单请求 = 0x920B,
         #endregion
 
@@ -217,7 +217,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("平台查岗请求")]
         [JT809BodiesType(typeof(JT809_0x9300_0x9301))]
-        [JT809SubBusinessTypeDescription("DOWN_PLATFORM_MSG_POST_QUERY_REQ", "平台查岗请求", JT809BusinessType.从链路平台间信息交互消息)]
+        [JT809SubBusinessTypeDescription("DOWN_PLATFORM_MSG_POST_QUERY_REQ", "平台查岗请求", JT809BusinessType.从链路平台间信息交互业务)]
         平台查岗请求 = 0x9301,
         ///<summary>
         ///下发平台间报文请求	
@@ -225,7 +225,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("下发平台间报文请求")]
         [JT809BodiesType(typeof(JT809_0x9300_0x9302))]
-        [JT809SubBusinessTypeDescription("DOWN_PLATFORM_MSG_INFO_REQ", "下发平台间报文请求", JT809BusinessType.从链路平台间信息交互消息)]
+        [JT809SubBusinessTypeDescription("DOWN_PLATFORM_MSG_INFO_REQ", "下发平台间报文请求", JT809BusinessType.从链路平台间信息交互业务)]
         下发平台间报文请求 = 0x9302,
         #endregion
 

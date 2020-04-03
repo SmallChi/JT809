@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Configs\JT809EncryptOptions.cs" />
     <Compile Include="Configs\JT809HeaderOptions.cs" />
+    <Compile Include="Enums\JT809Version.cs" />
     <Compile Include="Enums\JT808_Alarm.cs" />
     <Compile Include="Enums\JT808_Status.cs" />
     <Compile Include="Enums\JT809CommandType.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Enums\JT809_0x1008_ReasonCode.cs" />
     <Compile Include="Enums\JT809_0x9002_Result.cs" />
     <Compile Include="Enums\JT809_0x9008_ReasonCode.cs" />
+    <Compile Include="Enums\JT809_LinkType.cs" />
     <Compile Include="Enums\JT809_VehiclePositionEncrypt.cs" />
   </ItemGroup>
 
@@ -114,6 +116,7 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.3" />
+    <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
   
 

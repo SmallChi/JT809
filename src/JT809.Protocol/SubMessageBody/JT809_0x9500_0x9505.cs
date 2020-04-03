@@ -1,8 +1,6 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Formatters.SubMessageBodyFormatters;
+﻿using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -11,8 +9,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_CTRL_MSG_EMERGENCY_MONITORING_REQ</para>
     /// <para>描述:发生应急情况时，政府监管平台需要及时监控该车辆时，就向该车辆归属的下级平台发送该命令</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x9500_0x9505_Formatter))]
-    public class JT809_0x9500_0x9505:JT809SubBodies
+    public class JT809_0x9500_0x9505:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9500_0x9505>
     {
         /// <summary>
         /// 监管平台下发的鉴权码
@@ -46,5 +43,31 @@ namespace JT809.Protocol.SubMessageBody
         /// 结束时间
         /// </summary>
         public DateTime EndTime { get; set; }
+
+        public JT809_0x9500_0x9505 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x9500_0x9505 jT809_0X9500_0X9505 = new JT809_0x9500_0x9505();
+            jT809_0X9500_0X9505.AuthenticationCode = reader.ReadBCD(20);
+            jT809_0X9500_0X9505.AccessPointName = reader.ReadString(20);
+            jT809_0X9500_0X9505.UserName = reader.ReadString(49);
+            jT809_0X9500_0X9505.Password = reader.ReadString(22);
+            jT809_0X9500_0X9505.ServerIP = reader.ReadString(32);
+            jT809_0X9500_0X9505.TcpPort = reader.ReadUInt16();
+            jT809_0X9500_0X9505.UdpPort = reader.ReadUInt16();
+            jT809_0X9500_0X9505.EndTime = reader.ReadUTCDateTime();
+            return jT809_0X9500_0X9505;
+        }
+
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9500_0x9505 value, IJT809Config config)
+        {
+            writer.WriteBCD(value.AuthenticationCode, 20);
+            writer.WriteStringPadRight(value.AccessPointName, 20);
+            writer.WriteStringPadRight(value.UserName, 49);
+            writer.WriteStringPadRight(value.Password, 22);
+            writer.WriteStringPadRight(value.ServerIP, 32);
+            writer.WriteUInt16(value.TcpPort);
+            writer.WriteUInt16(value.UdpPort);
+            writer.WriteUTCDateTime(value.EndTime);
+        }
     }
 }

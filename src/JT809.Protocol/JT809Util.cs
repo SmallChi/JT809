@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JT809.Protocol
 {
-    public static class HexUtil
+    internal static class HexUtil
     {
         static readonly char[] HexdumpTable = new char[256 * 4];
         static HexUtil()

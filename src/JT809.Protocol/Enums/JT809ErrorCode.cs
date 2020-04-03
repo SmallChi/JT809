@@ -15,7 +15,6 @@ namespace JT809.Protocol.Enums
         BodiesParseError=1007,
         SubBodiesParseError = 1008,
         GetAttributeError=1009,
-        GetFormatterAttributeError=1010,
         NotGlobalRegisterFormatterAssembly=1011,
     }
 }

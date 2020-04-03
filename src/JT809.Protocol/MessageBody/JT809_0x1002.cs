@@ -1,6 +1,7 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Enums;
-using JT809.Protocol.Formatters.MessageBodyFormatters;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
+using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,9 +15,13 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:UP_CONNCCT_RSP</para>
     /// <para>描述:上级平台对下级平台登录请求信息、进行安全验证后，返回相应的验证结果。</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1002_Formatter))]
-    public class JT809_0x1002 : JT809Bodies
+    public class JT809_0x1002 : JT809Bodies, IJT809MessagePackFormatter<JT809_0x1002>
     {
+        public override ushort MsgId => JT809BusinessType.主链路登录应答消息.ToUInt16Value();
+
+        public override string Description => "主链路登录应答消息";
+
+        public override JT809_LinkType LinkType => JT809_LinkType.main;
         /// <summary>
         /// 验证结果，定义如下：
         /// 0x00:成功;
@@ -32,5 +37,17 @@ namespace JT809.Protocol.MessageBody
         /// 校验码
         /// </summary>
         public uint VerifyCode { get; set; }
+        public JT809_0x1002 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x1002 jT809_0X1002 = new JT809_0x1002();
+            jT809_0X1002.Result = (JT809_0x1002_Result)reader.ReadByte();
+            jT809_0X1002.VerifyCode = reader.ReadUInt32();
+            return jT809_0X1002;
+        }
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1002 value, IJT809Config config)
+        {
+            writer.WriteByte((byte)value.Result);
+            writer.WriteUInt32(value.VerifyCode);
+        }
     }
 }

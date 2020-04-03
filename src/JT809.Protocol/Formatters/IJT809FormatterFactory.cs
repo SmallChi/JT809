@@ -1,4 +1,5 @@
 ﻿using JT809.Protocol;
+using JT809.Protocol.Formatters;
 using JT809.Protocol.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,7 @@ namespace JT808.Protocol.Formatters
     public interface IJT809FormatterFactory : IJT809ExternalRegister
     {
         Dictionary<Guid,object> FormatterDict { get;}
-        IJT809FormatterFactory SetMap<TJT809Bodies>()
-                    where TJT809Bodies : JT809Bodies;
-        IJT809FormatterFactory SetSubMap<TJT809SubBodies>()
-            where TJT809SubBodies : JT809SubBodies;
+        IJT809FormatterFactory SetMap<TIJT809Formatter>()
+                    where TIJT809Formatter : IJT809Formatter;
     }
 }

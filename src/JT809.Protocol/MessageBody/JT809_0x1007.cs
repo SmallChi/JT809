@@ -1,9 +1,7 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Enums;
-using JT809.Protocol.Formatters.MessageBodyFormatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
+using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 
 namespace JT809.Protocol.MessageBody
 {
@@ -16,12 +14,25 @@ namespace JT809.Protocol.MessageBody
     /// <para>主链路连接保持应答消息,数据体为空</para>
     /// <para>本条消息无需被通知方应答</para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1007_Formatter))]
-    public class JT809_0x1007:JT809Bodies
+    public class JT809_0x1007:JT809Bodies, IJT809MessagePackFormatter<JT809_0x1007>
     {
+        public override ushort MsgId => JT809BusinessType.主链路断开通知消息.ToUInt16Value();
+        public override string Description => "主链路断开通知消息";
+        public override JT809_LinkType LinkType => JT809_LinkType.subordinate;
         /// <summary>
         /// 错误代码
         /// </summary>
         public JT809_0x1007_ErrorCode ErrorCode { get; set; }
+        public JT809_0x1007 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x1007 jT809_0X1007 = new JT809_0x1007();
+            jT809_0X1007.ErrorCode = (JT809_0x1007_ErrorCode)reader.ReadByte();
+            return jT809_0X1007;
+        }
+
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1007 value, IJT809Config config)
+        {
+            writer.WriteByte((byte)value.ErrorCode);
+        }
     }
 }

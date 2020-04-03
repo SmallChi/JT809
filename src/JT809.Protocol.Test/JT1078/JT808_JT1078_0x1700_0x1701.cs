@@ -1,11 +1,9 @@
-﻿using JT809.Protocol.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace JT809.Protocol.Test.JT1078
 {
-    [JT809Formatter(typeof(JT808_JT1078_0x1700_0x1701_Formatter))]
     public class JT808_JT1078_0x1700_0x1701 : JT809SubBodies
     {
         /// <summary>

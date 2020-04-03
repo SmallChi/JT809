@@ -24,30 +24,30 @@ namespace JT809.Protocol.Internal
 
         private void Init(Assembly assembly)
         {
-            foreach (var type in assembly.GetTypes())
+            foreach (var type in assembly.GetTypes().Where(w => w.GetInterfaces().Contains(typeof(IJT809Formatter))))
             {
-                var attr = type.GetCustomAttribute<JT809FormatterAttribute>();
-                if (attr != null)
+                var implTypes = type.GetInterfaces();
+                if (implTypes != null && implTypes.Length > 1)
                 {
-                    if (!FormatterDict.ContainsKey(type.GUID))
+                    var firstType = implTypes.FirstOrDefault(f => f.Name == typeof(IJT809MessagePackFormatter<>).Name);
+                    var genericImplType = firstType.GetGenericArguments().FirstOrDefault();
+                    if (genericImplType != null)
                     {
-                        FormatterDict.Add(type.GUID, Activator.CreateInstance(attr.FormatterType));
+                        if (!FormatterDict.ContainsKey(genericImplType.GUID))
+                        {
+                            FormatterDict.Add(genericImplType.GUID, Activator.CreateInstance(genericImplType));
+                        }
                     }
                 }
             }
         }
 
-        public IJT809FormatterFactory SetMap<TJT809Bodies>() where TJT809Bodies : JT809Bodies
+        public IJT809FormatterFactory SetMap<TIJT809Formatter>() where TIJT809Formatter : IJT809Formatter
         {
-            Type bodiesType = typeof(TJT809Bodies);
-            var attr = bodiesType.GetTypeInfo().GetCustomAttribute<JT809FormatterAttribute>();
-            if (attr == null)
+            Type type = typeof(TIJT809Formatter);
+            if (!FormatterDict.ContainsKey(type.GUID))
             {
-                throw new JT809Exception(JT809ErrorCode.GetFormatterAttributeError, bodiesType.FullName);
-            }
-            if (!FormatterDict.ContainsKey(bodiesType.GUID))
-            {
-                FormatterDict.Add(bodiesType.GUID, Activator.CreateInstance(attr.FormatterType));
+                FormatterDict.Add(type.GUID, Activator.CreateInstance(type));
             }
             return this;
         }
@@ -55,21 +55,6 @@ namespace JT809.Protocol.Internal
         public void Register(Assembly externalAssembly)
         {
             Init(externalAssembly);
-        }
-
-        public IJT809FormatterFactory SetSubMap<TJT809SubBodies>() where TJT809SubBodies : JT809SubBodies
-        {
-            Type bodiesType = typeof(TJT809SubBodies);
-            var attr = bodiesType.GetTypeInfo().GetCustomAttribute<JT809FormatterAttribute>();
-            if (attr == null)
-            {
-                throw new JT809Exception(JT809ErrorCode.GetFormatterAttributeError, bodiesType.FullName);
-            }
-            if (!FormatterDict.ContainsKey(bodiesType.GUID))
-            {
-                FormatterDict.Add(bodiesType.GUID, Activator.CreateInstance(attr.FormatterType));
-            }
-            return this;
         }
     }
 }

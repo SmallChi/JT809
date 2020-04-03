@@ -1,9 +1,4 @@
-﻿using JT809.Protocol.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace JT809.Protocol
+﻿namespace JT809.Protocol
 {
     /// <summary>
     /// 子业务数据体

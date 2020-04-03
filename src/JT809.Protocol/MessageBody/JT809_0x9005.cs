@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +16,8 @@ namespace JT809.Protocol.MessageBody
     /// </summary>
     public class JT809_0x9005:JT809Bodies
     {
-
+        public override ushort MsgId => JT809BusinessType.从链路连接保持请求消息.ToUInt16Value();
+        public override string Description => "从链路连接保持请求消息";
+        public override JT809_LinkType LinkType => JT809_LinkType.subordinate;
     }
 }

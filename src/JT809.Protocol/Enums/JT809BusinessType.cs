@@ -70,13 +70,13 @@ namespace JT809.Protocol.Enums
         [JT809BusinessTypeDescription("UP_DISCONNECT_INFORM", "主链路断开通知消息")]
         主链路断开通知消息 = 0x1007,
         ///<summary>
-        ///下级平台主动关闭链路通知消息  
+        ///下级平台主动关闭主从链路通知消息  
         ///UP_CLOSELINK_INFORM
         ///</summary>
-        [Description("下级平台主动关闭链路通知消息")]
+        [Description("下级平台主动关闭主从链路通知消息")]
         [JT809BodiesType(typeof(JT809_0x1008))]
-        [JT809BusinessTypeDescription("UP_CLOSELINK_INFORM", "下级平台主动关闭链路通知消息")]
-        下级平台主动关闭链路通知消息 = 0x1008,
+        [JT809BusinessTypeDescription("UP_CLOSELINK_INFORM", "下级平台主动关闭主从链路通知消息")]
+        下级平台主动关闭主从链路通知消息 = 0x1008,
         ///<summary>
         ///从链路连接请求消息  
         ///DOWN_CONNECT_REQ
@@ -86,13 +86,13 @@ namespace JT809.Protocol.Enums
         [JT809BusinessTypeDescription("DOWN_CONNECT_REQ", "从链路连接请求消息")]
         从链路连接请求消息 = 0x9001,
         ///<summary>
-        ///从链路连接应答消息 
+        ///从链路连接应答信息 
         ///DOWN_CONNECT_RSP
         ///</summary>
-        [Description("从链路连接应答消息")]
+        [Description("从链路连接应答信息")]
         [JT809BodiesType(typeof(JT809_0x9002))]
-        [JT809BusinessTypeDescription("DOWN_CONNECT_RSP", "从链路连接应答消息")]
-        从链路连接应答消息 = 0x9002,
+        [JT809BusinessTypeDescription("DOWN_CONNECT_RSP", "从链路连接应答信息")]
+        从链路连接应答信息 = 0x9002,
         ///<summary>
         ///从链路注销请求消息  
         ///DOWN_DISCONNECT_REQ
@@ -144,31 +144,31 @@ namespace JT809.Protocol.Enums
         #endregion
         #region 信息统计类
         ///<summary>
-        ///接收定位信息数量通知消息
+        ///接收车辆定位信息数量通知消息
         ///DOWN_TOTAL_RECV_BACK_MSG
         ///</summary>
-        [Description("接收定位信息数量通知消息")]
+        [Description("接收车辆定位信息数量通知消息")]
         [JT809BodiesType(typeof(JT809_0x9101))]
-        [JT809BusinessTypeDescription("DOWN_TOTAL_RECV_BACK_MSG", "接收定位信息数量通知消息")]
-        接收定位信息数量通知消息 = 0x9101,
+        [JT809BusinessTypeDescription("DOWN_TOTAL_RECV_BACK_MSG", "接收车辆定位信息数量通知消息")]
+        接收车辆定位信息数量通知消息 = 0x9101,
         #endregion
         #region 车辆动态信息交换
         ///<summary>
         ///主链路动态信息交换消息 
         ///UP_EXG_MSG
         ///</summary>
-        [Description("主链路动态信息交换消息")]
+        [Description("主链路车辆动态信息交换业务")]
         [JT809BodiesType(typeof(JT809_0x1200))]
-        [JT809BusinessTypeDescription("UP_EXG_MSG", "主链路动态信息交换消息")]
-        主链路动态信息交换消息 = 0x1200,
+        [JT809BusinessTypeDescription("UP_EXG_MSG", "主链路车辆动态信息交换业务")]
+        主链路车辆动态信息交换业务 = 0x1200,
         ///<summary>
-        ///从链路动态信息交换消息
+        ///从链路车辆动态信息交换业务
         ///DOWN_EXG_MSG
         ///</summary>
-        [Description("从链路动态信息交换消息")]
+        [Description("从链路车辆动态信息交换业务")]
         [JT809BodiesType(typeof(JT809_0x9200))]
-        [JT809BusinessTypeDescription("DOWN_EXG_MSG", "从链路动态信息交换消息")]
-        从链路动态信息交换消息 = 0x9200,
+        [JT809BusinessTypeDescription("DOWN_EXG_MSG", "从链路车辆动态信息交换业务")]
+        从链路车辆动态信息交换业务 = 0x9200,
         #endregion
         #region 平台间信息交互类
         ///<summary>
@@ -180,13 +180,13 @@ namespace JT809.Protocol.Enums
         [JT809BusinessTypeDescription("UP_PLATFORM_MSG", "主链路平台间信息交互消息")]
         主链路平台间信息交互消息 = 0x1300,
         ///<summary>
-        ///从链路平台间信息交互消息  
+        ///从链路平台间信息交互业务  
         ///DOWN_PLATFORM_MSG
         ///</summary>
-        [Description("从链路平台间信息交互消息")]
+        [Description("从链路平台间信息交互业务")]
         [JT809BodiesType(typeof(JT809_0x9300))]
-        [JT809BusinessTypeDescription("DOWN_PLATFORM_MSG", "从链路平台间信息交互消息")]
-        从链路平台间信息交互消息 = 0x9300,
+        [JT809BusinessTypeDescription("DOWN_PLATFORM_MSG", "从链路平台间信息交互业务")]
+        从链路平台间信息交互业务 = 0x9300,
         #endregion
         #region 车辆报警信息交互类
         ///<summary>

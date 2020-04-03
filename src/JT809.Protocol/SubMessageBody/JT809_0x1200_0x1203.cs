@@ -1,5 +1,5 @@
-﻿using JT809.Protocol.Attributes;
-using JT809.Protocol.Formatters.SubMessageBodyFormatters;
+﻿using JT809.Protocol.Formatters;
+using JT809.Protocol.MessagePack;
 using JT809.Protocol.Metadata;
 using System;
 using System.Collections.Generic;
@@ -16,8 +16,7 @@ namespace JT809.Protocol.SubMessageBody
     ///  本条消息上级平台采用定量回复，即收到一定数量的数据后，即通过从链路应答数据量。
     ///  </para>
     /// </summary>
-    [JT809Formatter(typeof(JT809_0x1200_0x1203_Formatter))]
-    public class JT809_0x1200_0x1203 : JT809SubBodies
+    public class JT809_0x1200_0x1203 : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x1203>
     {
         /// <summary>
         /// 卫星定位数据个数 1大于GNSS_CNT小于5
@@ -27,5 +26,47 @@ namespace JT809.Protocol.SubMessageBody
         /// 卫星定位数据集合
         /// </summary>
         public List<JT809_0x1200_0x1202> GNSS { get; set; }
+
+        public JT809_0x1200_0x1203 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x1200_0x1203 jT809_0X1200_0X1203 = new JT809_0x1200_0x1203();
+            jT809_0X1200_0X1203.GNSSCount = reader.ReadByte();
+            jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
+            if (jT809_0X1200_0X1203.GNSSCount > 0)
+            {
+                for (int i = 0; i < jT809_0X1200_0X1203.GNSSCount; i++)
+                {
+                    try
+                    {
+                        JT809MessagePackReader jT809_0x1200_0x1202Reader = new JT809MessagePackReader(reader.ReadArray(36));
+                        //todo:JT809_0x1200_0x1202_Formatter
+                        //var jT809_0x1200_0x1202 = JT809_0x1200_0x1202_Formatter.Instance.Deserialize(ref jT809_0x1200_0x1202Reader, config);
+                        //jT809_0X1200_0X1203.GNSS.Add(jT809_0x1200_0x1202);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }
+            return jT809_0X1200_0X1203;
+        }
+
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1200_0x1203 value, IJT809Config config)
+        {
+            writer.WriteByte((byte)value.GNSS.Count);
+            foreach (var item in value.GNSS)
+            {
+                try
+                {
+                    //todo:JT809_0x1200_0x1202_Formatter
+                    //JT809_0x1200_0x1202_Formatter.Instance.Serialize(ref writer, item, config);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
     }
 }
