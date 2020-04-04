@@ -1,6 +1,7 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -10,6 +11,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x9200_0x9208:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9208>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.取消交换指定车辆定位信息应答.ToUInt16Value();
+
+        public override string Description => "取消交换指定车辆定位信息应答";
         /// <summary>
         /// 返回结果
         /// </summary>

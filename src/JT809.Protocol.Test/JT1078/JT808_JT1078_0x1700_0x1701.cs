@@ -18,5 +18,9 @@ namespace JT809.Protocol.Test.JT1078
         /// 跨域地区政府平台使用的时效口令
         /// </summary>
         public byte[] AuthorizeCode2 { get; set; }
+
+        public override ushort SubMsgId => 0x1701;
+
+        public override string Description => "测试";
     }
 }

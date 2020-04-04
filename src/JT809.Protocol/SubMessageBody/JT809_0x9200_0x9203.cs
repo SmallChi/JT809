@@ -1,5 +1,7 @@
-﻿using JT809.Protocol.Formatters;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +14,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x9200_0x9203:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9203>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.车辆定位信息交换补发消息.ToUInt16Value();
+
+        public override string Description => "车辆定位信息交换补发消息";
         /// <summary>
         /// 卫星定位数据个数 1大于GNSS_CNT小于5
         /// </summary>

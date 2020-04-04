@@ -68,8 +68,8 @@ namespace JT809.Protocol.Test.JT809Extensions
                 {
                     VehicleNo = "粤A12345",
                     VehicleColor = JT809VehicleColorType.黄色,
-                    SubBusinessType = JT809SubBusinessType.报警督办请求.ToUInt16Value(),
-                    SubBodies = JT809SubBusinessType.报警督办请求.Create_报警督办请求(
+                    SubBusinessType = JT809SubBusinessType.报警督办请求消息.ToUInt16Value(),
+                    SubBodies = JT809SubBusinessType.报警督办请求消息.Create_报警督办请求(
                         new JT809_0x9400_0x9401
                         {
                             WarnSrc = JT809WarnSrc.车载终端,

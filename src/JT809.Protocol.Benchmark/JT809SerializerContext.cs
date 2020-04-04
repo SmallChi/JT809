@@ -60,7 +60,7 @@ namespace JT809.Protocol.Benchmark
                 {
                     VehicleNo = "粤A12345",
                     VehicleColor = JT809VehicleColorType.黄色,
-                    SubBusinessType = JT809SubBusinessType.报警督办请求.ToUInt16Value(),
+                    SubBusinessType = JT809SubBusinessType.报警督办请求消息.ToUInt16Value(),
                 };
 
                 JT809_0x9400_0x9401 jT809_0x9400_0x9401 = new JT809_0x9400_0x9401

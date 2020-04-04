@@ -1,15 +1,19 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 
 namespace JT809.Protocol.SubMessageBody
 {
     /// <summary>
-    /// 取消交换指定车辆定位信息应答
+    /// 补发车辆定位信息应答
     /// <para>子业务类型标识:DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK</para>
     /// </summary>
     public class JT809_0x9200_0x9209: JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9209>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.补发车辆定位信息应答.ToUInt16Value();
+
+        public override string Description => "补发车辆定位信息应答";
         /// <summary>
         /// 返回结果
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -11,6 +12,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x9300_0x9302:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9300_0x9302>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.下发平台间报文请求.ToUInt16Value();
+
+        public override string Description => "下发平台间报文请求";
         /// <summary>
         /// 查岗对象的类型
         /// </summary>

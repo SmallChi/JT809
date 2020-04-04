@@ -34,7 +34,7 @@ namespace JT809.Protocol.Test.Simples
             {
                 VehicleNo = "粤A12345",
                 VehicleColor = JT809VehicleColorType.黄色,
-                SubBusinessType = JT809SubBusinessType.报警督办请求.ToUInt16Value(),
+                SubBusinessType = JT809SubBusinessType.报警督办请求消息.ToUInt16Value(),
             };
 
             JT809_0x9400_0x9401 jT809_0x9400_0x9401 = new JT809_0x9400_0x9401
@@ -73,7 +73,7 @@ namespace JT809.Protocol.Test.Simples
             JT809_0x9400 jT809_0X400 = (JT809_0x9400)jT809Package.Bodies;
             Assert.Equal("粤A12345", jT809_0X400.VehicleNo);
             Assert.Equal(JT809VehicleColorType.黄色, jT809_0X400.VehicleColor);
-            Assert.Equal(JT809SubBusinessType.报警督办请求, (JT809SubBusinessType)jT809_0X400.SubBusinessType);
+            Assert.Equal(JT809SubBusinessType.报警督办请求消息, (JT809SubBusinessType)jT809_0X400.SubBusinessType);
             Assert.Equal((uint)92, jT809_0X400.DataLength);
 
             JT809_0x9400_0x9401 jT809_0x9400_0x9401 = (JT809_0x9400_0x9401)jT809_0X400.SubBodies;
@@ -96,7 +96,7 @@ namespace JT809.Protocol.Test.Simples
             {
                 VehicleNo = "粤A12345",
                 VehicleColor = JT809VehicleColorType.黄色,
-                SubBusinessType = JT809SubBusinessType.报警督办请求.ToUInt16Value(),
+                SubBusinessType = JT809SubBusinessType.报警督办请求消息.ToUInt16Value(),
                 SubBodies = new JT809_0x9400_0x9401
                 {
                     WarnSrc = JT809WarnSrc.车载终端,

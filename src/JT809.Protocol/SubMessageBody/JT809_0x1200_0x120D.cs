@@ -1,5 +1,7 @@
-﻿using JT809.Protocol.Formatters;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -9,6 +11,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x1200_0x120D:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120D>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.主动上报车辆电子运单信息.ToUInt16Value();
+
+        public override string Description => "主动上报车辆电子运单信息";
         /// <summary>
         /// 电子运单数据体长度
         /// </summary>

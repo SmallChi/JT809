@@ -2,6 +2,7 @@
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Metadata;
+using JT809.Protocol.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x1500_0x1502:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1500_0x1502>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.车辆拍照应答.ToUInt16Value();
+
+        public override string Description => "车辆拍照应答";
         public JT809_0x1500_0x1502()
         {
             VehiclePosition = new JT809VehiclePositionProperties();

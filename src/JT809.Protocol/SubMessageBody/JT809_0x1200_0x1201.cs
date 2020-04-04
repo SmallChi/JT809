@@ -1,5 +1,7 @@
-﻿using JT809.Protocol.Formatters;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -11,6 +13,10 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x1200_0x1201:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x1201>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.上传车辆注册信息.ToUInt16Value();
+
+        public override string Description => "上传车辆注册信息";
+
         /// <summary>
         /// 平台唯一编码
         /// </summary>
@@ -31,6 +37,7 @@ namespace JT809.Protocol.SubMessageBody
         /// 车载终端 SIM 卡电话号码。号码不是12 位，则在前补充数字 0.
         /// </summary>
         public string TerminalSimCode { get; set; }
+
         public JT809_0x1200_0x1201 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x1200_0x1201 jT809_0X1200_0X1201 = new JT809_0x1200_0x1201();

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,5 +13,10 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x9600_0x9601:JT809SubBodies
     {
+        public override ushort SubMsgId => JT809SubBusinessType.补报车辆静态信息请求消息.ToUInt16Value();
+
+        public override string Description => "补报车辆静态信息请求消息";
+
+        public override bool SkipSerialization => true;
     }
 }

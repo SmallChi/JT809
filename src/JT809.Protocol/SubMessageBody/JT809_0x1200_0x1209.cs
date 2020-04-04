@@ -1,4 +1,6 @@
-﻿using JT809.Protocol.Formatters;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Formatters;
+using JT809.Protocol.Extensions;
 using JT809.Protocol.MessagePack;
 using System;
 
@@ -11,6 +13,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x1200_0x1209:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x1209>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.补发车辆定位信息请求.ToUInt16Value();
+
+        public override string Description => "补发车辆定位信息请求";
         /// <summary>
         /// 开始时间，用 UTC 时间表示
         /// </summary>

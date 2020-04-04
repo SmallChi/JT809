@@ -1,6 +1,7 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 using System;
 
 namespace JT809.Protocol.SubMessageBody
@@ -12,6 +13,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x9400_0x9401:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9400_0x9401>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.报警督办请求消息.ToUInt16Value();
+
+        public override string Description => "报警督办请求消息";
         /// <summary>
         /// 报警信息来源
         /// </summary>

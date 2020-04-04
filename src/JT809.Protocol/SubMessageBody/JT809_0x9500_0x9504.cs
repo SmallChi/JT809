@@ -1,6 +1,7 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Extensions;
 using System;
 
 namespace JT809.Protocol.SubMessageBody
@@ -12,6 +13,9 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x9500_0x9504:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9500_0x9504>
     {
+        public override ushort SubMsgId => JT809SubBusinessType.上报车辆行驶记录请求消息.ToUInt16Value();
+
+        public override string Description => "上报车辆行驶记录请求消息";
         /// <summary>
         /// 命令字ID
         /// </summary>
