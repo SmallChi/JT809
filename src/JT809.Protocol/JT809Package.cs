@@ -47,45 +47,39 @@ namespace JT809.Protocol
             // 3.初始化消息头
             try
             {
-                //todo:JT809HeaderFormatter
-                //jT809Package.Header = JT809HeaderFormatter.Instance.Deserialize(ref reader, config);
+                jT809Package.Header = config.GetMessagePackFormatter<JT809Header>().Deserialize(ref reader, config);
             }
             catch (Exception ex)
             {
-                throw new JT809Exception(JT809ErrorCode.HeaderParseError, $"offset>{reader.ReadCurrentRemainContentLength().ToString()}", ex);
-            }
+                throw new JT809Exception(JT809ErrorCode.HeaderParseError, $"offset>{reader.ReadCurrentRemainContentLength()}", ex);
+            } 
             // 5.数据体处理
             //  5.1 判断是否有数据体（总长度-固定长度）> 0
-            if ((jT809Package.Header.MsgLength - JT809Package.FixedByteLength) > 0)
+            if ((jT809Package.Header.MsgLength - FixedByteLength) > 0)
             {
-                try
+                if (config.BusinessTypeFactory.TryGetValue(jT809Package.Header.BusinessType, out object instance))
                 {
-                    Type jT809BodiesImplType = config.BusinessTypeFactory.GetBodiesImplTypeByBusinessType(jT809Package.Header.BusinessType, jT809Package.Header.MsgGNSSCENTERID);
-                    if (jT809BodiesImplType != null)
+                    try
                     {
                         // 5.2 是否加密
                         switch (jT809Package.Header.EncryptFlag)
                         {
                             case JT809Header_Encrypt.None:
                                 // 5.3 处理消息体
-                                jT809Package.Bodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(
-                                 config.GetMessagePackFormatterByType(jT809BodiesImplType),
-                                 ref reader, config);
+                                jT809Package.Bodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(instance,ref reader, config);
                                 break;
                             case JT809Header_Encrypt.Common:
                                 // 5.4. 处理加密消息体
                                 byte[] bodiesData = config.Encrypt.Decrypt(reader.ReadContent(), config.EncryptOptions, jT809Package.Header.EncryptKey);
                                 JT809MessagePackReader bodiesReader = new JT809MessagePackReader(bodiesData);
-                                jT809Package.Bodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(
-                                                                 config.GetMessagePackFormatterByType(jT809BodiesImplType),
-                                                                 ref bodiesReader, config);
+                                jT809Package.Bodies = JT809MessagePackFormatterResolverExtensions.JT809DynamicDeserialize(instance,ref bodiesReader, config);
                                 break;
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{reader.ReadCurrentRemainContentLength().ToString()}", ex);
+                    catch (Exception ex)
+                    {
+                        throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{reader.ReadCurrentRemainContentLength().ToString()}", ex);
+                    }
                 }
             }
             jT809Package.CRCCode = reader.CalculateCheckXorCode;
@@ -120,10 +114,7 @@ namespace JT809.Protocol
             //  3.2.写入数据对应数据体
             if (value.Bodies != null)
             {
-                JT809MessagePackFormatterResolverExtensions.JT809DynamicSerialize(
-                           config.GetMessagePackFormatterByType(value.Bodies.GetType()),
-                           ref writer, value.Bodies,
-                           config);
+                JT809MessagePackFormatterResolverExtensions.JT809DynamicSerialize(value.Bodies,ref writer, value.Bodies,config);
             }
             //  3.3.记录当前结束位置
             int endIndex = writer.GetCurrentPosition();

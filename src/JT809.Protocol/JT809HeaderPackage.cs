@@ -40,8 +40,7 @@ namespace JT809.Protocol
             // 3.初始化消息头
             try
             {
-                //todo:JT809HeaderFormatter
-                //jT809Package.Header = JT809HeaderFormatter.Instance.Deserialize(ref reader, config);
+                jT809Package.Header = config.GetMessagePackFormatter<JT809Header>().Deserialize(ref reader, config);
             }
             catch (Exception ex)
             {
@@ -69,7 +68,7 @@ namespace JT809.Protocol
                 }
                 catch (Exception ex)
                 {
-                    throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{reader.ReadCurrentRemainContentLength().ToString()}", ex);
+                    throw new JT809Exception(JT809ErrorCode.BodiesParseError, $"offset>{reader.ReadCurrentRemainContentLength()}", ex);
                 }
             }
             jT809Package.CRCCode = reader.CalculateCheckXorCode;

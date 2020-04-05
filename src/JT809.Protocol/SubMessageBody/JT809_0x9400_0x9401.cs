@@ -70,7 +70,7 @@ namespace JT809.Protocol.SubMessageBody
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9400_0x9401 value, IJT809Config config)
         {
             writer.WriteByte((byte)value.WarnSrc);
-            writer.WriteUInt16((ushort)value.WarnType);
+            writer.WriteUInt16(value.WarnType);
             writer.WriteUTCDateTime(value.WarnTime);
             writer.WriteHex(value.SupervisionID, 4);
             writer.WriteUTCDateTime(value.SupervisionEndTime);

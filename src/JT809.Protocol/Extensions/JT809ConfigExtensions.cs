@@ -1,11 +1,8 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.Formatters;
-using JT809.Protocol.Interfaces;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JT809.Protocol
 {

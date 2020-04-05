@@ -292,39 +292,39 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_下级平台主动关闭链路通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1008)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_下级平台主动关闭主从链路通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1008)">
             <summary>
-            UP_CLOSELINK_INFORM - 下级平台主动关闭链路通知消息
+            UP_CLOSELINK_INFORM - 下级平台主动关闭主从链路通知消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1008)">
             <summary>
-            UP_CLOSELINK_INFORM - 下级平台主动关闭链路通知消息
+            UP_CLOSELINK_INFORM - 下级平台主动关闭主从链路通知消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_下级平台主动关闭链路通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1008)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_下级平台主动关闭主从链路通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1008)">
             <summary>
-            UP_CLOSELINK_INFORM - 下级平台主动关闭链路通知消息
+            UP_CLOSELINK_INFORM - 下级平台主动关闭主从链路通知消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_主链路动态信息交换消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1200)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_主链路车辆动态信息交换业务(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1200)">
             <summary>
-            UP_EXG_MSG - 主链路动态信息交换消息
+            UP_EXG_MSG - 主链路车辆动态信息交换业务
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1200)">
             <summary>
-            UP_EXG_MSG - 主链路动态信息交换消息
+            UP_EXG_MSG - 主链路车辆动态信息交换业务
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_主链路动态信息交换消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1200)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_主链路车辆动态信息交换业务(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1200)">
             <summary>
-            UP_EXG_MSG - 主链路动态信息交换消息
+            UP_EXG_MSG - 主链路车辆动态信息交换业务
             auto-generated
             </summary>
         </member>
@@ -418,21 +418,21 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路连接应答消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9002)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路连接应答信息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9002)">
             <summary>
-            DOWN_CONNECT_RSP - 从链路连接应答消息
+            DOWN_CONNECT_RSP - 从链路连接应答信息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9002)">
             <summary>
-            DOWN_CONNECT_RSP - 从链路连接应答消息
+            DOWN_CONNECT_RSP - 从链路连接应答信息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路连接应答消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9002)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路连接应答信息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9002)">
             <summary>
-            DOWN_CONNECT_RSP - 从链路连接应答消息
+            DOWN_CONNECT_RSP - 从链路连接应答信息
             auto-generated
             </summary>
         </member>
@@ -544,57 +544,57 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9101)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收车辆定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9101)">
             <summary>
-            DOWN_TOTAL_RECV_BACK_MSG - 接收定位信息数量通知消息
+            DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9101)">
             <summary>
-            DOWN_TOTAL_RECV_BACK_MSG - 接收定位信息数量通知消息
+            DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9101)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收车辆定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9101)">
             <summary>
-            DOWN_TOTAL_RECV_BACK_MSG - 接收定位信息数量通知消息
+            DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路动态信息交换消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9200)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路车辆动态信息交换业务(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9200)">
             <summary>
-            DOWN_EXG_MSG - 从链路动态信息交换消息
+            DOWN_EXG_MSG - 从链路车辆动态信息交换业务
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9200)">
             <summary>
-            DOWN_EXG_MSG - 从链路动态信息交换消息
+            DOWN_EXG_MSG - 从链路车辆动态信息交换业务
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路动态信息交换消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9200)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路车辆动态信息交换业务(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9200)">
             <summary>
-            DOWN_EXG_MSG - 从链路动态信息交换消息
+            DOWN_EXG_MSG - 从链路车辆动态信息交换业务
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路平台间信息交互消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9300)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路平台间信息交互业务(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9300)">
             <summary>
-            DOWN_PLATFORM_MSG - 从链路平台间信息交互消息
+            DOWN_PLATFORM_MSG - 从链路平台间信息交互业务
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9300)">
             <summary>
-            DOWN_PLATFORM_MSG - 从链路平台间信息交互消息
+            DOWN_PLATFORM_MSG - 从链路平台间信息交互业务
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路平台间信息交互消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9300)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_从链路平台间信息交互业务(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9300)">
             <summary>
-            DOWN_PLATFORM_MSG - 从链路平台间信息交互消息
+            DOWN_PLATFORM_MSG - 从链路平台间信息交互业务
             auto-generated
             </summary>
         </member>
@@ -660,310 +660,315 @@
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上传车辆注册信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1201)">
             <summary>
-            主链路动态信息交换消息
+            4608
             UP_EXG_MSG_REGISTER - 上传车辆注册信息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_实时上传车辆定位信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1202)">
             <summary>
-            主链路动态信息交换消息
+            4608
             UP_EXG_MSG_REAL_LOCATION - 实时上传车辆定位信息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆定位信息自动补报(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1203)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆定位信息自动补报请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1203)">
             <summary>
-            主链路动态信息交换消息
-            UP_EXG_MSG_HISTORY_LOCATION - 车辆定位信息自动补报
+            4608
+            UP_EXG_MSG_HISTORY_LOCATION - 车辆定位信息自动补报请求消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_启动车辆定位信息交换应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_启动车辆定位信息交换应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205)">
             <summary>
-            主链路动态信息交换消息
-            UP_EXG_MSG_RETURN_STARTUP_ACK - 启动车辆定位信息交换应答
+            4608
+            UP_EXG_MSG_RETURN_STARTUP_ACK - 启动车辆定位信息交换应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_结束车辆定位信息交换应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_结束车辆定位信息交换应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206)">
             <summary>
-            主链路动态信息交换消息
-            UP_EXG_MSG_RETURN_END_ACK - 结束车辆定位信息交换应答
+            4608
+            UP_EXG_MSG_RETURN_END_ACK - 结束车辆定位信息交换应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_申请交换指定车辆定位信息请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1207)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_申请交换指定车辆定位信息请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1207)">
             <summary>
-            主链路动态信息交换消息
-            UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP - 申请交换指定车辆定位信息请求
+            4608
+            UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP - 申请交换指定车辆定位信息请求消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_取消交换指定车辆定位信息请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1208)">
             <summary>
-            主链路动态信息交换消息
+            4608
             UP_EXG_MSG_APPLY_FOR_MONITOR_END - 取消交换指定车辆定位信息请求
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_补发车辆定位信息请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x1209)">
             <summary>
-            主链路动态信息交换消息
+            4608
             UP_EXG_MSG_APPLY_HISGNSSDATA_REQ - 补发车辆定位信息请求
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆驾驶员身份识别信息应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120A)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报驾驶员身份识别信息应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120A)">
             <summary>
-            主链路动态信息交换消息
-            UP_EXG_MSG_REPORT_DRIVER_INFO_ACK - 上报车辆驾驶员身份识别信息应答
+            4608
+            UP_EXG_MSG_REPORT_DRIVER_INFO_ACK - 上报驾驶员身份识别信息应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆电子运单应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆电子运单应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B)">
             <summary>
-            主链路动态信息交换消息
-            UP_EXG_MSG_TAKE_EWAYBILL_ACK - 上报车辆电子运单应答
+            4608
+            UP_EXG_MSG_TAKE_EWAYBILL_ACK - 上报车辆电子运单应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报驾驶员身份信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120C)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报驾驶员身份信息消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120C)">
             <summary>
-            主链路动态信息交换消息
-            UP_EXG_MSG_REPORT_DRIVER_INFO - 主动上报驾驶员身份信息
+            4608
+            UP_EXG_MSG_REPORT_DRIVER_INFO - 主动上报驾驶员身份信息消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报车辆电子运单信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120D)">
             <summary>
-            主链路动态信息交换消息
+            4608
             UP_EXG_MSG_REPORT_EWAYBILL_INFO - 主动上报车辆电子运单信息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_平台查岗应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_平台查岗应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301)">
             <summary>
-            主链路平台间信息交互消息
-            UP_PLATFORM_MSG_POST_QUERY_ACK - 平台查岗应答
+            4864
+            UP_PLATFORM_MSG_POST_QUERY_ACK - 平台查岗应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_下发平台间报文应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_下发平台间报文应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302)">
             <summary>
-            主链路平台间信息交互消息
-            UP_PLATFORM_MSG_INFO_ACK - 下发平台间报文应答
+            4864
+            UP_PLATFORM_MSG_INFO_ACK - 下发平台间报文应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警督办应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1401)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警督办应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1401)">
             <summary>
-            主链路报警信息交互消息
-            UP_WARN_MSG_URGE_TODO_ACK - 报警督办应答
+            5120
+            UP_WARN_MSG_URGE_TODO_ACK - 报警督办应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报报警信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报报警信息消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402)">
             <summary>
-            主链路报警信息交互消息
-            UP_WARN_MSG_ADPT_INFO - 上报报警信息
+            5120
+            UP_WARN_MSG_ADPT_INFO - 上报报警信息消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报报警处理结果信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403)">
             <summary>
-            主链路报警信息交互消息
+            5120
             UP_WARN_MSG_ADPT_TODO_INFO - 主动上报报警处理结果信息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆单向监听应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1500_0x1501)">
             <summary>
-            主链路车辆监管消息
+            5376
             UP_CTRL_MSG_MONITOR_VEHICLE_ACK - 车辆单向监听应答
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆拍照应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1500_0x1502)">
             <summary>
-            主链路车辆监管消息
+            5376
             UP_CTRL_MSG_TAKE_PHOTO_ACK - 车辆拍照应答
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_下发车辆报文应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1500_0x1503)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_下发车辆报文应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1500_0x1503)">
             <summary>
-            主链路车辆监管消息
-            UP_CTRL_MSG_TEXT_INFO_ACK - 下发车辆报文应答
+            5376
+            UP_CTRL_MSG_TEXT_INFO_ACK - 下发车辆报文应答消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆行驶记录应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1500_0x1504)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆行驶记录应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1500_0x1504)">
             <summary>
-            主链路车辆监管消息
-            UP_CTRL_MSG_TAKE_TRAVEL_ACK - 上报车辆行驶记录应答
+            5376
+            UP_CTRL_MSG_TAKE_TRAVEL_ACK - 上报车辆行驶记录应答消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆应急接入监管平台应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1500_0x1505)">
             <summary>
-            主链路车辆监管消息
+            5376
             UP_CTRL_MSG_EMERGENCY_MONITORING_ACK - 车辆应急接入监管平台应答消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_补报车辆静态信息应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1600_0x1601)">
             <summary>
-            主链路静态信息交换消息
+            5632
             UP_BASE_MSG_VEHICLE_ADDED_ACK - 补报车辆静态信息应答
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_交换车辆定位信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9202)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_交换车辆定位信息消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9202)">
             <summary>
-            从链路动态信息交换消息
-            DOWN_EXG_MSG_CAR_LOCATION - 交换车辆定位信息
+            37376
+            DOWN_EXG_MSG_CAR_LOCATION - 交换车辆定位信息消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆定位信息交换补发(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9203)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆定位信息交换补发消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9203)">
             <summary>
-            从链路动态信息交换消息
-            DOWN_EXG_MSG_HISTORY_ARCOSSAREA - 车辆定位信息交换补发
+            37376
+            DOWN_EXG_MSG_HISTORY_ARCOSSAREA - 车辆定位信息交换补发消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_交换车辆静态信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9204)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_交换车辆静态信息消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9204)">
             <summary>
-            从链路动态信息交换消息
-            DOWN_EXG_MSG_CAR_INFO - 交换车辆静态信息
+            37376
+            DOWN_EXG_MSG_CAR_INFO - 交换车辆静态信息消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_启动车辆定位信息交换请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9205)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_启动车辆定位信息交换请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9205)">
             <summary>
-            从链路动态信息交换消息
-            DOWN_EXG_MSG_RETURN_STARTUP - 启动车辆定位信息交换请求
+            37376
+            DOWN_EXG_MSG_RETURN_STARTUP - 启动车辆定位信息交换请求消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_结束车辆定位信息交换请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9206)">
             <summary>
-            从链路动态信息交换消息
+            37376
             DOWN_EXG_MSG_RETURN_END - 结束车辆定位信息交换请求
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_申请交换指定车辆定位信息应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9207)">
             <summary>
-            从链路动态信息交换消息
+            37376
             DOWN_EXG_MSG_APPLY_FOR_MONITOR_STARTUP_ACK - 申请交换指定车辆定位信息应答
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_取消交换指定车辆定位信息应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9208)">
             <summary>
-            从链路动态信息交换消息
+            37376
             DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK - 取消交换指定车辆定位信息应答
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_补发车辆定位信息应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9209)">
             <summary>
-            从链路动态信息交换消息
+            37376
             DOWN_EXG_MSG_APPLY_HISGNSSDATA_ACK - 补发车辆定位信息应答
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆驾驶员身份识别信息请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x920A)">
             <summary>
-            从链路动态信息交换消息
+            37376
             DOWN_EXG_MSG_REPORT_DRIVER_INFO - 上报车辆驾驶员身份识别信息请求
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆电子运单请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x920B)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆电子运单请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x920B)">
             <summary>
-            从链路动态信息交换消息
-            DOWN_EXG_MSG_TAKE_EWAYBILL_REQ - 上报车辆电子运单请求
+            37376
+            DOWN_EXG_MSG_TAKE_EWAYBILL_REQ - 上报车辆电子运单请求消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_平台查岗请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9300_0x9301)">
             <summary>
-            从链路平台间信息交互消息
+            37632
             DOWN_PLATFORM_MSG_POST_QUERY_REQ - 平台查岗请求
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_下发平台间报文请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9300_0x9302)">
             <summary>
-            从链路平台间信息交互消息
+            37632
             DOWN_PLATFORM_MSG_INFO_REQ - 下发平台间报文请求
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警督办请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9401)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警督办请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9401)">
             <summary>
-            从链路报警信息交互消息
-            DOWN_WARN_MSG_URGE_TODO_REQ - 报警督办请求
+            37888
+            DOWN_WARN_MSG_URGE_TODO_REQ - 报警督办请求消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警预警(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402)">
             <summary>
-            从链路报警信息交互消息
+            37888
             DOWN_WARN_MSG_INFORM_TIPS - 报警预警
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_实时交换报警信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403)">
             <summary>
-            从链路报警信息交互消息
+            37888
             DOWN_WARN_MSG_EXG_INFORM - 实时交换报警信息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆单向监听请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9501)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆单向监听请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9501)">
             <summary>
-            从链路车辆监管消息
-            DOWN_CTRL_MSG_MONITOR_VEHICLE_REQ - 车辆单向监听请求
+            38144
+            DOWN_CTRL_MSG_MONITOR_VEHICLE_REQ - 车辆单向监听请求消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆拍照请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9502)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆拍照请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9502)">
             <summary>
-            从链路车辆监管消息
-            DOWN_CTRL_MSG_TAKE_PHOTO_REQ - 车辆拍照请求
+            38144
+            DOWN_CTRL_MSG_TAKE_PHOTO_REQ - 车辆拍照请求消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_下发车辆报文请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9503)">
             <summary>
-            从链路车辆监管消息
+            38144
             DOWN_CTRL_MSG_TEXT_INFO - 下发车辆报文请求
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆行驶记录请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9504)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆行驶记录请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9504)">
             <summary>
-            从链路车辆监管消息
-            DOWN_CTRL_MSG_TAKE_TRAVEL_REQ - 上报车辆行驶记录请求
+            38144
+            DOWN_CTRL_MSG_TAKE_TRAVEL_REQ - 上报车辆行驶记录请求消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆应急接入监管平台请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9500_0x9505)">
             <summary>
-            从链路车辆监管消息
+            38144
             DOWN_CTRL_MSG_EMERGENCY_MONITORING_REQ - 车辆应急接入监管平台请求消息
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_补报车辆静态信息请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9600_0x9601)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_补报车辆静态信息请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9600_0x9601)">
             <summary>
-            从链路静态信息交换消息
-            DOWN_BASE_MSG_VEHICLE_ADDED - 补报车辆静态信息请求
+            38400
+            DOWN_BASE_MSG_VEHICLE_ADDED - 补报车辆静态信息请求消息
             auto-generated
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Interfaces.IJT809_2019_Version">
+            <summary>
+            只用来标识2019版本增删改情况
             </summary>
         </member>
         <member name="P:JT809.Protocol.IJT809Config.MsgSNDistributed">
@@ -1004,6 +1009,13 @@
             </summary>
             <param name="externalAssemblies"></param>
             <returns></returns>
+        </member>
+        <member name="P:JT809.Protocol.JT809Bodies.SkipSerialization">
+            <summary>
+            跳过数据体序列化
+            默认不跳过
+            当数据体为空的时候，使用null作为空包感觉不适合，所以就算使用空包也需要new一下来表达意思。
+            </summary>
         </member>
         <member name="F:JT809.Protocol.JT809Constants.DateLimitYear">
             <summary>
@@ -1145,6 +1157,13 @@
         <member name="T:JT809.Protocol.JT809SubBodies">
             <summary>
             子业务数据体
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.JT809SubBodies.SkipSerialization">
+            <summary>
+            跳过数据体序列化
+            默认不跳过
+            当数据体为空的时候，使用null作为空包感觉不适合，所以就算使用空包也需要new一下来表达意思。
             </summary>
         </member>
         <member name="T:JT809.Protocol.MessageBody.JT809_0x1001">
@@ -1765,7 +1784,7 @@
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1208">
             <summary>
-            取消交换指定车辆定位信息请
+            取消交换指定车辆定位信息请求
             <para>子业务类型标识：UP_EXG_MSG_APPLY_F0R_MONIOR_END</para>
             <para>描述：下级平台上传该命令给上级平台，取消之前申请监控的特殊车辆</para>
             </summary>
@@ -2198,7 +2217,7 @@
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9209">
             <summary>
-            取消交换指定车辆定位信息应答
+            补发车辆定位信息应答
             <para>子业务类型标识:DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK</para>
             </summary>
         </member>
@@ -2802,9 +2821,9 @@
             UP_DISCONNECT_INFORM
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809BusinessType.下级平台主动关闭链路通知消息">
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.下级平台主动关闭主从链路通知消息">
             <summary>
-            下级平台主动关闭链路通知消息  
+            下级平台主动关闭主从链路通知消息  
             UP_CLOSELINK_INFORM
             </summary>
         </member>
@@ -2814,9 +2833,9 @@
             DOWN_CONNECT_REQ
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809BusinessType.从链路连接应答消息">
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.从链路连接应答信息">
             <summary>
-            从链路连接应答消息 
+            从链路连接应答信息 
             DOWN_CONNECT_RSP
             </summary>
         </member>
@@ -2856,21 +2875,21 @@
             DOWN_CLOSELINK_INFORM
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809BusinessType.接收定位信息数量通知消息">
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.接收车辆定位信息数量通知消息">
             <summary>
-            接收定位信息数量通知消息
+            接收车辆定位信息数量通知消息
             DOWN_TOTAL_RECV_BACK_MSG
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809BusinessType.主链路动态信息交换消息">
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.主链路车辆动态信息交换业务">
             <summary>
             主链路动态信息交换消息 
             UP_EXG_MSG
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809BusinessType.从链路动态信息交换消息">
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.从链路车辆动态信息交换业务">
             <summary>
-            从链路动态信息交换消息
+            从链路车辆动态信息交换业务
             DOWN_EXG_MSG
             </summary>
         </member>
@@ -2880,9 +2899,9 @@
             UP_PLATFORM_MSG
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809BusinessType.从链路平台间信息交互消息">
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.从链路平台间信息交互业务">
             <summary>
-            从链路平台间信息交互消息  
+            从链路平台间信息交互业务  
             DOWN_PLATFORM_MSG
             </summary>
         </member>
@@ -2939,25 +2958,25 @@
             UP_EXG_MSG_REAL_LOCATION
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆定位信息自动补报">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆定位信息自动补报请求消息">
             <summary>
-            车辆定位信息自动补报
+            车辆定位信息自动补报请求消息
             UP_EXG_MSG_HISTORY_LOCATION
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.启动车辆定位信息交换应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.启动车辆定位信息交换应答消息">
             <summary>
-            启动车辆定位信息交换应答	
+            启动车辆定位信息交换应答消息	
             UP_EXG_MSG_RETURN_STARTUP_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.结束车辆定位信息交换应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.结束车辆定位信息交换应答消息">
             <summary>
             结束车辆定位信息交换应答	
             UP_EXG_MSG_RETURN_END_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.申请交换指定车辆定位信息请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.申请交换指定车辆定位信息请求消息">
             <summary>
             申请交换指定车辆定位信息请求	
             UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP
@@ -2975,21 +2994,21 @@
             UP_EXG_MSG_APPLY_HISGNSSDATA_REQ
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆驾驶员身份识别信息应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报驾驶员身份识别信息应答消息">
             <summary>
             上报车辆驾驶员身份识别信息应答
             UP_EXG_MSG_REPORT_DRIVER_INFO_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆电子运单应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆电子运单应答消息">
             <summary>
             上报车辆电子运单应答	
             UP_EXG_MSG_TAKE_EWAYBILL_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.主动上报驾驶员身份信息">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.主动上报驾驶员身份信息消息">
             <summary>
-            主动上报驾驶员身份信息	
+            主动上报驾驶员身份信息消息	
             UP_EXG_MSG_REPORT_DRIVER_INFO
             </summary>
         </member>
@@ -2999,27 +3018,27 @@
             UP_EXG_MSG_REPORT_EWAYBILL_INFO
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.交换车辆定位信息">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.交换车辆定位信息消息">
             <summary>
             交换车辆定位信息	
             DOWN_EXG_MSG_CAR_LOCATION
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆定位信息交换补发">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆定位信息交换补发消息">
             <summary>
             车辆定位信息交换补发	
             DOWN_EXG_MSG_HISTORY_ARCOSSAREA
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.交换车辆静态信息">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.交换车辆静态信息消息">
             <summary>
             交换车辆静态信息
             DOWN_EXG_MSG_CAR_INFO
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.启动车辆定位信息交换请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.启动车辆定位信息交换请求消息">
             <summary>
-            启动车辆定位信息交换请求
+            启动车辆定位信息交换请求消息
             DOWN_EXG_MSG_RETURN_STARTUP
             </summary>
         </member>
@@ -3052,21 +3071,21 @@
             DOWN_EXG_MSG_REPORT_DRIVER_INFO
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆电子运单请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆电子运单请求消息">
             <summary>
             上报车辆电子运单请求	
             DOWN_EXG_MSG_TAKE_EWAYBILL_REQ
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.平台查岗应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.平台查岗应答消息">
             <summary>
-            平台查岗应答	
+            平台查岗应答消息	
             UP_PLATFORM_MSG_POST_QUERY_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.下发平台间报文应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.下发平台间报文应答消息">
             <summary>
-            下发平台间报文应答	
+            下发平台间报文应答消息	
             UP_PLATFORM_MSG_INFO_ACK
             </summary>
         </member>
@@ -3082,15 +3101,15 @@
             DOWN_PLATFORM_MSG_INFO_REQ
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警督办应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警督办应答消息">
             <summary>
-            报警督办应答	
+            报警督办应答消息	
             UP_WARN_MSG_URGE_TODO_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报报警信息">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报报警信息消息">
             <summary>
-            上报报警信息	
+            上报报警信息消息	
             UP_WARN_MSG_ADPT_INFO
             </summary>
         </member>
@@ -3100,9 +3119,9 @@
             UP_WARN_MSG_ADPT_TODO_INFO
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警督办请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警督办请求消息">
             <summary>
-            报警督办请求	
+            报警督办请求消息	
             DOWN_WARN_MSG_URGE_TODO_REQ
             </summary>
         </member>
@@ -3130,15 +3149,15 @@
             UP_CTRL_MSG_TAKE_PHOTO_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.下发车辆报文应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.下发车辆报文应答消息">
             <summary>
-            下发车辆报文应答	
+            下发车辆报文应答消息	
             UP_CTRL_MSG_TEXT_INFO_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆行驶记录应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆行驶记录应答消息">
             <summary>
-            上报车辆行驶记录应答	
+            上报车辆行驶记录应答消息	
             UP_CTRL_MSG_TAKE_TRAVEL_ACK
             </summary>
         </member>
@@ -3148,15 +3167,15 @@
             UP_CTRL_MSG_EMERGENCY_MONITORING_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆单向监听请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆单向监听请求消息">
             <summary>
-            车辆单向监听请求	
+            车辆单向监听请求消息	
             DOWN_CTRL_MSG_MONITOR_VEHICLE_REQ
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆拍照请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆拍照请求消息">
             <summary>
-            车辆拍照请求	
+            车辆拍照请求消息	
             DOWN_CTRL_MSG_TAKE_PHOTO_REQ
             </summary>
         </member>
@@ -3166,9 +3185,9 @@
             DOWN_CTRL_MSG_TEXT_INFO
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆行驶记录请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆行驶记录请求消息">
             <summary>
-            上报车辆行驶记录请求	
+            上报车辆行驶记录请求消息	
             DOWN_CTRL_MSG_TAKE_TRAVEL_REQ
             </summary>
         </member>
@@ -3184,9 +3203,9 @@
             UP_BASE_MSG_VEHICLE_ADDED_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.补报车辆静态信息请求">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.补报车辆静态信息请求消息">
             <summary>
-            补报车辆静态信息请求
+            补报车辆静态信息请求消息
             DOWN_BASE_MSG_VEHICLE_ADDED
             </summary>
         </member>
@@ -3303,6 +3322,21 @@
         <member name="T:JT809.Protocol.Enums.JT809_0x9008_ReasonCode">
             <summary>
             错误代码
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Enums.JT809_LinkType">
+            <summary>
+            链路类型
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809_LinkType.main">
+            <summary>
+            主链路
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809_LinkType.subordinate">
+            <summary>
+            从链路
             </summary>
         </member>
         <member name="T:JT809.Protocol.Enums.JT809_VehiclePositionEncrypt">

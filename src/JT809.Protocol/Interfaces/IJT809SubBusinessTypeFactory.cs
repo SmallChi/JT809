@@ -1,17 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JT809.Protocol.Interfaces
 {
-    public interface IJT809SubBusinessTypeFactory
+    public interface IJT809SubBusinessTypeFactory : IJT809ExternalRegister
     {
-        Type GetSubBodiesImplTypeBySubBusinessType(ushort subBusinessType);
-        IJT809SubBusinessTypeFactory SetMap<TJT809SubBodies>(ushort subBusinessType) 
-            where TJT809SubBodies : JT809SubBodies;
-        IJT809SubBusinessTypeFactory SetMap(ushort subBusinessType,Type subBodiesImplType);
-        IJT809SubBusinessTypeFactory ReplaceMap<TJT809SubBodies>(ushort subBusinessType)
-            where TJT809SubBodies : JT809SubBodies;
-        IJT809SubBusinessTypeFactory CustomSetMap<TJT809SubBodies>(ushort subBusinessType)
-            where TJT809SubBodies : JT809SubBodies;
-        IJT809SubBusinessTypeFactory CustomSetMap(ushort subBusinessType,Type subBodiesImplType);
+        IDictionary<ushort, object> Map { get; }
+        bool TryGetValue(ushort msgId, out object instance);
+        IJT809SubBusinessTypeFactory SetMap<TJT809SubBodies>() where TJT809SubBodies : JT809SubBodies;
     }
 }

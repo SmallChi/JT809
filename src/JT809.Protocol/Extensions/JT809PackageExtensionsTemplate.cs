@@ -188,16 +188,16 @@ namespace JT809.Protocol.Extensions
 			return Create<JT809.Protocol.MessageBody.JT809_0x1007>(jT809BusinessType,jT809Header,bodies);
 		}
 		/// <summary>
-		/// UP_CLOSELINK_INFORM - 下级平台主动关闭链路通知消息
+		/// UP_CLOSELINK_INFORM - 下级平台主动关闭主从链路通知消息
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_下级平台主动关闭链路通知消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1008 bodies)
+	    public static JT809Package Create_下级平台主动关闭主从链路通知消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1008 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x1008>(jT809BusinessType,bodies);
 		}
 
 		/// <summary>
-		/// UP_CLOSELINK_INFORM - 下级平台主动关闭链路通知消息
+		/// UP_CLOSELINK_INFORM - 下级平台主动关闭主从链路通知消息
 		/// auto-generated
 		/// </summary>
 	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, JT809.Protocol.MessageBody.JT809_0x1008 bodies)
@@ -206,24 +206,24 @@ namespace JT809.Protocol.Extensions
 		}
 
 		/// <summary>
-		/// UP_CLOSELINK_INFORM - 下级平台主动关闭链路通知消息
+		/// UP_CLOSELINK_INFORM - 下级平台主动关闭主从链路通知消息
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_下级平台主动关闭链路通知消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x1008 bodies)
+	    public static JT809Package Create_下级平台主动关闭主从链路通知消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x1008 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x1008>(jT809BusinessType,jT809Header,bodies);
 		}
 		/// <summary>
-		/// UP_EXG_MSG - 主链路动态信息交换消息
+		/// UP_EXG_MSG - 主链路车辆动态信息交换业务
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_主链路动态信息交换消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1200 bodies)
+	    public static JT809Package Create_主链路车辆动态信息交换业务(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1200 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x1200>(jT809BusinessType,bodies);
 		}
 
 		/// <summary>
-		/// UP_EXG_MSG - 主链路动态信息交换消息
+		/// UP_EXG_MSG - 主链路车辆动态信息交换业务
 		/// auto-generated
 		/// </summary>
 	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, JT809.Protocol.MessageBody.JT809_0x1200 bodies)
@@ -232,10 +232,10 @@ namespace JT809.Protocol.Extensions
 		}
 
 		/// <summary>
-		/// UP_EXG_MSG - 主链路动态信息交换消息
+		/// UP_EXG_MSG - 主链路车辆动态信息交换业务
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_主链路动态信息交换消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x1200 bodies)
+	    public static JT809Package Create_主链路车辆动态信息交换业务(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x1200 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x1200>(jT809BusinessType,jT809Header,bodies);
 		}
@@ -370,16 +370,16 @@ namespace JT809.Protocol.Extensions
 			return Create<JT809.Protocol.MessageBody.JT809_0x9001>(jT809BusinessType,jT809Header,bodies);
 		}
 		/// <summary>
-		/// DOWN_CONNECT_RSP - 从链路连接应答消息
+		/// DOWN_CONNECT_RSP - 从链路连接应答信息
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_从链路连接应答消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9002 bodies)
+	    public static JT809Package Create_从链路连接应答信息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9002 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9002>(jT809BusinessType,bodies);
 		}
 
 		/// <summary>
-		/// DOWN_CONNECT_RSP - 从链路连接应答消息
+		/// DOWN_CONNECT_RSP - 从链路连接应答信息
 		/// auto-generated
 		/// </summary>
 	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, JT809.Protocol.MessageBody.JT809_0x9002 bodies)
@@ -388,10 +388,10 @@ namespace JT809.Protocol.Extensions
 		}
 
 		/// <summary>
-		/// DOWN_CONNECT_RSP - 从链路连接应答消息
+		/// DOWN_CONNECT_RSP - 从链路连接应答信息
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_从链路连接应答消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9002 bodies)
+	    public static JT809Package Create_从链路连接应答信息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9002 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9002>(jT809BusinessType,jT809Header,bodies);
 		}
@@ -552,16 +552,16 @@ namespace JT809.Protocol.Extensions
 			return Create<JT809.Protocol.MessageBody.JT809_0x9008>(jT809BusinessType,jT809Header,bodies);
 		}
 		/// <summary>
-		/// DOWN_TOTAL_RECV_BACK_MSG - 接收定位信息数量通知消息
+		/// DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_接收定位信息数量通知消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9101 bodies)
+	    public static JT809Package Create_接收车辆定位信息数量通知消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9101 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9101>(jT809BusinessType,bodies);
 		}
 
 		/// <summary>
-		/// DOWN_TOTAL_RECV_BACK_MSG - 接收定位信息数量通知消息
+		/// DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
 		/// auto-generated
 		/// </summary>
 	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, JT809.Protocol.MessageBody.JT809_0x9101 bodies)
@@ -570,24 +570,24 @@ namespace JT809.Protocol.Extensions
 		}
 
 		/// <summary>
-		/// DOWN_TOTAL_RECV_BACK_MSG - 接收定位信息数量通知消息
+		/// DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_接收定位信息数量通知消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9101 bodies)
+	    public static JT809Package Create_接收车辆定位信息数量通知消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9101 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9101>(jT809BusinessType,jT809Header,bodies);
 		}
 		/// <summary>
-		/// DOWN_EXG_MSG - 从链路动态信息交换消息
+		/// DOWN_EXG_MSG - 从链路车辆动态信息交换业务
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_从链路动态信息交换消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9200 bodies)
+	    public static JT809Package Create_从链路车辆动态信息交换业务(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9200 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9200>(jT809BusinessType,bodies);
 		}
 
 		/// <summary>
-		/// DOWN_EXG_MSG - 从链路动态信息交换消息
+		/// DOWN_EXG_MSG - 从链路车辆动态信息交换业务
 		/// auto-generated
 		/// </summary>
 	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, JT809.Protocol.MessageBody.JT809_0x9200 bodies)
@@ -596,24 +596,24 @@ namespace JT809.Protocol.Extensions
 		}
 
 		/// <summary>
-		/// DOWN_EXG_MSG - 从链路动态信息交换消息
+		/// DOWN_EXG_MSG - 从链路车辆动态信息交换业务
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_从链路动态信息交换消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9200 bodies)
+	    public static JT809Package Create_从链路车辆动态信息交换业务(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9200 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9200>(jT809BusinessType,jT809Header,bodies);
 		}
 		/// <summary>
-		/// DOWN_PLATFORM_MSG - 从链路平台间信息交互消息
+		/// DOWN_PLATFORM_MSG - 从链路平台间信息交互业务
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_从链路平台间信息交互消息(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9300 bodies)
+	    public static JT809Package Create_从链路平台间信息交互业务(this JT809BusinessType jT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9300 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9300>(jT809BusinessType,bodies);
 		}
 
 		/// <summary>
-		/// DOWN_PLATFORM_MSG - 从链路平台间信息交互消息
+		/// DOWN_PLATFORM_MSG - 从链路平台间信息交互业务
 		/// auto-generated
 		/// </summary>
 	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, JT809.Protocol.MessageBody.JT809_0x9300 bodies)
@@ -622,10 +622,10 @@ namespace JT809.Protocol.Extensions
 		}
 
 		/// <summary>
-		/// DOWN_PLATFORM_MSG - 从链路平台间信息交互消息
+		/// DOWN_PLATFORM_MSG - 从链路平台间信息交互业务
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_从链路平台间信息交互消息(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9300 bodies)
+	    public static JT809Package Create_从链路平台间信息交互业务(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  JT809.Protocol.MessageBody.JT809_0x9300 bodies)
 		{
 			return Create<JT809.Protocol.MessageBody.JT809_0x9300>(jT809BusinessType,jT809Header,bodies);
 		}

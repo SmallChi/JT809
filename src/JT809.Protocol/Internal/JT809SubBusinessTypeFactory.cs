@@ -5,91 +5,71 @@ using JT809.Protocol.Extensions;
 using JT809.Protocol.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace JT808.Protocol.Internal
 {
     internal class JT809SubBusinessTypeFactory : IJT809SubBusinessTypeFactory
     {
-        private readonly Dictionary<ushort, Type> map;
+        public IDictionary<ushort, object> Map { get; }
+
         internal JT809SubBusinessTypeFactory()
         {
-            map = new Dictionary<ushort, Type>();
-            InitMap();
+            Map = new Dictionary<ushort, object>();
+            InitMap(Assembly.GetExecutingAssembly());
         }
 
-        private void InitMap()
+        private void InitMap(Assembly assembly)
         {
-            foreach (var item in Enum.GetNames(typeof(JT809SubBusinessType)))
+            var types = assembly.GetTypes().Where(w => w.BaseType == typeof(JT809SubBodies)).ToList();
+            foreach (var type in types)
             {
-                JT809SubBusinessType subBusinessType = item.ToEnum<JT809SubBusinessType>();
-                if (!map.ContainsKey((ushort)subBusinessType))
+                var instance = Activator.CreateInstance(type);
+                ushort msgId = 0;
+                try
                 {
-                    JT809BodiesTypeAttribute jT809BodiesTypeAttribute = subBusinessType.GetAttribute<JT809BodiesTypeAttribute>();
-                    if (jT809BodiesTypeAttribute != null)
-                    {                
-                        map.Add((ushort)subBusinessType, jT809BodiesTypeAttribute.JT809BodiesType);
-                    }
+                    msgId = (ushort)type.GetProperty(nameof(JT809SubBodies.SubMsgId)).GetValue(instance);
+                }
+                catch (Exception ex)
+                {
+                    continue;
+                }
+                if (Map.ContainsKey(msgId))
+                {
+                    throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                }
+                else
+                {
+                    Map.Add(msgId, instance);
                 }
             }
         }
 
-        public Type GetSubBodiesImplTypeBySubBusinessType(ushort subBusinessType)
+        public bool TryGetValue(ushort msgId, out object instance)
         {
-            return map.TryGetValue(subBusinessType, out Type type) ? type : null;
+            return Map.TryGetValue(msgId, out instance);
         }
 
-        public IJT809SubBusinessTypeFactory SetMap<TJT809SubBodies>(ushort subBusinessType) 
-            where TJT809SubBodies : JT809SubBodies
+        public IJT809SubBusinessTypeFactory SetMap<TJT809SubBodies>() where TJT809SubBodies : JT809SubBodies
         {
-            if (!map.ContainsKey(subBusinessType))
+            Type type = typeof(TJT809SubBodies);
+            var instance = Activator.CreateInstance(type);
+            var msgId = (ushort)type.GetProperty(nameof(JT809SubBodies.SubMsgId)).GetValue(instance);
+            if (Map.ContainsKey(msgId))
             {
-                map.Add(subBusinessType, typeof(TJT809SubBodies));
-            }
-            return this;
-        }
-
-        public IJT809SubBusinessTypeFactory SetMap(ushort subBusinessType, Type subBodiesImplType)
-        {
-            if (!map.ContainsKey(subBusinessType))
-            {
-                map.Add(subBusinessType, subBodiesImplType);
-            }
-            return this;
-        }
-
-        public IJT809SubBusinessTypeFactory ReplaceMap<TJT809SubBodies>(ushort subBusinessType) where TJT809SubBodies : JT809SubBodies
-        {
-            if (!map.ContainsKey(subBusinessType))
-            {
-                map.Add(subBusinessType, typeof(TJT809SubBodies));
+                throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
             }
             else
             {
-                map[subBusinessType] = typeof(TJT809SubBodies);
+                Map.Add(msgId, instance);
             }
             return this;
         }
 
-        public IJT809SubBusinessTypeFactory CustomSetMap<TJT809SubBodies>(ushort subBusinessType) where TJT809SubBodies : JT809SubBodies
+        public void Register(Assembly externalAssembly)
         {
-            if (!map.ContainsKey(subBusinessType))
-            {
-                map.Add(subBusinessType, typeof(TJT809SubBodies));
-            }
-            else
-            {
-                map[subBusinessType] = typeof(TJT809SubBodies);
-            }
-            return this;
-        }
-
-        public IJT809SubBusinessTypeFactory CustomSetMap(ushort subBusinessType, Type subBodiesImplType)
-        {
-            if (!map.ContainsKey(subBusinessType))
-            {
-                map.Add(subBusinessType, subBodiesImplType);
-            }
-            return this;
+            InitMap(externalAssembly);
         }
     }
 }

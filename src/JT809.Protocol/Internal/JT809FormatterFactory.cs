@@ -33,6 +33,10 @@ namespace JT809.Protocol.Internal
                     var genericImplType = firstType.GetGenericArguments().FirstOrDefault();
                     if (genericImplType != null)
                     {
+                        if (genericImplType.GUID == Guid.Empty)
+                        {
+                            continue;
+                        }
                         if (!FormatterDict.ContainsKey(genericImplType.GUID))
                         {
                             FormatterDict.Add(genericImplType.GUID, Activator.CreateInstance(genericImplType));

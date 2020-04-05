@@ -38,9 +38,8 @@ namespace JT809.Protocol.SubMessageBody
                     try
                     {
                         JT809MessagePackReader jT809_0x9200_0x9202Reader = new JT809MessagePackReader(reader.ReadArray(36));
-                        //todo:JT809_0x9200_0x9202
-                        //JT809_0x9200_0x9202 jT809_0x1200_0x1202 = JT809_0x9200_0x9202_Formatter.Instance.Deserialize(ref jT809_0x9200_0x9202Reader, config);
-                        //jT809_0X1200_0x9203.GNSS.Add(jT809_0x1200_0x1202);
+                        JT809_0x9200_0x9202 jT809_0x1200_0x1202 = config.GetMessagePackFormatter<JT809_0x9200_0x9202>().Deserialize(ref jT809_0x9200_0x9202Reader, config);
+                        jT809_0X1200_0x9203.GNSS.Add(jT809_0x1200_0x1202);
                     }
                     catch (Exception)
                     {
@@ -57,8 +56,7 @@ namespace JT809.Protocol.SubMessageBody
             {
                 try
                 {
-                    //todo:JT809_0x9200_0x9202
-                    //JT809_0x9200_0x9202_Formatter.Instance.Serialize(ref writer, item, config);
+                    item.Serialize(ref writer, item, config);
                 }
                 catch (Exception ex)
                 {

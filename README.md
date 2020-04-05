@@ -198,8 +198,8 @@ JT809Package jT809Package = JT809BusinessType.从链路报警信息交互消息.
     {
         VehicleNo = "粤A12345",
         VehicleColor = JT809VehicleColorType.黄色,
-        SubBusinessType = JT809SubBusinessType.报警督办请求.ToUInt16Value(),
-        SubBodies = JT809SubBusinessType.报警督办请求.Create_报警督办请求(
+        SubBusinessType = JT809SubBusinessType.报警督办请求消息.ToUInt16Value(),
+        SubBodies = JT809SubBusinessType.报警督办请求消息.Create_报警督办请求消息(
             new JT809_0x9400_0x9401
             {
                 WarnSrc = JT809WarnSrc.车载终端,
@@ -250,21 +250,21 @@ static void Main(string[] args)
 
 BenchmarkDotNet=v0.12.0, OS=Windows 10.0.18363
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET Core SDK=3.1.100
-  [Host]     : .NET Core 3.1.0 (CoreCLR 4.700.19.56402, CoreFX 4.700.19.56404), X64 RyuJIT
-  Job-RQJOPV : .NET Core 3.1.0 (CoreCLR 4.700.19.56402, CoreFX 4.700.19.56404), X64 RyuJIT
+.NET Core SDK=3.1.201
+  [Host]     : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
+  Job-BAIJRX : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
 
 Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1  
 
 ```
-|                                  Method |      N |         Mean |        Error |      StdDev |      Gen 0 | Gen 1 | Gen 2 |    Allocated |
-|---------------------------------------- |------- |-------------:|-------------:|------------:|-----------:|------:|------:|-------------:|
-| **JT809_0x9400_0x9401_Package_Deserialize** |    **100** |     **629.9 us** |     **11.09 us** |     **9.83 us** |    **15.6250** |     **-** |     **-** |    **100.79 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |    100 |     501.0 us |      8.63 us |     8.07 us |    13.1836 |     - |     - |     83.59 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |  **10000** |  **63,018.0 us** |    **954.14 us** |   **845.82 us** |  **1625.0000** |     **-** |     **-** |  **10078.74 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |  10000 |  48,890.0 us |  1,107.12 us | 1,136.93 us |  1363.6364 |     - |     - |   8359.38 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** | **100000** | **623,675.9 us** | **10,185.67 us** | **9,527.68 us** | **16000.0000** |     **-** |     **-** | **100787.23 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize | 100000 | 486,690.2 us |  6,158.00 us | 5,458.90 us | 13000.0000 |     - |     - |  83595.03 KB |
+|                                  Method |      N |         Mean |       Error |      StdDev |      Gen 0 | Gen 1 | Gen 2 |    Allocated |
+|---------------------------------------- |------- |-------------:|------------:|------------:|-----------:|------:|------:|-------------:|
+| **JT809_0x9400_0x9401_Package_Deserialize** |    **100** |     **509.5 us** |     **2.50 us** |     **2.22 us** |    **15.6250** |     **-** |     **-** |    **100.78 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |    100 |     203.6 us |     1.95 us |     1.82 us |    13.4277 |     - |     - |     83.59 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |  **10000** |  **48,343.9 us** |   **580.83 us** |   **543.31 us** |  **1636.3636** |     **-** |     **-** |  **10078.13 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |  10000 |  20,705.0 us |   165.58 us |   154.88 us |  1343.7500 |     - |     - |   8359.38 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** | **100000** | **476,503.3 us** | **4,965.19 us** | **4,401.51 us** | **16000.0000** |     **-** |     **-** | **100781.25 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize | 100000 | 207,481.3 us | 1,467.56 us | 1,372.76 us | 13333.3333 |     - |     - |  83594.04 KB |
 
 ## JT809协议消息对照表
 
