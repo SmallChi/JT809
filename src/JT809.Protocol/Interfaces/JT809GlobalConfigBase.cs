@@ -2,6 +2,7 @@
 using JT808.Protocol.Internal;
 using JT809.Protocol.Configs;
 using JT809.Protocol.Encrypt;
+using JT809.Protocol.Enums;
 using JT809.Protocol.Internal;
 using System;
 using System.Reflection;
@@ -11,13 +12,14 @@ namespace JT809.Protocol.Interfaces
 {
     public abstract class JT809GlobalConfigBase : IJT809Config
     {
-        protected JT809GlobalConfigBase()
+        protected JT809GlobalConfigBase(JT809Version version= JT809Version.JTT2013)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             Encoding = Encoding.GetEncoding("GBK");
             BusinessTypeFactory = new JT809BusinessTypeFactory();
             SubBusinessTypeFactory = new JT809SubBusinessTypeFactory();
             FormatterFactory = new JT809FormatterFactory();
+            Version = version;
         }
         public abstract string ConfigId { get; }
         public virtual IJT809MsgSNDistributed MsgSNDistributed { get; set; }= new DefaultMsgSNDistributedImpl();
@@ -29,6 +31,8 @@ namespace JT809.Protocol.Interfaces
         public IJT809BusinessTypeFactory BusinessTypeFactory { get ; set ; }
         public IJT809SubBusinessTypeFactory SubBusinessTypeFactory { get; set ; }
         public IJT809FormatterFactory FormatterFactory { get; set; }
+        public JT809Version Version { get; set; }
+
         public virtual IJT809Config Register(params Assembly[] externalAssemblies)
         {
             if (externalAssemblies != null)

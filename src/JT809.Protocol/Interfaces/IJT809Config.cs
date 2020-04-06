@@ -1,5 +1,6 @@
 ﻿using JT808.Protocol.Formatters;
 using JT809.Protocol.Configs;
+using JT809.Protocol.Enums;
 using JT809.Protocol.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace JT809.Protocol
         IJT809BusinessTypeFactory BusinessTypeFactory { get; set; }
         IJT809SubBusinessTypeFactory SubBusinessTypeFactory { get; set; }
         IJT809FormatterFactory FormatterFactory { get; set; }
+        JT809Version Version { get; set; }
         /// <summary>
         /// 全局注册外部程序集
         /// </summary>

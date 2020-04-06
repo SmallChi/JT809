@@ -2,6 +2,7 @@
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using JT809.Protocol.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,22 +10,23 @@ using System.Text;
 namespace JT809.Protocol.MessageBody
 {
     /// <summary>
-    ///  接收车辆定位信息数量通知消息
+    ///  平台链路连接情况与车辆定位消息传输情况上报请求消息
     /// <para>链路类型：从链路</para>
     /// <para>消息方向:上级平台往下级平台</para>
-    /// <para>业务类型标识: DOWN_TOTAL_RECV_BACK_MSG</para>
-    /// <para>描述:上级平台向下级平台定星通知已经收到下级平台上传的车辆定位信息数量(如:每收到10,000 条车辆定位信息通知一次)</para>
-    /// <para>本条消息不需下级平台应答。</para>
+    /// <para>业务类型标识:DOWN_MANAGE_MSG_REQ</para>
     /// </summary>
-    public class JT809_0x9101:JT809Bodies, IJT809MessagePackFormatter<JT809_0x9101>
+    public class JT809_0x9102 : JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x9102>,IJT809_2019_Version
     {
-        public override ushort MsgId => JT809BusinessType.接收车辆定位信息数量通知消息.ToUInt16Value();
-        public override string Description => "接收车辆定位信息数量通知消息";
+        public override ushort MsgId => JT809BusinessType.平台链路连接情况与车辆定位消息传输情况上报请求消息_2019.ToUInt16Value();
+        public override string Description => "平台链路连接情况与车辆定位消息传输情况上报请求消息";
         public override JT809_LinkType LinkType => JT809_LinkType.subordinate;
+
+        public override JT809Version Version => JT809Version.JTT2019;
+
         /// <summary>
-        /// START_TIME_END_TIME共收到的车辆定位信息数量
+        /// 平台唯一编码
         /// </summary>
-        public uint DynamicInfoTotal { get; set; }
+        public string PlateformId { get; set; }
         /// <summary>
         /// 开始时间，用 UTC 时间表示
         /// 注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
@@ -35,18 +37,22 @@ namespace JT809.Protocol.MessageBody
         /// 注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
         /// </summary>
         public DateTime EndTime { get; set; }
-        public JT809_0x9101 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        public JT809_0x9102 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x9101 value = new JT809_0x9101();
-            value.DynamicInfoTotal = reader.ReadUInt32();
+            JT809_0x9102 value = new JT809_0x9102();
+            value.SubBusinessType = reader.ReadUInt16();
+            value.DataLength = reader.ReadUInt32();
+            value.PlateformId = reader.ReadBigNumber(11);
             value.StartTime = reader.ReadUTCDateTime();
             value.EndTime = reader.ReadUTCDateTime();
             return value;
         }
 
-        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9101 value, IJT809Config config)
+        public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9102 value, IJT809Config config)
         {
-            writer.WriteUInt32(value.DynamicInfoTotal);
+            writer.WriteUInt16(value.SubBusinessType);
+            writer.WriteUInt32(27);
+            writer.WriteBigNumber(value.PlateformId, 11);
             writer.WriteUTCDateTime(value.StartTime);
             writer.WriteUTCDateTime(value.EndTime);
         }

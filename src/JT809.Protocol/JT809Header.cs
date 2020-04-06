@@ -1,5 +1,7 @@
-﻿using JT809.Protocol.Formatters;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using System;
 
 namespace JT809.Protocol
 {
@@ -11,6 +13,12 @@ namespace JT809.Protocol
         /// <para>4 + 4 + 2 + 4 + 3 + 1 + 4 = 22</para>
         /// </summary>
         public const int FixedByteLength = 22;
+        /// <summary>
+        /// 2019版本固定为30个字节长度
+        /// <para>MSG LENGTH + MSG_SN + MSG_ID + MSG_GNSSCENTERID + VERSION_FLAG + ENCRYPT_FLAG + ENCRYPT_KEY+TIME</para>
+        /// <para>4 + 4 + 2 + 4 + 3 + 1 + 4 +8 = 30</para>
+        /// </summary>
+        public const int FixedByteLength_2019 = 30;
         /// <summary>
         /// 数据长度(包括头标识、数据头、数据体和尾标识)
         /// <para>头标识 + 数据头 + 数据体 + 尾标识</para>
@@ -44,6 +52,10 @@ namespace JT809.Protocol
         /// 数据加密的密匙，长度为 4 个字节
         /// </summary>
         public uint EncryptKey { get; set; }
+        /// <summary>
+        /// 发送消息时的系统UTC时间，长度为8个字节
+        /// </summary>
+        public DateTime Time { get; set; } = DateTime.Now;
 
         public JT809Header Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
@@ -55,6 +67,10 @@ namespace JT809.Protocol
             jT809Header.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
             jT809Header.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
             jT809Header.EncryptKey = reader.ReadUInt32();
+            if(config.Version== JT809Version.JTT2019)
+            {
+                Time = reader.ReadUTCDateTime();
+            }
             return jT809Header;
         }
 
@@ -67,6 +83,10 @@ namespace JT809.Protocol
             writer.WriteArray(value.Version.Buffer);
             writer.WriteByte((byte)value.EncryptFlag);
             writer.WriteUInt32(value.EncryptKey);
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteUTCDateTime(value.Time);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:UP_CONNCCT_RSP</para>
     /// <para>描述:上级平台对下级平台登录请求信息、进行安全验证后，返回相应的验证结果。</para>
     /// </summary>
-    public class JT809_0x1002 : JT809Bodies, IJT809MessagePackFormatter<JT809_0x1002>
+    public class JT809_0x1002 : JT809Bodies, IJT809MessagePackFormatter<JT809_0x1002>, IJT809_2019_Version
     {
         public override ushort MsgId => JT809BusinessType.主链路登录应答消息.ToUInt16Value();
 

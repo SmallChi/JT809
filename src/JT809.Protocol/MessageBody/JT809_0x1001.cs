@@ -1,6 +1,7 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
 
 
@@ -13,7 +14,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识: UP-CONNECT-REQ</para>
     /// <para>描述:下级平台向上级平台发送用户名和密码等登录信息</para>
     /// </summary>
-    public class JT809_0x1001: JT809Bodies,IJT809MessagePackFormatter<JT809_0x1001>
+    public class JT809_0x1001: JT809Bodies,IJT809MessagePackFormatter<JT809_0x1001>, IJT809_2019_Version
     {
         /// <summary>
         /// 用户名
@@ -24,6 +25,10 @@ namespace JT809.Protocol.MessageBody
         /// 8位
         /// </summary>
         public string Password { get; set; }
+        /// <summary>
+        /// 下级平台接入码
+        /// </summary>
+        public uint MsgGNSSCENTERID { get; set; }
         /// <summary>
         /// 下级平台提供对应的从链路服务端 IP 地址
         /// 32位
@@ -45,6 +50,10 @@ namespace JT809.Protocol.MessageBody
             JT809_0x1001 jT809_0X1001 = new JT809_0x1001();
             jT809_0X1001.UserId = reader.ReadUInt32();
             jT809_0X1001.Password = reader.ReadString(8);
+            if(config.Version== JT809Version.JTT2019)
+            {
+                jT809_0X1001.MsgGNSSCENTERID = reader.ReadUInt32();
+            }
             jT809_0X1001.DownLinkIP = reader.ReadString(32);
             jT809_0X1001.DownLinkPort = reader.ReadUInt16();
             return jT809_0X1001;
@@ -54,6 +63,10 @@ namespace JT809.Protocol.MessageBody
         {
             writer.WriteUInt32(value.UserId);
             writer.WriteStringPadRight(value.Password, 8);
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteUInt32(value.MsgGNSSCENTERID);
+            }
             writer.WriteStringPadRight(value.DownLinkIP, 32);
             writer.WriteUInt16(value.DownLinkPort);
         }

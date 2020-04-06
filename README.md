@@ -23,9 +23,9 @@
 
 ### 数据头[JT809Header]
 
-|数据长度|报文序列号|业务数据类型|下级平台接入码|协议版本号标识|报文加密标识位|数据加密的密匙|
-|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
-| MsgLength | MsgSN | BusinessType | MsgGNSSCENTERID | Version |EncryptFlag | EncryptKey |
+|数据长度|报文序列号|业务数据类型|下级平台接入码|协议版本号标识|报文加密标识位|数据加密的密匙|发送消息的系统时间(2019版本)|
+|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| MsgLength | MsgSN | BusinessType | MsgGNSSCENTERID | Version |EncryptFlag | EncryptKey |Time|
 
 ### 数据体[JT809Bodies]
 

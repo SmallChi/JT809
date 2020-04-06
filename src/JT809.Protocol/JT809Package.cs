@@ -2,12 +2,13 @@
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
 using System;
 
 namespace JT809.Protocol
 {
-    public class JT809Package:IJT809MessagePackFormatter<JT809Package>
+    public class JT809Package:IJT809MessagePackFormatter<JT809Package>, IJT809_2019_Version
     {
         public const byte BEGINFLAG = 0X5B;
 
@@ -19,6 +20,12 @@ namespace JT809.Protocol
         /// <para>1 + 22 + 2 + 1 = 26</para>
         /// </summary>
         public const int FixedByteLength = 26;
+        /// <summary>
+        /// 固定为26个字节长度
+        /// <para>Head flag + Message Header + CRC Code + End Flag</para>
+        /// <para>1 + 30 + 2 + 1 = 26</para>
+        /// </summary>
+        public const int FixedByteLength_2019 = 34;
 
         public byte BeginFlag { get; set; } = BEGINFLAG;
 
@@ -38,7 +45,7 @@ namespace JT809.Protocol
                 //  1.2. 验证校验码
                 if (!reader.CheckXorCodeVali)
                 {
-                    throw new JT809Exception(JT809ErrorCode.CRC16CheckInvalid, $"{reader.CalculateCheckXorCode.ToString()}!={reader.RealCheckXorCode.ToString()}");
+                    throw new JT809Exception(JT809ErrorCode.CRC16CheckInvalid, $"{reader.CalculateCheckXorCode}!={reader.RealCheckXorCode}");
                 }
             }
             JT809Package jT809Package = new JT809Package();
@@ -52,12 +59,13 @@ namespace JT809.Protocol
             catch (Exception ex)
             {
                 throw new JT809Exception(JT809ErrorCode.HeaderParseError, $"offset>{reader.ReadCurrentRemainContentLength()}", ex);
-            } 
+            }
             // 5.数据体处理
             //  5.1 判断是否有数据体（总长度-固定长度）> 0
-            if ((jT809Package.Header.MsgLength - FixedByteLength) > 0)
+            int fixedByteLength = config.Version == JT809Version.JTT2019 ? FixedByteLength_2019 : FixedByteLength;
+            if ((jT809Package.Header.MsgLength - fixedByteLength) > 0)
             {
-                if (config.BusinessTypeFactory.TryGetValue(jT809Package.Header.BusinessType, out object instance))
+                if (config.BusinessTypeFactory.TryGetValue(jT809Package.Header.BusinessType, config.Version, out object instance))
                 {
                     try
                     {
@@ -82,6 +90,7 @@ namespace JT809.Protocol
                     }
                 }
             }
+
             jT809Package.CRCCode = reader.CalculateCheckXorCode;
             jT809Package.EndFlag = reader.ReadEnd();
             return jT809Package;
@@ -108,6 +117,11 @@ namespace JT809.Protocol
             writer.WriteByte((byte)value.Header.EncryptFlag);
             //  2.7.数据加密密钥
             writer.WriteUInt32(value.Header.EncryptKey);
+            if(config.Version== JT809Version.JTT2019)
+            {
+                // 2.8.UTC时间戳
+                writer.WriteUTCDateTime(value.Header.Time);
+            }
             // 3.写入数据体
             //  3.1.记录当前开始位置
             int startIndex = writer.GetCurrentPosition();

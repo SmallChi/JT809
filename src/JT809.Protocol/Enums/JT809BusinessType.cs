@@ -151,6 +151,46 @@ namespace JT809.Protocol.Enums
         [JT809BodiesType(typeof(JT809_0x9101))]
         [JT809BusinessTypeDescription("DOWN_TOTAL_RECV_BACK_MSG", "接收车辆定位信息数量通知消息")]
         接收车辆定位信息数量通知消息 = 0x9101,
+        ///<summary>
+        ///发送车辆定位信息数据量通知消息_2019
+        ///DOWN_TOTAL_RECV_BACK_MSG
+        ///</summary>
+        [Description("接收车辆定位信息数量通知消息")]
+        [JT809BodiesType(typeof(JT809_2019_0x9101))]
+        [JT809BusinessTypeDescription("DOWN_TOTAL_RECV_BACK_MSG", "发送车辆定位信息数据量通知消息")]
+        发送车辆定位信息数据量通知消息_2019 = 0x9101,    
+        ///<summary>
+        ///发送车辆定位信息数据量通知消息_2019
+        ///DOWN_TOTAL_RECV_BACK_MSG
+        ///</summary>
+        [Description("平台链路连接情况与车辆定位消息传输情况上报请求消息")]
+        [JT809BodiesType(typeof(JT809_0x9102))]
+        [JT809BusinessTypeDescription("DOWN_MANAGE_MSG_REQ", "平台链路连接情况与车辆定位消息传输情况上报请求消息")]
+        平台链路连接情况与车辆定位消息传输情况上报请求消息_2019 = 0x9102,
+        ///<summary>
+        ///发送车辆定位信息数据量通知消息_2019
+        ///UP_MANAGE_MSG_RSP
+        ///</summary>
+        [Description("平台链路连接情况与车辆定位消息传输情况上报应答消息")]
+        [JT809BodiesType(typeof(JT809_0x1102))]
+        [JT809BusinessTypeDescription("UP_MANAGE_MSG_RSP", "平台链路连接情况与车辆定位消息传输情况上报应答消息")]
+        平台链路连接情况与车辆定位消息传输情况上报应答消息_2019 = 0x1102,
+        ///<summary>
+        ///上传平台间消息序列号通知消息
+        ///UP_MANAGE_MSG_SN_INFORM
+        ///</summary>
+        [Description("上传平台间消息序列号通知消息")]
+        [JT809BodiesType(typeof(JT809_0x1102))]
+        [JT809BusinessTypeDescription("UP_MANAGE_MSG_SN_INFORM", "上传平台间消息序列号通知消息")]
+        上传平台间消息序列号通知消息_2019 = 0x1103,
+        ///<summary>
+        ///下发平台间消息序列号通知消息
+        ///UP_MANAGE_MSG_SN_INFORM
+        ///</summary>
+        [Description("下发平台间消息序列号通知消息")]
+        [JT809BodiesType(typeof(JT809_0x1102))]
+        [JT809BusinessTypeDescription("DOWN_MANAGE_MSG_SN_INFORM", "下发平台间消息序列号通知消息")]
+        下发平台间消息序列号通知消息_2019 = 0x9103,
         #endregion
         #region 车辆动态信息交换
         ///<summary>
