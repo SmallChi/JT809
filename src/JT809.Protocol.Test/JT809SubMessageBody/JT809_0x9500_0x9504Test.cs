@@ -22,7 +22,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
                   Command= JT809CommandType.采集记录仪事故疑点记录,
                   StartTime=DateTime.Parse("2018-09-27 20:00:20"),
                   EndTime=DateTime.Parse("2018-09-27 23:00:20"),
-                  Max=5556
+                  //Max=5556
             };
             var hex = JT809Serializer.Serialize(jT809_0X9500_0X9504).ToHexString();
             //"10 18 09 27 20 00 20 18 09 27 23 00 20 15 B4"
@@ -39,7 +39,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(JT809CommandType.采集记录仪事故疑点记录, jT809_0X9500_0X9504.Command);
             Assert.Equal(DateTime.Parse("2018-09-27 20:00:20"), jT809_0X9500_0X9504.StartTime);
             Assert.Equal(DateTime.Parse("2018-09-27 23:00:20"), jT809_0X9500_0X9504.EndTime);
-            Assert.Equal(5556, jT809_0X9500_0X9504.Max);
+            //Assert.Equal(5556, jT809_0X9500_0X9504.Max);
         }
     }
 }

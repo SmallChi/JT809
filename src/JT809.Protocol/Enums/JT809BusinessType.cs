@@ -228,7 +228,7 @@ namespace JT809.Protocol.Enums
         [JT809BusinessTypeDescription("DOWN_PLATFORM_MSG", "从链路平台间信息交互业务")]
         从链路平台间信息交互业务 = 0x9300,
         #endregion
-        #region 车辆报警信息交互类
+        #region 车辆报警信息交互类(2013)  报警信息交互业务类(2019)
         ///<summary>
         ///主链路报警信息交互消息  
         ///UP_WARN_MSG

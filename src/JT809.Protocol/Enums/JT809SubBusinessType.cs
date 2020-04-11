@@ -107,6 +107,16 @@ namespace JT809.Protocol.Enums
         [JT809BodiesType(typeof(JT809_0x1200_0x120D))]
         [JT809SubBusinessTypeDescription("UP_EXG_MSG_REPORT_EWAYBILL_INFO", "主动上报车辆电子运单信息", JT809BusinessType.主链路车辆动态信息交换业务)]
         主动上报车辆电子运单信息 = 0x120D,
+        ///<summary>
+        ///主动上报车辆行驶路线信息	
+        ///UP_EXG_MSG_DRVLINE_INFO
+        ///</summary>
+        [Description("主动上报车辆行驶路线信息")]
+        [JT809BodiesType(typeof(JT809_0x1200_0x120E))]
+        [JT809SubBusinessTypeDescription("UP_EXG_MSG_DRVLINE_INFO", "主动上报车辆行驶路线信息", JT809BusinessType.主链路车辆动态信息交换业务)]
+        主动上报车辆行驶路线信息 = 0x120E,
+
+        
         #endregion
 
         #region 从链路动态信息交换消息 DOWN_EXG_MSG
@@ -189,6 +199,22 @@ namespace JT809.Protocol.Enums
         [JT809BodiesType(typeof(JT809_0x9200_0x920B))]
         [JT809SubBusinessTypeDescription("DOWN_EXG_MSG_TAKE_EWAYBILL_REQ", "上报车辆电子运单请求消息", JT809BusinessType.从链路车辆动态信息交换业务)]
         上报车辆电子运单请求消息 = 0x920B,
+        ///<summary>
+        ///上报车辆车辆行驶路线请求	
+        ///DOWN_BASE_MSG_DRVLINE_REQ
+        ///</summary>
+        [Description("上报车辆车辆行驶路线请求")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x920C))]
+        [JT809SubBusinessTypeDescription("DOWN_BASE_MSG_DRVLINE_REQ", "上报车辆车辆行驶路线请求", JT809BusinessType.从链路车辆动态信息交换业务)]
+        上报车辆车辆行驶路线请求 = 0x920C,
+        ///<summary>
+        ///车辆行驶线路请求应答	
+        ///DOWN_BASE_MSG_DRVLINE_ACK
+        ///</summary>
+        [Description("车辆行驶线路请求应答")]
+        [JT809BodiesType(typeof(JT809_0x9200_0x920D))]
+        [JT809SubBusinessTypeDescription("DOWN_BASE_MSG_DRVLINE_ACK", "车辆行驶线路请求应答", JT809BusinessType.从链路车辆动态信息交换业务)]
+        车辆行驶线路请求应答 = 0x920B,
         #endregion
 
         #region 主链路平台信息交互消息 UP_PLATFORM_MSG
@@ -208,6 +234,15 @@ namespace JT809.Protocol.Enums
         [JT809BodiesType(typeof(JT809_0x1300_0x1302))]
         [JT809SubBusinessTypeDescription("UP_PLATFORM_MSG_INFO_ACK", "下发平台间报文应答消息", JT809BusinessType.主链路平台间信息交互消息)]
         下发平台间报文应答消息 = 0x1302,
+        ///<summary>
+        ///上传平台间消息补传请求消息	
+        ///UP_PLATFORM_MSG_RETRAN_REQ
+        ///</summary>
+        [Description("上传平台间消息补传请求消息")]
+        [JT809BodiesType(typeof(JT809_0x1300_0x1303))]
+        [JT809SubBusinessTypeDescription("UP_PLATFORM_MSG_RETRAN_REQ", "上传平台间消息补传请求消息", JT809BusinessType.主链路平台间信息交互消息)]
+        上传平台间消息补传请求消息 = 0x1303,
+        
         #endregion
 
         #region 从链路平台信息交互消息 DOWN_PLATFORM_MSG
@@ -227,6 +262,15 @@ namespace JT809.Protocol.Enums
         [JT809BodiesType(typeof(JT809_0x9300_0x9302))]
         [JT809SubBusinessTypeDescription("DOWN_PLATFORM_MSG_INFO_REQ", "下发平台间报文请求", JT809BusinessType.从链路平台间信息交互业务)]
         下发平台间报文请求 = 0x9302,
+        ///<summary>
+        ///下发平台间消息补传请求消息	
+        ///DOWN_PLATFORM_MSG_RETRAN_REQ
+        ///</summary>
+        [Description("下发平台间消息补传请求消息")]
+        [JT809BodiesType(typeof(JT809_0x9300_0x9303))]
+        [JT809SubBusinessTypeDescription("DOWN_PLATFORM_MSG_RETRAN_REQ", "下发平台间消息补传请求消息", JT809BusinessType.从链路平台间信息交互业务)]
+        下发平台间消息补传请求消息 = 0x9303,
+        
         #endregion
 
         #region 主链路报警信息交互消息 UP_WARN_MSG
@@ -247,13 +291,38 @@ namespace JT809.Protocol.Enums
         [JT809SubBusinessTypeDescription("UP_WARN_MSG_ADPT_INFO", "上报报警信息消息", JT809BusinessType.主链路报警信息交互消息)]
         上报报警信息消息 = 0x1402,
         ///<summary>
-        ///主动上报报警处理结果信息	
+        ///上报报警督办应答消息	
+        ///UP_WARN_MSG_URGE_TODO_ACK_INFO
+        ///</summary>
+        [Description("上报报警督办应答消息")]
+        [JT809BodiesType(typeof(JT809_0x1400_0x1411))]
+        [JT809SubBusinessTypeDescription("UP_WARN_MSG_URGE_TODO_ACK_INFO", "上报报警督办应答消息", JT809BusinessType.主链路报警信息交互消息)]
+        上报报警督办应答消息 = 0x1411,
+        ///<summary>
+        ///主动上报报警处理结果消息	
         ///UP_WARN_MSG_ADPT_TODO_INFO
         ///</summary>
-        [Description("主动上报报警处理结果信息")]
+        [Description("主动上报报警处理结果消息")]
+        [JT809BodiesType(typeof(JT809_0x1400_0x1412))]
+        [JT809SubBusinessTypeDescription("UP_WARN_MSG_URGE_TODO_ACK_INFO", "主动上报报警处理结果消息", JT809BusinessType.主链路报警信息交互消息)]
+        主动上报报警处理结果消息 = 0x1412,
+        ///<summary>
+        ///上报报警督办请求消息	
+        ///UP_WARN_MSG_URGE_TODO_REQ_INFO
+        ///</summary>
+        [Description("上报报警督办请求消息")]
+        [JT809BodiesType(typeof(JT809_0x1400_0x1413))]
+        [JT809SubBusinessTypeDescription("UP_WARN_MSG_URGE_TODO_REQ_INFO", "上报报警督办请求消息", JT809BusinessType.主链路报警信息交互消息)]
+        上报报警督办请求消息 = 0x1413,
+        
+        ///<summary>
+        ///主动上报报警处理结果信息2013_上报报警预警信息2019	
+        ///UP_WARN_MSG_ADPT_TODO_INFO_2013_UP_WARN_MSG_INFORM_TIPS_2019
+        ///</summary>
+        [Description("主动上报报警处理结果信息2013_上报报警预警信息2019")]
         [JT809BodiesType(typeof(JT809_0x1400_0x1403))]
-        [JT809SubBusinessTypeDescription("UP_WARN_MSG_ADPT_TODO_INFO", "主动上报报警处理结果信息", JT809BusinessType.主链路报警信息交互消息)]
-        主动上报报警处理结果信息 = 0x1403,
+        [JT809SubBusinessTypeDescription("UP_WARN_MSG_ADPT_TODO_INFO_2013_UP_WARN_MSG_INFORM_TIPS_2019", "主动上报报警处理结果信息2013_上报报警预警信息2019", JT809BusinessType.主链路报警信息交互消息)]
+        主动上报报警处理结果信息2013_上报报警预警信息2019 = 0x1403,
         #endregion
 
         #region 从链路报警信息交互消息 DOWN_WARN_MSG
@@ -266,13 +335,13 @@ namespace JT809.Protocol.Enums
         [JT809SubBusinessTypeDescription("DOWN_WARN_MSG_URGE_TODO_REQ", "报警督办请求消息", JT809BusinessType.从链路报警信息交互消息)]
         报警督办请求消息 = 0x9401,
         ///<summary>
-        ///报警预警	
+        ///报警预警2013_下发报警预警消息2019	
         ///DOWN_WARN_MSG_INFORM_TIPS
         ///</summary>
-        [Description("报警预警")]
+        [Description("报警预警2013_下发报警预警消息2019")]
         [JT809BodiesType(typeof(JT809_0x9400_0x9402))]
-        [JT809SubBusinessTypeDescription("DOWN_WARN_MSG_INFORM_TIPS", "报警预警", JT809BusinessType.从链路报警信息交互消息)]
-        报警预警 = 0x9402,
+        [JT809SubBusinessTypeDescription("DOWN_WARN_MSG_INFORM_TIPS", "报警预警2013_下发报警预警消息2019", JT809BusinessType.从链路报警信息交互消息)]
+        报警预警2013_下发报警预警消息2019 = 0x9402,
         ///<summary>
         ///实时交换报警信息 	
         ///DOWN_WARN_MSG_EXG_INFORM

@@ -67,6 +67,9 @@
     <Compile Include="Enums\JT809VehicleColorType.cs" />
     <Compile Include="Enums\JT809WarnSrc.cs" />
     <Compile Include="Enums\JT809WarnType.cs" />
+    <Compile Include="Enums\JT809_0x1413_SupervisionLevel.cs" />
+    <Compile Include="Enums\JT809_0x1412_Result.cs" />
+    <Compile Include="Enums\JT809_0x1411_Result.cs" />
     <Compile Include="Enums\JT809_0x1502_PhotoRspFlag.cs" />
     <Compile Include="Enums\JT809_0x1501_Result.cs" />
     <Compile Include="Enums\JT809_0x1505_Result.cs" />

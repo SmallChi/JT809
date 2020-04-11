@@ -3,6 +3,7 @@ using JT809.Protocol.Enums;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
 
 namespace JT809.Protocol.MessageBody
@@ -14,7 +15,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:DOWN_WARN_MSG</para>
     /// <para>描述：上级平台向下级平台发送报瞥信息业务</para>
     /// </summary>
-    public class JT809_0x9400: JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x9400>
+    public class JT809_0x9400: JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x9400>, IJT809_2019_Version
     {
         public override ushort MsgId => JT809BusinessType.从链路报警信息交互消息.ToUInt16Value();
         public override string Description => "从链路报警信息交互消息";
@@ -22,8 +23,11 @@ namespace JT809.Protocol.MessageBody
         public JT809_0x9400 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9400 value = new JT809_0x9400();
-            value.VehicleNo = reader.ReadString(21);
-            value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+            if (config.Version == JT809Version.JTT2013)
+            {
+                value.VehicleNo = reader.ReadString(21);
+                value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+            }
             value.SubBusinessType = reader.ReadUInt16();
             value.DataLength = reader.ReadUInt32();
             try
@@ -50,8 +54,11 @@ namespace JT809.Protocol.MessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9400 value, IJT809Config config)
         {
-            writer.WriteStringPadRight(value.VehicleNo, 21);
-            writer.WriteByte((byte)value.VehicleColor);
+            if (config.Version == JT809Version.JTT2013)
+            {
+                writer.WriteStringPadRight(value.VehicleNo, 21);
+                writer.WriteByte((byte)value.VehicleColor);
+            }
             writer.WriteUInt16(value.SubBusinessType);
             try
             {
