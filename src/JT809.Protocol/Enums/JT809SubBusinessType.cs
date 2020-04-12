@@ -447,6 +447,15 @@ namespace JT809.Protocol.Enums
         [JT809BodiesType(typeof(JT809_0x1600_0x1601))]
         [JT809SubBusinessTypeDescription("UP_BASE_MSG_VEHICLE_ADDED_ACK", "补报车辆静态信息应答", JT809BusinessType.主链路静态信息交换消息)]
         补报车辆静态信息应答 = 0x1601,
+        ///<summary>
+        ///补报车辆行驶路线信息应答消息	
+        ///UP_BASE_MSG_DRVLINE_ADDED_REQ
+        ///</summary>
+        [Description("补报车辆行驶路线信息应答消息")]
+        [JT809BodiesType(typeof(JT809_0x1600_0x1602))]
+        [JT809SubBusinessTypeDescription("UP_BASE_MSG_DRVLINE_ADDED_REQ", "补报车辆行驶路线信息应答消息", JT809BusinessType.主链路静态信息交换消息)]
+        补报车辆行驶路线信息应答消息 = 0x1602,
+        
         #endregion
 
         #region 从链路静态信息交换消息 DOWN_BASE_MSG
