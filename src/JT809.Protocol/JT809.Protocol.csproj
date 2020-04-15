@@ -78,6 +78,7 @@
     <Compile Include="Enums\JT809_0x1401_Result.cs" />
     <Compile Include="Enums\JT809_0x1002_Result.cs" />
     <Compile Include="Enums\JT809_0x1007_ErrorCode.cs" />
+    <Compile Include="Enums\JT809_0x920A_UploadFlag.cs" />
     <Compile Include="Enums\JT809_0x9302_ObjectType.cs" />
     <Compile Include="Enums\JT809_0x9301_ObjectType.cs" />
     <Compile Include="Enums\JT809_0x1301_ObjectType.cs" />

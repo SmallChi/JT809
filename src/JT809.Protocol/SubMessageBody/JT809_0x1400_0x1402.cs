@@ -82,7 +82,7 @@ namespace JT809.Protocol.SubMessageBody
             }
             value.WarnType = (JT809WarnType)reader.ReadUInt16();
             value.WarnTime = reader.ReadUTCDateTime();
-            if (config.Version != JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2013)
             {
                 value.InfoID = reader.ReadUInt32();
             }

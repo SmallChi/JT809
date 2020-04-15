@@ -214,7 +214,7 @@ namespace JT809.Protocol.Enums
         [Description("车辆行驶线路请求应答")]
         [JT809BodiesType(typeof(JT809_0x9200_0x920D))]
         [JT809SubBusinessTypeDescription("DOWN_BASE_MSG_DRVLINE_ACK", "车辆行驶线路请求应答", JT809BusinessType.从链路车辆动态信息交换业务)]
-        车辆行驶线路请求应答 = 0x920B,
+        车辆行驶线路请求应答 = 0x920D,
         #endregion
 
         #region 主链路平台信息交互消息 UP_PLATFORM_MSG

@@ -15,7 +15,7 @@ namespace JT809.Protocol.SubMessageBody
     /// </summary>
     public class JT809_0x1400_0x1413 : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1400_0x1413>, IJT809_2019_Version
     {
-        public override ushort SubMsgId => JT809SubBusinessType.主动上报报警处理结果消息.ToUInt16Value();
+        public override ushort SubMsgId => JT809SubBusinessType.上报报警督办请求消息.ToUInt16Value();
 
         public override string Description => "上报报警督办请求消息";
         /// <summary>
