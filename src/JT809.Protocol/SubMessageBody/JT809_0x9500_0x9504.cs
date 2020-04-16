@@ -29,21 +29,84 @@ namespace JT809.Protocol.SubMessageBody
         /// 命令字ID
         /// </summary>
         public JT809CommandType Command { get; set; }
+        /// <summary>
+        /// 最大数据数
+        /// </summary>
+        public ushort Max { get; set; }
 
         public JT809_0x9500_0x9504 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x9500_0x9504();
-            value.StartTime = reader.ReadUTCDateTime();
-            value.EndTime = reader.ReadUTCDateTime();
-            value.Command = (JT809CommandType)reader.ReadByte();
+            if(config.Version == JT809Version.JTT2019){
+                value.StartTime = reader.ReadUTCDateTime();
+                value.EndTime = reader.ReadUTCDateTime();
+                value.Command = (JT809CommandType)reader.ReadByte();
+            }
+            else {
+                value.Command = (JT809CommandType)reader.ReadByte();
+                switch (value.Command)
+                {
+                    case JT809CommandType.记录仪标准版本:
+                    case JT809CommandType.当前驾驶人信息:
+                    case JT809CommandType.记录仪时间:
+                    case JT809CommandType.记录仪累计行驶里程:
+                    case JT809CommandType.记录仪脉冲系数:
+                    case JT809CommandType.车辆信息:
+                    case JT809CommandType.记录仪状态信号配置信息:
+                    case JT809CommandType.记录仪唯一性编号:
+                        break;
+                    case JT809CommandType.采集记录仪行驶记录:
+                    case JT809CommandType.采集记录仪位置信息记录:
+                    case JT809CommandType.采集记录仪事故疑点记录:
+                    case JT809CommandType.采集记录仪超时驾驶记录:
+                    case JT809CommandType.采集记录仪驾驶人身份记录:
+                    case JT809CommandType.采集记录仪外部供电记录:
+                    case JT809CommandType.采集记录仪参数修改记录:
+                    case JT809CommandType.采集记录仪速度状态日志:
+                        value.StartTime = reader.ReadDateTime6();
+                        value.EndTime = reader.ReadDateTime6();
+                        value.Max = reader.ReadUInt16();
+                        break;
+                }
+            }
             return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9500_0x9504 value, IJT809Config config)
         {
-            writer.WriteUTCDateTime(value.StartTime);
-            writer.WriteUTCDateTime(value.EndTime);
-            writer.WriteByte((byte)value.Command);
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteUTCDateTime(value.StartTime);
+                writer.WriteUTCDateTime(value.EndTime);
+                writer.WriteByte((byte)value.Command);
+            }
+            else {
+                writer.WriteByte((byte)value.Command);
+                switch (value.Command)
+                {
+                    case JT809CommandType.记录仪标准版本:
+                    case JT809CommandType.当前驾驶人信息:
+                    case JT809CommandType.记录仪时间:
+                    case JT809CommandType.记录仪累计行驶里程:
+                    case JT809CommandType.记录仪脉冲系数:
+                    case JT809CommandType.车辆信息:
+                    case JT809CommandType.记录仪状态信号配置信息:
+                    case JT809CommandType.记录仪唯一性编号:
+                        break;
+                    case JT809CommandType.采集记录仪行驶记录:
+                    case JT809CommandType.采集记录仪位置信息记录:
+                    case JT809CommandType.采集记录仪事故疑点记录:
+                    case JT809CommandType.采集记录仪超时驾驶记录:
+                    case JT809CommandType.采集记录仪驾驶人身份记录:
+                    case JT809CommandType.采集记录仪外部供电记录:
+                    case JT809CommandType.采集记录仪参数修改记录:
+                    case JT809CommandType.采集记录仪速度状态日志:
+                        writer.WriteDateTime6(value.StartTime);
+                        writer.WriteDateTime6(value.EndTime);
+                        writer.WriteUInt16(value.Max);
+                        break;
+                }
+            }
         }
     }
 }
