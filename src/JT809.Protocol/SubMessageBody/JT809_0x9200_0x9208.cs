@@ -2,18 +2,27 @@
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
+using JT809.Protocol.Interfaces;
 
 namespace JT809.Protocol.SubMessageBody
 {
     /// <summary>
-    /// 取消交换指定车辆定位信息应答
+    /// 取消交换指定车辆定位信息应答or取消申请交换指定车辆定位信息应答消息
     /// <para>子业务类型标识:DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK</para>
     /// </summary>
-    public class JT809_0x9200_0x9208:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9208>
+    public class JT809_0x9200_0x9208:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9208>, IJT809_2019_Version
     {
-        public override ushort SubMsgId => JT809SubBusinessType.取消交换指定车辆定位信息应答.ToUInt16Value();
+        public override ushort SubMsgId => JT809SubBusinessType.取消交换指定车辆定位信息应答or取消申请交换指定车辆定位信息应答消息.ToUInt16Value();
 
-        public override string Description => "取消交换指定车辆定位信息应答";
+        public override string Description => "取消交换指定车辆定位信息应答or取消申请交换指定车辆定位信息应答消息";
+        /// <summary>
+        /// 对应取消申请交换指定车辆定位信息请求消息源子业务类型标识
+        /// </summary>
+        public ushort SourceDataType { get; set; }
+        /// <summary>
+        ///  对应取消申请交换指定车辆定位信息请求消息源报文序列号
+        /// </summary>
+        public uint SourceMsgSn { get; set; }
         /// <summary>
         /// 返回结果
         /// </summary>
@@ -21,13 +30,23 @@ namespace JT809.Protocol.SubMessageBody
 
         public JT809_0x9200_0x9208 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x9200_0x9208 jT809_0X1200_0x9208 = new JT809_0x9200_0x9208();
-            jT809_0X1200_0x9208.Result = (JT809_0x9208_Result)reader.ReadByte();
-            return jT809_0X1200_0x9208;
+            var value = new JT809_0x9200_0x9208();
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.SourceDataType = reader.ReadUInt16();
+                value.SourceMsgSn = reader.ReadUInt32();
+            }
+            value.Result = (JT809_0x9208_Result)reader.ReadByte();
+            return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9200_0x9208 value, IJT809Config config)
         {
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteUInt16(value.SourceDataType);
+                writer.WriteUInt32(value.SourceMsgSn);
+            }
             writer.WriteByte((byte)value.Result);
         }
     }

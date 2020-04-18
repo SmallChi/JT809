@@ -2,6 +2,7 @@
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
+using JT809.Protocol.Interfaces;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -10,11 +11,19 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_CXG_MSG_TAKE_EWAYBILL_ACK</para>
     /// <para>描述:下级平台应答上级平台发送的上报车辆电子运单请求消息，向上级平台上传车辆当前电子运单</para>
     /// </summary>
-    public class JT809_0x1200_0x120B:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120B>
+    public class JT809_0x1200_0x120B:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120B>, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.上报车辆电子运单应答消息.ToUInt16Value();
 
         public override string Description => "上报车辆电子运单应答消息";
+        /// <summary>
+        /// 对应上报车辆电子运单源子业务类型标识
+        /// </summary>
+        public ushort SourceDataType { get; set; }
+        /// <summary>
+        ///  对应上报车辆电子运单源报文序列号
+        /// </summary>
+        public uint SourceMsgSn { get; set; }
         /// <summary>
         /// 电子运单数据体长度
         /// </summary>
@@ -25,14 +34,24 @@ namespace JT809.Protocol.SubMessageBody
         public string EwaybillInfo { get; set; }
         public JT809_0x1200_0x120B Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x1200_0x120B jT809_0X1200_0X120B = new JT809_0x1200_0x120B();
-            jT809_0X1200_0X120B.EwaybillLength = reader.ReadUInt32();
-            jT809_0X1200_0X120B.EwaybillInfo = reader.ReadString((int)jT809_0X1200_0X120B.EwaybillLength);
-            return jT809_0X1200_0X120B;
+            var value = new JT809_0x1200_0x120B();
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.SourceDataType = reader.ReadUInt16();
+                value.SourceMsgSn = reader.ReadUInt32();
+            }
+            value.EwaybillLength = reader.ReadUInt32();
+            value.EwaybillInfo = reader.ReadString((int)value.EwaybillLength);
+            return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1200_0x120B value, IJT809Config config)
         {
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteUInt16(value.SourceDataType);
+                writer.WriteUInt32(value.SourceMsgSn);
+            }
             writer.WriteUInt32((uint)value.EwaybillInfo.Length);
             writer.WriteString(value.EwaybillInfo);
         }

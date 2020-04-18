@@ -2,6 +2,7 @@
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
+using JT809.Protocol.Interfaces;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -9,7 +10,7 @@ namespace JT809.Protocol.SubMessageBody
     /// 主动上报驾驶员身份信息消息
     /// <para>子业务类型标识:UP_EXG_MSG_REPORT_DRIVER_INFO</para>
     /// </summary>
-    public class JT809_0x1200_0x120C:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120C>
+    public class JT809_0x1200_0x120C:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120C>, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.主动上报驾驶员身份信息消息.ToUInt16Value();
 
