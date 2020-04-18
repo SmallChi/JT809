@@ -3,6 +3,7 @@ using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Interfaces;
+using System;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -31,15 +32,23 @@ namespace JT809.Protocol.SubMessageBody
         /// 发证机构名称（备用）
         /// </summary>
         public string OrgName { get; set; }
+        /// <summary>
+        /// 证件有效期，时分秒均用0表示
+        /// </summary>
+        public DateTime ValidDate { get; set; }
 
         public JT809_0x1200_0x120C Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x1200_0x120C jT809_0X1200_0X120C = new JT809_0x1200_0x120C();
-            jT809_0X1200_0X120C.DriverName = reader.ReadString(16);
-            jT809_0X1200_0X120C.DriverID = reader.ReadString(20);
-            jT809_0X1200_0X120C.Licence = reader.ReadString(40);
-            jT809_0X1200_0X120C.OrgName = reader.ReadString(200);
-            return jT809_0X1200_0X120C;
+            JT809_0x1200_0x120C value = new JT809_0x1200_0x120C();
+            value.DriverName = reader.ReadString(16);
+            value.DriverID = reader.ReadString(20);
+            value.Licence = reader.ReadString(40);
+            value.OrgName = reader.ReadString(200);
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.ValidDate = reader.ReadUTCDateTime();
+            }
+            return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1200_0x120C value, IJT809Config config)
@@ -48,6 +57,10 @@ namespace JT809.Protocol.SubMessageBody
             writer.WriteStringPadRight(value.DriverID, 20);
             writer.WriteStringPadRight(value.Licence, 40);
             writer.WriteStringPadRight(value.OrgName, 200);
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteUTCDateTime(value.ValidDate);
+            }
         }
     }
 }
