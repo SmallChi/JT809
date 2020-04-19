@@ -1,11 +1,12 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
 using System;
 
 namespace JT809.Protocol
 {
-    public class JT809Header: IJT809MessagePackFormatter<JT809Header>
+    public class JT809Header: IJT809MessagePackFormatter<JT809Header>,IJT809_2019_Version
     {
         /// <summary>
         /// 固定为22个字节长度
