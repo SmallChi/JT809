@@ -8,12 +8,14 @@ using JT809.Protocol.MessageBody;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.SubMessageBody;
 using JT809.Protocol.Enums;
+using JT809.Protocol.Internal;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
     public  class JT809_0x1500_0x1501Test
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
+
         [Fact]
         public void Test1()
         {

@@ -49,8 +49,9 @@ namespace JT809.Protocol.SubMessageBody
                 value.VehiclePosition.State = reader.ReadUInt32();
                 value.VehiclePosition.Alarm = reader.ReadUInt32();
             }
-            else { 
-            
+            else 
+            {
+#warning JT809VehiclePositionProperties_2019
             }
             return value;
         }
@@ -76,8 +77,9 @@ namespace JT809.Protocol.SubMessageBody
                 writer.WriteUInt32(value.VehiclePosition.State);
                 writer.WriteUInt32(value.VehiclePosition.Alarm);
             }
-            else { 
-            
+            else 
+            {
+#warning JT809VehiclePositionProperties_2019
             }
         }
     }

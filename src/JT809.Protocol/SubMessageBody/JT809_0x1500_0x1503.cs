@@ -45,7 +45,6 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.MsgID = reader.ReadUInt32();
             }
-
             value.Result = (JT809_0x1503_Result)reader.ReadByte();
             return value;
         }

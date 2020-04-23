@@ -47,7 +47,6 @@ namespace JT809.Protocol.SubMessageBody
             value.CommandType = (JT809CommandType)reader.ReadByte();
             value.TraveldataLength = reader.ReadUInt32();
             value.TraveldataInfo = reader.ReadString((int)value.TraveldataLength);
-
             return value;
         }
 

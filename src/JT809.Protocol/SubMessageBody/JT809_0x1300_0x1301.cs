@@ -30,13 +30,10 @@ namespace JT809.Protocol.SubMessageBody
         public string ResponderTel { get; set; }
         /// <summary>
         /// 查岗对象的ID
+        /// 2013:12位
+        /// 2019:20位
         /// </summary>
         public string ObjectID { get; set; }
-        /// <summary>
-        /// 查岗对象的ID
-        /// 20位
-        /// </summary>
-        public string ObjectID_2019 { get; set; }
         /// <summary>
         /// 对应平台查岗请求消息源子业务类型标识
         /// </summary>
@@ -69,7 +66,7 @@ namespace JT809.Protocol.SubMessageBody
             else {
                 value.Responder = reader.ReadString(16);
                 value.ResponderTel = reader.ReadString(20);
-                value.ObjectID_2019 = reader.ReadString(20);
+                value.ObjectID = reader.ReadString(20);
                 value.SourceDataType = reader.ReadUInt16();
                 value.SourceMsgSn = reader.ReadUInt32();
             }
@@ -89,7 +86,7 @@ namespace JT809.Protocol.SubMessageBody
             else {
                 writer.WriteStringPadRight(value.Responder, 16);
                 writer.WriteStringPadRight(value.ResponderTel, 20);
-                writer.WriteStringPadRight(value.ObjectID_2019, 20);
+                writer.WriteStringPadRight(value.ObjectID, 20);
                 writer.WriteUInt16(value.SourceDataType);
                 writer.WriteUInt32(value.SourceMsgSn);
             }

@@ -7,12 +7,17 @@ using JT809.Protocol.Extensions;
 using JT809.Protocol.MessageBody;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.SubMessageBody;
+using JT809.Protocol.Internal;
+using JT809.Protocol.Enums;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
     public class JT809_0x1200_0x1202Test
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
+
+        private JT809Serializer JT809_2019_Serializer = new JT809Serializer(new DefaultGlobalConfig() { Version = JT809Version.JTT2019 });
+
         [Fact]
         public void Test1()
         {
@@ -57,5 +62,18 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal((uint)3, jT809_0X1200_0X1202.VehiclePosition.State);
             Assert.Equal((uint)257, jT809_0X1200_0X1202.VehiclePosition.Alarm);
         }
+
+        [Fact]
+        public void Test_2019_1()
+        {
+            // todo:JT809VehiclePositionProperties_2019
+        }
+
+        [Fact]
+        public void Test_2019_2()
+        {
+            // todo:JT809VehiclePositionProperties_2019
+        }
+
     }
 }

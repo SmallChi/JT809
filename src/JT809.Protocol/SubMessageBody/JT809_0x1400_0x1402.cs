@@ -77,7 +77,8 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.WarnSrc = (JT809WarnSrc)reader.ReadByte();
             }
-            else {
+            else 
+            {
                 value.SourcePlatformId = reader.ReadArray(11).ToArray();
             }
             value.WarnType = (JT809WarnType)reader.ReadUInt16();
@@ -107,7 +108,8 @@ namespace JT809.Protocol.SubMessageBody
             {
                 writer.WriteByte((byte)value.WarnSrc);
             }
-            else {
+            else 
+            {
                 writer.WriteArray(value.SourcePlatformId);
             }
             writer.WriteUInt16((ushort)value.WarnType);
@@ -116,7 +118,8 @@ namespace JT809.Protocol.SubMessageBody
             {
                 writer.WriteUInt32(value.InfoID);
             }
-            else {
+            else
+            {
                 writer.WriteUTCDateTime(value.StartTime);
                 writer.WriteUTCDateTime(value.EndTime);
                 writer.WriteStringPadRight(value.VehicleNo,21);
