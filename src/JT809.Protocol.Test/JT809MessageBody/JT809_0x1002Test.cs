@@ -13,6 +13,7 @@ namespace JT809.Protocol.Test.JT809MessageBody
     public class JT809_0x1002Test
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
+
         [Fact]
         public void Test1()
         {

@@ -69,7 +69,7 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x9400_0x9403 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x9400_0x9403();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 value.WarnSrc = (JT809WarnSrc)reader.ReadByte();
             }
@@ -96,7 +96,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9400_0x9403 value, IJT809Config config)
         {
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteByte((byte)value.WarnSrc);
             }

@@ -17,12 +17,15 @@ namespace JT809.Protocol.Test.JT809Packages
     {
         class JT809GlobalConfig: JT809GlobalConfigBase
         {
-            public override JT809EncryptOptions EncryptOptions { get; set; }= new JT809EncryptOptions()
+            public JT809GlobalConfig()
             {
-                IA1 = 20000000,
-                IC1 = 20000000,
-                M1 = 30000000
-            };
+                EncryptOptions = new JT809EncryptOptions()
+                {
+                    IA1 = 20000000,
+                    IC1 = 20000000,
+                    M1 = 30000000
+                };
+            }
             public override string ConfigId => "JT809GlobalConfig";
         }
         private JT809Serializer JT809Serializer;

@@ -30,7 +30,7 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x1200_0x1202 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x1200_0x1202 value = new JT809_0x1200_0x1202();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 value.VehiclePosition.Encrypt = (JT809_VehiclePositionEncrypt)reader.ReadByte();
                 value.VehiclePosition.Day = reader.ReadByte();
@@ -58,7 +58,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1200_0x1202 value, IJT809Config config)
         {
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteByte((byte)value.VehiclePosition.Encrypt);
                 writer.WriteByte(value.VehiclePosition.Day);

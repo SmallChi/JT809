@@ -6,12 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using JT809.Protocol.Internal;
+using JT809.Protocol.Enums;
 
 namespace JT809.Protocol.Test.JT809MessageBody
 {
     public class JT809_0x9001Test
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
+        
         [Fact]
         public void Test1()
         {

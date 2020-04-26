@@ -8,12 +8,14 @@ using JT809.Protocol.MessageBody;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.SubMessageBody;
 using JT809.Protocol.Enums;
+using JT809.Protocol.Internal;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
     public class JT809_0x9500_0x9504Test
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
+        private JT809Serializer JT809_2019_Serializer = new JT809Serializer(new DefaultGlobalConfig() { Version = JT809Version.JTT2019 });
         [Fact]
         public void Test1()
         {
@@ -40,6 +42,29 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(DateTime.Parse("2018-09-27 20:00:20"), jT809_0X9500_0X9504.StartTime);
             Assert.Equal(DateTime.Parse("2018-09-27 23:00:20"), jT809_0X9500_0X9504.EndTime);
             //Assert.Equal(5556, jT809_0X9500_0X9504.Max);
+        }
+
+        [Fact]
+        public void Test_2019_1()
+        {
+            JT809_0x9500_0x9504 jT809_0X9500_0X9504 = new JT809_0x9500_0x9504
+            {
+                Command = JT809CommandType.采集记录仪事故疑点记录,
+                StartTime = DateTime.Parse("2020-04-26 20:00:20"),
+                EndTime = DateTime.Parse("2020-04-26 23:00:20")
+            };
+            var hex = JT809Serializer.Serialize(jT809_0X9500_0X9504).ToHexString();
+            Assert.Equal("102004262000202004262300200000", hex);
+        }
+
+        [Fact]
+        public void Test_2019_2()
+        {
+            var bytes = "102004262000202004262300200000".ToHexBytes();
+            JT809_0x9500_0x9504 jT809_0X9500_0X9504 = JT809Serializer.Deserialize<JT809_0x9500_0x9504>(bytes);
+            Assert.Equal(JT809CommandType.采集记录仪事故疑点记录, jT809_0X9500_0X9504.Command);
+            Assert.Equal(DateTime.Parse("2020-04-26 20:00:20"), jT809_0X9500_0X9504.StartTime);
+            Assert.Equal(DateTime.Parse("2020-04-26 23:00:20"), jT809_0X9500_0X9504.EndTime);
         }
     }
 }

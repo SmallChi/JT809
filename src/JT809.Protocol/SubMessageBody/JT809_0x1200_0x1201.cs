@@ -47,7 +47,7 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x1200_0x1201 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x1200_0x1201 value = new JT809_0x1200_0x1201();
-            if(config.Version== JT809Version.JTT2013)
+            if(config.Version== JT809Version.JTT2011)
             {
                 value.PlateformId = reader.ReadBigNumber(11);
                 value.ProducerId = reader.ReadBigNumber(11);
@@ -71,7 +71,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1200_0x1201 value, IJT809Config config)
         {
-            if(config.Version== JT809Version.JTT2013)
+            if(config.Version== JT809Version.JTT2011)
             {
                 writer.WriteBigNumber(value.PlateformId, 11);
                 writer.WriteBigNumber(value.ProducerId, 11);

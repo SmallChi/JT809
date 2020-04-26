@@ -7,12 +7,15 @@ using JT809.Protocol.Extensions;
 using JT809.Protocol.MessageBody;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.SubMessageBody;
+using JT809.Protocol.Internal;
+using JT809.Protocol.Enums;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
     public class JT809_0x9500_0x9501Test
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
+        
         [Fact]
         public void Test1()
         {

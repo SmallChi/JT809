@@ -37,12 +37,14 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x9500_0x9504 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x9500_0x9504();
-            if(config.Version == JT809Version.JTT2019){
+            if(config.Version == JT809Version.JTT2019)
+            {
                 value.StartTime = reader.ReadUTCDateTime();
                 value.EndTime = reader.ReadUTCDateTime();
                 value.Command = (JT809CommandType)reader.ReadByte();
             }
-            else {
+            else 
+            {
                 value.Command = (JT809CommandType)reader.ReadByte();
                 switch (value.Command)
                 {
@@ -80,7 +82,8 @@ namespace JT809.Protocol.SubMessageBody
                 writer.WriteUTCDateTime(value.EndTime);
                 writer.WriteByte((byte)value.Command);
             }
-            else {
+            else 
+            {
                 writer.WriteByte((byte)value.Command);
                 switch (value.Command)
                 {

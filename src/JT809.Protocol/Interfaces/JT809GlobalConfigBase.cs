@@ -12,7 +12,7 @@ namespace JT809.Protocol.Interfaces
 {
     public abstract class JT809GlobalConfigBase : IJT809Config
     {
-        protected JT809GlobalConfigBase(JT809Version version= JT809Version.JTT2013)
+        protected JT809GlobalConfigBase(JT809Version version= JT809Version.JTT2011)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             Encoding = Encoding.GetEncoding("GBK");
@@ -22,12 +22,12 @@ namespace JT809.Protocol.Interfaces
             Version = version;
         }
         public abstract string ConfigId { get; }
-        public virtual IJT809MsgSNDistributed MsgSNDistributed { get; set; }= new DefaultMsgSNDistributedImpl();
-        public virtual Encoding Encoding { get; set; }
-        public virtual bool SkipCRCCode { get; set; } = false;
-        public virtual IJT809Encrypt Encrypt { get; set; } = new JT809EncryptImpl();
-        public virtual JT809EncryptOptions EncryptOptions { get; set; }
-        public virtual JT809HeaderOptions HeaderOptions { get; set; }
+        public IJT809MsgSNDistributed MsgSNDistributed { get; set; }= new DefaultMsgSNDistributedImpl();
+        public Encoding Encoding { get; set; }
+        public bool SkipCRCCode { get; set; } = false;
+        public IJT809Encrypt Encrypt { get; set; } = new JT809EncryptImpl();
+        public JT809EncryptOptions EncryptOptions { get; set; }
+        public JT809HeaderOptions HeaderOptions { get; set; }
         public IJT809BusinessTypeFactory BusinessTypeFactory { get ; set ; }
         public IJT809SubBusinessTypeFactory SubBusinessTypeFactory { get; set ; }
         public IJT809FormatterFactory FormatterFactory { get; set; }

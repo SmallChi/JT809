@@ -73,7 +73,7 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x1400_0x1402 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x1400_0x1402();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 value.WarnSrc = (JT809WarnSrc)reader.ReadByte();
             }
@@ -83,7 +83,7 @@ namespace JT809.Protocol.SubMessageBody
             }
             value.WarnType = (JT809WarnType)reader.ReadUInt16();
             value.WarnTime = reader.ReadUTCDateTime();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 value.InfoID = reader.ReadUInt32();
             }
@@ -104,7 +104,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1400_0x1402 value, IJT809Config config)
         {
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteByte((byte)value.WarnSrc);
             }
@@ -114,7 +114,7 @@ namespace JT809.Protocol.SubMessageBody
             }
             writer.WriteUInt16((ushort)value.WarnType);
             writer.WriteUTCDateTime(value.WarnTime);
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteUInt32(value.InfoID);
             }

@@ -58,7 +58,7 @@ namespace JT809.Protocol.SubMessageBody
         {
             var value = new JT809_0x1300_0x1301();
             value.ObjectType = (JT809_0x1301_ObjectType)reader.ReadByte();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 value.ObjectID = reader.ReadString(12);
                 value.InfoID = reader.ReadUInt32();
@@ -78,7 +78,7 @@ namespace JT809.Protocol.SubMessageBody
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1300_0x1301 value, IJT809Config config)
         {
             writer.WriteByte((byte)value.ObjectType);
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteStringPadRight(value.ObjectID, 12);
                 writer.WriteUInt32(value.InfoID);

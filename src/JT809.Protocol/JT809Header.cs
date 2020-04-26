@@ -70,7 +70,7 @@ namespace JT809.Protocol
             jT809Header.EncryptKey = reader.ReadUInt32();
             if(config.Version== JT809Version.JTT2019)
             {
-                Time = reader.ReadUTCDateTime();
+                jT809Header.Time = reader.ReadUTCDateTime();
             }
             return jT809Header;
         }

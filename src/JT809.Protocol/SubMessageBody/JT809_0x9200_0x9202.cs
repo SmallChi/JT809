@@ -27,7 +27,7 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x9200_0x9202 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9200_0x9202 jT809_0X1200_0x9202 = new JT809_0x9200_0x9202();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 jT809_0X1200_0x9202.VehiclePosition = new JT809VehiclePositionProperties();
                 jT809_0X1200_0x9202.VehiclePosition.Encrypt = (JT809_VehiclePositionEncrypt)reader.ReadByte();
@@ -65,7 +65,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9200_0x9202 value, IJT809Config config)
         {
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteByte((byte)value.VehiclePosition.Encrypt);
                 writer.WriteByte(value.VehiclePosition.Day);

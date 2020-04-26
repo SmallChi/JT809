@@ -23,7 +23,7 @@ namespace JT809.Protocol.MessageBody
         public JT809_0x9400 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9400 value = new JT809_0x9400();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 value.VehicleNo = reader.ReadString(21);
                 value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
@@ -54,7 +54,7 @@ namespace JT809.Protocol.MessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9400 value, IJT809Config config)
         {
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteStringPadRight(value.VehicleNo, 21);
                 writer.WriteByte((byte)value.VehicleColor);

@@ -237,6 +237,30 @@ static void Main(string[] args)
 }
 ```
 
+### 举个栗子4
+
+如何在项目中同时使用809的2011和2019版本
+
+``` data4
+IServiceCollection serviceDescriptors = new ServiceCollection();
+serviceDescriptors.AddJT809Configure(new JT809_2011_Config());
+serviceDescriptors.AddJT809Configure(new JT809_2019_Config());
+JT809Serializer JT809_2011_Serializer= ServiceProvider.GetRequiredService<JT809_2011_Config>().GetSerializer();
+JT809Serializer JT809_2019_Serializer = ServiceProvider.GetRequiredService<JT809_2019_Config>().GetSerializer();
+public class JT809_2011_Config: JT809GlobalConfigBase
+{
+    public override string ConfigId => "JT809_2011";
+}
+public class JT809_2019_Config : JT809GlobalConfigBase
+{
+    public override string ConfigId => "JT809_2019";
+    public JT809_2019_Config()
+    {
+        Version = JT809Version.JTT2019;
+    }
+}
+```
+
 ## NuGet安装
 
 | Package Name |  Version | Downloads

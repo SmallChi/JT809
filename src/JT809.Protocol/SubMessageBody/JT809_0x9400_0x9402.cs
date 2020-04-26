@@ -71,11 +71,12 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x9400_0x9402 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x9400_0x9402();
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 value.WarnSrc = (JT809WarnSrc)reader.ReadByte();
             }
-            else {
+            else 
+            {
                 value.SourcePlatformId = reader.ReadArray(11).ToArray();
             }
             value.WarnType = (JT809WarnType)reader.ReadUInt16();
@@ -96,11 +97,12 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9400_0x9402 value, IJT809Config config)
         {
-            if (config.Version == JT809Version.JTT2013)
+            if (config.Version == JT809Version.JTT2011)
             {
                 writer.WriteByte((byte)value.WarnSrc);
             }
-            else {
+            else 
+            {
                 writer.WriteArray(value.SourcePlatformId);
             }
             writer.WriteUInt16((ushort)value.WarnType);
