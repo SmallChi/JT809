@@ -1,4 +1,5 @@
-﻿using JT809.Protocol.Extensions;
+﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.Interfaces;
 using JT809.Protocol.Internal;
@@ -6,7 +7,9 @@ using JT809.Protocol.MessagePack;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace JT809.Protocol
 {
@@ -97,6 +100,101 @@ namespace JT809.Protocol
                 JT809MessagePackReader jT808MessagePackReader = new JT809MessagePackReader(bytes);
                 jT808MessagePackReader.Decode(buffer);
                 return jT809HeaderPackage.Deserialize(ref jT808MessagePackReader, jT809Config);
+            }
+            finally
+            {
+                JT809ArrayPool.Return(buffer);
+            }
+        }
+
+
+        public string Analyze(ReadOnlySpan<byte> bytes,JsonWriterOptions options = default, int minBufferSize = 8096)
+        {
+            byte[] buffer = JT809ArrayPool.Rent(minBufferSize);
+            try
+            {
+                JT809MessagePackReader jT809MessagePackReader = new JT809MessagePackReader(bytes);
+                jT809MessagePackReader.Decode(buffer);
+                using (MemoryStream memoryStream = new MemoryStream())
+                using (Utf8JsonWriter utf8JsonWriter = new Utf8JsonWriter(memoryStream, options))
+                {
+                    jT809Package.Analyze(ref jT809MessagePackReader, utf8JsonWriter, jT809Config);
+                    utf8JsonWriter.Flush();
+                    string value = Encoding.UTF8.GetString(memoryStream.ToArray());
+                    return value;
+                }
+            }
+            finally
+            {
+                JT809ArrayPool.Return(buffer);
+            }
+        }
+
+        public string Analyze<T>(ReadOnlySpan<byte> bytes,JsonWriterOptions options = default, int minBufferSize = 8096)
+        {
+            byte[] buffer = JT809ArrayPool.Rent(minBufferSize);
+            try
+            {
+                JT809MessagePackReader jT809MessagePackReader = new JT809MessagePackReader(bytes);
+                if (CheckPackageType(typeof(T)))
+                    jT809MessagePackReader.Decode(buffer);
+                var analyze = jT809Config.GetAnalyze<T>();
+                using (MemoryStream memoryStream = new MemoryStream())
+                using (Utf8JsonWriter utf8JsonWriter = new Utf8JsonWriter(memoryStream, options))
+                {
+                    if (!CheckPackageType(typeof(T))) utf8JsonWriter.WriteStartObject();
+                    analyze.Analyze(ref jT809MessagePackReader, utf8JsonWriter, jT809Config);
+                    if (!CheckPackageType(typeof(T))) utf8JsonWriter.WriteEndObject();
+                    utf8JsonWriter.Flush();
+                    string value = Encoding.UTF8.GetString(memoryStream.ToArray());
+                    return value;
+                }
+            }
+            finally
+            {
+                JT809ArrayPool.Return(buffer);
+            }
+        }
+
+        public byte[] AnalyzeJsonBuffer(ReadOnlySpan<byte> bytes, JsonWriterOptions options = default, int minBufferSize = 8096)
+        {
+            byte[] buffer = JT809ArrayPool.Rent(minBufferSize);
+            try
+            {
+                JT809MessagePackReader jT809MessagePackReader = new JT809MessagePackReader(bytes);
+                jT809MessagePackReader.Decode(buffer);
+                using (MemoryStream memoryStream = new MemoryStream())
+                using (Utf8JsonWriter utf8JsonWriter = new Utf8JsonWriter(memoryStream, options))
+                {
+                    jT809Package.Analyze(ref jT809MessagePackReader, utf8JsonWriter, jT809Config);
+                    utf8JsonWriter.Flush();
+                    return memoryStream.ToArray();
+                }
+            }
+            finally
+            {
+                JT809ArrayPool.Return(buffer);
+            }
+        }
+
+        public byte[] AnalyzeJsonBuffer<T>(ReadOnlySpan<byte> bytes, JsonWriterOptions options = default, int minBufferSize = 8096)
+        {
+            byte[] buffer = JT809ArrayPool.Rent(minBufferSize);
+            try
+            {
+                JT809MessagePackReader jT809MessagePackReader = new JT809MessagePackReader(bytes);
+                if (CheckPackageType(typeof(T)))
+                    jT809MessagePackReader.Decode(buffer);
+                var analyze = jT809Config.GetAnalyze<T>();
+                using (MemoryStream memoryStream = new MemoryStream())
+                using (Utf8JsonWriter utf8JsonWriter = new Utf8JsonWriter(memoryStream, options))
+                {
+                    if (!CheckPackageType(typeof(T))) utf8JsonWriter.WriteStartObject();
+                    analyze.Analyze(ref jT809MessagePackReader, utf8JsonWriter, jT809Config);
+                    if (!CheckPackageType(typeof(T))) utf8JsonWriter.WriteEndObject();
+                    utf8JsonWriter.Flush();
+                    return memoryStream.ToArray();
+                }
             }
             finally
             {

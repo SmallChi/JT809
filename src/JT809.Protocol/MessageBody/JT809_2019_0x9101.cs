@@ -19,7 +19,7 @@ namespace JT809.Protocol.MessageBody
     public class JT809_2019_0x9101 : JT809Bodies, IJT809MessagePackFormatter<JT809_2019_0x9101>
     {
         public override ushort MsgId => JT809BusinessType.发送车辆定位信息数据量通知消息_2019.ToUInt16Value();
-        public override string Description => "发送车辆定位信息数据量通知消息";
+        public override string Description => "发送车辆定位信息数据量通知消息_2019";
         public override JT809_LinkType LinkType => JT809_LinkType.main;
         public override JT809Version Version => JT809Version.JTT2019;
 

@@ -16,6 +16,7 @@
 <#
 	var types=Enum.GetNames(typeof(JT809BusinessType));
 #>
+
 using JT809.Protocol.Enums;
 
 namespace JT809.Protocol.Extensions
@@ -28,19 +29,18 @@ namespace JT809.Protocol.Extensions
 		JT809BusinessType jT809BusinessType = item.ToEnum<JT809BusinessType>();
 		JT809BodiesTypeAttribute jT809BodiesTypeAttribute = jT809BusinessType.GetAttribute<JT809BodiesTypeAttribute>();
 		JT809BusinessTypeDescriptionAttribute jT809MsgIdDescriptionAttribute = jT809BusinessType.GetAttribute<JT809BusinessTypeDescriptionAttribute>();
-
 #>
 		/// <summary>
-		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= jT809MsgIdDescriptionAttribute.Name #>
+		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= item #>
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_<#= jT809MsgIdDescriptionAttribute.Name #>(this JT809BusinessType jT809BusinessType,<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
+	    public static JT809Package Create_<#= item #>(this JT809BusinessType jT809BusinessType,<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
 		{
 			return Create<<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName#>>(jT809BusinessType,bodies);
 		}
 
 		/// <summary>
-		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= jT809MsgIdDescriptionAttribute.Name #>
+		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= item #>
 		/// auto-generated
 		/// </summary>
 	    public static JT809Package Create(this JT809BusinessType jT809BusinessType, <#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
@@ -49,10 +49,10 @@ namespace JT809.Protocol.Extensions
 		}
 
 		/// <summary>
-		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= jT809MsgIdDescriptionAttribute.Name #>
+		/// <#= jT809MsgIdDescriptionAttribute.Code #> - <#= item #>
 		/// auto-generated
 		/// </summary>
-	    public static JT809Package Create_<#= jT809MsgIdDescriptionAttribute.Name #>(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  <#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
+	    public static JT809Package Create_<#= item #>(this JT809BusinessType jT809BusinessType,JT809Header jT809Header,  <#= jT809BodiesTypeAttribute.JT809BodiesType.FullName #> bodies)
 		{
 			return Create<<#= jT809BodiesTypeAttribute.JT809BodiesType.FullName#>>(jT809BusinessType,jT809Header,bodies);
 		}

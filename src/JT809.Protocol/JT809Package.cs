@@ -5,10 +5,11 @@ using JT809.Protocol.Formatters;
 using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
 using System;
+using System.Text.Json;
 
 namespace JT809.Protocol
 {
-    public class JT809Package:IJT809MessagePackFormatter<JT809Package>, IJT809_2019_Version
+    public class JT809Package:IJT809MessagePackFormatter<JT809Package>, IJT809Analyze, IJT809_2019_Version
     {
         public const byte BEGINFLAG = 0X5B;
 
@@ -173,6 +174,12 @@ namespace JT809.Protocol
             // 7.转义
             writer.WriteEncode();
             // -----------组包完成----------
+        }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+#warning Analyze NotImplementedException
+            throw new NotImplementedException();
         }
     }
 }

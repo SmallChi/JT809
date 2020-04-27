@@ -119,6 +119,15 @@ namespace JT809.Protocol.Extensions
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x1200_0x120D>(jT809SubBusinessType,subBodies);
 		}
 		/// <summary>
+		/// 4608
+		/// UP_EXG_MSG_DRVLINE_INFO - 主动上报车辆行驶路线信息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E Create_主动上报车辆行驶路线信息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
 		/// 4864
 		/// UP_PLATFORM_MSG_POST_QUERY_ACK - 平台查岗应答消息
 		/// auto-generated
@@ -135,6 +144,15 @@ namespace JT809.Protocol.Extensions
 	    public static JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302 Create_下发平台间报文应答消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302 subBodies)
 		{
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
+		/// 4864
+		/// UP_PLATFORM_MSG_RETRAN_REQ - 上传平台间消息补传请求消息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303 Create_上传平台间消息补传请求消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303 subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303>(jT809SubBusinessType,subBodies);
 		}
 		/// <summary>
 		/// 5120
@@ -156,12 +174,39 @@ namespace JT809.Protocol.Extensions
 		}
 		/// <summary>
 		/// 5120
-		/// UP_WARN_MSG_ADPT_TODO_INFO - 主动上报报警处理结果信息
+		/// UP_WARN_MSG_ADPT_TODO_INFO_2013_UP_WARN_MSG_INFORM_TIPS_2019 - 主动上报报警处理结果信息2013_上报报警预警信息2019
 		/// auto-generated
 		/// </summary>
-	    public static JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403 Create_主动上报报警处理结果信息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403 subBodies)
+	    public static JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403 Create_主动上报报警处理结果信息2013_上报报警预警信息2019(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403 subBodies)
 		{
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
+		/// 5120
+		/// UP_WARN_MSG_URGE_TODO_ACK_INFO - 上报报警督办应答消息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411 Create_上报报警督办应答消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411 subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
+		/// 5120
+		/// UP_WARN_MSG_URGE_TODO_ACK_INFO - 主动上报报警处理结果消息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412 Create_主动上报报警处理结果消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412 subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
+		/// 5120
+		/// UP_WARN_MSG_URGE_TODO_REQ_INFO - 上报报警督办请求消息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413 Create_上报报警督办请求消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413 subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413>(jT809SubBusinessType,subBodies);
 		}
 		/// <summary>
 		/// 5376
@@ -216,6 +261,24 @@ namespace JT809.Protocol.Extensions
 	    public static JT809.Protocol.SubMessageBody.JT809_0x1600_0x1601 Create_补报车辆静态信息应答(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1600_0x1601 subBodies)
 		{
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x1600_0x1601>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
+		/// 5632
+		/// UP_BASE_MSG_DRVLINE_ADDED_REQ - 补报车辆行驶路线信息应答消息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x1600_0x1602 Create_补报车辆行驶路线信息应答消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1600_0x1602 subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x1600_0x1602>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
+		/// 37376
+		/// DOWN_EXG_MSG_REGISTER_ACK - 车辆注册信息应答消息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201 Create_车辆注册信息应答消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201 subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201>(jT809SubBusinessType,subBodies);
 		}
 		/// <summary>
 		/// 37376
@@ -308,6 +371,24 @@ namespace JT809.Protocol.Extensions
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x9200_0x920B>(jT809SubBusinessType,subBodies);
 		}
 		/// <summary>
+		/// 37376
+		/// DOWN_BASE_MSG_DRVLINE_REQ - 上报车辆车辆行驶路线请求
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x9200_0x920C Create_上报车辆车辆行驶路线请求(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x920C subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x9200_0x920C>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
+		/// 37376
+		/// DOWN_BASE_MSG_DRVLINE_ACK - 车辆行驶线路请求应答
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D Create_车辆行驶线路请求应答(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
 		/// 37632
 		/// DOWN_PLATFORM_MSG_POST_QUERY_REQ - 平台查岗请求
 		/// auto-generated
@@ -326,6 +407,15 @@ namespace JT809.Protocol.Extensions
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x9300_0x9302>(jT809SubBusinessType,subBodies);
 		}
 		/// <summary>
+		/// 37632
+		/// DOWN_PLATFORM_MSG_RETRAN_REQ - 下发平台间消息补传请求消息
+		/// auto-generated
+		/// </summary>
+	    public static JT809.Protocol.SubMessageBody.JT809_0x9300_0x9303 Create_下发平台间消息补传请求消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9300_0x9303 subBodies)
+		{
+			return Create<JT809.Protocol.SubMessageBody.JT809_0x9300_0x9303>(jT809SubBusinessType,subBodies);
+		}
+		/// <summary>
 		/// 37888
 		/// DOWN_WARN_MSG_URGE_TODO_REQ - 报警督办请求消息
 		/// auto-generated
@@ -336,10 +426,10 @@ namespace JT809.Protocol.Extensions
 		}
 		/// <summary>
 		/// 37888
-		/// DOWN_WARN_MSG_INFORM_TIPS - 报警预警
+		/// DOWN_WARN_MSG_INFORM_TIPS - 报警预警2013_下发报警预警消息2019
 		/// auto-generated
 		/// </summary>
-	    public static JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402 Create_报警预警(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402 subBodies)
+	    public static JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402 Create_报警预警2013_下发报警预警消息2019(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402 subBodies)
 		{
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402>(jT809SubBusinessType,subBodies);
 		}
