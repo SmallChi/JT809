@@ -14,6 +14,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>链路类型：从链路</para>
     /// <para>消息方向:上级平台往下级平台</para>
     /// <para>业务类型标识:DOWN_MANAGE_MSG_REQ</para>
+    /// <para>描述：上级平台向下级平台发送上报指定下级监控平台一段时间内链路连接情况与车辆定位消息传输情况请求</para>
     /// </summary>
     public class JT809_0x9102 : JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x9102>,IJT809_2019_Version
     {
@@ -40,8 +41,6 @@ namespace JT809.Protocol.MessageBody
         public JT809_0x9102 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9102 value = new JT809_0x9102();
-            value.SubBusinessType = reader.ReadUInt16();
-            value.DataLength = reader.ReadUInt32();
             value.PlateformId = reader.ReadBigNumber(11);
             value.StartTime = reader.ReadUTCDateTime();
             value.EndTime = reader.ReadUTCDateTime();
@@ -50,8 +49,6 @@ namespace JT809.Protocol.MessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9102 value, IJT809Config config)
         {
-            writer.WriteUInt16(value.SubBusinessType);
-            writer.WriteUInt32(27);
             writer.WriteBigNumber(value.PlateformId, 11);
             writer.WriteUTCDateTime(value.StartTime);
             writer.WriteUTCDateTime(value.EndTime);

@@ -21,9 +21,9 @@ namespace JT809.Protocol.Metadata
         /// </summary>
         public byte[] GnssData { get; set; }
         /// <summary>
-        /// 监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
+        /// 监控平台唯一编码，由平台所在地行政区域代码和平台编码组成  11位
         /// </summary>
-        public byte[] PlatformId1 { get; set; } = new byte[11];
+        public string PlatformId1 { get; set; };
         /// <summary>
         /// 报警状态，二进制标识 0 正常 1表示报警
         /// 具体定义按照808-2019中表18的规定
@@ -31,9 +31,9 @@ namespace JT809.Protocol.Metadata
         public uint Alarm1 { get; set; }
         /// <summary>
         /// 市级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
-        /// 未填写时，全填0，无市级平台应由省级平台全填1
+        /// 未填写时，全填0，无市级平台应由省级平台全填1  11位
         /// </summary>
-        public byte[] PlatformId2 { get; set; } = new byte[11];
+        public string PlatformId2 { get; set; };
         /// <summary>
         /// 报警状态，二进制标识 0 正常 1表示报警
         /// 具体定义按照808-2019中表18的规定
@@ -41,9 +41,9 @@ namespace JT809.Protocol.Metadata
         public uint Alarm2 { get; set; }
         /// <summary>
         /// 省级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
-        ///  未填写时，全填0
+        ///  未填写时，全填0  11位
         /// </summary>
-        public byte[] PlatformId3 { get; set; } = new byte[11];
+        public string PlatformId3 { get; set; };
         /// <summary>
         /// 报警状态，二进制标识 0 正常 1表示报警
         /// 具体定义按照808-2019中表18的规定

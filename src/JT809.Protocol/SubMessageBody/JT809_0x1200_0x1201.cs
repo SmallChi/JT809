@@ -51,8 +51,9 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.PlateformId = reader.ReadBigNumber(11);
                 value.ProducerId = reader.ReadBigNumber(11);
-                value.TerminalModelType = reader.ReadString(20);
-                value.TerminalId = reader.ReadString(7);
+#warning 此处应该改成大端模式读取数据吧
+                value.TerminalModelType = reader.ReadBigNumber(20);
+                value.TerminalId = reader.ReadBigNumber(7);
                 value.TerminalId = value.TerminalId.ToUpper();
                 value.TerminalSimCode = reader.ReadString(12);
             }
@@ -60,9 +61,9 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.PlateformId = reader.ReadBigNumber(11);
                 value.ProducerId = reader.ReadBigNumber(11);
-                value.TerminalModelType = reader.ReadString(30);
+                value.TerminalModelType = reader.ReadBigNumber(30);
                 value.IMIEId = reader.ReadString(15);
-                value.TerminalId = reader.ReadString(30);
+                value.TerminalId = reader.ReadBigNumber(30);
                 value.TerminalId = value.TerminalId.ToUpper();
                 value.TerminalSimCode = reader.ReadString(13);
             }
@@ -75,17 +76,18 @@ namespace JT809.Protocol.SubMessageBody
             {
                 writer.WriteBigNumber(value.PlateformId, 11);
                 writer.WriteBigNumber(value.ProducerId, 11);
-                writer.WriteStringPadRight(value.TerminalModelType, 20);
-                writer.WriteStringPadRight(value.TerminalId.ToUpper(), 7);
+#warning 此处应该改成大端模式读取数据吧
+                writer.WriteBigNumber(value.TerminalModelType, 20);
+                writer.WriteBigNumber(value.TerminalId.ToUpper(), 7);
                 writer.WriteStringPadLeft(value.TerminalSimCode, 12);
             }
             else
             {
                 writer.WriteBigNumber(value.PlateformId, 11);
                 writer.WriteBigNumber(value.ProducerId, 11);
-                writer.WriteStringPadRight(value.TerminalModelType, 30);
+                writer.WriteBigNumber(value.TerminalModelType, 30);
                 writer.WriteStringPadRight(value.IMIEId, 15);
-                writer.WriteStringPadRight(value.TerminalId.ToUpper(), 30);
+                writer.WriteBigNumber(value.TerminalId.ToUpper(), 30);
                 writer.WriteStringPadLeft(value.TerminalSimCode, 13);
             }
         }
