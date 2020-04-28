@@ -4,6 +4,7 @@ using JT809.Protocol.Exceptions;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
+using System;
 
 namespace JT809.Protocol.MessageBody
 {
@@ -70,7 +71,7 @@ namespace JT809.Protocol.MessageBody
                 }
                 writer.WriteInt32Return(writer.GetCurrentPosition() - subContentLengthPosition - 4, subContentLengthPosition);
             }
-            catch
+            catch(Exception ex)
             {
                 throw new JT809Exception(JT809ErrorCode.SubBodiesParseError, $"SubBusinessType>{value.SubBusinessType.ToString()}");
             }

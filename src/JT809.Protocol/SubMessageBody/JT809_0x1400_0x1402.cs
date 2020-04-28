@@ -80,7 +80,7 @@ namespace JT809.Protocol.SubMessageBody
             }
             else 
             {
-                value.SourcePlatformId = reader.ReadBigNumber(11);
+                value.SourcePlatformId = reader.ReadString(11);
             }
             value.WarnType = (JT809WarnType)reader.ReadUInt16();
             value.WarnTime = reader.ReadUTCDateTime();
@@ -95,7 +95,7 @@ namespace JT809.Protocol.SubMessageBody
 #warning 此处车牌号文档长度有误，使用旧版长度21
                 value.VehicleNo = reader.ReadString(21);
                 value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
-                value.DestinationPlatformId = reader.ReadBigNumber(11);
+                value.DestinationPlatformId = reader.ReadString(11);
                 value.DRVLineId = reader.ReadUInt32();
             }
             value.InfoLength = reader.ReadUInt32();
@@ -111,7 +111,7 @@ namespace JT809.Protocol.SubMessageBody
             }
             else 
             {
-                writer.WriteBigNumber(value.SourcePlatformId,11);
+                writer.WriteStringPadRight(value.SourcePlatformId,11);
             }
             writer.WriteUInt16((ushort)value.WarnType);
             writer.WriteUTCDateTime(value.WarnTime);
@@ -125,7 +125,7 @@ namespace JT809.Protocol.SubMessageBody
                 writer.WriteUTCDateTime(value.EndTime);
                 writer.WriteStringPadRight(value.VehicleNo,21);
                 writer.WriteByte((byte)value.VehicleColor);
-                writer.WriteBigNumber(value.DestinationPlatformId,11);
+                writer.WriteStringPadRight(value.DestinationPlatformId,11);
                 writer.WriteUInt32(value.DRVLineId);
             }
             // 先计算内容长度（汉字为两个字节）

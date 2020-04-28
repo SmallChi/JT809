@@ -54,11 +54,11 @@ namespace JT809.Protocol.SubMessageBody
                value.GNSSData.Encrypt = (JT809_VehiclePositionEncrypt)reader.ReadByte();
                value.GNSSData.DataLength = reader.ReadUInt32();
                value.GNSSData.GnssData = reader.ReadArray((int)value.GNSSData.DataLength).ToArray();
-               value.GNSSData.PlatformId1 = reader.ReadBigNumber(11);
+               value.GNSSData.PlatformId1 = reader.ReadString(11);
                value.GNSSData.Alarm1 = reader.ReadUInt32();
-               value.GNSSData.PlatformId2 = reader.ReadBigNumber(11);
+               value.GNSSData.PlatformId2 = reader.ReadString(11);
                 value.GNSSData.Alarm2 = reader.ReadUInt32();
-               value.GNSSData.PlatformId3 = reader.ReadBigNumber(11);
+               value.GNSSData.PlatformId3 = reader.ReadString(11);
                 value.GNSSData.Alarm3 = reader.ReadUInt32();
             }
             return value;
@@ -90,13 +90,13 @@ namespace JT809.Protocol.SubMessageBody
                 writer.WriteByte((byte)value.GNSSData.Encrypt);
                 writer.Skip(4, out int position);
                 writer.WriteArray(value.GNSSData.GnssData);
-                writer.WriteBigNumber(value.GNSSData.PlatformId1,11);
-                writer.WriteUInt32(value.GNSSData.Alarm1);
-                writer.WriteBigNumber(value.GNSSData.PlatformId2,11);
-                writer.WriteUInt32(value.GNSSData.Alarm2);
-                writer.WriteBigNumber(value.GNSSData.PlatformId3,11);
-                writer.WriteUInt32(value.GNSSData.Alarm3);
                 writer.WriteUInt32Return((uint)(writer.GetCurrentPosition() - position - 4), position);
+                writer.WriteStringPadRight(value.GNSSData.PlatformId1,11);
+                writer.WriteUInt32(value.GNSSData.Alarm1);
+                writer.WriteStringPadRight(value.GNSSData.PlatformId2,11);
+                writer.WriteUInt32(value.GNSSData.Alarm2);
+                writer.WriteStringPadRight(value.GNSSData.PlatformId3,11);
+                writer.WriteUInt32(value.GNSSData.Alarm3);
             }
         }
     }

@@ -50,26 +50,26 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             JT809_0x1400_0x1402 jT809_0x1400_0x1402 = new JT809_0x1400_0x1402
             {
-                SourcePlatformId = "30313233343536373839",
+                SourcePlatformId = "12345678900",
                 WarnType = JT809WarnType.偏离路线报警,
                 WarnTime = DateTime.Parse("2020-04-23"),
                 StartTime= DateTime.Parse("2020-04-23"),
                 EndTime= DateTime.Parse("2020-04-24"),
                 VehicleNo="粤A11111",
                 VehicleColor= JT809VehicleColorType.蓝色,
-                DestinationPlatformId = "30313233343536373839",
+                DestinationPlatformId = "12345678900",
                 InfoContent = "gfdf454553",
             };
             var hex = JT809_2019_Serializer.Serialize(jT809_0x1400_0x1402).ToHexString();
-            Assert.Equal("0000000000000000000000000B000000005EA06A00000000005EA06A00000000005EA1BB80D4C141313131313100000000000000000000000000010000000000000000000000000000000000000A67666466343534353533", hex);
+            Assert.Equal("3132333435363738393030000B000000005EA06A00000000005EA06A00000000005EA1BB80D4C141313131313100000000000000000000000000013132333435363738393030000000000000000A67666466343534353533", hex);
         }
 
         [Fact]
         public void Test_2019_2()
         {
-            var bytes = "0000000000000000000000000B000000005EA06A00000000005EA06A00000000005EA1BB80D4C141313131313100000000000000000000000000010000000000000000000000000000000000000A67666466343534353533".ToHexBytes();
+            var bytes = "3132333435363738393030000B000000005EA06A00000000005EA06A00000000005EA1BB80D4C141313131313100000000000000000000000000013132333435363738393030000000000000000A67666466343534353533".ToHexBytes();
             JT809_0x1400_0x1402 jT809_0x1400_0x1402 = JT809_2019_Serializer.Deserialize<JT809_0x1400_0x1402>(bytes);
-            Assert.Equal("30313233343536373839", jT809_0x1400_0x1402.SourcePlatformId);
+            Assert.Equal("12345678900", jT809_0x1400_0x1402.SourcePlatformId);
             Assert.Equal("gfdf454553", jT809_0x1400_0x1402.InfoContent);
             Assert.Equal(JT809WarnType.偏离路线报警, jT809_0x1400_0x1402.WarnType);
             Assert.Equal((uint)10, jT809_0x1400_0x1402.InfoLength);
@@ -78,7 +78,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(DateTime.Parse("2020-04-24"), jT809_0x1400_0x1402.EndTime);
             Assert.Equal("粤A11111", jT809_0x1400_0x1402.VehicleNo);
             Assert.Equal(JT809VehicleColorType.蓝色, jT809_0x1400_0x1402.VehicleColor);
-            Assert.Equal("30313233343536373839", jT809_0x1400_0x1402.DestinationPlatformId);
+            Assert.Equal("12345678900", jT809_0x1400_0x1402.DestinationPlatformId);
         }
     }
 }

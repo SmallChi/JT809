@@ -22,6 +22,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         public void Test1()
         {
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
+            jT809_0X1200_0X1202.VehiclePosition = new Metadata.JT809VehiclePositionProperties();
             jT809_0X1200_0X1202.VehiclePosition.Day = 19;
             jT809_0X1200_0X1202.VehiclePosition.Month = 7;
             jT809_0X1200_0X1202.VehiclePosition.Year = 2012;
@@ -66,13 +67,33 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         [Fact]
         public void Test_2019_1()
         {
-            // todo:JT809VehiclePositionProperties_2019
+            JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
+            jT809_0X1200_0X1202.GNSSData = new Metadata.JT809VehiclePositionProperties_2019();
+            jT809_0X1200_0X1202.GNSSData.Encrypt = JT809_VehiclePositionEncrypt.已加密;
+            //jT809_0X1200_0X1202.GNSSData.GnssData = new byte[20];
+            jT809_0X1200_0X1202.GNSSData.PlatformId1 = "11111111111";
+            jT809_0X1200_0X1202.GNSSData.Alarm1 = 1;
+            jT809_0X1200_0X1202.GNSSData.PlatformId2 = "22222222222";
+            jT809_0X1200_0X1202.GNSSData.Alarm2 = 2;
+            jT809_0X1200_0X1202.GNSSData.PlatformId3 = "33333333333";
+            jT809_0X1200_0X1202.GNSSData.Alarm3 = 3;
+            var hex = JT809_2019_Serializer.Serialize(jT809_0X1200_0X1202).ToHexString();
+            Assert.Equal("0100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003", hex);
+
         }
 
         [Fact]
         public void Test_2019_2()
         {
-            // todo:JT809VehiclePositionProperties_2019
+            var bytes = "0100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
+            JT809_0x1200_0x1202 jT809_0X1200_0X1202 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1202>(bytes);
+            Assert.Equal( JT809_VehiclePositionEncrypt.已加密, jT809_0X1200_0X1202.GNSSData.Encrypt);
+            Assert.Equal("11111111111", jT809_0X1200_0X1202.GNSSData.PlatformId1);
+            Assert.Equal(1u, jT809_0X1200_0X1202.GNSSData.Alarm1);
+            Assert.Equal("22222222222", jT809_0X1200_0X1202.GNSSData.PlatformId2);
+            Assert.Equal(2u, jT809_0X1200_0X1202.GNSSData.Alarm2);
+            Assert.Equal("33333333333", jT809_0X1200_0X1202.GNSSData.PlatformId3);
+            Assert.Equal(3u, jT809_0X1200_0X1202.GNSSData.Alarm3);
         }
 
     }

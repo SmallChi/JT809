@@ -7,12 +7,15 @@ using JT809.Protocol.Extensions;
 using JT809.Protocol.MessageBody;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.SubMessageBody;
+using JT809.Protocol.Enums;
+using JT809.Protocol.Internal;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
     public class JT809_0x1200_0x1203Test
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
+        private JT809Serializer JT809_2019_Serializer = new JT809Serializer(new DefaultGlobalConfig() { Version = JT809Version.JTT2019 });
         [Fact]
         public void Test1()
         {
@@ -20,6 +23,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_1 = new JT809_0x1200_0x1202();
+            jT809_0X1200_0X1202_1.VehiclePosition = new Metadata.JT809VehiclePositionProperties();
             jT809_0X1200_0X1202_1.VehiclePosition.Day = 19;
             jT809_0X1200_0X1202_1.VehiclePosition.Month = 7;
             jT809_0X1200_0X1202_1.VehiclePosition.Year = 2012;
@@ -37,6 +41,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             jT809_0X1200_0X1202_1.VehiclePosition.Alarm = 257;
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_2 = new JT809_0x1200_0x1202();
+            jT809_0X1200_0X1202_2.VehiclePosition = new Metadata.JT809VehiclePositionProperties();
             jT809_0X1200_0X1202_2.VehiclePosition.Day = 19;
             jT809_0X1200_0X1202_2.VehiclePosition.Month = 7;
             jT809_0X1200_0X1202_2.VehiclePosition.Year = 2012;
@@ -54,6 +59,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             jT809_0X1200_0X1202_2.VehiclePosition.Alarm = 257;
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_3 = new JT809_0x1200_0x1202();
+            jT809_0X1200_0X1202_3.VehiclePosition = new Metadata.JT809VehiclePositionProperties();
             jT809_0X1200_0X1202_3.VehiclePosition.Day = 19;
             jT809_0X1200_0X1202_3.VehiclePosition.Month = 7;
             jT809_0X1200_0X1202_3.VehiclePosition.Year = 2012;
@@ -133,6 +139,59 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal((ushort)45, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Altitude);
             Assert.Equal((uint)3, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.State);
             Assert.Equal((uint)257, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Alarm);
+        }
+
+        [Fact]
+        public void Test_2019_1()
+        {
+            JT809_0x1200_0x1203 jT809_0X1200_0X1203 = new JT809_0x1200_0x1203();
+            jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
+            JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
+            jT809_0X1200_0X1202.GNSSData = new Metadata.JT809VehiclePositionProperties_2019();
+            jT809_0X1200_0X1202.GNSSData.Encrypt = JT809_VehiclePositionEncrypt.已加密;
+            //jT809_0X1200_0X1202.GNSSData.GnssData = new byte[20];
+            jT809_0X1200_0X1202.GNSSData.PlatformId1 = "11111111111";
+            jT809_0X1200_0X1202.GNSSData.Alarm1 = 1;
+            jT809_0X1200_0X1202.GNSSData.PlatformId2 = "22222222222";
+            jT809_0X1200_0X1202.GNSSData.Alarm2 = 2;
+            jT809_0X1200_0X1202.GNSSData.PlatformId3 = "33333333333";
+            jT809_0X1200_0X1202.GNSSData.Alarm3 = 3;
+            jT809_0X1200_0X1203.GNSS.Add(jT809_0X1200_0X1202);
+            JT809_0x1200_0x1202 jT809_0X1200_0X1202_1 = new JT809_0x1200_0x1202();
+            jT809_0X1200_0X1202_1.GNSSData = new Metadata.JT809VehiclePositionProperties_2019();
+            jT809_0X1200_0X1202_1.GNSSData.Encrypt = JT809_VehiclePositionEncrypt.已加密;
+            jT809_0X1200_0X1202_1.GNSSData.PlatformId1 = "11111111111";
+            jT809_0X1200_0X1202_1.GNSSData.Alarm1 = 1;
+            jT809_0X1200_0X1202_1.GNSSData.PlatformId2 = "22222222222";
+            jT809_0X1200_0X1202_1.GNSSData.Alarm2 = 2;
+            jT809_0X1200_0X1202_1.GNSSData.PlatformId3 = "33333333333";
+            jT809_0X1200_0X1202_1.GNSSData.Alarm3 = 3;
+            jT809_0X1200_0X1203.GNSS.Add(jT809_0X1200_0X1202_1);
+            var hex = JT809_2019_Serializer.Serialize(jT809_0X1200_0X1203).ToHexString();
+            Assert.Equal("0201000000003131313131313131313131000000013232323232323232323232000000023333333333333333333333000000030100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003", hex);
+
+        }
+
+        [Fact]
+        public void Test_2019_2()
+        {
+            var bytes = "0201000000003131313131313131313131000000013232323232323232323232000000023333333333333333333333000000030100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
+            JT809_0x1200_0x1203 jT809_0X1200_0X1203 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1203>(bytes);
+            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, jT809_0X1200_0X1203.GNSS[0].GNSSData.Encrypt);
+            Assert.Equal("11111111111", jT809_0X1200_0X1203.GNSS[0].GNSSData.PlatformId1);
+            Assert.Equal(1u, jT809_0X1200_0X1203.GNSS[0].GNSSData.Alarm1);
+            Assert.Equal("22222222222", jT809_0X1200_0X1203.GNSS[0].GNSSData.PlatformId2);
+            Assert.Equal(2u, jT809_0X1200_0X1203.GNSS[0].GNSSData.Alarm2);
+            Assert.Equal("33333333333", jT809_0X1200_0X1203.GNSS[0].GNSSData.PlatformId3);
+            Assert.Equal(3u, jT809_0X1200_0X1203.GNSS[0].GNSSData.Alarm3);
+
+            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, jT809_0X1200_0X1203.GNSS[1].GNSSData.Encrypt);
+            Assert.Equal("11111111111", jT809_0X1200_0X1203.GNSS[1].GNSSData.PlatformId1);
+            Assert.Equal(1u, jT809_0X1200_0X1203.GNSS[1].GNSSData.Alarm1);
+            Assert.Equal("22222222222", jT809_0X1200_0X1203.GNSS[1].GNSSData.PlatformId2);
+            Assert.Equal(2u, jT809_0X1200_0X1203.GNSS[1].GNSSData.Alarm2);
+            Assert.Equal("33333333333", jT809_0X1200_0X1203.GNSS[1].GNSSData.PlatformId3);
+            Assert.Equal(3u, jT809_0X1200_0X1203.GNSS[1].GNSSData.Alarm3);
         }
     }
 }
