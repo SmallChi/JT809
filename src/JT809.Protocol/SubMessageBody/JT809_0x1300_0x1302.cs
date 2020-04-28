@@ -9,7 +9,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <summary>
     /// 下发平台间报文应答消息
     /// <para>子业务类型标识:UP_PLATFORM_MSG_INFO_ACK</para>
-    /// <para>描述:下级平台收到上级平台发送的下发平台间报文请求消息后，发送应答消息</para>
+    /// <para>描述:下级平台收到上级平台发送的"下发平台间报文请求"消息后，根据相应的下发报文对象类型，进行转发，并向上级平台发送应答消息</para>
     /// </summary>
     public class JT809_0x1300_0x1302:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1300_0x1302>, IJT809_2019_Version
     {
@@ -39,7 +39,6 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.InfoID = reader.ReadUInt32();
             }
-
             return value;
         }
 

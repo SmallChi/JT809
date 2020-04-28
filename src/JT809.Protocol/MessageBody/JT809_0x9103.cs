@@ -15,6 +15,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>链路类型：从链路</para>
     /// <para>消息方向:上级平台往下级平台</para>
     /// <para>业务类型标识:DOWN_MANAGE_MSG_SN_INFORM</para>
+    /// <para>描述：链路登录成功后，平台须发送链路断开之前所有子业务数据类型对应的消息序列号，发送方根据收到的消息序列号，在发送消息时，续编链路中断之前的消息序列号</para>
     /// </summary>
     public class JT809_0x9103 : JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x9103>,IJT809_2019_Version
     {

@@ -7,10 +7,17 @@ using JT809.Protocol.Interfaces;
 
 namespace JT809.Protocol.SubMessageBody
 {
+#warning   8.3.3.2.5 交换车辆行驶路线信息消息  无指定消息子类型，暂未对接
     /// <summary>
     /// 交换车辆定位信息消息
     /// <para>子业务类型标识:DOWN_EXG_MSG_CAR_LOCATION</para>
-    /// <para>描述:上级平台通过该消息不间断地向车辆驶入区域所属的下级平台发送车辆定位信息，直到该车驶离该区域</para>
+    /// <para>2011 描述:上级平台通过该消息不间断地向车辆驶入区域所属的下级平台发送车辆定位信息，直到该车驶离该区域</para>
+    /// <para>2019 描述：上级平台在以下四种情况下通过该消息不间断地向车辆进入区域所属的下级平台发送车辆定位信息，直到该车辆离开该区域
+    /// 1.车辆跨域时，上级平台通过该消息不间断地向车辆进入区域所属的下级平台发送车辆定位信息，直到该车辆离开该区域
+    /// 2.人工指定车辆定位信息交换时，上级平台通过该消息不间断地向指定交换对象下级平台发送车辆定位信息，直到人工指定“交换车辆定位信息”结束
+    /// 3.下级平台向上级平台“申请交换指定车辆定位信息”成功后，上级平台通过该消息不间断地向交换对象下级平台发送车辆定位信息，直到“申请交换指定车辆定位信息”结束
+    /// 4.应急状态监控车辆时，上级平台向车辆归属下级平台通过该消息不间断地发送车辆定位信息，实现车辆定位信息回传
+    /// </para>
     /// </summary>
     public class JT809_0x9200_0x9202:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9202>, IJT809_2019_Version
     {
@@ -53,11 +60,11 @@ namespace JT809.Protocol.SubMessageBody
                 jT809_0X1200_0x9202.GNSSData.Encrypt = (JT809_VehiclePositionEncrypt)reader.ReadByte();
                 jT809_0X1200_0x9202.GNSSData.DataLength = reader.ReadUInt32();
                 jT809_0X1200_0x9202.GNSSData.GnssData = reader.ReadArray((int)jT809_0X1200_0x9202.GNSSData.DataLength).ToArray();
-                jT809_0X1200_0x9202.GNSSData.PlatformId1 = reader.ReadArray(11).ToArray();
+                jT809_0X1200_0x9202.GNSSData.PlatformId1 = reader.ReadBigNumber(11);
                 jT809_0X1200_0x9202.GNSSData.Alarm1 = reader.ReadUInt32();
-                jT809_0X1200_0x9202.GNSSData.PlatformId2 = reader.ReadArray(11).ToArray();
+                jT809_0X1200_0x9202.GNSSData.PlatformId2 = reader.ReadBigNumber(11);
                 jT809_0X1200_0x9202.GNSSData.Alarm2 = reader.ReadUInt32();
-                jT809_0X1200_0x9202.GNSSData.PlatformId3 = reader.ReadArray(11).ToArray();
+                jT809_0X1200_0x9202.GNSSData.PlatformId3 = reader.ReadBigNumber(11);
                 jT809_0X1200_0x9202.GNSSData.Alarm3 = reader.ReadUInt32();
             }
             return jT809_0X1200_0x9202;
@@ -88,11 +95,11 @@ namespace JT809.Protocol.SubMessageBody
                 writer.WriteByte((byte)value.GNSSData.Encrypt);
                 writer.Skip(4, out int position);
                 writer.WriteArray(value.GNSSData.GnssData);
-                writer.WriteArray(value.GNSSData.PlatformId1);
+                writer.WriteBigNumber(value.GNSSData.PlatformId1,11);
                 writer.WriteUInt32(value.GNSSData.Alarm1);
-                writer.WriteArray(value.GNSSData.PlatformId2);
+                writer.WriteBigNumber(value.GNSSData.PlatformId2,11);
                 writer.WriteUInt32(value.GNSSData.Alarm2);
-                writer.WriteArray(value.GNSSData.PlatformId3);
+                writer.WriteBigNumber(value.GNSSData.PlatformId3,11);
                 writer.WriteUInt32(value.GNSSData.Alarm3);
                 writer.WriteUInt32Return((uint)(writer.GetCurrentPosition() - position-4), position);
             }

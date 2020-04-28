@@ -10,6 +10,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <summary>
     /// 主动上报驾驶员身份信息消息
     /// <para>子业务类型标识:UP_EXG_MSG_REPORT_DRIVER_INFO</para>
+    /// <para>下级平台在接收到车载终端上传的驾驶员身份信息后，主动向上级平台上报该消息</para>
     /// </summary>
     public class JT809_0x1200_0x120C:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120C>, IJT809_2019_Version
     {

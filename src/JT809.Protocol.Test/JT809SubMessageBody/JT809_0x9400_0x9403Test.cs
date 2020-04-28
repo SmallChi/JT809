@@ -47,14 +47,14 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             JT809_0x9400_0x9403 jT809_0x9400_0x9403 = new JT809_0x9400_0x9403
             {
-                SourcePlatformId=new byte[11],
+                SourcePlatformId = "30313233343536373839",
                 WarnType = JT809WarnType.疲劳驾驶报警,
                 WarnTime = DateTime.Parse("2020-04-26 18:24:00"),
                 StartTime = DateTime.Parse("2020-04-26 18:24:00"),
                 EndTime = DateTime.Parse("2020-04-26 19:24:00"),
                 VehicleNo = "粤A5647",
                 VehicleColor =  JT809VehicleColorType.黄色,
-                DestinationPlatformId = new byte[11],
+                DestinationPlatformId = "30313233343536373839",
                 WarnContent = "疲劳驾驶报警",
             };
             var hex = JT809_2019_Serializer.Serialize(jT809_0x9400_0x9403).ToHexString();
@@ -72,8 +72,8 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(DateTime.Parse("2020-04-26 19:24:00"), jT809_0x9400_0x9403.EndTime);
             Assert.Equal("疲劳驾驶报警", jT809_0x9400_0x9403.WarnContent);
             Assert.Equal((uint)12, jT809_0x9400_0x9403.WarnLength);
-            Assert.Equal(new byte[11], jT809_0x9400_0x9403.DestinationPlatformId);
-            Assert.Equal(new byte[11], jT809_0x9400_0x9403.SourcePlatformId);
+            Assert.Equal("30313233343536373839", jT809_0x9400_0x9403.DestinationPlatformId);
+            Assert.Equal("30313233343536373839", jT809_0x9400_0x9403.SourcePlatformId);
         }
     }
 }

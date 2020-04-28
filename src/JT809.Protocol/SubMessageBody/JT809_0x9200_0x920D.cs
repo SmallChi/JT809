@@ -12,6 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <summary>
     /// 车辆行驶线路请求应答
     /// <para>子业务类型标识:DOWN_BASE_MSG_DRVLINE_ACK</para>
+    /// <para>上级平台应答下级平台发送地车辆行驶路线信息</para>
     /// </summary>
     public class JT809_0x9200_0x920D : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x920D>, IJT809_2019_Version
     {

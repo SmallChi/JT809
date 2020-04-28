@@ -724,7 +724,8 @@
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆电子运单应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B)">
             <summary>
             4608
-            UP_EXG_MSG_TAKE_EWAYBILL_ACK - 上报车辆电子运单应答消息
+            
+            - 上报车辆电子运单应答消息
             auto-generated
             </summary>
         </member>

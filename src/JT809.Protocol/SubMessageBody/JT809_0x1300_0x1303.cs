@@ -4,6 +4,7 @@ using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using System;
 using JT809.Protocol.Interfaces;
+using System.Collections.Generic;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -18,10 +19,15 @@ namespace JT809.Protocol.SubMessageBody
 
         public override string Description => "上传平台间消息补传请求消息";
         /// <summary>
+        /// 对应需要重传消息地子业务类型标识
+        /// </summary>
+        public byte SerialCount { get; set; }
+
+        /// <summary>
         /// 需要重传消息的起始报文序列号和结束的报文序列号。如只请求重传一个消息，则起始消息报文序列号和结束消息报文序列号相同 
         /// 8位
         /// </summary>
-        public byte[] SerialList { get; set; }
+        public List<byte[]> SerialList { get; set; }
         /// <summary>
         /// 重传起始系统utc时间
         /// 8位
@@ -30,14 +36,23 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x1300_0x1303 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value= new JT809_0x1300_0x1303();
-            value.SerialList = reader.ReadArray(8).ToArray();
+            value.SerialCount = reader.ReadByte();
+            value.SerialList = new List<byte[]>();
+            for (int i = 0; i < SerialCount; i++)
+            {
+                value.SerialList.Add(reader.ReadArray(8).ToArray());
+            }
             value.Time = reader.ReadUTCDateTime();
             return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1300_0x1303 value, IJT809Config config)
         {
-            writer.WriteArray(value.SerialList);
+            writer.WriteByte(value.SerialCount);
+            foreach (var item in value.SerialList)
+            {
+                writer.WriteArray(item);
+            }          
             writer.WriteUTCDateTime(value.Time);
         }
     }

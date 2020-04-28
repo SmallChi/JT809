@@ -27,9 +27,9 @@ namespace JT809.Protocol.MessageBody
             if (config.Version == JT809Version.JTT2011)
             {
                 value.VehicleNo = reader.ReadString(21);
-                value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
-                value.SubBusinessType = reader.ReadUInt16();
+                value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();       
             }
+            value.SubBusinessType = reader.ReadUInt16();
             value.DataLength = reader.ReadUInt32();
             try
             {

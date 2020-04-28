@@ -120,7 +120,7 @@ namespace JT809.Protocol.Extensions
 		}
 		/// <summary>
 		/// 4608
-		/// UP_EXG_MSG_DRVLINE_INFO - 主动上报车辆行驶路线信息
+		/// UP_BASE_MSG_DRVLINE_INFO - 主动上报车辆行驶路线信息
 		/// auto-generated
 		/// </summary>
 	    public static JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E Create_主动上报车辆行驶路线信息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E subBodies)
@@ -190,12 +190,12 @@ namespace JT809.Protocol.Extensions
 		{
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411>(jT809SubBusinessType,subBodies);
 		}
-		/// <summary>
-		/// 5120
-		/// UP_WARN_MSG_URGE_TODO_ACK_INFO - 主动上报报警处理结果消息
-		/// auto-generated
-		/// </summary>
-	    public static JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412 Create_主动上报报警处理结果消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412 subBodies)
+        /// <summary>
+        /// 5120
+        /// UP_WARN_MSG_ADPT_TODO_INFO - 主动上报报警处理结果消息
+        /// auto-generated
+        /// </summary>
+        public static JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412 Create_主动上报报警处理结果消息(this JT809SubBusinessType jT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412 subBodies)
 		{
 			return Create<JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412>(jT809SubBusinessType,subBodies);
 		}

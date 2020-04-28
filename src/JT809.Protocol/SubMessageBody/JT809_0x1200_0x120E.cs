@@ -8,7 +8,7 @@ namespace JT809.Protocol.SubMessageBody
 {
     /// <summary>
     /// 主动上报车辆行驶路线信息
-    /// <para>子业务类型标识:UP_EXG_MSG_DRVLINE_INFO</para>
+    /// <para>子业务类型标识:UP_BASE_MSG_DRVLINE_INFO</para>
     /// </summary>
     public class JT809_0x1200_0x120E:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120E>, IJT809_2019_Version
     {

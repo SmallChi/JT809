@@ -9,6 +9,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <summary>
     /// 取消交换指定车辆定位信息应答or取消申请交换指定车辆定位信息应答消息
     /// <para>子业务类型标识:DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK</para>
+    /// <para>应答下级平台“取消申请交换指定车辆定位信息”</para>
     /// </summary>
     public class JT809_0x9200_0x9208:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9208>, IJT809_2019_Version
     {

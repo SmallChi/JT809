@@ -9,7 +9,7 @@ namespace JT809.Protocol.SubMessageBody
 {
     /// <summary>
     /// 上报报警督办应答消息
-    /// <para>子业务类型标识:UP_WARN_MSG_ADPT_INFO</para>
+    /// <para>子业务类型标识:UP_WARN_MSG_URGE_TODO_ACK_INFO</para>
     /// <para>描述:下级平台向上级平台上报某车辆的报警信息</para>
     /// <para>本条消息上级平台无需应答</para>
     /// </summary>

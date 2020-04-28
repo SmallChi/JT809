@@ -25,7 +25,7 @@ namespace JT809.Protocol.SubMessageBody
         /// <summary>
         /// 发起报警平台唯一编码，由平台所在地行政区域代码和平台编号组成
         /// </summary>
-        public byte[] SourcePlatformId { get; set; }
+        public string SourcePlatformId { get; set; }
         /// <summary>
         /// 报警类型
         /// </summary>
@@ -53,7 +53,7 @@ namespace JT809.Protocol.SubMessageBody
         /// <summary>
         /// 被报警平台唯一编码，由平台所在地行政区划代码和平台编号组成。非平台相关报警全填0
         /// </summary>
-        public byte[] DestinationPlatformId { get; set; }
+        public string DestinationPlatformId { get; set; }
         /// <summary>
         /// 线路ID 808-2019中0x8606规定的报文中的线路ＩＤ
         /// </summary>
@@ -75,7 +75,7 @@ namespace JT809.Protocol.SubMessageBody
             }
             else
             {
-                value.SourcePlatformId = reader.ReadArray(11).ToArray();
+                value.SourcePlatformId = reader.ReadBigNumber(11);
             }
             value.WarnType = (JT809WarnType)reader.ReadUInt16();
             value.WarnTime = reader.ReadUTCDateTime();
@@ -86,7 +86,7 @@ namespace JT809.Protocol.SubMessageBody
 #warning 此处车牌号文档长度有误，使用旧版长度21
                 value.VehicleNo = reader.ReadString(21);
                 value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
-                value.DestinationPlatformId = reader.ReadArray(11).ToArray();
+                value.DestinationPlatformId = reader.ReadBigNumber(11);
                 value.DRVLineId = reader.ReadUInt32();
             }
             value.WarnLength = reader.ReadUInt32();
@@ -102,7 +102,7 @@ namespace JT809.Protocol.SubMessageBody
             }
             else
             {
-                writer.WriteArray(value.SourcePlatformId);
+                writer.WriteBigNumber(value.SourcePlatformId,11);
             }
             writer.WriteUInt16((ushort)value.WarnType);
             writer.WriteUTCDateTime(value.WarnTime);
@@ -112,7 +112,7 @@ namespace JT809.Protocol.SubMessageBody
                 writer.WriteUTCDateTime(value.EndTime);
                 writer.WriteStringPadRight(value.VehicleNo, 21);
                 writer.WriteByte((byte)value.VehicleColor);
-                writer.WriteArray(value.DestinationPlatformId);
+                writer.WriteBigNumber(value.DestinationPlatformId,11);
                 writer.WriteUInt32(value.DRVLineId);
             }
             // 先计算内容长度（汉字为两个字节）

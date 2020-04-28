@@ -47,14 +47,14 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             JT809_0x9400_0x9402 jT809_0x9400_0x9402 = new JT809_0x9400_0x9402
             {
-                SourcePlatformId=new byte[11],
+                SourcePlatformId = "30313233343536373839",
                 WarnType = JT809WarnType.劫警,
                 WarnTime = DateTime.Parse("2020-04-26 18:23:00"),
                 StartTime = DateTime.Parse("2020-04-26 18:23:00"),
                 EndTime = DateTime.Parse("2020-04-26 19:23:00"),
                 VehicleNo= "粤A12345",
                 VehicleColor= JT809VehicleColorType.蓝色,
-                DestinationPlatformId= new byte[11],
+                DestinationPlatformId = "30313233343536373839",
                 DRVLineId=22,
                 WarnContent = "劫警",
             };
@@ -74,8 +74,8 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(DateTime.Parse("2020-04-26 19:23:00"), jT809_0x9400_0x9402.EndTime);
             Assert.Equal("粤A12345", jT809_0x9400_0x9402.VehicleNo);
             Assert.Equal(JT809VehicleColorType.蓝色, jT809_0x9400_0x9402.VehicleColor);
-            Assert.Equal(new byte[11], jT809_0x9400_0x9402.DestinationPlatformId);
-            Assert.Equal(new byte[11], jT809_0x9400_0x9402.SourcePlatformId);
+            Assert.Equal("30313233343536373839", jT809_0x9400_0x9402.DestinationPlatformId);
+            Assert.Equal("30313233343536373839", jT809_0x9400_0x9402.SourcePlatformId);
             Assert.Equal(22u, jT809_0x9400_0x9402.DRVLineId);
             Assert.Equal(4u, jT809_0x9400_0x9402.WarnLength);
         }

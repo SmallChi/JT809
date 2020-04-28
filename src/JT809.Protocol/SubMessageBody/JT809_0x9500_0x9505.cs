@@ -3,6 +3,7 @@ using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using System;
+using JT809.Protocol.Interfaces;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -11,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_CTRL_MSG_EMERGENCY_MONITORING_REQ</para>
     /// <para>描述:发生应急情况时，政府监管平台需要及时监控该车辆时，就向该车辆归属的下级平台发送该命令</para>
     /// </summary>
-    public class JT809_0x9500_0x9505:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9500_0x9505>
+    public class JT809_0x9500_0x9505:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9500_0x9505>,IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.车辆应急接入监管平台请求消息.ToUInt16Value();
 

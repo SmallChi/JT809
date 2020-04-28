@@ -109,12 +109,12 @@ namespace JT809.Protocol.Enums
         主动上报车辆电子运单信息 = 0x120D,
         ///<summary>
         ///主动上报车辆行驶路线信息	
-        ///UP_EXG_MSG_DRVLINE_INFO
+        ///UP_BASE_MSG_DRVLINE_INFO
         ///</summary>
         [Description("主动上报车辆行驶路线信息")]
         [JT809BodiesType(typeof(JT809_0x1200_0x120E))]
-        [JT809SubBusinessTypeDescription("UP_EXG_MSG_DRVLINE_INFO", "主动上报车辆行驶路线信息", JT809BusinessType.主链路车辆动态信息交换业务)]
-        主动上报车辆行驶路线信息 = 0x120E,
+        [JT809SubBusinessTypeDescription("UP_BASE_MSG_DRVLINE_INFO", "主动上报车辆行驶路线信息", JT809BusinessType.主链路车辆动态信息交换业务)]
+        主动上报车辆行驶路线信息 = 0x120E, 
 
 
         #endregion
@@ -313,7 +313,7 @@ namespace JT809.Protocol.Enums
         ///</summary>
         [Description("主动上报报警处理结果消息")]
         [JT809BodiesType(typeof(JT809_0x1400_0x1412))]
-        [JT809SubBusinessTypeDescription("UP_WARN_MSG_URGE_TODO_ACK_INFO", "主动上报报警处理结果消息", JT809BusinessType.主链路报警信息交互消息)]
+        [JT809SubBusinessTypeDescription("UP_WARN_MSG_ADPT_TODO_INFO", "主动上报报警处理结果消息", JT809BusinessType.主链路报警信息交互消息)]
         主动上报报警处理结果消息 = 0x1412,
         ///<summary>
         ///上报报警督办请求消息	

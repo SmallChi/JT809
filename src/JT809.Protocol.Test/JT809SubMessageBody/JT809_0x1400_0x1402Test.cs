@@ -50,14 +50,14 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             JT809_0x1400_0x1402 jT809_0x1400_0x1402 = new JT809_0x1400_0x1402
             {
-                SourcePlatformId = new byte[11],
+                SourcePlatformId = "30313233343536373839",
                 WarnType = JT809WarnType.偏离路线报警,
                 WarnTime = DateTime.Parse("2020-04-23"),
                 StartTime= DateTime.Parse("2020-04-23"),
                 EndTime= DateTime.Parse("2020-04-24"),
                 VehicleNo="粤A11111",
                 VehicleColor= JT809VehicleColorType.蓝色,
-                DestinationPlatformId = new byte[11],
+                DestinationPlatformId = "30313233343536373839",
                 InfoContent = "gfdf454553",
             };
             var hex = JT809_2019_Serializer.Serialize(jT809_0x1400_0x1402).ToHexString();
@@ -69,7 +69,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             var bytes = "0000000000000000000000000B000000005EA06A00000000005EA06A00000000005EA1BB80D4C141313131313100000000000000000000000000010000000000000000000000000000000000000A67666466343534353533".ToHexBytes();
             JT809_0x1400_0x1402 jT809_0x1400_0x1402 = JT809_2019_Serializer.Deserialize<JT809_0x1400_0x1402>(bytes);
-            Assert.Equal(new byte[11], jT809_0x1400_0x1402.SourcePlatformId);
+            Assert.Equal("30313233343536373839", jT809_0x1400_0x1402.SourcePlatformId);
             Assert.Equal("gfdf454553", jT809_0x1400_0x1402.InfoContent);
             Assert.Equal(JT809WarnType.偏离路线报警, jT809_0x1400_0x1402.WarnType);
             Assert.Equal((uint)10, jT809_0x1400_0x1402.InfoLength);
@@ -78,7 +78,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(DateTime.Parse("2020-04-24"), jT809_0x1400_0x1402.EndTime);
             Assert.Equal("粤A11111", jT809_0x1400_0x1402.VehicleNo);
             Assert.Equal(JT809VehicleColorType.蓝色, jT809_0x1400_0x1402.VehicleColor);
-            Assert.Equal(new byte[11], jT809_0x1400_0x1402.DestinationPlatformId);
+            Assert.Equal("30313233343536373839", jT809_0x1400_0x1402.DestinationPlatformId);
         }
     }
 }

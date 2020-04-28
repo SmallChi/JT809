@@ -9,6 +9,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <summary>
     /// 补发车辆定位信息应答
     /// <para>子业务类型标识:DOWN_EXG_MSG_APPLY_HISGNSSDATA_ACK</para>
+    /// <para>本条消息是上级平台应答下级平台发送的“补发车辆定位信息请求”消息，即 UP_EXG_MSG_APPLY_HISGNSSDATA_REQ</para>
     /// </summary>
     public class JT809_0x9200_0x9209: JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9209>, IJT809_2019_Version
     {

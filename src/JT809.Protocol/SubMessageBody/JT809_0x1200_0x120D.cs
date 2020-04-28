@@ -9,6 +9,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <summary>
     /// 主动上报车辆电子运单信息
     /// <para>子业务类型标识:UP_EXG_MSG_REPORT_EWAYBILL_INFO</para>
+    /// <para>描述：下级平台“主动上报车辆电子运单信息”，向上级平台上报车辆当前电子运单</para>
     /// </summary>
     public class JT809_0x1200_0x120D:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120D>,IJT809_2019_Version
     {

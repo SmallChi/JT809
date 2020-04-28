@@ -9,7 +9,8 @@ namespace JT809.Protocol.SubMessageBody
     /// <summary>
     /// 平台查岗应答消息
     /// <para>子业务类型标识:UP_PLATFORM_MSG_POST_QUERY_ACK</para>
-    /// <para>描述:下级平台应答上级平台发送的不定期平台查岗消息</para>
+    /// <para>2011 描述:下级平台应答上级平台发送的不定期平台查岗消息</para>
+    /// <para>2019 描述:下级平台根据查岗对象地类型将上级平台发送地不定期平台查岗消息发送到不同地查岗对象，并将不同地查岗对象地应答分别转发给上级平台</para>
     /// </summary>
     public class JT809_0x1300_0x1301:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1300_0x1301>, IJT809_2019_Version
     {

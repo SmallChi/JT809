@@ -21,7 +21,7 @@ namespace JT809.Protocol.SubMessageBody
         /// <summary>
         /// 发起报警平台唯一编码，由平台所在地行政区划大码和平台编号组成
         /// </summary>
-        public byte[] SourcePlatformId { get; set; }
+        public string SourcePlatformId { get; set; }
         /// <summary>
         /// 报警时间 utc
         /// </summary>
@@ -57,7 +57,7 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x1400_0x1413 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x1400_0x1413();
-            value.SourcePlatformId = reader.ReadArray(11).ToArray();
+            value.SourcePlatformId = reader.ReadBigNumber(11);
             value.WarnTime = reader.ReadUTCDateTime();
             value.SourceDateType = reader.ReadUInt16();
             value.SourceMsgSn = reader.ReadUInt32();
@@ -71,7 +71,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1400_0x1413 value, IJT809Config config)
         {
-            writer.WriteArray(value.SourcePlatformId);
+            writer.WriteBigNumber(value.SourcePlatformId,11);
             writer.WriteUTCDateTime(value.WarnTime);
             writer.WriteUInt16(value.SourceDateType);
             writer.WriteUInt32(value.SourceMsgSn);

@@ -8,8 +8,8 @@ namespace JT809.Protocol.SubMessageBody
 {
     /// <summary>
     /// 上报车辆行驶记录应答消息
-    /// <para>子业务类型标识:UP_CTRL_MSG_TAKE_T'RAVEL_ACK</para>
-    /// <para>描述:下级平台应答上级平台下发的上报车辆行驶记录请求消息，将车辆行驶记录数据上传至上级平台</para>
+    /// <para>子业务类型标识:UP_CTRL_MSG_TAKE_TRAVEL_ACK</para>
+    /// <para>描述:下级平台应答上级平台下发的"上报车辆行驶记录请求"消息，将车辆行驶记录数据上传至上级平台</para>
     /// </summary>
     public class JT809_0x1500_0x1504:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1500_0x1504>, IJT809_2019_Version
     {
