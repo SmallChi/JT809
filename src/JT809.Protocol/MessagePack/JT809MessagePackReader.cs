@@ -237,6 +237,10 @@ namespace JT809.Protocol.MessagePack
         {
             return BinaryPrimitives.ReadInt64BigEndian(GetReadOnlySpan(8));
         }
+        public ReadOnlySpan<byte> ReadVirtualArray(int count)
+        {
+            return GetVirtualReadOnlySpan(count);
+        }
         public byte ReadByte()
         {
             return GetReadOnlySpan(1)[0];

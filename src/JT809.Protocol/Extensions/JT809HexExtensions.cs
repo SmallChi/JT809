@@ -133,6 +133,54 @@ namespace JT809.Protocol.Extensions
             return buf;
         }
 
+        public static string ReadNumber(this byte value, string format = "X2")
+        {
+            return value.ToString(format);
+        }
+        public static string ReadNumber(this int value, string format = "X8")
+        {
+            return value.ToString(format);
+        }
+        public static string ReadNumber(this uint value, string format = "X8")
+        {
+            return value.ToString(format);
+        }
+        public static string ReadNumber(this long value, string format = "X16")
+        {
+            return value.ToString(format);
+        }
+        public static string ReadNumber(this ulong value, string format = "X16")
+        {
+            return value.ToString(format);
+        }
+        public static string ReadNumber(this short value, string format = "X4")
+        {
+            return value.ToString(format);
+        }
+        public static string ReadNumber(this ushort value, string format = "X4")
+        {
+            return value.ToString(format);
+        }
+        public static ReadOnlySpan<char> ReadBinary(this ushort value)
+        {
+            return System.Convert.ToString(value, 2).PadLeft(16, '0').AsSpan();
+        }
+        public static ReadOnlySpan<char> ReadBinary(this short value)
+        {
+            return System.Convert.ToString(value, 2).PadLeft(16, '0').AsSpan();
+        }
+        public static ReadOnlySpan<char> ReadBinary(this uint value)
+        {
+            return System.Convert.ToString(value, 2).PadLeft(32, '0').AsSpan();
+        }
+        public static ReadOnlySpan<char> ReadBinary(this int value)
+        {
+            return System.Convert.ToString(value, 2).PadLeft(32, '0').AsSpan();
+        }
+        public static ReadOnlySpan<char> ReadBinary(this byte value)
+        {
+            return System.Convert.ToString(value, 2).PadLeft(8, '0').AsSpan();
+        }
         public unsafe static string ReadHexStringLittle(ReadOnlySpan<byte> read, ref int offset, int len)
         {
             ReadOnlySpan<byte> source = read.Slice(offset, len);

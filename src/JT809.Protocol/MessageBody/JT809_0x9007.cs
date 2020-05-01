@@ -1,7 +1,9 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
+using System.Text.Json;
 
 namespace JT809.Protocol.MessageBody
 {
@@ -16,7 +18,7 @@ namespace JT809.Protocol.MessageBody
     /// </para>
     /// <para>本条消息无需被通知方应答</para>
     /// </summary>
-    public class JT809_0x9007:JT809Bodies, IJT809MessagePackFormatter<JT809_0x9007>
+    public class JT809_0x9007:JT809Bodies, IJT809MessagePackFormatter<JT809_0x9007>, IJT809Analyze
     {
         public override ushort MsgId => JT809BusinessType.从链路断开通知消息.ToUInt16Value();
         public override string Description => "从链路断开通知消息";
@@ -24,16 +26,24 @@ namespace JT809.Protocol.MessageBody
         /// <summary>
         /// 错误代码
         /// </summary>
-        public JT809_0x9007_ReasonCode ReasonCode { get; set; }
+        public JT809_0x1007_ErrorCode ErrorCode { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            JT809_0x9007 value = new JT809_0x9007();
+            value.ErrorCode = (JT809_0x1007_ErrorCode)reader.ReadByte();
+            writer.WriteString($"[{value.ErrorCode.ToByteValue()}错误代码]", value.ErrorCode.ToString());
+        }
+
         public JT809_0x9007 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x9007 jT809_0X9007 = new JT809_0x9007();
-            jT809_0X9007.ReasonCode = (JT809_0x9007_ReasonCode)reader.ReadByte();
-            return jT809_0X9007;
+            JT809_0x9007 value = new JT809_0x9007();
+            value.ErrorCode = (JT809_0x1007_ErrorCode)reader.ReadByte();
+            return value;
         }
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9007 value, IJT809Config config)
         {
-            writer.WriteByte((byte)value.ReasonCode);
+            writer.WriteByte((byte)value.ErrorCode);
         }
     }
 }

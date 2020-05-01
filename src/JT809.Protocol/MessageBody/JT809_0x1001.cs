@@ -3,7 +3,7 @@ using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
-
+using System.Text.Json;
 
 namespace JT809.Protocol.MessageBody
 {
@@ -14,7 +14,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识: UP-CONNECT-REQ</para>
     /// <para>描述:下级平台向上级平台发送用户名和密码等登录信息</para>
     /// </summary>
-    public class JT809_0x1001: JT809Bodies,IJT809MessagePackFormatter<JT809_0x1001>, IJT809_2019_Version
+    public class JT809_0x1001: JT809Bodies,IJT809MessagePackFormatter<JT809_0x1001>, IJT809Analyze, IJT809_2019_Version
     {
         /// <summary>
         /// 用户名
@@ -45,18 +45,38 @@ namespace JT809.Protocol.MessageBody
 
         public override JT809_LinkType LinkType =>  JT809_LinkType.main;
 
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            JT809_0x1001 value = new JT809_0x1001();
+            value.UserId = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.UserId.ReadNumber()}]用户名", value.UserId);
+            var virtualHex = reader.ReadVirtualArray(8);
+            value.Password = reader.ReadString(8);
+            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]密码", value.Password);
+            if (config.Version == JT809Version.JTT2019)
+            {               
+                value.MsgGNSSCENTERID = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.MsgGNSSCENTERID.ReadNumber()}]下级平台接入码", value.MsgGNSSCENTERID);
+            }
+            virtualHex = reader.ReadVirtualArray(32);
+            value.DownLinkIP = reader.ReadString(32);
+            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]下级平台提供对应的从链路服务端IP地址", value.DownLinkIP);            
+            value.DownLinkPort = reader.ReadUInt16();
+            writer.WriteNumber($"[{value.DownLinkPort.ReadNumber()}]下级平台提供对应的从链路服务器端口号", value.DownLinkPort);
+        }
+
         public JT809_0x1001 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x1001 jT809_0X1001 = new JT809_0x1001();
-            jT809_0X1001.UserId = reader.ReadUInt32();
-            jT809_0X1001.Password = reader.ReadString(8);
+            JT809_0x1001 value = new JT809_0x1001();
+            value.UserId = reader.ReadUInt32();
+            value.Password = reader.ReadString(8);
             if(config.Version== JT809Version.JTT2019)
             {
-                jT809_0X1001.MsgGNSSCENTERID = reader.ReadUInt32();
+                value.MsgGNSSCENTERID = reader.ReadUInt32();
             }
-            jT809_0X1001.DownLinkIP = reader.ReadString(32);
-            jT809_0X1001.DownLinkPort = reader.ReadUInt16();
-            return jT809_0X1001;
+            value.DownLinkIP = reader.ReadString(32);
+            value.DownLinkPort = reader.ReadUInt16();
+            return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1001 value, IJT809Config config)
