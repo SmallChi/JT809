@@ -3,6 +3,7 @@ using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Interfaces;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -12,7 +13,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>2011 描述:下级平台应答上级平台发送的不定期平台查岗消息</para>
     /// <para>2019 描述:下级平台根据查岗对象地类型将上级平台发送地不定期平台查岗消息发送到不同地查岗对象，并将不同地查岗对象地应答分别转发给上级平台</para>
     /// </summary>
-    public class JT809_0x1300_0x1301:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1300_0x1301>, IJT809_2019_Version
+    public class JT809_0x1300_0x1301:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1300_0x1301>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.平台查岗应答消息.ToUInt16Value();
 
@@ -55,6 +56,44 @@ namespace JT809.Protocol.SubMessageBody
         /// 应答内容
         /// </summary>
         public string InfoContent { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            var value = new JT809_0x1300_0x1301();
+            value.ObjectType = (JT809_0x1301_ObjectType)reader.ReadByte();
+            writer.WriteString($"[{value.ObjectType.ToByteValue()}]查岗对象的类型", value.ObjectType.ToString());
+            if (config.Version == JT809Version.JTT2011)
+            {
+                var virtualHex = reader.ReadVirtualArray(12);
+                value.ObjectID = reader.ReadString(12);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗对象的ID", value.ObjectID);
+                value.InfoID = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.InfoID.ReadNumber()}]信息ID", value.InfoID);
+            }
+            else
+            {
+                var virtualHex = reader.ReadVirtualArray(16);
+                value.Responder = reader.ReadString(16);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗应答人姓名", value.Responder);
+                virtualHex = reader.ReadVirtualArray(20);
+                value.ResponderTel = reader.ReadString(20);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗应答人联系电话", value.ResponderTel);
+                virtualHex = reader.ReadVirtualArray(20);
+                value.ObjectID = reader.ReadString(20);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗对象的ID", value.ObjectID);
+                virtualHex = reader.ReadVirtualArray(16);
+                value.SourceDataType = reader.ReadUInt16();
+                writer.WriteString($"[{value.SourceDataType.ReadNumber()}]对应启动车辆定位信息交换请求消息源子业务类型标识", ((JT809SubBusinessType)value.SourceDataType).ToString());
+                value.SourceMsgSn = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.SourceMsgSn.ReadNumber()}对应启动车辆定位信息交换请求消息源报文序列号]", value.SourceMsgSn);
+            }            
+            value.InfoLength = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.InfoLength.ReadNumber()}]数据长度", value.InfoLength);
+            var hex = reader.ReadVirtualArray((int)value.InfoLength);
+            value.InfoContent = reader.ReadString((int)value.InfoLength);
+            writer.WriteString($"[{hex.ToArray().ToHexString()}]应答内容", value.InfoContent);
+        }
+
         public JT809_0x1300_0x1301 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x1300_0x1301();

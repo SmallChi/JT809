@@ -4,6 +4,7 @@ using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using System;
 using JT809.Protocol.Interfaces;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -14,7 +15,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>2019 描述:下级平台向上级平台“上报报警信息”。</para>
     /// <para>本条消息上级平台无需应答</para>
     /// </summary>
-    public class JT809_0x1400_0x1402:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1400_0x1402>, IJT809_2019_Version
+    public class JT809_0x1400_0x1402:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1400_0x1402>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.上报报警信息消息.ToUInt16Value();
 
@@ -68,9 +69,61 @@ namespace JT809.Protocol.SubMessageBody
         /// </summary>
         public uint InfoLength { get; set; }
         /// <summary>
-        /// 数据长度
+        /// 信息内容
         /// </summary>
         public string InfoContent { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            var value = new JT809_0x1400_0x1402();
+            if (config.Version == JT809Version.JTT2011)
+            {
+                value.WarnSrc = (JT809WarnSrc)reader.ReadByte();
+                writer.WriteString($"[{value.WarnSrc.ToByteValue()}]报警信息来源", value.WarnSrc.ToString());
+            }
+            else
+            {
+                var virtualHex = reader.ReadVirtualArray(11);
+                value.SourcePlatformId = reader.ReadString(11);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]发起报警平台唯一编码", value.SourcePlatformId);
+            }
+            value.WarnType = (JT809WarnType)reader.ReadUInt16();
+            writer.WriteString($"[{value.WarnType.ToByteValue()}]报警类型", value.WarnType.ToString());
+            var hex = reader.ReadVirtualArray(8);
+            value.WarnTime = reader.ReadUTCDateTime();
+            writer.WriteString($"[{hex.ToArray().ToHexString()}]报警时间", value.WarnTime);
+            if (config.Version == JT809Version.JTT2011)
+            {
+                value.InfoID = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.InfoID.ReadNumber()}]信息ID", value.InfoID);
+            }
+            else
+            {
+                hex = reader.ReadVirtualArray(8);
+                value.StartTime = reader.ReadUTCDateTime();
+                writer.WriteString($"[{hex.ToArray().ToHexString()}]事件开始时间", value.StartTime);
+                hex = reader.ReadVirtualArray(8);
+                value.EndTime = reader.ReadUTCDateTime();
+                writer.WriteString($"[{hex.ToArray().ToHexString()}]事件结束时间", value.EndTime);
+#warning 此处车牌号文档长度有误，使用旧版长度21
+                hex = reader.ReadVirtualArray(21);
+                value.VehicleNo = reader.ReadString(21);
+                writer.WriteString($"[{hex.ToArray().ToHexString()}]车牌号码", value.VehicleNo);
+                value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+                writer.WriteString($"[{value.VehicleColor.ToByteValue()}]车牌颜色", value.VehicleColor.ToString());
+                hex = reader.ReadVirtualArray(11);
+                value.DestinationPlatformId = reader.ReadString(11);
+                writer.WriteString($"[{hex.ToArray().ToHexString()}]被报警平台唯一编码", value.DestinationPlatformId);
+                value.DRVLineId = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.DRVLineId.ReadNumber()}]线路ID", value.DRVLineId);
+            }
+            value.InfoLength = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.InfoLength.ReadNumber()}]数据长度", value.InfoLength);
+            hex = reader.ReadVirtualArray((int)value.InfoLength);
+            value.InfoContent = reader.ReadString((int)value.InfoLength);
+            writer.WriteString($"[{hex.ToArray().ToHexString()}]信息内容", value.InfoContent);
+        }
+
         public JT809_0x1400_0x1402 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x1400_0x1402();

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using JT809.Protocol.Interfaces;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -19,7 +20,7 @@ namespace JT809.Protocol.SubMessageBody
     ///  本条消息上级平台采用定量回复，即收到一定数量的数据后，即通过从链路应答数据量。
     ///  </para>
     /// </summary>
-    public class JT809_0x1200_0x1203 : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x1203>, IJT809_2019_Version
+    public class JT809_0x1200_0x1203 : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x1203>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.车辆定位信息自动补报请求消息.ToUInt16Value();
 
@@ -33,19 +34,22 @@ namespace JT809.Protocol.SubMessageBody
         /// </summary>
         public List<JT809_0x1200_0x1202> GNSS { get; set; }
 
-        public JT809_0x1200_0x1203 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
-            JT809_0x1200_0x1203 jT809_0X1200_0X1203 = new JT809_0x1200_0x1203();
-            jT809_0X1200_0X1203.GNSSCount = reader.ReadByte();
-            jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
-            if (jT809_0X1200_0X1203.GNSSCount > 0)
+            JT809_0x1200_0x1203 value = new JT809_0x1200_0x1203();
+            value.GNSSCount = reader.ReadByte();
+            writer.WriteNumber($"[{value.GNSSCount.ReadNumber()}]卫星定位数据个数", value.GNSSCount);
+            value.GNSS = new List<JT809_0x1200_0x1202>();
+            writer.WriteStartArray("实时上传车辆定位信息消息");
+            if (value.GNSSCount > 0)
             {
-                for (int i = 0; i < jT809_0X1200_0X1203.GNSSCount; i++)
+                for (int i = 0; i < value.GNSSCount; i++)
                 {
                     try
                     {
-                        var jT809_0x1200_0x1202 = config.GetMessagePackFormatter<JT809_0x1200_0x1202>().Deserialize(ref reader, config);
-                        jT809_0X1200_0X1203.GNSS.Add(jT809_0x1200_0x1202);
+                        writer.WriteStartObject();
+                        config.GetMessagePackFormatter<JT809_0x1200_0x1202>().Analyze(ref reader,writer, config);
+                        writer.WriteEndObject();
                     }
                     catch (Exception)
                     {
@@ -53,7 +57,30 @@ namespace JT809.Protocol.SubMessageBody
                     }
                 }
             }
-            return jT809_0X1200_0X1203;
+            writer.WriteEndArray();
+        }
+
+        public JT809_0x1200_0x1203 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
+        {
+            JT809_0x1200_0x1203 value = new JT809_0x1200_0x1203();
+            value.GNSSCount = reader.ReadByte();
+            value.GNSS = new List<JT809_0x1200_0x1202>();
+            if (value.GNSSCount > 0)
+            {
+                for (int i = 0; i < value.GNSSCount; i++)
+                {
+                    try
+                    {
+                        var jT809_0x1200_0x1202 = config.GetMessagePackFormatter<JT809_0x1200_0x1202>().Deserialize(ref reader, config);
+                        value.GNSS.Add(jT809_0x1200_0x1202);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }
+            return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1200_0x1203 value, IJT809Config config)

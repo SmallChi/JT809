@@ -4,6 +4,7 @@ using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Interfaces;
 using System;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -16,7 +17,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>描述：用于下级平台向上级平台上报相关报警预警或运行提示信息2019</para>
     /// <para>本条消息上级平台无需应答</para>
     /// </summary>
-    public class JT809_0x1400_0x1403:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1400_0x1403>, IJT809_2019_Version
+    public class JT809_0x1400_0x1403:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1400_0x1403>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.主动上报报警处理结果信息2013_上报报警预警信息2019.ToUInt16Value();
 
@@ -62,7 +63,7 @@ namespace JT809.Protocol.SubMessageBody
         /// </summary>
         public uint InfoLength { get; set; }
         /// <summary>
-        /// 数据长度
+        /// 信息内容
         /// </summary>
         public string InfoContent { get; set; }
         /// <summary>
@@ -73,6 +74,52 @@ namespace JT809.Protocol.SubMessageBody
         /// 处理结果
         /// </summary>
         public JT809_0x1403_Result Result { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            var value = new JT809_0x1400_0x1403();
+            if (config.Version == JT809Version.JTT2011)
+            {
+                value.InfoID = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.InfoID.ReadNumber()}]报警信息ID", value.InfoID);
+                value.Result = (JT809_0x1403_Result)reader.ReadByte();
+                writer.WriteString($"[{value.Result.ToByteValue()}]处理结果", value.Result.ToString());
+            }
+            else
+            {
+                var virtualHex = reader.ReadVirtualArray(11);
+                value.SourcePlatformId = reader.ReadBigNumber(11);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]发起报警平台唯一编码", value.SourcePlatformId);
+                value.WarnType = (JT809WarnType)reader.ReadUInt16();
+                writer.WriteString($"[{value.WarnType.ToUInt16Value()}]处理结果", value.WarnType.ToString());
+                virtualHex = reader.ReadVirtualArray(8);
+                value.WarnTime = reader.ReadUTCDateTime();
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]报警时间", value.WarnTime);
+                virtualHex = reader.ReadVirtualArray(8);
+                value.StartTime = reader.ReadUTCDateTime();
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]事件开始时间", value.StartTime);
+                virtualHex = reader.ReadVirtualArray(8);
+                value.EndTime = reader.ReadUTCDateTime();
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]事件结束时间", value.EndTime);
+#warning 此处车牌号文档长度有误，使用旧版长度21
+                virtualHex = reader.ReadVirtualArray(21);
+                value.VehicleNo = reader.ReadString(21);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车牌号码", value.VehicleNo);
+                value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+                writer.WriteString($"[{value.VehicleColor.ToByteValue()}]处理结果", value.VehicleColor.ToString());
+                virtualHex = reader.ReadVirtualArray(11);
+                value.DestinationPlatformId = reader.ReadBigNumber(11);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]被报警平台唯一编码", value.DestinationPlatformId);
+                value.DRVLineId = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.DRVLineId.ReadNumber()}]线路ID", value.DRVLineId);
+                value.InfoLength = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.InfoLength.ReadNumber()}]数据长度", value.InfoLength);
+                virtualHex = reader.ReadVirtualArray((int)value.InfoLength);
+                value.InfoContent = reader.ReadString((int)value.InfoLength);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]信息内容", value.InfoContent);
+            }
+        }
+
         public JT809_0x1400_0x1403 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x1400_0x1403();

@@ -2,7 +2,9 @@
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
+using System.Text.Json;
 
 namespace JT809.Protocol.MessageBody
 {
@@ -13,11 +15,42 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:DOWN_EXG_MSG</para>
     /// <para>描述:上级平台作为客户端向下级平台服务端发送车辆动态信息交换业务</para>
     /// </summary>
-    public class JT809_0x9200: JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x9200>
+    public class JT809_0x9200: JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x9200>, IJT809Analyze
     {
         public override ushort MsgId => JT809BusinessType.从链路车辆动态信息交换业务.ToUInt16Value();
         public override string Description => "从链路车辆动态信息交换业务";
         public override JT809_LinkType LinkType => JT809_LinkType.subordinate;
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            JT809_0x9200 value = new JT809_0x9200();
+            var virtualHex = reader.ReadVirtualArray(21);
+            value.VehicleNo = reader.ReadString(21);
+            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车牌号", value.VehicleNo);
+            value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+            writer.WriteString($"[{value.VehicleColor.ToByteValue()}]车牌颜色", value.VehicleColor.ToString());
+            value.SubBusinessType = reader.ReadUInt16();
+            writer.WriteString($"[{value.SubBusinessType.ReadNumber()}]子业务类型标识", ((JT809SubBusinessType)value.SubBusinessType).ToString());
+            value.DataLength = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.DataLength.ReadNumber()}]后续数据长度", value.DataLength);
+            try
+            {
+                if (config.SubBusinessTypeFactory.TryGetValue(value.SubBusinessType, out object instance))
+                {
+                    if (instance is JT809SubBodies subBodies)
+                    {
+                        if (!subBodies.SkipSerialization)
+                        {
+                            instance.Analyze(ref reader, writer, config);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                throw new JT809Exception(JT809ErrorCode.SubBodiesParseError, $"SubBusinessType>{value.SubBusinessType.ToString()}");
+            }
+        }
 
         public JT809_0x9200 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {

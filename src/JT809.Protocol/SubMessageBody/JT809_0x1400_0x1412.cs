@@ -4,6 +4,7 @@ using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using System;
 using JT809.Protocol.Interfaces;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -13,7 +14,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>描述:下级平台主动向上级平台上报报警处理结果</para>
     /// <para>本条消息上级平台无需应答</para>
     /// </summary>
-    public class JT809_0x1400_0x1412 : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1400_0x1412>, IJT809_2019_Version
+    public class JT809_0x1400_0x1412 : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1400_0x1412>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.主动上报报警处理结果消息.ToUInt16Value();
 
@@ -21,7 +22,7 @@ namespace JT809.Protocol.SubMessageBody
         /// <summary>
         /// 对应报警督办请求消息源子业务类型标识
         /// </summary>
-        public ushort SourceDateType { get; set; }
+        public ushort SourceDataType { get; set; }
         /// <summary>
         /// 对应报警督办请求消息源报文序列号
         /// </summary>
@@ -30,10 +31,22 @@ namespace JT809.Protocol.SubMessageBody
         /// 报警处理结果
         /// </summary>
         public JT809_0x1412_Result Result { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            var value = new JT809_0x1400_0x1412();
+            value.SourceDataType = reader.ReadUInt16();
+            writer.WriteString($"[{value.SourceDataType.ReadNumber()}]对应启动车辆定位信息交换请求消息源子业务类型标识", ((JT809SubBusinessType)value.SourceDataType).ToString());
+            value.SourceMsgSn = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.SourceMsgSn.ReadNumber()}对应启动车辆定位信息交换请求消息源报文序列号]", value.SourceMsgSn);
+            value.Result = (JT809_0x1412_Result)reader.ReadByte();
+            writer.WriteString($"[{value.Result.ToByteValue()}]报警处理结果", value.Result.ToString());
+        }
+
         public JT809_0x1400_0x1412 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x1400_0x1412();
-            value.SourceDateType = reader.ReadUInt16();
+            value.SourceDataType = reader.ReadUInt16();
             value.SourceMsgSn = reader.ReadUInt32();
             value.Result = (JT809_0x1412_Result)reader.ReadByte();
             return value;
@@ -41,7 +54,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1400_0x1412 value, IJT809Config config)
         {
-            writer.WriteUInt16(value.SourceDateType);
+            writer.WriteUInt16(value.SourceDataType);
             writer.WriteUInt32(value.SourceMsgSn);
             writer.WriteByte((byte)value.Result);
         }

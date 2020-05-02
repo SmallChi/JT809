@@ -6,6 +6,7 @@ using JT809.Protocol.MessagePack;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -14,7 +15,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_EXG_MSG_RETURN_STARTUP_ACK</para>
     /// <para>描述：本条消息是下级平台对上级平台下发的 DOWN_EXG_MSG_RETURN_STARTUP 消息的应答消息</para>
     /// </summary>
-    public class JT809_0x1200_0x1205:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x1205>, IJT809_2019_Version
+    public class JT809_0x1200_0x1205:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x1205>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.启动车辆定位信息交换应答消息.ToUInt16Value();
 
@@ -33,6 +34,20 @@ namespace JT809.Protocol.SubMessageBody
         /// 后续数据长度  值为0x00
         /// </summary>
         public uint DataLength { get; set; } = 0x00;
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            var value = new JT809_0x1200_0x1205();
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.SourceDataType = reader.ReadUInt16(); 
+                writer.WriteString($"[{value.SourceDataType.ReadNumber()}]对应启动车辆定位信息交换请求消息源子业务类型标识", ((JT809SubBusinessType)value.SourceDataType).ToString());
+                value.SourceMsgSn = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.SourceMsgSn.ReadNumber()}对应启动车辆定位信息交换请求消息源报文序列号]", value.SourceMsgSn);
+                value.DataLength = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.DataLength.ReadNumber()}后续数据长度]", value.DataLength);
+            }
+        }
 
         public JT809_0x1200_0x1205 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {

@@ -3,6 +3,7 @@ using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Interfaces;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -11,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:UP_EXG_MSG_TAKE_EWAYBILL_ACK</para>
     /// <para>描述:下级平台应答上级平台发送的上报车辆电子运单请求消息，向上级平台上传车辆当前电子运单</para>
     /// </summary>
-    public class JT809_0x1200_0x120B:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120B>, IJT809_2019_Version
+    public class JT809_0x1200_0x120B:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x1200_0x120B>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.上报车辆电子运单应答消息.ToUInt16Value();
 
@@ -32,6 +33,25 @@ namespace JT809.Protocol.SubMessageBody
         /// 电子运单数据内容
         /// </summary>
         public string EwaybillInfo { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            var value = new JT809_0x1200_0x120B();
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.SourceDataType = reader.ReadUInt16();
+                writer.WriteString($"[{value.SourceDataType.ReadNumber()}]对应启动车辆定位信息交换请求消息源子业务类型标识", ((JT809SubBusinessType)value.SourceDataType).ToString());
+                value.SourceMsgSn = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.SourceMsgSn.ReadNumber()}对应启动车辆定位信息交换请求消息源报文序列号]", value.SourceMsgSn);
+
+            }
+            value.EwaybillLength = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.EwaybillLength.ReadNumber()}]电子运单数据体长度", value.EwaybillLength);
+            var virtualHex = reader.ReadVirtualArray((int)value.EwaybillLength);
+            value.EwaybillInfo = reader.ReadString((int)value.EwaybillLength);
+            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}电子运单数据内容]", value.EwaybillInfo);
+        }
+
         public JT809_0x1200_0x120B Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x1200_0x120B();

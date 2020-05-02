@@ -11,7 +11,7 @@ namespace JT809.Protocol.Metadata
         /// </summary>
         public ushort SubBusinessType { get; set; }
         /// <summary>
-        /// 对应得子夜吴数据类型报文序列号
+        /// 对应得子业务数据类型报文序列号
         /// </summary>
         public uint MsgSN { get; set; }
         /// <summary>
