@@ -53,15 +53,15 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
                 StartTime = DateTime.Parse("2020-04-26 20:00:20"),
                 EndTime = DateTime.Parse("2020-04-26 23:00:20")
             };
-            var hex = JT809Serializer.Serialize(jT809_0X9500_0X9504).ToHexString();
-            Assert.Equal("102004262000202004262300200000", hex);
+            var hex = JT809_2019_Serializer.Serialize(jT809_0X9500_0X9504).ToHexString();
+            Assert.Equal("000000005EA577D4000000005EA5A20410", hex);
         }
 
         [Fact]
         public void Test_2019_2()
         {
-            var bytes = "102004262000202004262300200000".ToHexBytes();
-            JT809_0x9500_0x9504 jT809_0X9500_0X9504 = JT809Serializer.Deserialize<JT809_0x9500_0x9504>(bytes);
+            var bytes = "000000005EA577D4000000005EA5A20410".ToHexBytes();
+            JT809_0x9500_0x9504 jT809_0X9500_0X9504 = JT809_2019_Serializer.Deserialize<JT809_0x9500_0x9504>(bytes);
             Assert.Equal(JT809CommandType.采集记录仪事故疑点记录, jT809_0X9500_0X9504.Command);
             Assert.Equal(DateTime.Parse("2020-04-26 20:00:20"), jT809_0X9500_0X9504.StartTime);
             Assert.Equal(DateTime.Parse("2020-04-26 23:00:20"), jT809_0X9500_0X9504.EndTime);

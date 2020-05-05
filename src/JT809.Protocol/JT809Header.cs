@@ -1,12 +1,14 @@
 ﻿using JT809.Protocol.Enums;
+using JT809.Protocol.Extensions;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
 using System;
+using System.Text.Json;
 
 namespace JT809.Protocol
 {
-    public class JT809Header: IJT809MessagePackFormatter<JT809Header>,IJT809_2019_Version
+    public class JT809Header: IJT809MessagePackFormatter<JT809Header>, IJT809_2019_Version
     {
         /// <summary>
         /// 固定为22个字节长度
@@ -60,19 +62,19 @@ namespace JT809.Protocol
 
         public JT809Header Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809Header jT809Header = new JT809Header();
-            jT809Header.MsgLength = reader.ReadUInt32();
-            jT809Header.MsgSN = reader.ReadUInt32();
-            jT809Header.BusinessType = reader.ReadUInt16();
-            jT809Header.MsgGNSSCENTERID = reader.ReadUInt32();
-            jT809Header.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
-            jT809Header.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
-            jT809Header.EncryptKey = reader.ReadUInt32();
+            JT809Header value = new JT809Header();
+            value.MsgLength = reader.ReadUInt32();
+            value.MsgSN = reader.ReadUInt32();
+            value.BusinessType = reader.ReadUInt16();
+            value.MsgGNSSCENTERID = reader.ReadUInt32();
+            value.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
+            value.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
+            value.EncryptKey = reader.ReadUInt32();
             if(config.Version== JT809Version.JTT2019)
             {
-                jT809Header.Time = reader.ReadUTCDateTime();
+                value.Time = reader.ReadUTCDateTime();
             }
-            return jT809Header;
+            return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809Header value, IJT809Config config)

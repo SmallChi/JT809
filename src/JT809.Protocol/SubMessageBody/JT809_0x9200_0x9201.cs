@@ -3,6 +3,7 @@ using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Interfaces;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -11,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     ///  <para>子业务类型标识:DOWN_EXG_MSG_REGISTER_ACK</para>
     ///  <para>描述:上级平台在收到下级平台上报的车辆注册信息后，向下级平台发送车辆注册应答消息</para>
     /// </summary>
-    public class JT809_0x9200_0x9201:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9201>,IJT809_2019_Version
+    public class JT809_0x9200_0x9201:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9200_0x9201>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.车辆注册信息应答消息.ToUInt16Value();
 
@@ -24,6 +25,15 @@ namespace JT809.Protocol.SubMessageBody
         /// 处理结果
         /// </summary>
         public JT809_0x9201_Result Result { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            var value = new JT809_0x9200_0x9201();
+            value.MsgSn = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.MsgSn.ReadNumber()}]车辆注册信息消息源报文序号", value.MsgSn);
+            value.Result = (JT809_0x9201_Result)reader.ReadByte();
+            writer.WriteString($"[{value.Result.ToByteValue()}]处理结果", value.Result.ToString());
+        }
 
         public JT809_0x9200_0x9201 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {

@@ -80,6 +80,7 @@
     <Compile Include="Enums\JT809_0x1007_ErrorCode.cs" />
     <Compile Include="Enums\JT809_0x920A_UploadFlag.cs" />
     <Compile Include="Enums\JT809_0x9201_Result.cs" />
+    <Compile Include="Enums\JT809_0x920D_Result.cs" />
     <Compile Include="Enums\JT809_0x9302_ObjectType.cs" />
     <Compile Include="Enums\JT809_0x9301_ObjectType.cs" />
     <Compile Include="Enums\JT809_0x1301_ObjectType.cs" />
@@ -92,8 +93,12 @@
     <Compile Include="Enums\JT809_0x1008_ReasonCode.cs" />
     <Compile Include="Enums\JT809_0x9002_Result.cs" />
     <Compile Include="Enums\JT809_0x9008_ReasonCode.cs" />
+    <Compile Include="Enums\JT809_0x9503_MsgPriority.cs" />
+    <Compile Include="Enums\JT809_9401_SupervisionLevel.cs" />
     <Compile Include="Enums\JT809_LinkType.cs" />
     <Compile Include="Enums\JT809_VehiclePositionEncrypt.cs" />
+    <Compile Include="Enums\JT809__0x9502_ImageType.cs" />
+    <Compile Include="Enums\JT809__0x9502_SizeType.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

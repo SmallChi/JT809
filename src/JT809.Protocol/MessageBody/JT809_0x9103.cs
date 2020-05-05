@@ -37,10 +37,10 @@ namespace JT809.Protocol.MessageBody
             writer.WriteNumber($"[{value.DataLength.ReadNumber()}]后续数据长度", value.DataLength);
             value.Count = reader.ReadByte();
             writer.WriteNumber($"[{value.Count.ReadNumber()}]总数", value.Count);
-            writer.WriteStartArray();
+            writer.WriteStartArray("子业务数据");
             for (int i = 0; i < value.Count; i++)
             {
-                writer.WriteStartObject("子业务数据类型");
+                writer.WriteStartObject();
                 JT809ManageMsgSNInform item = new JT809ManageMsgSNInform();
                 item.SubBusinessType = reader.ReadUInt16();
                 writer.WriteString($"[{item.SubBusinessType.ReadNumber()}]子业务类型标识", ((JT809SubBusinessType)item.SubBusinessType).ToString());
@@ -49,6 +49,7 @@ namespace JT809.Protocol.MessageBody
                 var virtualHex = reader.ReadVirtualArray(8);
                 item.Time = reader.ReadUTCDateTime();
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]系统UTC时间", item.Time);
+                writer.WriteEndObject();
             }
             writer.WriteEndArray();
         }

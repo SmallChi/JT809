@@ -32,7 +32,7 @@ namespace JT809.Protocol.MessageBody
         {
             JT809_0x9007 value = new JT809_0x9007();
             value.ErrorCode = (JT809_0x1007_ErrorCode)reader.ReadByte();
-            writer.WriteString($"[{value.ErrorCode.ToByteValue()}错误代码]", value.ErrorCode.ToString());
+            writer.WriteString($"[{value.ErrorCode.ToByteValue()}]错误代码", value.ErrorCode.ToString());
         }
 
         public JT809_0x9007 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)

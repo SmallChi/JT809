@@ -178,8 +178,92 @@ namespace JT809.Protocol
 
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
-#warning Analyze NotImplementedException
-            throw new NotImplementedException();
+            JT809Package jT809Package = new JT809Package();
+            writer.WriteStartObject();
+            // 2.读取起始头
+            jT809Package.BeginFlag = reader.ReadStart();
+            writer.WriteNumber($"[{jT809Package.BeginFlag.ReadNumber()}]起始标识", jT809Package.BeginFlag);
+            // 3.初始化消息头
+            JT809Header jT809Header=new JT809Header();
+            writer.WriteStartObject("消息头");
+            try
+            {
+                jT809Header.MsgLength = reader.ReadUInt32();
+                writer.WriteNumber($"[{jT809Header.MsgLength.ReadNumber()}]数据长度", jT809Header.MsgLength);
+                jT809Header.MsgSN = reader.ReadUInt32();
+                writer.WriteNumber($"[{jT809Header.MsgSN.ReadNumber()}]报文序列号", jT809Header.MsgSN);
+                jT809Header.BusinessType = reader.ReadUInt16();
+                writer.WriteString($"[{jT809Header.BusinessType.ReadNumber()}]业务类型标识", ((JT809BusinessType)jT809Header.BusinessType).ToString());
+                jT809Header.MsgGNSSCENTERID = reader.ReadUInt32();
+                writer.WriteNumber($"[{jT809Header.MsgGNSSCENTERID.ReadNumber()}]下级平台接入码", jT809Header.MsgGNSSCENTERID);
+                var virtualHex = reader.ReadVirtualArray(JT809Header_Version.FixedByteLength);
+                jT809Header.Version = new JT809Header_Version(reader.ReadArray(JT809Header_Version.FixedByteLength));
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]协议版本号标识", jT809Header.Version.ToString());
+                jT809Header.EncryptFlag = (JT809Header_Encrypt)reader.ReadByte();
+                writer.WriteString($"[{ jT809Header.EncryptFlag.ToByteValue()}]报文加密标识位", jT809Header.EncryptFlag.ToString());
+                jT809Header.EncryptKey = reader.ReadUInt32();
+                writer.WriteNumber($"[{jT809Header.EncryptKey.ReadNumber()}]数据加密的密匙", jT809Header.EncryptKey);
+                if (config.Version == JT809Version.JTT2019)
+                {
+                    virtualHex = reader.ReadVirtualArray(8);
+                    jT809Header.Time = reader.ReadUTCDateTime();
+                    writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]发送消息时的系统UTC时间", jT809Header.Time);
+                }
+            }
+            catch (Exception ex)
+            {
+                writer.WriteString($"[{(int)JT809ErrorCode.HeaderParseError}]消息头异常", $"offset>{reader.ReadCurrentRemainContentLength()},异常消息：{ex.Message}");
+            }
+            writer.WriteEndObject();
+            writer.WriteStartObject("消息体");
+            // 5.数据体处理
+            //  5.1 判断是否有数据体（总长度-固定长度）> 0
+            int fixedByteLength = config.Version == JT809Version.JTT2019 ? FixedByteLength_2019 : FixedByteLength;
+            if ((jT809Header.MsgLength - fixedByteLength) > 0)
+            {
+                if (config.BusinessTypeFactory.TryGetValue(jT809Header.BusinessType, config.Version, out object instance))
+                {
+                    try
+                    {
+                      
+                        // 5.2 是否加密
+                        switch (jT809Header.EncryptFlag)
+                        {
+                            case JT809Header_Encrypt.None:
+                                // 5.3 处理消息体
+                          
+                                instance.Analyze(ref reader, writer, config);
+                                break;
+                            case JT809Header_Encrypt.Common:
+                                // 5.4. 处理加密消息体
+                                byte[] bodiesData = config.Encrypt.Decrypt(reader.ReadContent(), config.EncryptOptions, jT809Header.EncryptKey);
+                                JT809MessagePackReader bodiesReader = new JT809MessagePackReader(bodiesData);
+                                instance.Analyze(ref bodiesReader, writer, config);
+                                break;
+                        }
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        writer.WriteString($"[{(int)JT809ErrorCode.BodiesParseError}]消息体异常", $"offset>{reader.ReadCurrentRemainContentLength()},异常消息：{ex.Message}");
+                    }
+                }         
+            }
+            writer.WriteEndObject();
+            jT809Package.CRCCode = reader.ReadUInt16();
+            writer.WriteNumber($"[{jT809Package.CRCCode.ReadNumber()}]校验码", jT809Package.CRCCode);
+            // 1. 验证校验码
+            if (!config.SkipCRCCode)
+            {
+                //  1.2. 验证校验码
+                if (!reader.CheckXorCodeVali)
+                {
+                    writer.WriteString($"[{(int)JT809ErrorCode.CRC16CheckInvalid}]校验码异常", $"{reader.CalculateCheckXorCode}!={reader.RealCheckXorCode}");
+                }
+            }
+            jT809Package.EndFlag = reader.ReadEnd();
+            writer.WriteNumber($"[{jT809Package.EndFlag.ReadNumber()}]结束标识", jT809Package.EndFlag);
+            writer.WriteEndObject();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace JT809.Protocol.MessageBody
         {
             JT809_0x9008 value = new JT809_0x9008();
             value.ReasonCode = (JT809_0x9008_ReasonCode)reader.ReadByte();
-            writer.WriteString($"[{value.ReasonCode.ToByteValue()}链路关闭原因]", value.ReasonCode.ToString());
+            writer.WriteString($"[{value.ReasonCode.ToByteValue()}]链路关闭原因", value.ReasonCode.ToString());
         }
 
         public JT809_0x9008 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)

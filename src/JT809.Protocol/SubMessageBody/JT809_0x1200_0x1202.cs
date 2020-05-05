@@ -70,27 +70,26 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.GNSSData = new JT809VehiclePositionProperties_2019();
                 value.GNSSData.Encrypt = (JT809_VehiclePositionEncrypt)reader.ReadByte();
-                writer.WriteString($"[{value.VehiclePosition.Encrypt.ToByteValue()}]是否使用国家测绘局批准的地图保密插件进行加密", value.VehiclePosition.Encrypt.ToString());
+                writer.WriteString($"[{value.GNSSData.Encrypt.ToByteValue()}]是否使用国家测绘局批准的地图保密插件进行加密", value.GNSSData.Encrypt.ToString());
                 value.GNSSData.DataLength = reader.ReadUInt32();
                 writer.WriteNumber($"[{value.GNSSData.DataLength.ReadNumber()}]车辆定位信息数据长度", value.GNSSData.DataLength);
                 value.GNSSData.GnssData = reader.ReadArray((int)value.GNSSData.DataLength).ToArray();
-#warning 此处需要提供接口注入
                 writer.WriteString($"[{value.GNSSData.GnssData.ToHexString()}]车辆定位信息内容",value.GNSSData.GnssData.ToHexString());
                 var virtualHex = reader.ReadVirtualArray(11);
                 value.GNSSData.PlatformId1 = reader.ReadString(11);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]监控平台唯一编码", value.GNSSData.PlatformId1);
                 value.GNSSData.Alarm1 = reader.ReadUInt32();
-                writer.WriteNumber($"[{value.GNSSData.Alarm1.ReadNumber()}]报警状态", value.GNSSData.Alarm1);
+                writer.WriteNumber($"[{value.GNSSData.Alarm1.ReadNumber()}]报警状态1", value.GNSSData.Alarm1);
                 virtualHex = reader.ReadVirtualArray(11);
                 value.GNSSData.PlatformId2 = reader.ReadString(11);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]市级监控平台唯一编码", value.GNSSData.PlatformId2);
                 value.GNSSData.Alarm2 = reader.ReadUInt32();
-                writer.WriteNumber($"[{value.GNSSData.Alarm1.ReadNumber()}]报警状态", value.GNSSData.Alarm1);
+                writer.WriteNumber($"[{value.GNSSData.Alarm1.ReadNumber()}]报警状态2", value.GNSSData.Alarm2);
                 virtualHex = reader.ReadVirtualArray(11);
                 value.GNSSData.PlatformId3 = reader.ReadString(11);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]省级监控平台唯一编码", value.GNSSData.PlatformId3);
                 value.GNSSData.Alarm3 = reader.ReadUInt32();
-                writer.WriteNumber($"[{value.GNSSData.Alarm1.ReadNumber()}]报警状态", value.GNSSData.Alarm1);
+                writer.WriteNumber($"[{value.GNSSData.Alarm1.ReadNumber()}]报警状态3", value.GNSSData.Alarm3);
             }
             writer.WriteEndObject();
         }
@@ -123,7 +122,6 @@ namespace JT809.Protocol.SubMessageBody
                value.GNSSData = new JT809VehiclePositionProperties_2019();
                value.GNSSData.Encrypt = (JT809_VehiclePositionEncrypt)reader.ReadByte();
                value.GNSSData.DataLength = reader.ReadUInt32();
-#warning 引用808的0x0200协议
                 value.GNSSData.GnssData = reader.ReadArray((int)value.GNSSData.DataLength).ToArray();
                value.GNSSData.PlatformId1 = reader.ReadString(11);
                value.GNSSData.Alarm1 = reader.ReadUInt32();

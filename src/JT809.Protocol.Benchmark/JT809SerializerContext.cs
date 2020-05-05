@@ -70,7 +70,7 @@ namespace JT809.Protocol.Benchmark
                     WarnTime = DateTime.Parse("2018-09-27 10:24:00"),
                     SupervisionID = "123FFAA1",
                     SupervisionEndTime = DateTime.Parse("2018-09-27 11:24:00"),
-                    SupervisionLevel = 3,
+                    SupervisionLevel =  JT809_9401_SupervisionLevel.一般,
                     Supervisor = "smallchi",
                     SupervisorTel = "12345678901",
                     SupervisorEmail = "123456@qq.com"

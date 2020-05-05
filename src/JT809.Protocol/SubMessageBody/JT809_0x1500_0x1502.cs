@@ -45,11 +45,11 @@ namespace JT809.Protocol.SubMessageBody
         /// <summary>
         /// 图片大小
         /// </summary>
-        public byte SizeType { get; set; }
+        public JT809__0x9502_SizeType SizeType { get; set; }
         /// <summary>
         /// 图像格式
         /// </summary>
-        public byte Type { get; set; }
+        public JT809__0x9502_ImageType Type { get; set; }
         /// <summary>
         /// 图片内容
         /// </summary>
@@ -98,10 +98,10 @@ namespace JT809.Protocol.SubMessageBody
             writer.WriteNumber($"[{value.LensID}]镜头ID", value.LensID);
             value.PhotoLen = reader.ReadUInt32();
             writer.WriteNumber($"[{value.PhotoLen}]图片长度", value.PhotoLen);
-            value.SizeType = reader.ReadByte();
-            writer.WriteNumber($"[{value.SizeType}]图片大小", value.SizeType);
-            value.Type = reader.ReadByte();
-            writer.WriteNumber($"[{value.Type}]图像格式", value.Type);
+            value.SizeType = (JT809__0x9502_SizeType)reader.ReadByte();
+            writer.WriteString($"[{value.SizeType.ToByteValue()}]图片大小", value.SizeType.ToString());
+            value.Type = (JT809__0x9502_ImageType)reader.ReadByte();
+            writer.WriteString($"[{value.Type.ToByteValue()}]图像格式", value.Type.ToString());
             if (value.PhotoLen > 0)
             {
                 var virtualHex = reader.ReadVirtualArray((int)value.PhotoLen);
@@ -131,8 +131,8 @@ namespace JT809.Protocol.SubMessageBody
             value.VehiclePosition.Alarm = reader.ReadUInt32();
             value.LensID = reader.ReadByte();
             value.PhotoLen = reader.ReadUInt32();
-            value.SizeType = reader.ReadByte();
-            value.Type = reader.ReadByte();
+            value.SizeType = (JT809__0x9502_SizeType)reader.ReadByte();
+            value.Type = (JT809__0x9502_ImageType)reader.ReadByte();
             if (value.PhotoLen > 0)
             {
                 value.Photo = reader.ReadArray((int)value.PhotoLen).ToArray();
@@ -162,8 +162,8 @@ namespace JT809.Protocol.SubMessageBody
             writer.WriteByte(value.LensID);
             bool isPhoto = (value.Photo != null && value.Photo.Length > 0);
             writer.WriteUInt32(isPhoto ? (uint)value.Photo.Length : 0);
-            writer.WriteByte(value.SizeType);
-            writer.WriteByte(value.Type);
+            writer.WriteByte(value.SizeType.ToByteValue());
+            writer.WriteByte(value.Type.ToByteValue());
             if (isPhoto)
             {
                 writer.WriteArray(value.Photo);

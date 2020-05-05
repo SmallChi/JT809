@@ -37,7 +37,9 @@ namespace JT809.Protocol.MessageBody
                     {
                         if (!subBodies.SkipSerialization)
                         {
+                            writer.WriteStartObject("子业务类型");
                             instance.Analyze(ref reader, writer, config);
+                            writer.WriteEndObject();
                         }
                     }
                 }

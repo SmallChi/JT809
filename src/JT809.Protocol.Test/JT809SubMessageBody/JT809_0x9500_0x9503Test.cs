@@ -19,20 +19,20 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             JT809_0x9500_0x9503 jT809_0X9500_0X9503 = new JT809_0x9500_0x9503
             {
                    MsgSequence=333,
-                   MsgPriority=2,
+                   MsgPriority= Enums.JT809_0x9503_MsgPriority.一般,
                    MsgContent="汉_sfdf3dfs"
             };
             var hex = JT809Serializer.Serialize(jT809_0X9500_0X9503).ToHexString();
-            Assert.Equal("0000014D020000000BBABA5F7366646633646673", hex);
+            Assert.Equal("0000014D010000000BBABA5F7366646633646673", hex);
         }
 
         [Fact]
         public void Test2()
         {
-            var bytes = "0000014D020000000BBABA5F7366646633646673".ToHexBytes();
+            var bytes = "0000014D010000000BBABA5F7366646633646673".ToHexBytes();
             JT809_0x9500_0x9503 jT809_0X9500_0X9503 = JT809Serializer.Deserialize<JT809_0x9500_0x9503>(bytes);
             Assert.Equal((uint)333, jT809_0X9500_0X9503.MsgSequence);
-            Assert.Equal(2, jT809_0X9500_0X9503.MsgPriority);
+            Assert.Equal(1, jT809_0X9500_0X9503.MsgPriority.ToByteValue());
             Assert.Equal((uint)11, jT809_0X9500_0X9503.MsgLength);
             Assert.Equal("汉_sfdf3dfs", jT809_0X9500_0X9503.MsgContent);
         }

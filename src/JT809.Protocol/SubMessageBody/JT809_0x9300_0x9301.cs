@@ -2,6 +2,8 @@
 using JT809.Protocol.Formatters;
 using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
+using JT809.Protocol.Interfaces;
+using System.Text.Json;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -10,7 +12,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_PLATFORM-MSG_POST_QUERY_REQ</para>
     /// <para>描述:上级平台不定期向下级平台发送平台查岗信息</para>
     /// </summary>
-    public class JT809_0x9300_0x9301:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9300_0x9301>
+    public class JT809_0x9300_0x9301:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9300_0x9301>, IJT809Analyze,IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.平台查岗请求.ToUInt16Value();
 
@@ -24,6 +26,10 @@ namespace JT809.Protocol.SubMessageBody
         /// </summary>
         public string ObjectID { get; set; }
         /// <summary>
+        /// 查岗应答时限
+        /// </summary>
+        public byte AnswerTime { get; set; }
+        /// <summary>
         /// 信息ID
         /// </summary>
         public uint InfoID { get; set; }
@@ -35,15 +41,39 @@ namespace JT809.Protocol.SubMessageBody
         /// 应答内容
         /// </summary>
         public string InfoContent { get; set; }
+
+        public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
+        {
+            JT809_0x9300_0x9301 value = new JT809_0x9300_0x9301();
+            value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
+            writer.WriteString($"[{value.ObjectType.ToByteValue()}]查岗对象的类型", value.ObjectType.ToString());
+            var virtualHex = reader.ReadVirtualArray(12);
+            value.ObjectID = reader.ReadString(12);
+            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗对象的ID", value.ObjectID);
+            if (config.Version == JT809Version.JTT2019) {
+                writer.WriteNumber($"[{value.AnswerTime.ReadNumber()}]查岗应答时限", value.AnswerTime);
+            }
+            value.InfoID = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.InfoID.ReadNumber() }]信息ID", value.InfoID);
+            value.InfoLength = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.InfoLength.ReadNumber() }]数据长度", value.InfoLength);
+            virtualHex = reader.ReadVirtualArray((int)value.InfoLength);
+            value.InfoContent = reader.ReadString((int)value.InfoLength);
+            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]应答内容", value.InfoContent);
+        }
+
         public JT809_0x9300_0x9301 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
-            JT809_0x9300_0x9301 jT809_0X9300_0X9301 = new JT809_0x9300_0x9301();
-            jT809_0X9300_0X9301.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
-            jT809_0X9300_0X9301.ObjectID = reader.ReadString(12);
-            jT809_0X9300_0X9301.InfoID = reader.ReadUInt32();
-            jT809_0X9300_0X9301.InfoLength = reader.ReadUInt32();
-            jT809_0X9300_0X9301.InfoContent = reader.ReadString((int)jT809_0X9300_0X9301.InfoLength);
-            return jT809_0X9300_0X9301;
+            JT809_0x9300_0x9301 value = new JT809_0x9300_0x9301();
+            value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
+            value.ObjectID = reader.ReadString(12);
+            if (config.Version == JT809Version.JTT2019) {
+                value.AnswerTime = reader.ReadByte();
+            }
+            value.InfoID = reader.ReadUInt32();
+            value.InfoLength = reader.ReadUInt32();
+            value.InfoContent = reader.ReadString((int)value.InfoLength);
+            return value;
         }
 
 
@@ -51,6 +81,10 @@ namespace JT809.Protocol.SubMessageBody
         {
             writer.WriteByte((byte)value.ObjectType);
             writer.WriteStringPadRight(value.ObjectID, 12);
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteByte(value.AnswerTime);
+            }
             writer.WriteUInt32(value.InfoID);
             // 先计算内容长度（汉字为两个字节）
             writer.Skip(4, out int lengthPosition);

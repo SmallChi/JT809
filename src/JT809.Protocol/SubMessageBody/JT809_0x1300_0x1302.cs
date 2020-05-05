@@ -35,7 +35,6 @@ namespace JT809.Protocol.SubMessageBody
             JT809_0x1300_0x1302 value = new JT809_0x1300_0x1302();
             if (config.Version == JT809Version.JTT2019)
             {
-                var virtualHex = reader.ReadVirtualArray(16);
                 value.SourceDataType = reader.ReadUInt16();
                 writer.WriteString($"[{value.SourceDataType.ReadNumber()}]对应启动车辆定位信息交换请求消息源子业务类型标识", ((JT809SubBusinessType)value.SourceDataType).ToString());
                 value.SourceMsgSn = reader.ReadUInt32();
