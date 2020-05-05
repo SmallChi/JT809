@@ -261,6 +261,34 @@ public class JT809_2019_Config : JT809GlobalConfigBase
 }
 ```
 
+### 举个栗子5
+
+如何在项目中同时使用808的2019版本和809的2019版本
+
+``` data4
+IServiceCollection serviceDescriptors = new ServiceCollection();
+serviceDescriptors.AddJT808Configure(new JT808_2019_Config());
+serviceDescriptors.AddJT809Configure(new JT809_2019_Config());
+JT808Serializer JT808_2019_Serializer = ServiceProvider.GetRequiredService<JT808_2019_Config>().GetSerializer();
+JT809Serializer JT809_2019_Serializer = ServiceProvider.GetRequiredService<JT809_2019_Config>().GetSerializer();
+public class JT808_2019_Config : GlobalConfigBase
+{
+    public override string ConfigId { get; protected set; }
+    public JT808_2019_Config(string configId = "jt808_2019")
+    {
+        ConfigId = configId;
+    }
+}
+public class JT809_2019_Config : JT809GlobalConfigBase
+{
+    public override string ConfigId => "JT809_2019";
+    public JT809_2019_Config()
+    {
+        Version = JT809Version.JTT2019;
+    }
+}
+```
+
 ## NuGet安装
 
 | Package Name |  Version | Downloads
@@ -325,6 +353,8 @@ Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1
 |序号|消息ID|完成情况|测试情况|消息体名称|
 |:------:|:------:|:------:|:------:|:------:|
 |  1  | 0x9101  |  √  |   √  |接收定位信息数量通知消息  |
+|  1  | 0x9102  |  √  |   √  |平台链路连接情况与车辆定位消息传输情况上报请求消息  |
+|  1  | 0x9103  |  √  |   √  |下发平台间消息序列号通知消息  |
 
 ### 车辆动态信息交换
 
@@ -343,8 +373,8 @@ Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1
 |  9  | 0x1209  |  √   |  √  | 补发车辆定位信息请求  |
 |  10 | 0x120A  |  √   |  √  | 上报车辆驾驶员身份识别信息应答 |
 |  11 | 0x120B  |  √   |  √  | 上报车辆电子运单应答  |
-|  12 | 0x120C  |  √   |  √  | 主动上报驾驶员身份信息(809补充协议文档)  |
-|  13 | 0x120D  |  √   |  √  | 主动上报车辆电子运单信息(809补充协议文档)  |
+|  12 | 0x120C  |  √   |  √  | 主动上报驾驶员身份信息  |
+|  13 | 0x120D  |  √   |  √  | 主动上报车辆电子运单信息  |
 |  14 | 0x120E  |  √   |  √  | 主动上报车辆行驶路线信息(809-2019)  |
 
 #### 从链路动态信息交换消息
@@ -352,6 +382,7 @@ Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1
 |序号|消息ID|完成情况|测试情况|消息体名称|
 |:------:|:------:|:------:|:------:|:------:|
 |  1  | 0x9200  |  √   |  √   |  从链路动态信息交换消息  |
+|  1  | 0x9201  |  √   |  √(0x1201)   |  车辆注册信息应答消息  |
 |  2  | 0x9202  |  √   |  √(0x1202)   |  交换车辆定位信息消息(809补充协议文档)  |
 |  3  | 0x9203  |  √   |  √(0x1203)   |  车辆定位信息交换补发消息  |
 |  4  | 0x9204  |  √   |  √   |  交换车辆静态信息消息  |
@@ -383,7 +414,7 @@ Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1
 |  1  | 0x9300  |  √   |  √  | 从链路平台间信息交互消息  |
 |  2  | 0x9301  |  √   |  √  | 平台查岗请求(809补充协议文档)  |
 |  3  | 0x9302  |  √   |  √  | 下发平台间报文请求(809补充协议文档)  |
-|  4  | 0x9304  |  √   |  √  | 下发平台间消息补传请求消息(809-2019)  |
+|  4  | 0x9303  |  √   |  √  | 下发平台间消息补传请求消息(809-2019)  |
 
 ### 车辆报警信息交互类
 
@@ -426,8 +457,8 @@ Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1
 |  2  | 0x9501  |  √   |  √  | 车辆单向监听请求  |
 |  3  | 0x9502  |  √   |  √  | 车辆拍照请求  |
 |  4  | 0x9503  |  √   |  √  | 下发车辆报文请求  |
-|  5  | 0x9504  |  √   |  √  | 上报车辆行驶记录请求(809补充协议文档)  |
-|  6  | 0x9505  |  √   |  √  | 车辆应急接入监管平台请求消息(809补充协议文档)  |
+|  5  | 0x9504  |  √   |  √  | 上报车辆行驶记录请求 |
+|  6  | 0x9505  |  √   |  √  | 车辆应急接入监管平台请求消息 |
 
 ### 车辆静态信息交换类
 

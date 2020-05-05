@@ -21,7 +21,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         private JT809Serializer JT809Serializer = new JT809Serializer();
         private JT809Serializer JT809_2019_Serializer = new JT809Serializer(new DefaultGlobalConfig() { Version = JT809Version.JTT2019 });
         private JT808Serializer JT808Serializer_2019;
-#warning 结合808协议包，解析808中的路线信息
+
         public JT809_0x1600_0x1602Test()
         {
             IJT808Config jT808Config = new DefaultGlobal808_2019Config();
