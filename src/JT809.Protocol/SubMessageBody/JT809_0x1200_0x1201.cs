@@ -56,7 +56,6 @@ namespace JT809.Protocol.SubMessageBody
                 virtualHex = reader.ReadVirtualArray(11);
                 value.ProducerId = reader.ReadString(11);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车载终端厂商唯一编码", value.ProducerId);
-#warning 此处应该改成大端模式读取数据吧
                 virtualHex = reader.ReadVirtualArray(20);
                 value.TerminalModelType = reader.ReadString(20);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车载终端型号", value.TerminalModelType);
@@ -99,7 +98,6 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.PlateformId = reader.ReadString(11);
                 value.ProducerId = reader.ReadString(11);
-#warning 此处应该改成大端模式读取数据吧
                 value.TerminalModelType = reader.ReadString(20);
                 value.TerminalId = reader.ReadString(7);
                 value.TerminalId = value.TerminalId.ToUpper();
@@ -124,7 +122,6 @@ namespace JT809.Protocol.SubMessageBody
             {
                 writer.WriteStringPadRight(value.PlateformId, 11);
                 writer.WriteStringPadRight(value.ProducerId, 11);
-#warning 此处应该改成大端模式读取数据吧
                 writer.WriteStringPadRight(value.TerminalModelType, 20);
                 writer.WriteStringPadRight(value.TerminalId.ToUpper(), 7);
                 writer.WriteStringPadLeft(value.TerminalSimCode, 12);

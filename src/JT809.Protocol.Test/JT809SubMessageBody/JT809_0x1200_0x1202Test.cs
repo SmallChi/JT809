@@ -112,8 +112,10 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal("33333333333", jT809_0X1200_0X1202.GNSSData.PlatformId3);
             Assert.Equal(3u, jT809_0X1200_0X1202.GNSSData.Alarm3);
         }
-#warning 此处结合808协议包解析 808中的定位信息
 
+        /// <summary>
+        /// 此处结合808协议包解析
+        /// </summary>
         [Fact]
         public void Test_2019_3()
         {

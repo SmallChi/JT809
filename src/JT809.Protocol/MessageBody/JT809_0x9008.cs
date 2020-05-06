@@ -15,7 +15,7 @@ namespace JT809.Protocol.MessageBody
     {
         public override ushort MsgId => JT809BusinessType.上级平台主动关闭链路通知消息.ToUInt16Value();
         public override string Description => "上级平台主动关闭链路通知消息";
-#warning 待验证主从链路
+
         public override JT809_LinkType LinkType => JT809_LinkType.subordinate;
         /// <summary>
         /// 链路关闭原因

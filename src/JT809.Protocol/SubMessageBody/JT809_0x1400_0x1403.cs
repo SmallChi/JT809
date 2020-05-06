@@ -101,7 +101,6 @@ namespace JT809.Protocol.SubMessageBody
                 virtualHex = reader.ReadVirtualArray(8);
                 value.EndTime = reader.ReadUTCDateTime();
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]事件结束时间", value.EndTime);
-#warning 此处车牌号文档长度有误，使用旧版长度21
                 virtualHex = reader.ReadVirtualArray(21);
                 value.VehicleNo = reader.ReadString(21);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车牌号码", value.VehicleNo);
@@ -135,7 +134,6 @@ namespace JT809.Protocol.SubMessageBody
                 value.WarnTime = reader.ReadUTCDateTime();
                 value.StartTime = reader.ReadUTCDateTime();
                 value.EndTime = reader.ReadUTCDateTime();
-#warning 此处车牌号文档长度有误，使用旧版长度21
                 value.VehicleNo = reader.ReadString(21);
                 value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
                 value.DestinationPlatformId = reader.ReadBigNumber(11);
