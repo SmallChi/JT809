@@ -320,6 +320,8 @@ Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1
 
 ## JT809协议消息对照表
 
+> ***2019版8.3.3.2.5 新增的 交换车辆行驶路线信息消息，无对应消息子id类型，暂未对接***
+
 ### 链路管理类
 
 #### 主链路

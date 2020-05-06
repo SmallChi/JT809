@@ -310,6 +310,36 @@
             auto-generated
             </summary>
         </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_平台链路连接情况与车辆定位消息传输情况上报应答消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1102)">
+            <summary>
+            UP_MANAGE_MSG_RSP - 平台链路连接情况与车辆定位消息传输情况上报应答消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1102)">
+            <summary>
+            UP_MANAGE_MSG_RSP - 平台链路连接情况与车辆定位消息传输情况上报应答消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_平台链路连接情况与车辆定位消息传输情况上报应答消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1102)">
+            <summary>
+            UP_MANAGE_MSG_RSP - 平台链路连接情况与车辆定位消息传输情况上报应答消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_上传平台间消息序列号通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1102)">
+            <summary>
+            UP_MANAGE_MSG_SN_INFORM - 上传平台间消息序列号通知消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_上传平台间消息序列号通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1102)">
+            <summary>
+            UP_MANAGE_MSG_SN_INFORM - 上传平台间消息序列号通知消息_2019
+            auto-generated
+            </summary>
+        </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_主链路车辆动态信息交换业务(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1200)">
             <summary>
             UP_EXG_MSG - 主链路车辆动态信息交换业务
@@ -544,6 +574,24 @@
             auto-generated
             </summary>
         </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_发送车辆定位信息数据量通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_2019_0x9101)">
+            <summary>
+            DOWN_TOTAL_RECV_BACK_MSG - 发送车辆定位信息数据量通知消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_2019_0x9101)">
+            <summary>
+            DOWN_TOTAL_RECV_BACK_MSG - 发送车辆定位信息数据量通知消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_发送车辆定位信息数据量通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_2019_0x9101)">
+            <summary>
+            DOWN_TOTAL_RECV_BACK_MSG - 发送车辆定位信息数据量通知消息_2019
+            auto-generated
+            </summary>
+        </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收车辆定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9101)">
             <summary>
             DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
@@ -559,6 +607,30 @@
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收车辆定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9101)">
             <summary>
             DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_平台链路连接情况与车辆定位消息传输情况上报请求消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9102)">
+            <summary>
+            DOWN_MANAGE_MSG_REQ - 平台链路连接情况与车辆定位消息传输情况上报请求消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_平台链路连接情况与车辆定位消息传输情况上报请求消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9102)">
+            <summary>
+            DOWN_MANAGE_MSG_REQ - 平台链路连接情况与车辆定位消息传输情况上报请求消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_下发平台间消息序列号通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1102)">
+            <summary>
+            DOWN_MANAGE_MSG_SN_INFORM - 下发平台间消息序列号通知消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_下发平台间消息序列号通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1102)">
+            <summary>
+            DOWN_MANAGE_MSG_SN_INFORM - 下发平台间消息序列号通知消息_2019
             auto-generated
             </summary>
         </member>
@@ -724,8 +796,7 @@
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆电子运单应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B)">
             <summary>
             4608
-            
-            - 上报车辆电子运单应答消息
+            UP_EXG_MSG_TAKE_EWAYBILL_ACK - 上报车辆电子运单应答消息
             auto-generated
             </summary>
         </member>
@@ -743,6 +814,13 @@
             auto-generated
             </summary>
         </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报车辆行驶路线信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E)">
+            <summary>
+            4608
+            UP_BASE_MSG_DRVLINE_INFO - 主动上报车辆行驶路线信息
+            auto-generated
+            </summary>
+        </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_平台查岗应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301)">
             <summary>
             4864
@@ -754,6 +832,13 @@
             <summary>
             4864
             UP_PLATFORM_MSG_INFO_ACK - 下发平台间报文应答消息
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上传平台间消息补传请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303)">
+            <summary>
+            4864
+            UP_PLATFORM_MSG_RETRAN_REQ - 上传平台间消息补传请求消息
             auto-generated
             </summary>
         </member>
@@ -771,10 +856,31 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报报警处理结果信息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报报警处理结果信息2013_上报报警预警信息2019(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403)">
             <summary>
             5120
-            UP_WARN_MSG_ADPT_TODO_INFO - 主动上报报警处理结果信息
+            UP_WARN_MSG_ADPT_TODO_INFO_2013_UP_WARN_MSG_INFORM_TIPS_2019 - 主动上报报警处理结果信息2013_上报报警预警信息2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报报警督办应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411)">
+            <summary>
+            5120
+            UP_WARN_MSG_URGE_TODO_ACK_INFO - 上报报警督办应答消息
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_主动上报报警处理结果消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412)">
+            <summary>
+            5120
+            UP_WARN_MSG_ADPT_TODO_INFO - 主动上报报警处理结果消息
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报报警督办请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413)">
+            <summary>
+            5120
+            UP_WARN_MSG_URGE_TODO_REQ_INFO - 上报报警督办请求消息
             auto-generated
             </summary>
         </member>
@@ -817,6 +923,20 @@
             <summary>
             5632
             UP_BASE_MSG_VEHICLE_ADDED_ACK - 补报车辆静态信息应答
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_补报车辆行驶路线信息应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x1600_0x1602)">
+            <summary>
+            5632
+            UP_BASE_MSG_DRVLINE_ADDED_REQ - 补报车辆行驶路线信息应答消息
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆注册信息应答消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201)">
+            <summary>
+            37376
+            DOWN_EXG_MSG_REGISTER_ACK - 车辆注册信息应答消息
             auto-generated
             </summary>
         </member>
@@ -890,6 +1010,20 @@
             auto-generated
             </summary>
         </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_上报车辆车辆行驶路线请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x920C)">
+            <summary>
+            37376
+            DOWN_BASE_MSG_DRVLINE_REQ - 上报车辆车辆行驶路线请求
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_车辆行驶线路请求应答(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D)">
+            <summary>
+            37376
+            DOWN_BASE_MSG_DRVLINE_ACK - 车辆行驶线路请求应答
+            auto-generated
+            </summary>
+        </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_平台查岗请求(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9300_0x9301)">
             <summary>
             37632
@@ -904,6 +1038,13 @@
             auto-generated
             </summary>
         </member>
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_下发平台间消息补传请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9300_0x9303)">
+            <summary>
+            37632
+            DOWN_PLATFORM_MSG_RETRAN_REQ - 下发平台间消息补传请求消息
+            auto-generated
+            </summary>
+        </member>
         <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警督办请求消息(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9401)">
             <summary>
             37888
@@ -911,10 +1052,10 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警预警(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402)">
+        <member name="M:JT809.Protocol.Extensions.JT809SubPackageExtensions.Create_报警预警2013_下发报警预警消息2019(JT809.Protocol.Enums.JT809SubBusinessType,JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402)">
             <summary>
             37888
-            DOWN_WARN_MSG_INFORM_TIPS - 报警预警
+            DOWN_WARN_MSG_INFORM_TIPS - 报警预警2013_下发报警预警消息2019
             auto-generated
             </summary>
         </member>
@@ -1060,6 +1201,13 @@
             <para>4 + 4 + 2 + 4 + 3 + 1 + 4 = 22</para>
             </summary>
         </member>
+        <member name="F:JT809.Protocol.JT809Header.FixedByteLength_2019">
+            <summary>
+            2019版本固定为30个字节长度
+            <para>MSG LENGTH + MSG_SN + MSG_ID + MSG_GNSSCENTERID + VERSION_FLAG + ENCRYPT_FLAG + ENCRYPT_KEY+TIME</para>
+            <para>4 + 4 + 2 + 4 + 3 + 1 + 4 +8 = 30</para>
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.JT809Header.MsgLength">
             <summary>
             数据长度(包括头标识、数据头、数据体和尾标识)
@@ -1098,6 +1246,11 @@
         <member name="P:JT809.Protocol.JT809Header.EncryptKey">
             <summary>
             数据加密的密匙，长度为 4 个字节
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.JT809Header.Time">
+            <summary>
+            发送消息时的系统UTC时间，长度为8个字节
             </summary>
         </member>
         <member name="T:JT809.Protocol.JT809HeaderPackage">
@@ -1149,6 +1302,13 @@
             <para>1 + 22 + 2 + 1 = 26</para>
             </summary>
         </member>
+        <member name="F:JT809.Protocol.JT809Package.FixedByteLength_2019">
+            <summary>
+            固定为26个字节长度
+            <para>Head flag + Message Header + CRC Code + End Flag</para>
+            <para>1 + 30 + 2 + 1 = 26</para>
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.JT809Serializer">
             <summary>
             
@@ -1185,6 +1345,11 @@
             <summary>
             密码
             8位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1001.MsgGNSSCENTERID">
+            <summary>
+            下级平台接入码
             </summary>
         </member>
         <member name="P:JT809.Protocol.MessageBody.JT809_0x1001.DownLinkIP">
@@ -1300,7 +1465,57 @@
         </member>
         <member name="P:JT809.Protocol.MessageBody.JT809_0x1008.ReasonCode">
             <summary>
-            错误代码
+            链路关闭原因
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.MessageBody.JT809_0x1102">
+            <summary>
+             平台链路连接情况与车辆定位消息传输情况上报应答消息
+            <para>链路类型：主链路</para>
+            <para>消息方向:下级平台往上级平台</para>
+            <para>业务类型标识:UP_MANAGE_MSG_RSP</para>
+            <para>下级平台收到上级平台下发的“平台链路连接情况与车辆定位消息传输情况上报请求消息”后，上报指定平台，指定时间段内的平台链路连接情况与车辆定位消息传输情况</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1102.PlateformId">
+            <summary>
+            平台唯一编码
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1102.StartTime">
+            <summary>
+            开始时间，用 UTC 时间表示
+            注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1102.EndTime">
+            <summary>
+            结束时间，用 UTC 时间表示
+            注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1102.LoseDymamicSum">
+            <summary>
+            START_TIME~END_TIME期间下级平台丢失得车辆定位消息总数
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1102.DisconnectNum">
+            <summary>
+            START_TIME~END_TIME期间下级监控平台链路断开次数
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x1102.DisconnectTime">
+            <summary>
+            START_TIME~END_TIME期间下级监控平台链路断开总时长，用秒表示
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.MessageBody.JT809_0x1103">
+            <summary>
+             上传平台间消息序列号通知消息
+            <para>链路类型：主链路</para>
+            <para>消息方向:上级平台往下级平台</para>
+            <para>业务类型标识:UP_MANAGE_MSG_SN_INFORM</para>
+            <para>描述：链路登录成功后，平台须发送链路断开之前所有子业务数据类型对应的消息序列号，发送方根据收到的消息序列号，在发送消息时，续编链路中断之前的消息序列号</para>
             </summary>
         </member>
         <member name="T:JT809.Protocol.MessageBody.JT809_0x1200">
@@ -1435,7 +1650,7 @@
             <para>本条消息无需被通知方应答</para>
             </summary>
         </member>
-        <member name="P:JT809.Protocol.MessageBody.JT809_0x9007.ReasonCode">
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x9007.ErrorCode">
             <summary>
             错误代码
             </summary>
@@ -1448,7 +1663,7 @@
         </member>
         <member name="P:JT809.Protocol.MessageBody.JT809_0x9008.ReasonCode">
             <summary>
-            错误代码
+            链路关闭原因
             </summary>
         </member>
         <member name="T:JT809.Protocol.MessageBody.JT809_0x9101">
@@ -1476,6 +1691,41 @@
             <summary>
             结束时间，用 UTC 时间表示
             注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.MessageBody.JT809_0x9102">
+            <summary>
+             平台链路连接情况与车辆定位消息传输情况上报请求消息
+            <para>链路类型：从链路</para>
+            <para>消息方向:上级平台往下级平台</para>
+            <para>业务类型标识:DOWN_MANAGE_MSG_REQ</para>
+            <para>描述：上级平台向下级平台发送上报指定下级监控平台一段时间内链路连接情况与车辆定位消息传输情况请求</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x9102.PlateformId">
+            <summary>
+            平台唯一编码
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x9102.StartTime">
+            <summary>
+            开始时间，用 UTC 时间表示
+            注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x9102.EndTime">
+            <summary>
+            结束时间，用 UTC 时间表示
+            注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.MessageBody.JT809_0x9103">
+            <summary>
+             下发平台间消息序列号通知消息
+            <para>链路类型：从链路</para>
+            <para>消息方向:上级平台往下级平台</para>
+            <para>业务类型标识:DOWN_MANAGE_MSG_SN_INFORM</para>
+            <para>描述：链路登录成功后，平台须发送链路断开之前所有子业务数据类型对应的消息序列号，发送方根据收到的消息序列号，在发送消息时，续编链路中断之前的消息序列号</para>
             </summary>
         </member>
         <member name="T:JT809.Protocol.MessageBody.JT809_0x9200">
@@ -1521,6 +1771,33 @@
             <para>消息方向:上级平台往下级台</para>
             <para>业务数据类型标识:DOWN_BASE_MSG</para>
             <para>描述:上级平台向下级平台发送车辆静态信息交换业务</para>
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.MessageBody.JT809_2019_0x9101">
+            <summary>
+             发送车辆定位信息数据量通知消息
+            <para>链路类型：主链路</para>
+            <para>消息方向:下级平台往上级平台</para>
+            <para>业务类型标识: DOWN_TOTAL_RECV_BACK_MSG</para>
+            <para>描述:下级平台向上级平台定量通知已经上传的车辆定位信息数量(如:每收到10,000 条车辆定位信息通知一次)</para>
+            <para>本条消息不需下级平台应答。</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_2019_0x9101.DynamicInfoTotal">
+            <summary>
+            START_TIME_END_TIME共收到的车辆定位信息数量
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_2019_0x9101.StartTime">
+            <summary>
+            开始时间，用 UTC 时间表示
+            注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_2019_0x9101.EndTime">
+            <summary>
+            结束时间，用 UTC 时间表示
+            注：采用 UTC 时间表示，如 2010-1-10 9:7:54 的 UTC 值为 1263085674，其在协议中表示为0x000000004B49286A.
             </summary>
         </member>
         <member name="F:JT809.Protocol.MessagePack.JT809MessagePackReader._decoded">
@@ -1602,6 +1879,21 @@
             </summary>
             <param name="value"></param>
             <param name="len"></param>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809ManageMsgSNInform.SubBusinessType">
+            <summary>
+            子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809ManageMsgSNInform.MsgSN">
+            <summary>
+            对应得子业务数据类型报文序列号
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809ManageMsgSNInform.Time">
+            <summary>
+            系统UTC时间
+            </summary>
         </member>
         <member name="T:JT809.Protocol.Metadata.JT809VehiclePositionProperties">
             <summary>
@@ -1688,10 +1980,158 @@
             报警状态，二进制表示，0 标识正常，1 表示报警： B31B30B29 。。。。。。 B2B1B0.具 体 定 义 按 照JT/T808-2011 中表 18 的规定
             </summary>
         </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Encrypt">
+            <summary>
+            是否使用国测局批准的地图保密插件进行加密 1 已加密 0未加密
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.DataLength">
+            <summary>
+            车辆定位信息数据长度
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.GnssData">
+            <summary>
+            车辆定位信息内容，包括车辆位置基本信息和位置附加信息
+            其数据格式安装 808-2019中8.12要求
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.PlatformId1">
+            <summary>
+            监控平台唯一编码，由平台所在地行政区域代码和平台编码组成  11位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Alarm1">
+            <summary>
+            报警状态，二进制标识 0 正常 1表示报警
+            具体定义按照808-2019中表18的规定
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.PlatformId2">
+            <summary>
+            市级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
+            未填写时，全填0，无市级平台应由省级平台全填1  11位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Alarm2">
+            <summary>
+            报警状态，二进制标识 0 正常 1表示报警
+            具体定义按照808-2019中表18的规定
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.PlatformId3">
+            <summary>
+            省级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
+             未填写时，全填0  11位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Alarm3">
+            <summary>
+            报警状态，二进制标识 0 正常 1表示报警
+            具体定义按照808-2019中表18的规定
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Metadata.JT809VehicleStaticInfo">
+            <summary>
+            车辆静态信息数据体  
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.Vin">
+            <summary>
+            车牌号 必填
+            车牌号码中不设分隔符号。所有字母数字连续保存
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.VehicleColor">
+            <summary>
+             车牌颜色 必填  应该使用枚举
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.VehicleType">
+            <summary>
+            车辆类型 必填 应该使用枚举
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.TransType">
+            <summary>
+            运输行业编码 必填 应该使用枚举
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.VehicleNationnality">
+            <summary>
+            车籍地  必填
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.OwersId">
+            <summary>
+            业户ID 非必填  该业户ID为下级平台存储业户信息所采用的ID编号  
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.OwersName">
+            <summary>
+            业户名称 必填    运输企业名称
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo.OwersTel">
+            <summary>
+            业户联系电话  非必填  运输企业名称
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019">
+            <summary>
+            车辆静态信息数据体  
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.Vin">
+            <summary>
+            车牌号 必填
+            车牌号码中不设分隔符号。所有字母数字连续保存
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.VehicleColor">
+            <summary>
+             车牌颜色 必填  应该使用枚举
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.VehicleType">
+            <summary>
+            车辆类型 必填 应该使用枚举
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.TransType">
+            <summary>
+            运输行业编码 必填 应该使用枚举
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.VehicleNationnality">
+            <summary>
+            车籍地  必填
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.BusinessCopeCode">
+            <summary>
+            经营范围代码 必填  应该使用枚举
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.OwersId">
+            <summary>
+            业户ID 非必填  该业户ID为下级平台存储业户信息所采用的ID编号  
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.OwersName">
+            <summary>
+            业户名称 必填    运输企业名称
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehicleStaticInfo_2019.OwersTel">
+            <summary>
+            业户联系电话  非必填  运输企业名称
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1201">
             <summary>
             上传车辆注册信息消息
-            <para>子业务类型标识:UP_ EXG_ MSG_ REGISTER</para>
+            <para>子业务类型标识:UP_EXG_MSG_REGISTER</para>
             <para>描述:监控平台收到车载终端鉴权信息后，启动本命令向上级监管平台上传该车辆注册信息.各级监管平台再逐级向上级平台上传该信息</para>
             <para>本条消息服务端无需应答</para>
             </summary>
@@ -1711,6 +2151,12 @@
             车载终端型号，不是 8 位时以“\0”终结
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1201.IMIEId">
+            <summary>
+            车载终端通讯模块IMEI码
+            2019版本
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1201.TerminalId">
             <summary>
             车载终端编号，大写字母和数字组成
@@ -1723,8 +2169,10 @@
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1202">
             <summary>
-            实时上传车辆定位信息
+            实时上传车辆定位信息消息
             <para>子业务类型标识:UP_EXG_MSG_REAL_LOCATION</para>
+            <para>车辆的实时定位信息</para>
+            <para>无需应答</para>
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1202.VehiclePosition">
@@ -1736,9 +2184,9 @@
             <summary>
              车辆定位信息自动补报请求消息
              <para>子业务类型标识:UP_EXG_MSG_HISTORY_LOCATION</para>
-             <para>描述:如果平台间传输链路中断，下级平台重新登录并与上级平台建立通信链路后，下级平台应将中断期间内车载终端上传的车辆定位信息自动补报到上级平台。
-             如果系统断线期间，该车需发送的数据包条数大于 5，则以每包五条进行补发，直到补发完毕。
-             多条数据以卫星定位时间先后顺序排列。
+             <para>描述:  a: 如果平台间传输链路中断，下级平台重新登录并与上级平台建立通信链路后，下级平台应将中断期间内车载终端上传的车辆定位信息自动补报到上级平台。
+             b: 如果系统断线期间，该车需发送的数据包条数大于 5，则以每包五条进行补发，直到补发完毕。
+              多条数据以卫星定位时间先后顺序排列。
              本条消息上级平台采用定量回复，即收到一定数量的数据后，即通过从链路应答数据量。
              </para>
             </summary>
@@ -1756,14 +2204,45 @@
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205">
             <summary>
             启动车辆定位信息交换应答消息
-            <para>子业务类型标识:UP_EXG_ MSG_ RETURN_ STARTUP ACK</para>
-            <para>描述：本条消息是下级平台对上级平台下发的 DOWN_EXG_ MSG_ RETURN_STARTUP 消息的应答消息</para>
+            <para>子业务类型标识:UP_EXG_MSG_RETURN_STARTUP_ACK</para>
+            <para>描述：本条消息是下级平台对上级平台下发的 DOWN_EXG_MSG_RETURN_STARTUP 消息的应答消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205.SourceDataType">
+            <summary>
+            对应启动车辆定位信息交换请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205.SourceMsgSn">
+            <summary>
+            对应启动车辆定位信息交换请求消息源报文序列号
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205.DataLength">
+            <summary>
+            后续数据长度  值为0x00
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206">
             <summary>
             结束车辆定位信息交换应答消息
             <para>子业务类型标识:UP_EXG_MSG_RETURN_END_ACK</para>
+            <para>本条消息时下级平台对上级平台服务器下发的DOWN_EXG_MSG_RETURN_END消息的应答消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206.SourceDataType">
+            <summary>
+            对应结束车辆定位信息交换请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206.SourceMsgSn">
+            <summary>
+            对应结束车辆定位信息交换请求消息源报文序列号
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206.DataLength">
+            <summary>
+            后续数据长度  值为0x00
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1207">
@@ -1814,6 +2293,16 @@
             <para>描述:下级平台应答上级平台发送的上报驾驶员身份识别信息请求消息，上传指定车辆的驾驶员身份识别信息数据</para>
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120A.SourceDataType">
+            <summary>
+            对应上报驾驶员身份请求信息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120A.SourceMsgSn">
+            <summary>
+            对应上报驾驶员身份请求消息源报文序列号
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120A.DriverName">
             <summary>
             驾驶员姓名
@@ -1834,11 +2323,26 @@
             发证机构名称（备用）
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120A.ValidDate">
+            <summary>
+            证件有效期，时分秒均用0表示
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B">
             <summary>
             上报车辆电子运单应答消息
-            <para>子业务类型标识:UP_CXG_MSG_TAKE_EWAYBILL_ACK</para>
+            <para>子业务类型标识:UP_EXG_MSG_TAKE_EWAYBILL_ACK</para>
             <para>描述:下级平台应答上级平台发送的上报车辆电子运单请求消息，向上级平台上传车辆当前电子运单</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B.SourceDataType">
+            <summary>
+            对应上报车辆电子运单源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B.SourceMsgSn">
+            <summary>
+             对应上报车辆电子运单源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120B.EwaybillLength">
@@ -1855,6 +2359,7 @@
             <summary>
             主动上报驾驶员身份信息消息
             <para>子业务类型标识:UP_EXG_MSG_REPORT_DRIVER_INFO</para>
+            <para>下级平台在接收到车载终端上传的驾驶员身份信息后，主动向上级平台上报该消息</para>
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120C.DriverName">
@@ -1877,10 +2382,16 @@
             发证机构名称（备用）
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120C.ValidDate">
+            <summary>
+            证件有效期，时分秒均用0表示
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120D">
             <summary>
             主动上报车辆电子运单信息
             <para>子业务类型标识:UP_EXG_MSG_REPORT_EWAYBILL_INFO</para>
+            <para>描述：下级平台“主动上报车辆电子运单信息”，向上级平台上报车辆当前电子运单</para>
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120D.EwaybillLength">
@@ -1893,11 +2404,23 @@
             电子运单数据内容
             </summary>
         </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E">
+            <summary>
+            主动上报车辆行驶路线信息
+            <para>子业务类型标识:UP_BASE_MSG_DRVLINE_INFO</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x120E.DRVLine">
+            <summary>
+            路线信息 按照808-2019中8606规定的报文格式
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301">
             <summary>
             平台查岗应答消息
             <para>子业务类型标识:UP_PLATFORM_MSG_POST_QUERY_ACK</para>
-            <para>描述:下级平台应答上级平台发送的不定期平台查岗消息</para>
+            <para>2011 描述:下级平台应答上级平台发送的不定期平台查岗消息</para>
+            <para>2019 描述:下级平台根据查岗对象地类型将上级平台发送地不定期平台查岗消息发送到不同地查岗对象，并将不同地查岗对象地应答分别转发给上级平台</para>
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301.ObjectType">
@@ -1905,9 +2428,31 @@
             查岗对象的类型
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301.Responder">
+            <summary>
+            查岗应答人姓名
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301.ResponderTel">
+            <summary>
+            查岗应答人联系电话
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301.ObjectID">
             <summary>
             查岗对象的ID
+            2013:12位
+            2019:20位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301.SourceDataType">
+            <summary>
+            对应平台查岗请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301.SourceMsgSn">
+            <summary>
+            对应平台查岗请求消息源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1301.InfoID">
@@ -1929,12 +2474,46 @@
             <summary>
             下发平台间报文应答消息
             <para>子业务类型标识:UP_PLATFORM_MSG_INFO_ACK</para>
-            <para>描述:下级平台收到上级平台发送的下发平台间报文请求消息后，发送应答消息</para>
+            <para>描述:下级平台收到上级平台发送的"下发平台间报文请求"消息后，根据相应的下发报文对象类型，进行转发，并向上级平台发送应答消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302.SourceDataType">
+            <summary>
+            对应下发平台间报文请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302.SourceMsgSn">
+            <summary>
+             对应下发平台间报文请求消息源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1302.InfoID">
             <summary>
             信息ID
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303">
+            <summary>
+            上传平台间消息补传请求消息
+            <para>子业务类型标识:UP_PLATFORM_MSG_RETRAN_REQ</para>
+            <para>描述:下级平台在接收消息时，如发现消息报文序列号不连续，则立即发送消息补传请求。上级平台收到消息补传请求后，根据请求的消息报文序列号或起始时间（当仅填写一项时。另一项全为0），重传相应的消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303.SerialCount">
+            <summary>
+            对应需要重传消息地子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303.SerialList">
+            <summary>
+            需要重传消息的起始报文序列号和结束的报文序列号。如只请求重传一个消息，则起始消息报文序列号和结束消息报文序列号相同 
+            8位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1300_0x1303.Time">
+            <summary>
+            重传起始系统utc时间
+            8位
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1401">
@@ -1958,13 +2537,19 @@
             <summary>
             上报报警信息消息
             <para>子业务类型标识:UP_WARN_MSG_ADPT_INFO</para>
-            <para>描述:下级平台向上级平台上报某车辆的报警信息</para>
+            <para>2011 描述:下级平台向上级平台上报某车辆的报警信息</para>
+            <para>2019 描述:下级平台向上级平台“上报报警信息”。</para>
             <para>本条消息上级平台无需应答</para>
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.WarnSrc">
             <summary>
             报警信息来源
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.SourcePlatformId">
+            <summary>
+            发起报警平台唯一编码，由平台所在地行政区域代码和平台编号组成
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.WarnType">
@@ -1975,6 +2560,36 @@
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.WarnTime">
             <summary>
             报警时间
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.StartTime">
+            <summary>
+            事件开始时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.EndTime">
+            <summary>
+            事件结束时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.VehicleNo">
+            <summary>
+            车牌号码 非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.VehicleColor">
+            <summary>
+            车牌颜色  非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.DestinationPlatformId">
+            <summary>
+            被报警平台唯一编码，由平台所在地行政区划代码和平台编号组成。非平台相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.DRVLineId">
+            <summary>
+            线路ID 808-2019中0x8606规定的报文中的线路ＩＤ
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.InfoID">
@@ -1989,15 +2604,73 @@
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1402.InfoContent">
             <summary>
-            数据长度
+            信息内容
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403">
             <summary>
-            主动上报报警处理结果信息
-            <para>子业务类型标识:UP_WARN_MSG_ADPT_TODO_INFO</para>
-            <para>描述:下级平台向上级平台上报报警处理结果</para>
+            主动上报报警处理结果信息(2013)
+            上报报警预警信息（2019）
+            <para>子业务类型标识:UP_WARN_MSG_ADPT_TODO_INFO_2013</para>
+            <para>子业务类型标识:UP_WARN_MSG_INFORM_TIPS_2019</para>
+            <para>描述:下级平台向上级平台上报报警处理结果2013</para>
+            <para>描述：用于下级平台向上级平台上报相关报警预警或运行提示信息2019</para>
             <para>本条消息上级平台无需应答</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.SourcePlatformId">
+            <summary>
+            发起报警平台唯一编码，由平台所在地行政区域代码和平台编号组成
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.WarnType">
+            <summary>
+            报警类型
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.WarnTime">
+            <summary>
+            报警时间
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.StartTime">
+            <summary>
+            事件开始时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.EndTime">
+            <summary>
+            事件结束时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.VehicleNo">
+            <summary>
+            车牌号码 非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.VehicleColor">
+            <summary>
+            车牌颜色  非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.DestinationPlatformId">
+            <summary>
+            被报警平台唯一编码，由平台所在地行政区划代码和平台编号组成。非平台相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.DRVLineId">
+            <summary>
+            线路ID 808-2019中0x8606规定的报文中的线路ＩＤ
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.InfoLength">
+            <summary>
+            数据长度
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.InfoContent">
+            <summary>
+            信息内容
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.InfoID">
@@ -2008,6 +2681,105 @@
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1403.Result">
             <summary>
             处理结果
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411">
+            <summary>
+            上报报警督办应答消息
+            <para>子业务类型标识:UP_WARN_MSG_URGE_TODO_ACK_INFO</para>
+            <para>描述:下级平台向上级平台上报某车辆的报警信息</para>
+            <para>本条消息上级平台无需应答</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411.SourceDataType">
+            <summary>
+            对应报警督办请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411.SourceMsgSn">
+            <summary>
+            对应报警督办请求消息源报文序列号
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1411.Result">
+            <summary>
+            报警处理结果
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412">
+            <summary>
+            主动上报报警处理结果消息
+            <para>子业务类型标识:UP_WARN_MSG_ADPT_TODO_INFO</para>
+            <para>描述:下级平台主动向上级平台上报报警处理结果</para>
+            <para>本条消息上级平台无需应答</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412.SourceDataType">
+            <summary>
+            对应报警督办请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412.SourceMsgSn">
+            <summary>
+            对应报警督办请求消息源报文序列号
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1412.Result">
+            <summary>
+            报警处理结果
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413">
+            <summary>
+            上报报警督办请求消息
+            <para>子业务类型标识:UP_WARN_MSG_URGE_TODO_REQ_INFO</para>
+            <para>描述:下级平台告知上级平台已对报警情况进行催办</para>
+            <para>本条消息上级平台无需应答</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.SourcePlatformId">
+            <summary>
+            发起报警平台唯一编码，由平台所在地行政区划大码和平台编号组成
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.WarnTime">
+            <summary>
+            报警时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.SourceDataType">
+            <summary>
+            对应报警督办请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.SourceMsgSn">
+            <summary>
+            对应报警督办请求消息源报文序列号
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.SupervisionEndTime">
+            <summary>
+            督办截止时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.SupervisionLevel">
+            <summary>
+            督办级别
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.Supervisor">
+            <summary>
+            督办人
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.SupervisorTel">
+            <summary>
+            督办人联系电话
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1400_0x1413.SupervisorEmail">
+            <summary>
+            督办人联系电子邮件
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1501">
@@ -2071,6 +2843,16 @@
             <para>描述:下级平台应答上级平台下发的报文是否成功到达指定车辆</para>
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1503.SourceDataType">
+            <summary>
+            对应下发车辆报文请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1503.SourceMsgSn">
+            <summary>
+             对应下发车辆报文请求消息源报文序列号
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1503.MsgID">
             <summary>
             消息ID
@@ -2085,8 +2867,18 @@
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1504">
             <summary>
             上报车辆行驶记录应答消息
-            <para>子业务类型标识:UP_CTRL_MSG_TAKE_T'RAVEL_ACK</para>
-            <para>描述:下级平台应答上级平台下发的上报车辆行驶记录请求消息，将车辆行驶记录数据上传至上级平台</para>
+            <para>子业务类型标识:UP_CTRL_MSG_TAKE_TRAVEL_ACK</para>
+            <para>描述:下级平台应答上级平台下发的"上报车辆行驶记录请求"消息，将车辆行驶记录数据上传至上级平台</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1504.SourceDataType">
+            <summary>
+            对应上报车辆行驶记录请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1504.SourceMsgSn">
+            <summary>
+             对应上报车辆行驶记录请求消息源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1504.CommandType">
@@ -2108,7 +2900,17 @@
             <summary>
             车辆应急接入监管平台应答消息
             <para>子业务类型标识: UP_CTRL_MSG_EMERGENCY_MONITORING_ACK</para>
-            <para>描述:下级平台应答上级平台下发的车辆应急接入监管平台请求消息应答</para>
+            <para>描述:下级平台应答上级平台下发的"车辆应急接入监管平台请求"消息应答</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1505.SourceDataType">
+            <summary>
+            对应车辆应急接入监管平台请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1505.SourceMsgSn">
+            <summary>
+             对应车辆应急接入监管平台请求消息源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1505.Result">
@@ -2120,7 +2922,17 @@
             <summary>
             补报车辆静态信息应答
             <para>子业务类型标识:UP_BASE_MSG_VEHICLE_ADDED_ACK</para>
-            <para>描述:上级平台应答下级平台发送的补报车辆静态信息清求消息</para>
+            <para>描述:上级平台应答下级平台发送的"补报车辆静态信息清求"消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1600_0x1601.SourceDataType">
+            <summary>
+            对应补报车辆静态信息请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1600_0x1601.SourceMsgSn">
+            <summary>
+             对应补报车辆静态信息请求消息源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1600_0x1601.CarInfo">
@@ -2128,11 +2940,46 @@
             车辆信息
             </summary>
         </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1600_0x1602">
+            <summary>
+            补报车辆行驶路线信息应答消息
+            <para>子业务类型标识:UP_BASE_MSG_VEHICLE_ADDED_ACK</para>
+            <para>描述:下级平台向上级平台补报车辆行驶路线信息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1600_0x1602.DRVLine">
+            <summary>
+            路线信息，808-2019中0x8606规定的报文格式
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201">
+            <summary>
+             车辆注册信息应答消息
+             <para>子业务类型标识:DOWN_EXG_MSG_REGISTER_ACK</para>
+             <para>描述:上级平台在收到下级平台上报的车辆注册信息后，向下级平台发送车辆注册应答消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201.MsgSn">
+            <summary>
+            车辆注册信息消息源报文序号
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201.Result">
+            <summary>
+            处理结果
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9202">
             <summary>
             交换车辆定位信息消息
             <para>子业务类型标识:DOWN_EXG_MSG_CAR_LOCATION</para>
-            <para>描述:上级平台通过该消息不间断地向车辆驶入区域所属的下级平台发送车辆定位信息，直到该车驶离该区域</para>
+            <para>2011 描述:上级平台通过该消息不间断地向车辆驶入区域所属的下级平台发送车辆定位信息，直到该车驶离该区域</para>
+            <para>2019 描述：上级平台在以下四种情况下通过该消息不间断地向车辆进入区域所属的下级平台发送车辆定位信息，直到该车辆离开该区域
+            1.车辆跨域时，上级平台通过该消息不间断地向车辆进入区域所属的下级平台发送车辆定位信息，直到该车辆离开该区域
+            2.人工指定车辆定位信息交换时，上级平台通过该消息不间断地向指定交换对象下级平台发送车辆定位信息，直到人工指定“交换车辆定位信息”结束
+            3.下级平台向上级平台“申请交换指定车辆定位信息”成功后，上级平台通过该消息不间断地向交换对象下级平台发送车辆定位信息，直到“申请交换指定车辆定位信息”结束
+            4.应急状态监控车辆时，上级平台向车辆归属下级平台通过该消息不间断地发送车辆定位信息，实现车辆定位信息回传
+            </para>
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9202.VehiclePosition">
@@ -2178,7 +3025,7 @@
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9205.ReasonCode">
             <summary>
-            错误代码
+            启动车辆定位信息交换请求原因
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9206">
@@ -2190,7 +3037,7 @@
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9206.ReasonCode">
             <summary>
-            错误代码
+            结束车辆定位信息交换请求原因
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9207">
@@ -2200,6 +3047,16 @@
             <para>描述：应答下级平台申请交换指定车辆定位信息,请求消息."即 UP_EXG_MSG_APPLY_FOR_MONITOR_STARTUP</para>
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9207.SourceDataType">
+            <summary>
+            对应申请交换指定车辆定位信息请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9207.SourceMsgSn">
+            <summary>
+             对应申请交换指定车辆定位信息请求消息源报文序列号
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9207.Result">
             <summary>
             返回结果
@@ -2207,8 +3064,19 @@
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9208">
             <summary>
-            取消交换指定车辆定位信息应答
+            取消交换指定车辆定位信息应答or取消申请交换指定车辆定位信息应答消息
             <para>子业务类型标识:DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK</para>
+            <para>应答下级平台“取消申请交换指定车辆定位信息”</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9208.SourceDataType">
+            <summary>
+            对应取消申请交换指定车辆定位信息请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9208.SourceMsgSn">
+            <summary>
+             对应取消申请交换指定车辆定位信息请求消息源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9208.Result">
@@ -2219,7 +3087,18 @@
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9209">
             <summary>
             补发车辆定位信息应答
-            <para>子业务类型标识:DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK</para>
+            <para>子业务类型标识:DOWN_EXG_MSG_APPLY_HISGNSSDATA_ACK</para>
+            <para>本条消息是上级平台应答下级平台发送的“补发车辆定位信息请求”消息，即 UP_EXG_MSG_APPLY_HISGNSSDATA_REQ</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9209.SourceDataType">
+            <summary>
+            对应补发车辆定位信息请求消息源子业务类型标识
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9209.SourceMsgSn">
+            <summary>
+             对应补发车辆定位信息请求消息源报文序列号
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9209.Result">
@@ -2233,10 +3112,48 @@
             <para>子业务类型标识:DOWN_EXG_MSG_REPORT_DRIVER_INFO</para>
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920A.Flag">
+            <summary>
+            上传标志
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920B">
             <summary>
             上报车辆电子运单请求消息
             <para>子业务类型标识:DOWN_EXG_MSG_TAKE_EWAYBILL_REQ</para>
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920C">
+            <summary>
+            上报车辆车辆行驶路线请求
+            <para>子业务类型标识:DOWN_BASE_MSG_DRVLINE_REQ</para>
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D">
+            <summary>
+            车辆行驶线路请求应答
+            <para>子业务类型标识:DOWN_BASE_MSG_DRVLINE_ACK</para>
+            <para>上级平台应答下级平台发送地车辆行驶路线信息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D.DRVLineID">
+            <summary>
+            线路ＩＤ，按照８０８－２０１９中0x8606规定的报文中的线路ID
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D.Result">
+            <summary>
+            处理结果 0x00 完成记录，0x01 审核通过，完成记录 0x02信息错误，未完成记录0x03 审核未通过，未完成记录
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D.ReasonLength">
+            <summary>
+            未通过原因内容长度
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x920D.Reason">
+            <summary>
+            经过GBK编码后的未通过原因
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9301">
@@ -2254,6 +3171,11 @@
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9301.ObjectID">
             <summary>
             查岗对象的ID
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9301.AnswerTime">
+            <summary>
+            查岗应答时限
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9301.InfoID">
@@ -2301,6 +3223,25 @@
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9302.InfoContent">
             <summary>
             应答内容
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9303">
+            <summary>
+            下发平台间消息补传请求消息
+            <para>子业务类型标识:DOWN_PLATFORM_MSG_RETRAN_REQ</para>
+            <para>描述:上级平台接收方在接受消息时，如发现消息报文序列号不连接，则立即发送消息补传请求。下级平台收到消息补传请求后，根据请求的消息报文序列号。重传相应的消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9303.SerialList">
+            <summary>
+            需要重传消息的起始报文序列号和结束的报文序列号。如只请求重传一个消息，则起始消息报文序列号和结束消息报文序列号相同 
+            8位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9300_0x9303.Time">
+            <summary>
+            重传起始系统utc时间
+            8位
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9401">
@@ -2357,7 +3298,8 @@
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402">
             <summary>
-            报警预警
+            报警预警2013
+            下发报警预警消息2019
             <para>子业务类型标识:DOWN_WARN_MSG_INFORM_TIPS</para>
             <para>描述:用于上级平台向车辆归属或车辆跨域下级平台下发相关车辆的报警顶警或运行提示信息</para>
             <para>本条消息下级平台无需应答</para>
@@ -2368,6 +3310,11 @@
             报警信息来源
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.SourcePlatformId">
+            <summary>
+            发起报警平台唯一编码，由平台所在地行政区域代码和平台编号组成
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.WarnType">
             <summary>
             报警类型
@@ -2375,7 +3322,37 @@
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.WarnTime">
             <summary>
-            报警时间 UTCDateTime
+            报警时间
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.StartTime">
+            <summary>
+            事件开始时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.EndTime">
+            <summary>
+            事件结束时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.VehicleNo">
+            <summary>
+            车牌号码 非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.VehicleColor">
+            <summary>
+            车牌颜色  非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.DestinationPlatformId">
+            <summary>
+            被报警平台唯一编码，由平台所在地行政区划代码和平台编号组成。非平台相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.DRVLineId">
+            <summary>
+            线路ID 808-2019中0x8606规定的报文中的线路ＩＤ
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9402.WarnLength">
@@ -2401,6 +3378,11 @@
             报警信息来源
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.SourcePlatformId">
+            <summary>
+            发起报警平台唯一编码，由平台所在地行政区域代码和平台编号组成
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.WarnType">
             <summary>
             报警类型
@@ -2409,6 +3391,36 @@
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.WarnTime">
             <summary>
             报警时间
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.StartTime">
+            <summary>
+            事件开始时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.EndTime">
+            <summary>
+            事件结束时间 utc
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.VehicleNo">
+            <summary>
+            车牌号码 非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.VehicleColor">
+            <summary>
+            车牌颜色  非车辆相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.DestinationPlatformId">
+            <summary>
+            被报警平台唯一编码，由平台所在地行政区划代码和平台编号组成。非平台相关报警全填0
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.DRVLineId">
+            <summary>
+            线路ID 808-2019中0x8606规定的报文中的线路ＩＤ
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9400_0x9403.WarnLength">
@@ -2455,7 +3467,7 @@
             Ox05:176x 144[QCIF];
             0x06:704x288[CIF];
             0x07:704x288[HALF D];
-            Ox08:704576[DI]
+            Ox08:704x576[DI]
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9500_0x9503">
@@ -2492,11 +3504,6 @@
             <para>描述:上级平台向下级平台下发上报车辆行驶记录请求消息</para>
             </summary>
         </member>
-        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9500_0x9504.Command">
-            <summary>
-            命令字ID
-            </summary>
-        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9500_0x9504.StartTime">
             <summary>
             开始时间
@@ -2505,6 +3512,11 @@
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9500_0x9504.EndTime">
             <summary>
             开始时间
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9500_0x9504.Command">
+            <summary>
+            命令字ID
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9500_0x9504.Max">
@@ -2882,6 +3894,36 @@
             DOWN_TOTAL_RECV_BACK_MSG
             </summary>
         </member>
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.发送车辆定位信息数据量通知消息_2019">
+            <summary>
+            发送车辆定位信息数据量通知消息_2019
+            DOWN_TOTAL_RECV_BACK_MSG
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.平台链路连接情况与车辆定位消息传输情况上报请求消息_2019">
+            <summary>
+            平台链路连接情况与车辆定位消息传输情况上报请求消息_2019
+            DOWN_TOTAL_RECV_BACK_MSG
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.平台链路连接情况与车辆定位消息传输情况上报应答消息_2019">
+            <summary>
+            平台链路连接情况与车辆定位消息传输情况上报应答消息_2019
+            UP_MANAGE_MSG_RSP
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.上传平台间消息序列号通知消息_2019">
+            <summary>
+            上传平台间消息序列号通知消息
+            UP_MANAGE_MSG_SN_INFORM
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809BusinessType.下发平台间消息序列号通知消息_2019">
+            <summary>
+            下发平台间消息序列号通知消息
+            UP_MANAGE_MSG_SN_INFORM
+            </summary>
+        </member>
         <member name="F:JT809.Protocol.Enums.JT809BusinessType.主链路车辆动态信息交换业务">
             <summary>
             主链路动态信息交换消息 
@@ -3019,6 +4061,18 @@
             UP_EXG_MSG_REPORT_EWAYBILL_INFO
             </summary>
         </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.主动上报车辆行驶路线信息">
+            <summary>
+            主动上报车辆行驶路线信息	
+            UP_BASE_MSG_DRVLINE_INFO
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆注册信息应答消息">
+            <summary>
+            车辆注册信息应答消息	
+            DOWN_EXG_MSG_REGISTER_ACK
+            </summary>
+        </member>
         <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.交换车辆定位信息消息">
             <summary>
             交换车辆定位信息	
@@ -3054,9 +4108,9 @@
             DOWN_EXG_MSG_APPLY_FOR_MONITOR_STARTUP_ACK
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.取消交换指定车辆定位信息应答">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.取消交换指定车辆定位信息应答or取消申请交换指定车辆定位信息应答消息">
             <summary>
-            取消交换指定车辆定位信息应答	
+            取消交换指定车辆定位信息应答or取消申请交换指定车辆定位信息应答消息	
             DOWN_EXG_MSG_APPLY_FOR_MONITOR_END_ACK
             </summary>
         </member>
@@ -3078,6 +4132,18 @@
             DOWN_EXG_MSG_TAKE_EWAYBILL_REQ
             </summary>
         </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报车辆车辆行驶路线请求">
+            <summary>
+            上报车辆车辆行驶路线请求	
+            DOWN_BASE_MSG_DRVLINE_REQ
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.车辆行驶线路请求应答">
+            <summary>
+            车辆行驶线路请求应答	
+            DOWN_BASE_MSG_DRVLINE_ACK
+            </summary>
+        </member>
         <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.平台查岗应答消息">
             <summary>
             平台查岗应答消息	
@@ -3088,6 +4154,12 @@
             <summary>
             下发平台间报文应答消息	
             UP_PLATFORM_MSG_INFO_ACK
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上传平台间消息补传请求消息">
+            <summary>
+            上传平台间消息补传请求消息	
+            UP_PLATFORM_MSG_RETRAN_REQ
             </summary>
         </member>
         <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.平台查岗请求">
@@ -3102,6 +4174,12 @@
             DOWN_PLATFORM_MSG_INFO_REQ
             </summary>
         </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.下发平台间消息补传请求消息">
+            <summary>
+            下发平台间消息补传请求消息	
+            DOWN_PLATFORM_MSG_RETRAN_REQ
+            </summary>
+        </member>
         <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警督办应答消息">
             <summary>
             报警督办应答消息	
@@ -3114,10 +4192,28 @@
             UP_WARN_MSG_ADPT_INFO
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.主动上报报警处理结果信息">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报报警督办应答消息">
             <summary>
-            主动上报报警处理结果信息	
+            上报报警督办应答消息	
+            UP_WARN_MSG_URGE_TODO_ACK_INFO
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.主动上报报警处理结果消息">
+            <summary>
+            主动上报报警处理结果消息	
             UP_WARN_MSG_ADPT_TODO_INFO
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.上报报警督办请求消息">
+            <summary>
+            上报报警督办请求消息	
+            UP_WARN_MSG_URGE_TODO_REQ_INFO
+            </summary>
+        </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.主动上报报警处理结果信息2013_上报报警预警信息2019">
+            <summary>
+            主动上报报警处理结果信息2013_上报报警预警信息2019	
+            UP_WARN_MSG_ADPT_TODO_INFO_2013_UP_WARN_MSG_INFORM_TIPS_2019
             </summary>
         </member>
         <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警督办请求消息">
@@ -3126,9 +4222,9 @@
             DOWN_WARN_MSG_URGE_TODO_REQ
             </summary>
         </member>
-        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警预警">
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.报警预警2013_下发报警预警消息2019">
             <summary>
-            报警预警	
+            报警预警2013_下发报警预警消息2019	
             DOWN_WARN_MSG_INFORM_TIPS
             </summary>
         </member>
@@ -3204,6 +4300,12 @@
             UP_BASE_MSG_VEHICLE_ADDED_ACK
             </summary>
         </member>
+        <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.补报车辆行驶路线信息应答消息">
+            <summary>
+            补报车辆行驶路线信息应答消息	
+            UP_BASE_MSG_DRVLINE_ADDED_REQ
+            </summary>
+        </member>
         <member name="F:JT809.Protocol.Enums.JT809SubBusinessType.补报车辆静态信息请求消息">
             <summary>
             补报车辆静态信息请求消息
@@ -3223,6 +4325,21 @@
         <member name="T:JT809.Protocol.Enums.JT809WarnType">
             <summary>
              报警类型
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Enums.JT809_0x1413_SupervisionLevel">
+            <summary>
+            报警处理结果
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Enums.JT809_0x1412_Result">
+            <summary>
+            报警处理结果
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Enums.JT809_0x1411_Result">
+            <summary>
+            报警处理结果
             </summary>
         </member>
         <member name="T:JT809.Protocol.Enums.JT809_0x1502_PhotoRspFlag">
@@ -3263,6 +4380,11 @@
         <member name="T:JT809.Protocol.Enums.JT809_0x1007_ErrorCode">
             <summary>
             错误代码
+            </summary>
+        </member>
+        <member name="T:JT809.Protocol.Enums.JT809_0x9201_Result">
+            <summary>
+            处理结果
             </summary>
         </member>
         <member name="T:JT809.Protocol.Enums.JT809_0x9302_ObjectType">
