@@ -328,12 +328,6 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_上传平台间消息序列号通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x1102)">
-            <summary>
-            UP_MANAGE_MSG_SN_INFORM - 上传平台间消息序列号通知消息_2019
-            auto-generated
-            </summary>
-        </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_上传平台间消息序列号通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x1102)">
             <summary>
             UP_MANAGE_MSG_SN_INFORM - 上传平台间消息序列号通知消息_2019
@@ -586,7 +580,7 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_发送车辆定位信息数据量通知消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_2019_0x9101)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_发送车辆定位信息数据量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9101)">
             <summary>
             DOWN_TOTAL_RECV_BACK_MSG - 发送车辆定位信息数据量通知消息_2019
             auto-generated
@@ -604,13 +598,19 @@
             auto-generated
             </summary>
         </member>
-        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收车辆定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_0x9101)">
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_接收车辆定位信息数量通知消息(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.JT809Header,JT809.Protocol.MessageBody.JT809_2019_0x9101)">
             <summary>
             DOWN_TOTAL_RECV_BACK_MSG - 接收车辆定位信息数量通知消息
             auto-generated
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create_平台链路连接情况与车辆定位消息传输情况上报请求消息_2019(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9102)">
+            <summary>
+            DOWN_MANAGE_MSG_REQ - 平台链路连接情况与车辆定位消息传输情况上报请求消息_2019
+            auto-generated
+            </summary>
+        </member>
+        <member name="M:JT809.Protocol.Extensions.JT809PackageExtensions.Create(JT809.Protocol.Enums.JT809BusinessType,JT809.Protocol.MessageBody.JT809_0x9102)">
             <summary>
             DOWN_MANAGE_MSG_REQ - 平台链路连接情况与车辆定位消息传输情况上报请求消息_2019
             auto-generated

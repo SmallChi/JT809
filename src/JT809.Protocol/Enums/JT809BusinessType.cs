@@ -180,7 +180,7 @@ namespace JT809.Protocol.Enums
         ///UP_MANAGE_MSG_SN_INFORM
         ///</summary>
         [Description("上传平台间消息序列号通知消息_2019")]
-        [JT809BodiesType(typeof(JT809_0x1102))]
+        [JT809BodiesType(typeof(JT809_0x1103))]
         [JT809BusinessTypeDescription("UP_MANAGE_MSG_SN_INFORM", "上传平台间消息序列号通知消息")]
         上传平台间消息序列号通知消息_2019 = 0x1103,
         ///<summary>
@@ -188,7 +188,7 @@ namespace JT809.Protocol.Enums
         ///UP_MANAGE_MSG_SN_INFORM
         ///</summary>
         [Description("下发平台间消息序列号通知消息_2019")]
-        [JT809BodiesType(typeof(JT809_0x1102))]
+        [JT809BodiesType(typeof(JT809_0x9103))]
         [JT809BusinessTypeDescription("DOWN_MANAGE_MSG_SN_INFORM", "下发平台间消息序列号通知消息_2019")]
         下发平台间消息序列号通知消息_2019 = 0x9103,
         #endregion

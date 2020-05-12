@@ -1,6 +1,7 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Exceptions;
 using JT809.Protocol.Formatters;
+using JT809.Protocol.Interfaces;
 using System;
 using System.Collections.Concurrent;
 
@@ -30,6 +31,18 @@ namespace JT809.Protocol
                 jT809SerializerDict.TryAdd(jT808Config.ConfigId, serializer);
             }
             return serializer;
+        }
+        public static object GetAnalyzeByType(this IJT809Config config, Type type)
+        {
+            if (!config.FormatterFactory.FormatterDict.TryGetValue(type.GUID, out var analyze))
+            {
+                throw new JT809Exception(JT809ErrorCode.NotGlobalRegisterFormatterAssembly, type.FullName);
+            }
+            return analyze;
+        }
+        public static IJT809Analyze GetAnalyze<T>(this IJT809Config config)
+        {
+            return (IJT809Analyze)GetAnalyzeByType(config, typeof(T));
         }
     }
 }

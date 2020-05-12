@@ -69,7 +69,7 @@ namespace JT809.Protocol
             try
             {
                 JT809MessagePackWriter jT809MessagePackWriter = new JT809MessagePackWriter(buffer);
-                JT809MessagePackFormatterExtensions.GetMessagePackFormatter<T>(jT809Config).Serialize(ref jT809MessagePackWriter, obj,jT809Config);
+                jT809Config.GetMessagePackFormatter<T>().Serialize(ref jT809MessagePackWriter, obj,jT809Config);
                 return jT809MessagePackWriter.FlushAndGetEncodingArray();
             }
             finally
@@ -85,7 +85,7 @@ namespace JT809.Protocol
                 JT809MessagePackReader jT809MessagePackReader = new JT809MessagePackReader(bytes);
                 if (CheckPackageType(typeof(T)))
                     jT809MessagePackReader.Decode(buffer);
-                return JT809MessagePackFormatterExtensions.GetMessagePackFormatter<T>(jT809Config).Deserialize(ref jT809MessagePackReader, jT809Config);
+                return jT809Config.GetMessagePackFormatter<T>().Deserialize(ref jT809MessagePackReader, jT809Config);
             }
             finally
             {
