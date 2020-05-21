@@ -27,9 +27,11 @@ namespace JT808.Protocol.Internal
             {
                 var instance = Activator.CreateInstance(type);
                 ushort msgId = 0;
+                bool replaceInternalSubMsgId;
                 try
                 {
                     msgId = (ushort)type.GetProperty(nameof(JT809SubBodies.SubMsgId)).GetValue(instance);
+                    replaceInternalSubMsgId = (bool)type.GetProperty(nameof(JT809SubBodies.ReplaceInternalSubMsgId)).GetValue(instance);
                 }
                 catch (Exception ex)
                 {
@@ -37,7 +39,14 @@ namespace JT808.Protocol.Internal
                 }
                 if (Map.ContainsKey(msgId))
                 {
-                    throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                    if (replaceInternalSubMsgId)
+                    {
+                        Map[msgId] = instance;
+                    }
+                    else
+                    {
+                        throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                    }
                 }
                 else
                 {
@@ -56,9 +65,17 @@ namespace JT808.Protocol.Internal
             Type type = typeof(TJT809SubBodies);
             var instance = Activator.CreateInstance(type);
             var msgId = (ushort)type.GetProperty(nameof(JT809SubBodies.SubMsgId)).GetValue(instance);
+            bool replaceInternalSubMsgId = (bool)type.GetProperty(nameof(JT809SubBodies.ReplaceInternalSubMsgId)).GetValue(instance);
             if (Map.ContainsKey(msgId))
             {
-                throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                if (replaceInternalSubMsgId)
+                {
+                    Map[msgId] = instance;
+                }
+                else
+                {
+                    throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                }
             }
             else
             {

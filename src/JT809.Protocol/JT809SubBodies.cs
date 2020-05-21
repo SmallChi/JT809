@@ -17,5 +17,10 @@ namespace JT809.Protocol
         public abstract ushort SubMsgId { get; }
 
         public abstract string Description { get; }
+        /// <summary>
+        /// 当外部注册的扩展809的消息Id跟国标的消息Id冲突时可以使用该字段替换国标的消息Id
+        /// 默认是false,不替换
+        /// </summary>
+        public virtual bool ReplaceInternalSubMsgId { get; } = false;
     }
 }

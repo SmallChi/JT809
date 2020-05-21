@@ -33,10 +33,12 @@ namespace JT808.Protocol.Internal
                 var instance = Activator.CreateInstance(type);
                 ushort msgId = 0;
                 JT809Version version;
+                bool replaceInternalMsgId;
                 try
                 {
                     msgId = (ushort)type.GetProperty(nameof(JT809Bodies.MsgId)).GetValue(instance);
                     version = (JT809Version)type.GetProperty(nameof(JT809Bodies.Version)).GetValue(instance);
+                    replaceInternalMsgId = (bool)type.GetProperty(nameof(JT809Bodies.ReplaceInternalMsgId)).GetValue(instance);
                 }
                 catch (Exception ex)
                 {
@@ -44,13 +46,20 @@ namespace JT808.Protocol.Internal
                 }
                 if (Map_2019.ContainsKey(msgId))
                 {
-                    if (version == JT809Version.JTT2019)
+                    if (replaceInternalMsgId)
                     {
                         Map_2019[msgId] = instance;
                     }
                     else
                     {
-                        throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                        if (version == JT809Version.JTT2019)
+                        {
+                            Map_2019[msgId] = instance;
+                        }
+                        else
+                        {
+                            throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                        }
                     }
                 }
                 else
@@ -61,7 +70,14 @@ namespace JT808.Protocol.Internal
                 {
                     if (version != JT809Version.JTT2019)
                     {
-                        throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                        if (replaceInternalMsgId)
+                        {
+                            Map[msgId] = instance;
+                        }
+                        else
+                        {
+                            throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                        }
                     }   
                 }
                 else
@@ -77,11 +93,19 @@ namespace JT808.Protocol.Internal
             var instance = Activator.CreateInstance(type);
             var msgId = (ushort)type.GetProperty(nameof(JT809Bodies.MsgId)).GetValue(instance);
             JT809Version version = (JT809Version)type.GetProperty(nameof(JT809Bodies.Version)).GetValue(instance);
+            bool replaceInternalMsgId = (bool)type.GetProperty(nameof(JT809Bodies.ReplaceInternalMsgId)).GetValue(instance);
             if (Map.ContainsKey(msgId))
             {
-                if (version != JT809Version.JTT2019)
+                if (replaceInternalMsgId)
                 {
-                    throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                    Map[msgId] = instance;
+                }
+                else
+                {
+                    if (version != JT809Version.JTT2019)
+                    {
+                        throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                    }
                 }
             }
             else
@@ -90,13 +114,20 @@ namespace JT808.Protocol.Internal
             }
             if (Map_2019.ContainsKey(msgId))
             {
-                if (version == JT809Version.JTT2019)
+                if (replaceInternalMsgId)
                 {
                     Map_2019[msgId] = instance;
                 }
                 else
                 {
-                    throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                    if (version == JT809Version.JTT2019)
+                    {
+                        Map_2019[msgId] = instance;
+                    }
+                    else
+                    {
+                        throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
+                    }
                 }
             }
             else
