@@ -300,23 +300,23 @@ public class JT809_2019_Config : JT809GlobalConfigBase
 
 ``` ini
 
-BenchmarkDotNet=v0.12.0, OS=Windows 10.0.18363
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.836 (1909/November2018Update/19H2)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET Core SDK=3.1.201
-  [Host]     : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
-  Job-BAIJRX : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
+.NET Core SDK=3.1.300
+  [Host]     : .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+  Job-WFPAJY : .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
 
 Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1  
 
 ```
-|                                  Method |      N |         Mean |       Error |      StdDev |      Gen 0 | Gen 1 | Gen 2 |    Allocated |
-|---------------------------------------- |------- |-------------:|------------:|------------:|-----------:|------:|------:|-------------:|
-| **JT809_0x9400_0x9401_Package_Deserialize** |    **100** |     **509.5 us** |     **2.50 us** |     **2.22 us** |    **15.6250** |     **-** |     **-** |    **100.78 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |    100 |     203.6 us |     1.95 us |     1.82 us |    13.4277 |     - |     - |     83.59 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |  **10000** |  **48,343.9 us** |   **580.83 us** |   **543.31 us** |  **1636.3636** |     **-** |     **-** |  **10078.13 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |  10000 |  20,705.0 us |   165.58 us |   154.88 us |  1343.7500 |     - |     - |   8359.38 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** | **100000** | **476,503.3 us** | **4,965.19 us** | **4,401.51 us** | **16000.0000** |     **-** |     **-** | **100781.25 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize | 100000 | 207,481.3 us | 1,467.56 us | 1,372.76 us | 13333.3333 |     - |     - |  83594.04 KB |
+|                                  Method |      N |         Mean |       Error |      StdDev |      Gen 0 | Gen 1 | Gen 2 |  Allocated |
+|---------------------------------------- |------- |-------------:|------------:|------------:|-----------:|------:|------:|-----------:|
+| **JT809_0x9400_0x9401_Package_Deserialize** |    **100** |     **494.2 μs** |     **5.09 μs** |     **4.76 μs** |    **16.6016** |     **-** |     **-** |  **103.13 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |    100 |     220.0 μs |     2.24 μs |     2.09 μs |    14.6484 |     - |     - |   90.63 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |  **10000** |  **49,835.5 μs** |   **456.53 μs** |   **404.71 μs** |  **1636.3636** |     **-** |     **-** | **10312.5 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |  10000 |  21,843.2 μs |   161.08 μs |   142.80 μs |  1468.7500 |     - |     - |  9062.5 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** | **100000** | **486,411.6 μs** | **5,499.89 μs** | **5,144.60 μs** | **16000.0000** |     **-** |     **-** |  **103125 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize | 100000 | 218,839.3 μs | 1,665.04 μs | 1,476.02 μs | 14666.6667 |     - |     - |   90625 KB |
 
 ## JT809协议消息对照表
 

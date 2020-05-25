@@ -1159,6 +1159,12 @@
             当数据体为空的时候，使用null作为空包感觉不适合，所以就算使用空包也需要new一下来表达意思。
             </summary>
         </member>
+        <member name="P:JT809.Protocol.JT809Bodies.ReplaceInternalMsgId">
+            <summary>
+            当外部注册的扩展809的消息Id跟国标的消息Id冲突时可以使用该字段替换国标的消息Id
+            默认是false,不替换
+            </summary>
+        </member>
         <member name="F:JT809.Protocol.JT809Constants.DateLimitYear">
             <summary>
             日期限制于2000年
@@ -1325,6 +1331,12 @@
             跳过数据体序列化
             默认不跳过
             当数据体为空的时候，使用null作为空包感觉不适合，所以就算使用空包也需要new一下来表达意思。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.JT809SubBodies.ReplaceInternalSubMsgId">
+            <summary>
+            当外部注册的扩展809的消息Id跟国标的消息Id冲突时可以使用该字段替换国标的消息Id
+            默认是false,不替换
             </summary>
         </member>
         <member name="T:JT809.Protocol.MessageBody.JT809_0x1001">
