@@ -92,7 +92,7 @@ namespace JT809.Protocol
                 }
             }
 
-            jT809Package.CRCCode = reader.CalculateCheckXorCode;
+            jT809Package.CRCCode = reader.ReadUInt16();
             jT809Package.EndFlag = reader.ReadEnd();
             return jT809Package;
         }
