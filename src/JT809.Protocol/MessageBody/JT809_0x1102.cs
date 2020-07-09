@@ -55,8 +55,12 @@ namespace JT809.Protocol.MessageBody
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
             JT809_0x1102 value = new JT809_0x1102();
+            value.SubBusinessType = reader.ReadUInt16();
+            writer.WriteNumber($"[{value.SubBusinessType.ReadNumber()}]子业务类型标识", value.SubBusinessType);
+            value.DataLength = reader.ReadUInt32();
+            writer.WriteNumber($"[{value.DataLength.ReadNumber()}]后续数据长度", value.DataLength);
             var virtualHex = reader.ReadVirtualArray(11);
-            value.PlateformId = reader.ReadBigNumber(11);
+            value.PlateformId = reader.ReadString(11);
             writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]平台唯一编码", value.PlateformId);
             virtualHex = reader.ReadVirtualArray(8);
             value.StartTime = reader.ReadUTCDateTime();
@@ -70,13 +74,14 @@ namespace JT809.Protocol.MessageBody
             writer.WriteNumber($"[{value.DisconnectNum.ReadNumber()}]START_TIME~END_TIME期间下级监控平台链路断开次数", value.DisconnectNum);
             value.DisconnectTime = reader.ReadUInt32();
             writer.WriteNumber($"[{value.DisconnectTime.ReadNumber()}]START_TIME~END_TIME期间下级监控平台链路断开总时长，用秒表示", value.DisconnectTime);
-
         }
 
         public JT809_0x1102 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x1102 value = new JT809_0x1102();
-            value.PlateformId = reader.ReadBigNumber(11);
+            value.SubBusinessType = reader.ReadUInt16();
+            value.DataLength = reader.ReadUInt32();
+            value.PlateformId = reader.ReadString(11);
             value.StartTime = reader.ReadUTCDateTime();
             value.EndTime = reader.ReadUTCDateTime();
             value.LoseDymamicSum = reader.ReadUInt32();
@@ -87,7 +92,9 @@ namespace JT809.Protocol.MessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1102 value, IJT809Config config)
         {
-            writer.WriteBigNumber(value.PlateformId, 11);
+            writer.WriteUInt16(value.SubBusinessType);
+            writer.WriteUInt32(value.DataLength);
+            writer.WriteStringPadRight(value.PlateformId, 11);
             writer.WriteUTCDateTime(value.StartTime);
             writer.WriteUTCDateTime(value.EndTime);
             writer.WriteUInt32(value.LoseDymamicSum);
