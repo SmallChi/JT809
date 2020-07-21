@@ -11,18 +11,18 @@ using System.Text.Json;
 namespace JT809.Protocol.MessageBody
 {
     /// <summary>
-    ///  接收车辆定位信息数量通知消息
-    /// <para>链路类型：从链路</para>
+    ///  发送车辆定位信息数量通知信息
+    /// <para>链路类型：主链路</para>
     /// <para>消息方向:上级平台往下级平台</para>
-    /// <para>业务类型标识: DOWN_TOTAL_RECV_BACK_MSG</para>
-    /// <para>描述:上级平台向下级平台定星通知已经收到下级平台上传的车辆定位信息数量(如:每收到10,000 条车辆定位信息通知一次)</para>
+    /// <para>业务类型标识: UP_MANAGE_TOTAL_RECV_BACK_MSG</para>
+    /// <para>描述:下级平台向上级平台定量通知已经上传的车辆定位信息数量(如:每收到10,000 条车辆定位信息通知一次)</para>
     /// <para>本条消息不需下级平台应答。</para>
     /// </summary>
     public class JT809_0x9101:JT809Bodies, IJT809MessagePackFormatter<JT809_0x9101>, IJT809Analyze
     {
         public override ushort MsgId => JT809BusinessType.接收车辆定位信息数量通知消息.ToUInt16Value();
         public override string Description => "接收车辆定位信息数量通知消息";
-        public override JT809_LinkType LinkType => JT809_LinkType.subordinate;
+        public override JT809_LinkType LinkType => JT809_LinkType.main;
         /// <summary>
         /// START_TIME_END_TIME共收到的车辆定位信息数量
         /// </summary>
