@@ -57,6 +57,8 @@ namespace JT809.Protocol.MessageBody
         public JT809_0x9102 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9102 value = new JT809_0x9102();
+            value.SubBusinessType = reader.ReadUInt16();
+            value.DataLength = reader.ReadUInt32();
             value.PlateformId = reader.ReadString(11);
             value.StartTime = reader.ReadUTCDateTime();
             value.EndTime = reader.ReadUTCDateTime();
@@ -65,9 +67,12 @@ namespace JT809.Protocol.MessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9102 value, IJT809Config config)
         {
+            writer.WriteUInt16(value.SubBusinessType);
+            writer.Skip(4, out int subContentLengthPosition);
             writer.WriteStringPadRight(value.PlateformId, 11);
             writer.WriteUTCDateTime(value.StartTime);
             writer.WriteUTCDateTime(value.EndTime);
+            writer.WriteInt32Return(writer.GetCurrentPosition() - subContentLengthPosition - 4, subContentLengthPosition);
         }
     }
 }
