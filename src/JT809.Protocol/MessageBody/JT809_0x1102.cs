@@ -93,13 +93,14 @@ namespace JT809.Protocol.MessageBody
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1102 value, IJT809Config config)
         {
             writer.WriteUInt16(value.SubBusinessType);
-            writer.WriteUInt32(value.DataLength);
+            writer.Skip(4, out int subContentLengthPosition);
             writer.WriteStringPadRight(value.PlateformId, 11);
             writer.WriteUTCDateTime(value.StartTime);
             writer.WriteUTCDateTime(value.EndTime);
             writer.WriteUInt32(value.LoseDymamicSum);
             writer.WriteByte(value.DisconnectNum);
             writer.WriteUInt32(value.DisconnectTime);
+            writer.WriteInt32Return(writer.GetCurrentPosition() - subContentLengthPosition - 4, subContentLengthPosition);
         }
     }
 }

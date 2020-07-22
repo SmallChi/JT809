@@ -52,7 +52,6 @@ namespace JT809.Protocol.Test.JT809MessageBody
                 Bodies = new JT809_0x1102
                 {
                     SubBusinessType = 0x1102,
-                    DataLength = 36,
                     PlateformId = "3000012345",
                     StartTime = DateTime.Parse("2020-07-08 17:46:44"),
                     EndTime = DateTime.Parse("2020-07-08 17:46:44"),
