@@ -18,6 +18,10 @@ namespace JT809.Protocol.SubMessageBody
 
         public override string Description => "车辆注册信息应答消息";
         /// <summary>
+        /// 车辆注册醒醒消息源子业务类型标识
+        /// </summary>
+        public ushort DataType { get; set; }
+        /// <summary>
         /// 车辆注册信息消息源报文序号
         /// </summary>
         public uint MsgSn { get; set; }
@@ -26,9 +30,12 @@ namespace JT809.Protocol.SubMessageBody
         /// </summary>
         public JT809_0x9201_Result Result { get; set; }
 
+
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
             var value = new JT809_0x9200_0x9201();
+            value.DataType = reader.ReadUInt16();
+            writer.WriteNumber($"[{value.DataType.ReadNumber()}]车辆注册醒醒消息源子业务类型标识", value.DataType);
             value.MsgSn = reader.ReadUInt32();
             writer.WriteNumber($"[{value.MsgSn.ReadNumber()}]车辆注册信息消息源报文序号", value.MsgSn);
             value.Result = (JT809_0x9201_Result)reader.ReadByte();
@@ -38,6 +45,7 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x9200_0x9201 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             var value = new JT809_0x9200_0x9201();
+            value.DataType = reader.ReadUInt16();
             value.MsgSn = reader.ReadUInt32();
             value.Result = (JT809_0x9201_Result)reader.ReadByte();
             return value;
@@ -45,6 +53,7 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9200_0x9201 value, IJT809Config config)
         {
+            writer.WriteUInt16(value.DataType);
             writer.WriteUInt32(value.MsgSn);
             writer.WriteByte((byte)value.Result);
         }

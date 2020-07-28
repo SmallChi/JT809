@@ -25,6 +25,14 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             var bytes = "5B0000002F000004579200000004570101010000000000000000004EBC924F9201000000070400000004000189DA5D".ToHexBytes();
             JT809Package jT809_0X9200_0X9201 = JT809_2019_Serializer.Deserialize(bytes);
+            var body = jT809_0X9200_0X9201.Bodies as JT809_0x9200;
+            var subBody = body.SubBodies as JT809_0x9200_0x9201;
+            Assert.NotNull(body);
+            Assert.NotNull(subBody);
+            Assert.Equal(JT809VehicleColorType.其他, body.VehicleColor);
+            Assert.Equal(JT809_0x9201_Result.审核通过_完成注册, subBody.Result);
+            Assert.Equal(1024u, subBody.MsgSn);
+            Assert.Equal(1024u, subBody.DataType);
         }
 
         /// <summary>

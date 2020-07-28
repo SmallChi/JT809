@@ -20,7 +20,7 @@ namespace JT809.Protocol.SubMessageBody
         public override ushort SubMsgId => JT809SubBusinessType.结束车辆定位信息交换应答消息.ToUInt16Value();
 
         public override string Description => "结束车辆定位信息交换应答消息";
-
+        public override bool SkipDataLength => true;
         public override bool SkipSerialization => false;
         /// <summary>
         /// 对应结束车辆定位信息交换请求消息源子业务类型标识
@@ -29,7 +29,7 @@ namespace JT809.Protocol.SubMessageBody
         /// <summary>
         /// 对应结束车辆定位信息交换请求消息源报文序列号
         /// </summary>
-        public uint SourceMsgSn { get; set; }
+        public uint SourceMsgSN { get; set; }
         /// <summary>
         /// 后续数据长度  值为0x00
         /// </summary>
@@ -41,9 +41,9 @@ namespace JT809.Protocol.SubMessageBody
             if (config.Version == JT809Version.JTT2019)
             {
                 value.SourceDataType = reader.ReadUInt16();
-                writer.WriteString($"[{value.SourceDataType.ReadNumber()}]对应启动车辆定位信息交换请求消息源子业务类型标识", ((JT809SubBusinessType)value.SourceDataType).ToString());
-                value.SourceMsgSn = reader.ReadUInt32();
-                writer.WriteNumber($"[{value.SourceMsgSn.ReadNumber()}对应启动车辆定位信息交换请求消息源报文序列号]", value.SourceMsgSn);
+                writer.WriteString($"[{value.SourceDataType.ReadNumber()}]对应结束车辆定位信息交换请求消息源子业务类型标识", ((JT809SubBusinessType)value.SourceDataType).ToString());
+                value.SourceMsgSN = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.SourceMsgSN.ReadNumber()}对应结束车辆定位信息交换请求消息源报文序列号]", value.SourceMsgSN);
                 value.DataLength = reader.ReadUInt32();
                 writer.WriteNumber($"[{value.DataLength.ReadNumber()}后续数据长度]", value.DataLength);
             }
@@ -55,7 +55,7 @@ namespace JT809.Protocol.SubMessageBody
             if (config.Version == JT809Version.JTT2019)
             {
                 value.SourceDataType = reader.ReadUInt16();
-                value.SourceMsgSn = reader.ReadUInt32();
+                value.SourceMsgSN = reader.ReadUInt32();
                 value.DataLength = reader.ReadUInt32();
             }
             return value;
@@ -66,7 +66,7 @@ namespace JT809.Protocol.SubMessageBody
             if (config.Version == JT809Version.JTT2019)
             {
                 writer.WriteUInt16(value.SourceDataType);
-                writer.WriteUInt32(value.SourceMsgSn);
+                writer.WriteUInt32(value.SourceMsgSN);
                 writer.WriteUInt32(value.DataLength);
             }
         }

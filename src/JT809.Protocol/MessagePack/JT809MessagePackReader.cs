@@ -1,4 +1,5 @@
 ﻿using JT809.Protocol.Buffers;
+using JT809.Protocol.Exceptions;
 using JT809.Protocol.Extensions;
 using System;
 using System.Buffers;
@@ -445,15 +446,18 @@ namespace JT809.Protocol.MessagePack
         }
         public int ReadCurrentRemainContentLength()
         {
+            int len = 0;
             if (_decoded)
             {
+                len = Reader.Length - ReaderCount - 3;
                 //内容长度=总长度-读取的长度-3（校验码2位+终止符1位）
-                return Reader.Length - ReaderCount - 3; 
             }
             else
             {
-                return Reader.Length - ReaderCount;
+                len= Reader.Length - ReaderCount;
             }
+            if (len < 0) throw new JT809Exception(Enums.JT809ErrorCode.ReaderRemainContentLengthError);
+            return len;
         }
         public void Skip(int count=1)
         {
