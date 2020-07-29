@@ -1333,6 +1333,12 @@
             当数据体为空的时候，使用null作为空包感觉不适合，所以就算使用空包也需要new一下来表达意思。
             </summary>
         </member>
+        <member name="P:JT809.Protocol.JT809SubBodies.SkipDataLength">
+            <summary>
+            2019文档导致需要兼容
+            是否跳过后续的长度
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.JT809SubBodies.ReplaceInternalSubMsgId">
             <summary>
             当外部注册的扩展809的消息Id跟国标的消息Id冲突时可以使用该字段替换国标的消息Id
@@ -1664,6 +1670,11 @@
         </member>
         <member name="P:JT809.Protocol.MessageBody.JT809_0x9007.ErrorCode">
             <summary>
+            错误代码 2019版本
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.MessageBody.JT809_0x9007.ReasonCode">
+            <summary>
             错误代码
             </summary>
         </member>
@@ -1680,11 +1691,11 @@
         </member>
         <member name="T:JT809.Protocol.MessageBody.JT809_0x9101">
             <summary>
-             接收车辆定位信息数量通知消息
-            <para>链路类型：从链路</para>
+             发送车辆定位信息数量通知信息
+            <para>链路类型：主链路</para>
             <para>消息方向:上级平台往下级平台</para>
-            <para>业务类型标识: DOWN_TOTAL_RECV_BACK_MSG</para>
-            <para>描述:上级平台向下级平台定星通知已经收到下级平台上传的车辆定位信息数量(如:每收到10,000 条车辆定位信息通知一次)</para>
+            <para>业务类型标识: UP_MANAGE_TOTAL_RECV_BACK_MSG</para>
+            <para>描述:下级平台向上级平台定量通知已经上传的车辆定位信息数量(如:每收到10,000 条车辆定位信息通知一次)</para>
             <para>本条消息不需下级平台应答。</para>
             </summary>
         </member>
@@ -2220,12 +2231,17 @@
             <para>描述：本条消息是下级平台对上级平台下发的 DOWN_EXG_MSG_RETURN_STARTUP 消息的应答消息</para>
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205.DataType">
+            <summary>
+            子业务类型标识
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205.SourceDataType">
             <summary>
             对应启动车辆定位信息交换请求消息源子业务类型标识
             </summary>
         </member>
-        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205.SourceMsgSn">
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1205.SourceMsgSN">
             <summary>
             对应启动车辆定位信息交换请求消息源报文序列号
             </summary>
@@ -2247,7 +2263,7 @@
             对应结束车辆定位信息交换请求消息源子业务类型标识
             </summary>
         </member>
-        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206.SourceMsgSn">
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1206.SourceMsgSN">
             <summary>
             对应结束车辆定位信息交换请求消息源报文序列号
             </summary>
@@ -2969,6 +2985,11 @@
              车辆注册信息应答消息
              <para>子业务类型标识:DOWN_EXG_MSG_REGISTER_ACK</para>
              <para>描述:上级平台在收到下级平台上报的车辆注册信息后，向下级平台发送车辆注册应答消息</para>
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201.DataType">
+            <summary>
+            车辆注册醒醒消息源子业务类型标识
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9201.MsgSn">
