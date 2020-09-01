@@ -51,8 +51,8 @@ namespace JT809.Protocol.SubMessageBody
             {
                 value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
                 writer.WriteString($"[{value.ObjectType.ToByteValue()}]查岗对象的类型", value.ObjectType.ToString());
-                virtualHex = reader.ReadVirtualArray(12);
-                value.ObjectID = reader.ReadString(12);
+                virtualHex = reader.ReadVirtualArray(20);
+                value.ObjectID = reader.ReadString(20);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗对象的ID", value.ObjectID);
                 writer.WriteNumber($"[{value.AnswerTime.ReadNumber()}]查岗应答时限", value.AnswerTime);
             }
@@ -71,7 +71,7 @@ namespace JT809.Protocol.SubMessageBody
             if (config.Version == JT809Version.JTT2019)
             {
                 value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
-                value.ObjectID = reader.ReadString(12);
+                value.ObjectID = reader.ReadString(20);
                 value.AnswerTime = reader.ReadByte();
             }
             value.InfoID = reader.ReadUInt32();
@@ -86,7 +86,7 @@ namespace JT809.Protocol.SubMessageBody
             if (config.Version == JT809Version.JTT2019)
             {
                 writer.WriteByte((byte)value.ObjectType);
-                writer.WriteStringPadRight(value.ObjectID, 12);
+                writer.WriteStringPadRight(value.ObjectID, 20);
                 writer.WriteByte(value.AnswerTime);
             }
             writer.WriteUInt32(value.InfoID);

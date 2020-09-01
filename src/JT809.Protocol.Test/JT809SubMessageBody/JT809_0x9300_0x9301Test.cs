@@ -63,13 +63,13 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             };
             var hex = JT809_2019_Serializer.Serialize(jT809_0x9300_0x9301).ToHexString();
             testOutput.WriteLine(hex);
-            Assert.Equal("02736D616C6C636869000000000000000D10000000057265706C79", hex);
+            Assert.Equal("02736D616C6C6368690000000000000000000000000000000D10000000057265706C79", hex);
         }
 
         [Fact(DisplayName = "2019版反序化")]
         public void Test4()
         {
-            var bytes = "02736D616C6C636869000000000000000D10000000057265706C79".ToHexBytes();
+            var bytes = "02736D616C6C6368690000000000000000000000000000000D10000000057265706C79".ToHexBytes();
             JT809_0x9300_0x9301 jT809_0x9300_0x9301 = JT809_2019_Serializer.Deserialize<JT809_0x9300_0x9301>(bytes);
             Assert.Equal(JT809_0x9301_ObjectType.下级平台所属单一业户, jT809_0x9300_0x9301.ObjectType);
             Assert.Equal((uint)3344, jT809_0x9300_0x9301.InfoID);
