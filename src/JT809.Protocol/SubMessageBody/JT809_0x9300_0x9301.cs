@@ -4,6 +4,7 @@ using JT809.Protocol.MessagePack;
 using JT809.Protocol.Extensions;
 using JT809.Protocol.Interfaces;
 using System.Text.Json;
+using System;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -12,7 +13,7 @@ namespace JT809.Protocol.SubMessageBody
     /// <para>子业务类型标识:DOWN_PLATFORM-MSG_POST_QUERY_REQ</para>
     /// <para>描述:上级平台不定期向下级平台发送平台查岗信息</para>
     /// </summary>
-    public class JT809_0x9300_0x9301:JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9300_0x9301>, IJT809Analyze,IJT809_2019_Version
+    public class JT809_0x9300_0x9301 : JT809SubBodies, IJT809MessagePackFormatter<JT809_0x9300_0x9301>, IJT809Analyze, IJT809_2019_Version
     {
         public override ushort SubMsgId => JT809SubBusinessType.平台查岗请求.ToUInt16Value();
 
@@ -45,12 +46,14 @@ namespace JT809.Protocol.SubMessageBody
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
             JT809_0x9300_0x9301 value = new JT809_0x9300_0x9301();
-            value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
-            writer.WriteString($"[{value.ObjectType.ToByteValue()}]查岗对象的类型", value.ObjectType.ToString());
-            var virtualHex = reader.ReadVirtualArray(12);
-            value.ObjectID = reader.ReadString(12);
-            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗对象的ID", value.ObjectID);
-            if (config.Version == JT809Version.JTT2019) {
+            ReadOnlySpan<byte> virtualHex;
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
+                writer.WriteString($"[{value.ObjectType.ToByteValue()}]查岗对象的类型", value.ObjectType.ToString());
+                virtualHex = reader.ReadVirtualArray(12);
+                value.ObjectID = reader.ReadString(12);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗对象的ID", value.ObjectID);
                 writer.WriteNumber($"[{value.AnswerTime.ReadNumber()}]查岗应答时限", value.AnswerTime);
             }
             value.InfoID = reader.ReadUInt32();
@@ -65,9 +68,10 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x9300_0x9301 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9300_0x9301 value = new JT809_0x9300_0x9301();
-            value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
-            value.ObjectID = reader.ReadString(12);
-            if (config.Version == JT809Version.JTT2019) {
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.ObjectType = (JT809_0x9301_ObjectType)reader.ReadByte();
+                value.ObjectID = reader.ReadString(12);
                 value.AnswerTime = reader.ReadByte();
             }
             value.InfoID = reader.ReadUInt32();
@@ -79,10 +83,10 @@ namespace JT809.Protocol.SubMessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9300_0x9301 value, IJT809Config config)
         {
-            writer.WriteByte((byte)value.ObjectType);
-            writer.WriteStringPadRight(value.ObjectID, 12);
             if (config.Version == JT809Version.JTT2019)
             {
+                writer.WriteByte((byte)value.ObjectType);
+                writer.WriteStringPadRight(value.ObjectID, 12);
                 writer.WriteByte(value.AnswerTime);
             }
             writer.WriteUInt32(value.InfoID);
