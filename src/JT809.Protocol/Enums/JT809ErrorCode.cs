@@ -17,5 +17,6 @@ namespace JT809.Protocol.Enums
         GetAttributeError=1009,
         ReaderRemainContentLengthError = 1010,
         NotGlobalRegisterFormatterAssembly=1011,
+        IllegalArgument=1012
     }
 }

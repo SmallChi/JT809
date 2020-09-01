@@ -6,6 +6,7 @@ using System;
 using JT809.Protocol.Interfaces;
 using System.Collections.Generic;
 using System.Text.Json;
+using JT809.Protocol.Exceptions;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -64,14 +65,14 @@ namespace JT809.Protocol.SubMessageBody
             value.SerialCount = reader.ReadByte();
             value.BeginMessageNumber = reader.ReadUInt32();
             value.EndMessageNumber = reader.ReadUInt32();
-            if (value.SerialCount != value.EndMessageNumber - value.BeginMessageNumber + 1) throw new AggregateException($"序列号间隔[{value.BeginMessageNumber}-{value.EndMessageNumber}]与重传消息总数：{value.SerialCount}不符");
+            if (value.SerialCount != value.EndMessageNumber - value.BeginMessageNumber + 1) throw new JT809Exception(JT809ErrorCode.IllegalArgument, $"序列号间隔[{value.BeginMessageNumber}-{value.EndMessageNumber}]与重传消息总数：{value.SerialCount}不符");
             value.Time = reader.ReadUTCDateTime();
             return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1300_0x1303 value, IJT809Config config)
         {
-            if (value.EndMessageNumber - value.BeginMessageNumber >= byte.MaxValue) throw new AggregateException("序列号间隔不能大于255");
+            if (value.EndMessageNumber - value.BeginMessageNumber >= byte.MaxValue) throw new JT809Exception(JT809ErrorCode.IllegalArgument, "序列号间隔不能大于255");
             value.SerialCount = (byte)(value.EndMessageNumber - value.BeginMessageNumber + 1);
             writer.WriteUInt16(RetranDataType);
             writer.WriteByte(value.SerialCount);
