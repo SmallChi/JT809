@@ -24,11 +24,28 @@ namespace JT809.Protocol.MessageBody
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
             JT809_0x9200 value = new JT809_0x9200();
-            var virtualHex = reader.ReadVirtualArray(21);
-            value.VehicleNo = reader.ReadString(21);
-            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车牌号", value.VehicleNo);
-            value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
-            writer.WriteString($"[{value.VehicleColor.ToByteValue()}]车牌颜色", value.VehicleColor.ToString());
+            //1078qq群808432702:大兄弟提供的 
+            //由于车辆注册信息应答消息0x9201子业务不存在车牌号和颜色需要跳过
+            if (config.Version == JT809Version.JTT2019)
+            {
+                var subBusinessType = reader.ReadVirtualUInt16();
+                if (subBusinessType != JT809SubBusinessType.车辆注册信息应答消息.ToUInt16Value())
+                {
+                    var virtualHex = reader.ReadVirtualArray(21);
+                    value.VehicleNo = reader.ReadString(21);
+                    writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车牌号", value.VehicleNo);
+                    value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+                    writer.WriteString($"[{value.VehicleColor.ToByteValue()}]车牌颜色", value.VehicleColor.ToString());
+                }
+            }
+            else
+            {
+                var virtualHex = reader.ReadVirtualArray(21);
+                value.VehicleNo = reader.ReadString(21);
+                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车牌号", value.VehicleNo);
+                value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+                writer.WriteString($"[{value.VehicleColor.ToByteValue()}]车牌颜色", value.VehicleColor.ToString());
+            }
             value.SubBusinessType = reader.ReadUInt16();
             writer.WriteString($"[{value.SubBusinessType.ReadNumber()}]子业务类型标识", ((JT809SubBusinessType)value.SubBusinessType).ToString());
             value.DataLength = reader.ReadUInt32();
@@ -57,8 +74,22 @@ namespace JT809.Protocol.MessageBody
         public JT809_0x9200 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9200 value = new JT809_0x9200();
-            value.VehicleNo = reader.ReadString(21);
-            value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+            //1078qq群808432702:大兄弟提供的 
+            //由于车辆注册信息应答消息0x9201子业务不存在车牌号和颜色需要跳过
+            if(config.Version== JT809Version.JTT2019)
+            {
+                var subBusinessType = reader.ReadVirtualUInt16();
+                if (subBusinessType != JT809SubBusinessType.车辆注册信息应答消息.ToUInt16Value())
+                {
+                    value.VehicleNo = reader.ReadString(21);
+                    value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+                }
+            }
+            else
+            {
+                value.VehicleNo = reader.ReadString(21);
+                value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
+            }
             value.SubBusinessType = reader.ReadUInt16();
             value.DataLength = reader.ReadUInt32();
             try
@@ -85,8 +116,21 @@ namespace JT809.Protocol.MessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9200 value, IJT809Config config)
         {
-            writer.WriteStringPadRight(value.VehicleNo, 21);
-            writer.WriteByte((byte)value.VehicleColor);
+            //1078qq群808432702:大兄弟提供的 
+            //由于车辆注册信息应答消息0x9201子业务不存在车牌号和颜色需要跳过
+            if (config.Version == JT809Version.JTT2019)
+            {
+                if (value.SubBusinessType != JT809SubBusinessType.车辆注册信息应答消息.ToUInt16Value())
+                {
+                    writer.WriteStringPadRight(value.VehicleNo, 21);
+                    writer.WriteByte((byte)value.VehicleColor);
+                }
+            }
+            else
+            {
+                writer.WriteStringPadRight(value.VehicleNo, 21);
+                writer.WriteByte((byte)value.VehicleColor);
+            }
             writer.WriteUInt16(value.SubBusinessType);
             try
             {

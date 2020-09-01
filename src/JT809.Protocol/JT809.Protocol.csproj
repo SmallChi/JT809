@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
     <license>https://github.com/SmallChi/JT809/blob/master/LICENSE</license>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>2.1.4-preview4</Version>
+    <Version>2.1.4-preview5</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
@@ -112,7 +112,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.6" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
 
