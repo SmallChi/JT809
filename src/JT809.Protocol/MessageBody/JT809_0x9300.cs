@@ -25,11 +25,6 @@ namespace JT809.Protocol.MessageBody
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
             JT809_0x9300 value = new JT809_0x9300();
-            var virtualHex = reader.ReadVirtualArray(21);
-            value.VehicleNo = reader.ReadString(21);
-            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车牌号", value.VehicleNo);
-            value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
-            writer.WriteString($"[{value.VehicleColor.ToByteValue()}]车牌颜色", value.VehicleColor.ToString());
             value.SubBusinessType = reader.ReadUInt16();
             writer.WriteString($"[{value.SubBusinessType.ReadNumber()}]子业务类型标识", ((JT809SubBusinessType)value.SubBusinessType).ToString());
             value.DataLength = reader.ReadUInt32();
@@ -58,8 +53,6 @@ namespace JT809.Protocol.MessageBody
         public JT809_0x9300 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x9300 value = new JT809_0x9300();
-            value.VehicleNo = reader.ReadString(21);
-            value.VehicleColor = (JT809VehicleColorType)reader.ReadByte();
             value.SubBusinessType = reader.ReadUInt16();
             value.DataLength = reader.ReadUInt32();
             try
@@ -86,8 +79,6 @@ namespace JT809.Protocol.MessageBody
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9300 value, IJT809Config config)
         {
-            writer.WriteStringPadRight(value.VehicleNo, 21);
-            writer.WriteByte((byte)value.VehicleColor);
             writer.WriteUInt16(value.SubBusinessType);
             try
             {
