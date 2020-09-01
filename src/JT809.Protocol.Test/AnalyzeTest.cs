@@ -209,7 +209,7 @@ namespace JT809.Protocol.Test
             hex = "00160000002100";
             json = JT809_2019_Serializer.Analyze<JT809_0x9200_0x9209>(hex.ToHexBytes());
 
-            hex = "02736D616C6C6368690000000000000D10000000057265706C79";
+            hex = "00000D10000000057265706C79";
             json = JT809Serializer.Analyze<JT809_0x9300_0x9301>(hex.ToHexBytes());
 
             hex = "00616664617366330000000000000004D200000014CFC2BCB6C6BDCCA8CBF9CAF4B5A5D2BBC6BDCCA8";
