@@ -88,7 +88,7 @@ namespace JT809.Protocol.SubMessageBody
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]发起报警平台唯一编码", value.SourcePlatformId);
             }
             value.WarnType = (JT809WarnType)reader.ReadUInt16();
-            writer.WriteString($"[{value.WarnType.ToByteValue()}]报警类型", value.WarnType.ToString());
+            writer.WriteString($"[{value.WarnType.ToUInt16Value()}]报警类型", value.WarnType.ToString());
             var hex = reader.ReadVirtualArray(8);
             value.WarnTime = reader.ReadUTCDateTime();
             writer.WriteString($"[{hex.ToArray().ToHexString()}]报警时间", value.WarnTime);

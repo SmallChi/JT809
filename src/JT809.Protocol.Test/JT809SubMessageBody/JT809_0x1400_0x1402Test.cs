@@ -80,5 +80,12 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(JT809VehicleColorType.蓝色, jT809_0x1400_0x1402.VehicleColor);
             Assert.Equal("12345678900", jT809_0x1400_0x1402.DestinationPlatformId);
         }
+        [Fact]
+        public void Test_2019_3()
+        {
+            //传说中花钱买的数据
+            var bytes = "5B0000007E00000002140001FEC19001020F0000000000000000005F616C491402000000564A43323032305054303838A001000000005F5F7B3E000000005F5F7B3E000000005F5F7B3EB2E2413933323238000000000000000000000000000200000000000000000000000000000000000008B3ACCAB1CDA3B3B5F77E5D".ToHexBytes();
+            var jT809Package = JT809_2019_Serializer.Analyze(bytes);        
+        }
     }
 }
