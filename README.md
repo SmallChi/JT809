@@ -8,9 +8,10 @@
 2. 掌握BCD编码、Hex编码；
 3. 掌握各种位移、异或；
 4. 掌握常用反射；
-5. 掌握快速ctrl+c、ctrl+v；
-6. 掌握Span\<T\>的基本用法
-7. 掌握以上装逼技能，就可以开始搬砖了。
+5. 掌握JObject的用法；
+6. 掌握快速ctrl+c、ctrl+v；
+7. 掌握Span\<T\>的基本用法；
+8. 掌握以上装逼技能，就可以开始搬砖了。
 
 ## JT809数据结构解析
 
@@ -300,23 +301,23 @@ public class JT809_2019_Config : JT809GlobalConfigBase
 
 ``` ini
 
-BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.836 (1909/November2018Update/19H2)
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.630 (2004/?/20H1)
 Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
-.NET Core SDK=3.1.300
-  [Host]     : .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
-  Job-WFPAJY : .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+.NET Core SDK=5.0.100
+  [Host]     : .NET Core 5.0.0 (CoreCLR 5.0.20.51904, CoreFX 5.0.20.51904), X64 RyuJIT
+  Job-VIMLSX : .NET Core 5.0.0 (CoreCLR 5.0.20.51904, CoreFX 5.0.20.51904), X64 RyuJIT
 
-Platform=AnyCpu  Server=False  Toolchain=.NET Core 3.1  
+Platform=AnyCpu  Server=False  Toolchain=.NET Core 5.0  
 
 ```
-|                                  Method |      N |         Mean |       Error |      StdDev |      Gen 0 | Gen 1 | Gen 2 |  Allocated |
-|---------------------------------------- |------- |-------------:|------------:|------------:|-----------:|------:|------:|-----------:|
-| **JT809_0x9400_0x9401_Package_Deserialize** |    **100** |     **494.2 μs** |     **5.09 μs** |     **4.76 μs** |    **16.6016** |     **-** |     **-** |  **103.13 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |    100 |     220.0 μs |     2.24 μs |     2.09 μs |    14.6484 |     - |     - |   90.63 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** |  **10000** |  **49,835.5 μs** |   **456.53 μs** |   **404.71 μs** |  **1636.3636** |     **-** |     **-** | **10312.5 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize |  10000 |  21,843.2 μs |   161.08 μs |   142.80 μs |  1468.7500 |     - |     - |  9062.5 KB |
-| **JT809_0x9400_0x9401_Package_Deserialize** | **100000** | **486,411.6 μs** | **5,499.89 μs** | **5,144.60 μs** | **16000.0000** |     **-** |     **-** |  **103125 KB** |
-|   JT809_0x9400_0x9401_Package_Serialize | 100000 | 218,839.3 μs | 1,665.04 μs | 1,476.02 μs | 14666.6667 |     - |     - |   90625 KB |
+|                                  Method |      N |         Mean |       Error |       StdDev |      Gen 0 | Gen 1 | Gen 2 |    Allocated |
+|---------------------------------------- |------- |-------------:|------------:|-------------:|-----------:|------:|------:|-------------:|
+| **JT809_0x9400_0x9401_Package_Deserialize** |    **100** |     **466.5 μs** |     **2.08 μs** |      **1.85 μs** |    **16.6016** |     **-** |     **-** |    **103.13 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |    100 |     202.8 μs |     3.98 μs |      4.09 μs |    14.6484 |     - |     - |     90.63 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** |  **10000** |  **46,739.4 μs** |   **230.36 μs** |    **179.85 μs** |  **1636.3636** |     **-** |     **-** |  **10312.53 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize |  10000 |  19,994.5 μs |   155.11 μs |    129.53 μs |  1468.7500 |     - |     - |   9062.51 KB |
+| **JT809_0x9400_0x9401_Package_Deserialize** | **100000** | **479,053.9 μs** | **9,378.79 μs** | **11,518.00 μs** | **16000.0000** |     **-** |     **-** | **103125.28 KB** |
+|   JT809_0x9400_0x9401_Package_Serialize | 100000 | 205,928.8 μs | 2,074.26 μs |  1,940.26 μs | 14000.0000 |     - |     - |  90625.28 KB |
 
 ## JT809协议消息对照表
 

@@ -127,19 +127,6 @@
         <member name="T:JT809.Protocol.Extensions.JT809BinaryExtensions">
             <summary>
             
-            ref:"www.codeproject.com/tips/447938/high-performance-csharp-byte-array-to-hex-string-t"
-            </summary>
-        </member>
-        <member name="F:JT809.Protocol.Extensions.JT809BinaryExtensions.fromHexTable">
-            <summary>
-             values for '\0' to 'f' where 255 indicates invalid input character
-            starting from '\0' and not from '0' costs 48 bytes
-            but results 0 subtructions and less if conditions
-            </summary>
-        </member>
-        <member name="F:JT809.Protocol.Extensions.JT809BinaryExtensions.fromHexTable16">
-            <summary>
-             same as above but valid values are multiplied by 16
             </summary>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809BinaryExtensions.ToHexBytes(System.String)">
@@ -148,14 +135,6 @@
             </summary>
             <param name="hexString"></param>
             <param name="separator"></param>
-            <returns></returns>
-        </member>
-        <member name="M:JT809.Protocol.Extensions.JT809BinaryExtensions.ToHexString(System.Byte[],System.Boolean)">
-            <summary>
-            hexIndicator: use prefix ("0x") or not
-            </summary>
-            <param name="source"></param>
-            <param name="hexIndicator"></param>
             <returns></returns>
         </member>
         <member name="T:JT809.Protocol.Extensions.JT809MessagePackFormatterResolverExtensions">
