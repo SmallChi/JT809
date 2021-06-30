@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\Info.props" />
+  <PropertyGroup>
+    <PackageId>JT809.Protocol.Extensions.JT1078</PackageId>
+    <Product>JT809.Protocol.Extensions.JT1078</Product>
+    <Description>基于JT809协议、GB809协议扩展的视频消息协议</Description>
+    <PackageReleaseNotes>基于JT809协议、GB809协议扩展的视频消息协议</PackageReleaseNotes>
+    <DocumentationFile>JT809.Protocol.Extensions.JT1078.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\JT809.Protocol\JT809.Protocol.csproj" />
+  </ItemGroup>
+
+</Project>

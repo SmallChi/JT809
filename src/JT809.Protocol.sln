@@ -9,6 +9,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JT809.Protocol.Test", "JT80
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JT809.Protocol.Benchmark", "JT809.Protocol.Benchmark\JT809.Protocol.Benchmark.csproj", "{47CE50B3-A0D6-4F5F-907B-01BD7B8AB87F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{DDC00254-B8A4-453B-8F50-79961F2EB30B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JT809.Protocol.Extensions.JT1078", "JT809.Protocol.Extensions\JT809.Protocol.Extensions.JT1078\JT809.Protocol.Extensions.JT1078.csproj", "{D20DFA7E-F99B-4C8F-81EF-71E7F874157A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JT809.Protocol.Extensions.JT1078.Test", "JT809.Protocol.Extensions\JT809.Protocol.Extensions.JT1078.Test\JT809.Protocol.Extensions.JT1078.Test.csproj", "{212A6F12-6410-4D76-9DFA-A7BF7DE5EFDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63D43A33-9CD2-4487-803E-51CA61BB7A5A}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\dotnetcore.yml = ..\.github\workflows\dotnetcore.yml
+		Info.props = Info.props
+		..\LICENSE = ..\LICENSE
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +40,21 @@ Global
 		{47CE50B3-A0D6-4F5F-907B-01BD7B8AB87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47CE50B3-A0D6-4F5F-907B-01BD7B8AB87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47CE50B3-A0D6-4F5F-907B-01BD7B8AB87F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20DFA7E-F99B-4C8F-81EF-71E7F874157A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20DFA7E-F99B-4C8F-81EF-71E7F874157A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20DFA7E-F99B-4C8F-81EF-71E7F874157A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20DFA7E-F99B-4C8F-81EF-71E7F874157A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{212A6F12-6410-4D76-9DFA-A7BF7DE5EFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212A6F12-6410-4D76-9DFA-A7BF7DE5EFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212A6F12-6410-4D76-9DFA-A7BF7DE5EFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212A6F12-6410-4D76-9DFA-A7BF7DE5EFDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D20DFA7E-F99B-4C8F-81EF-71E7F874157A} = {DDC00254-B8A4-453B-8F50-79961F2EB30B}
+		{212A6F12-6410-4D76-9DFA-A7BF7DE5EFDF} = {DDC00254-B8A4-453B-8F50-79961F2EB30B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6159526D-F9A2-4984-A941-B65CA7B0E2EE}

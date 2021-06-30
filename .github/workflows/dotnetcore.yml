@@ -21,3 +21,7 @@ jobs:
       run: dotnet build ./src/JT809.Protocol.Test/JT809.Protocol.Test.csproj
     - name: dotnet test
       run: dotnet test ./src/JT809.Protocol.Test/JT809.Protocol.Test.csproj
+    - name: dotnet JT809.Protocol.Extensions.JT1078.Test build
+      run: dotnet build ./src/JT809.Protocol.Extensions/JT809.Protocol.Extensions.JT1078.Test/JT809.Protocol.Extensions.JT1078.Test.csproj
+    - name: dotnet JT809.Protocol.Extensions.JT1078.Test test
+      run: dotnet test ./src/JT809.Protocol.Extensions/JT809.Protocol.Extensions.JT1078.Test/JT809.Protocol.Extensions.JT1078.Test.csproj
