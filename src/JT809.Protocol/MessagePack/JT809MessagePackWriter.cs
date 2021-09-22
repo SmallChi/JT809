@@ -229,18 +229,7 @@ namespace JT809.Protocol.MessagePack
             span[4] = (byte)(value.Millisecond);
             writer.Advance(5);
         }
-        public void WriteUTCDateTime(DateTime value)
-        {
-            ulong totalSecends = (ulong)(value.AddHours(-8) - JT809Constants.UTCBaseTime).TotalSeconds;
-            var span = writer.Free;
-            //高位在前
-            for (int i = 7; i >= 0; i--)
-            {
-                span[i] = (byte)(totalSecends & 0xFF);  //取低8位
-                totalSecends >>= 8;
-            }
-            writer.Advance(8);
-        }
+        public void WriteUTCDateTime(DateTime value)=>WriteUInt64((ulong)(value.AddHours(-8) - JT809Constants.UTCBaseTime).TotalSeconds);
         /// <summary>
         /// YYYYMMDD
         /// </summary>

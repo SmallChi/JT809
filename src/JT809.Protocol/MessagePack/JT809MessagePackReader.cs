@@ -391,14 +391,7 @@ namespace JT809.Protocol.MessagePack
             DateTime d;
             try
             {
-                ulong result = 0;
-                var readOnlySpan = GetReadOnlySpan(8);
-                for (int i = 0; i < 8; i++)
-                {
-                    ulong currentData = (ulong)readOnlySpan[i] << (8 * (8 - i - 1));
-                    result += currentData;
-                }
-                d = JT809Constants.UTCBaseTime.AddSeconds(result).AddHours(8);
+                d = JT809Constants.UTCBaseTime.AddSeconds(ReadUInt64()).AddHours(8);
             }
             catch (Exception)
             {
