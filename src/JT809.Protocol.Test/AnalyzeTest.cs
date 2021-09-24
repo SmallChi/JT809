@@ -164,10 +164,10 @@ namespace JT809.Protocol.Test
             hex = "00630000000B00";
             json = JT809_2019_Serializer.Analyze<JT809_0x1500_0x1503>(hex.ToHexBytes());
 
-            hex = "0700000006313233343536";
+            hex = "0000001B557AC40014002003251026012003251026010000123400123456A9";
             json = JT809Serializer.Analyze<JT809_0x1500_0x1504>(hex.ToHexBytes());
 
-            hex = "000C000000010700000006313233343536";
+            hex = "000C00000001070000001B557AC40014002003251026012003251026010000123400123456A9";
             json = JT809_2019_Serializer.Analyze<JT809_0x1500_0x1504>(hex.ToHexBytes());
 
             hex = "01";
