@@ -2912,6 +2912,7 @@
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1504.TraveldataInfo">
             <summary>
             车辆行驶记录信息
+            <para>19056应答帧元数据</para>
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1505">
