@@ -40,7 +40,7 @@ namespace JT808.Protocol.Internal
                     version = (JT809Version)type.GetProperty(nameof(JT809Bodies.Version)).GetValue(instance);
                     replaceInternalMsgId = (bool)type.GetProperty(nameof(JT809Bodies.ReplaceInternalMsgId)).GetValue(instance);
                 }
-                catch (Exception ex)
+                catch
                 {
                     continue;
                 }
@@ -78,7 +78,7 @@ namespace JT808.Protocol.Internal
                         {
                             throw new ArgumentException($"{type.FullName} {msgId} An element with the same key already exists.");
                         }
-                    }   
+                    }
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace JT808.Protocol.Internal
 
         public bool TryGetValue(ushort msgId, JT809Version version, out object instance)
         {
-            if(version== JT809Version.JTT2019)
+            if (version == JT809Version.JTT2019)
             {
                 return Map_2019.TryGetValue(msgId, out instance);
             }

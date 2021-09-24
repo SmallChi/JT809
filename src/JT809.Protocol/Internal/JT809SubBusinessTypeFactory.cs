@@ -33,7 +33,7 @@ namespace JT808.Protocol.Internal
                     msgId = (ushort)type.GetProperty(nameof(JT809SubBodies.SubMsgId)).GetValue(instance);
                     replaceInternalSubMsgId = (bool)type.GetProperty(nameof(JT809SubBodies.ReplaceInternalSubMsgId)).GetValue(instance);
                 }
-                catch (Exception ex)
+                catch
                 {
                     continue;
                 }

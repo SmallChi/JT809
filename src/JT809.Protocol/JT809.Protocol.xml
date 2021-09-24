@@ -89,21 +89,21 @@
             <summary>
             获取DescriptionAttribute特性枚举及描述
             </summary>
-            <param name="type"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809EnumExtensions.GetDisplayName(System.Enum)">
             <summary>
             获取DisplayNameAttribute特性枚举值的描述
             </summary>
-            <param name="obj">枚举值</param>
+            <param name="value">枚举值</param>
             <returns></returns>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809EnumExtensions.GetDisplayNameAttributeDictionary(System.Enum)">
             <summary>
             获取DisplayNameAttribute特性枚举及描述
             </summary>
-            <param name="type"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:JT809.Protocol.Extensions.JT809EnumExtensions.GetAttribute``1(System.Enum)">
@@ -134,7 +134,6 @@
             16进制字符串转16进制数组
             </summary>
             <param name="hexString"></param>
-            <param name="separator"></param>
             <returns></returns>
         </member>
         <member name="T:JT809.Protocol.Extensions.JT809MessagePackFormatterResolverExtensions">

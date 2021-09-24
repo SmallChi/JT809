@@ -49,7 +49,6 @@ namespace JT809.Protocol.Extensions
         /// 16进制字符串转16进制数组
         /// </summary>
         /// <param name="hexString"></param>
-        /// <param name="separator"></param>
         /// <returns></returns>
         public static byte[] ToHexBytes(this string hexString)
         {

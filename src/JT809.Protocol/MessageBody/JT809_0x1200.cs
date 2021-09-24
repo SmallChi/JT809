@@ -17,7 +17,7 @@ namespace JT809.Protocol.MessageBody
     /// <para>业务数据类型标识:UP_EXG_MSG</para>
     /// <para>描述:下级平台向上级平台发送车辆动态信息交换业务数据包</para>
     /// </summary>
-    public class JT809_0x1200: JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x1200>, IJT809Analyze
+    public class JT809_0x1200 : JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_0x1200>, IJT809Analyze
     {
         public override ushort MsgId => JT809BusinessType.主链路车辆动态信息交换业务.ToUInt16Value();
         public override string Description => "主链路车辆动态信息交换业务";
@@ -128,7 +128,7 @@ namespace JT809.Protocol.MessageBody
                     writer.WriteInt32Return(writer.GetCurrentPosition() - subContentLengthPosition - 4, subContentLengthPosition);
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 throw new JT809Exception(JT809ErrorCode.SubBodiesParseError, $"SubBusinessType>{value.SubBusinessType.ToString()}");
             }

@@ -34,15 +34,15 @@ namespace JT809.Protocol.MessagePack
         /// 解码（转义还原）,计算校验和
         /// </summary>
         /// <param name="buffer"></param>
-        public JT809MessagePackReader(ReadOnlySpan<byte> srcBuffer)
+        public JT809MessagePackReader(ReadOnlySpan<byte> buffer)
         {
-            SrcBuffer = srcBuffer;
+            SrcBuffer = buffer;
             ReaderCount = 0;
             _realCheckCRCCode = 0x00;
             _calculateCheckCRCCode = 0xFFFF;
             _checkCRCCodeVali = false;
             _decoded = false;
-            Reader = srcBuffer;
+            Reader = buffer;
         }
         /// <summary>
         /// 在解码的时候把校验和也计算出来，避免在循环一次进行校验
@@ -319,18 +319,18 @@ namespace JT809.Protocol.MessagePack
         /// yyMMddHHmmss
         /// </summary>
         /// <param name="fromBase">>D2： 10  X2：16</param>
-        public DateTime ReadDateTime6(string format = "X2")
+        public DateTime ReadDateTime6(string fromBase = "X2")
         {
             DateTime d;
             try
             {
                 var readOnlySpan = GetReadOnlySpan(6);
-                int year = Convert.ToInt32(readOnlySpan[0].ToString(format)) + JT809Constants.DateLimitYear;
-                int month = Convert.ToInt32(readOnlySpan[1].ToString(format));
-                int day = Convert.ToInt32(readOnlySpan[2].ToString(format));
-                int hour = Convert.ToInt32(readOnlySpan[3].ToString(format));
-                int minute = Convert.ToInt32(readOnlySpan[4].ToString(format));
-                int second = Convert.ToInt32(readOnlySpan[5].ToString(format));
+                int year = Convert.ToInt32(readOnlySpan[0].ToString(fromBase)) + JT809Constants.DateLimitYear;
+                int month = Convert.ToInt32(readOnlySpan[1].ToString(fromBase));
+                int day = Convert.ToInt32(readOnlySpan[2].ToString(fromBase));
+                int hour = Convert.ToInt32(readOnlySpan[3].ToString(fromBase));
+                int minute = Convert.ToInt32(readOnlySpan[4].ToString(fromBase));
+                int second = Convert.ToInt32(readOnlySpan[5].ToString(fromBase));
                 d = new DateTime(year, month, day, hour, minute, second);
             }
             catch (Exception)

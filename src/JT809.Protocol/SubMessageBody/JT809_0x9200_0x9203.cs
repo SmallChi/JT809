@@ -86,7 +86,7 @@ namespace JT809.Protocol.SubMessageBody
                 {
                     item.Serialize(ref writer, item, config);
                 }
-                catch (Exception ex)
+                catch
                 {
 
                 }

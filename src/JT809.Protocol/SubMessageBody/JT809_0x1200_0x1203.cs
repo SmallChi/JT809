@@ -48,7 +48,7 @@ namespace JT809.Protocol.SubMessageBody
                     try
                     {
                         writer.WriteStartObject();
-                        config.GetMessagePackFormatter<JT809_0x1200_0x1202>().Analyze(ref reader,writer, config);
+                        config.GetMessagePackFormatter<JT809_0x1200_0x1202>().Analyze(ref reader, writer, config);
                         writer.WriteEndObject();
                     }
                     catch (Exception)
@@ -92,7 +92,7 @@ namespace JT809.Protocol.SubMessageBody
                 {
                     item.Serialize(ref writer, item, config);
                 }
-                catch (Exception ex)
+                catch
                 {
 
                 }
