@@ -161,15 +161,17 @@ namespace JT809.Protocol.Test.Simples
             var jt808_0x0200Hex = JT808_2019_Serializer.Serialize(jT808UploadLocationRequest, JT808.Protocol.Enums.JT808Version.JTT2019);
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202.GNSSData = new Metadata.JT809VehiclePositionProperties_2019();
-            jT809_0X1200_0X1202.GNSSData.Encrypt = JT809_VehiclePositionEncrypt.已加密;
-            jT809_0X1200_0X1202.GNSSData.GnssData = jt808_0x0200Hex;
-            jT809_0X1200_0X1202.GNSSData.PlatformId1 = "11111111111";
-            jT809_0X1200_0X1202.GNSSData.Alarm1 = 1;
-            jT809_0X1200_0X1202.GNSSData.PlatformId2 = "22222222222";
-            jT809_0X1200_0X1202.GNSSData.Alarm2 = 2;
-            jT809_0X1200_0X1202.GNSSData.PlatformId3 = "33333333333";
-            jT809_0X1200_0X1202.GNSSData.Alarm3 = 3;
+            jT809_0X1200_0X1202.VehiclePosition = new Metadata.VehiclePositionPropertieOf2019
+            {
+                Encrypt = JT809_VehiclePositionEncrypt.已加密,
+                GnssData = jt808_0x0200Hex,
+                PlatformId1 = "11111111111",
+                Alarm1 = 1,
+                PlatformId2 = "22222222222",
+                Alarm2 = 2,
+                PlatformId3 = "33333333333",
+                Alarm3 = 3,
+            };
             var hex = JT809_2019_Serializer.Serialize(jT809_0X1200_0X1202).ToHexString();
             Assert.Equal("0100000026000000010000000200BA7F0E07E4F11C0028003C000018071510101001040000006402020037313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003", hex);
 
@@ -180,15 +182,16 @@ namespace JT809.Protocol.Test.Simples
         {
             var bytes = "0100000026000000010000000200BA7F0E07E4F11C0028003C000018071510101001040000006402020037313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1202>(bytes);
-            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, jT809_0X1200_0X1202.GNSSData.Encrypt);
-            Assert.Equal("11111111111", jT809_0X1200_0X1202.GNSSData.PlatformId1);
-            Assert.Equal(1u, jT809_0X1200_0X1202.GNSSData.Alarm1);
-            Assert.Equal("22222222222", jT809_0X1200_0X1202.GNSSData.PlatformId2);
-            Assert.Equal(2u, jT809_0X1200_0X1202.GNSSData.Alarm2);
-            Assert.Equal("33333333333", jT809_0X1200_0X1202.GNSSData.PlatformId3);
-            Assert.Equal(3u, jT809_0X1200_0X1202.GNSSData.Alarm3);
+            var GNSSData = jT809_0X1200_0X1202.VehiclePosition as Metadata.VehiclePositionPropertieOf2019;
+            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, GNSSData.Encrypt);
+            Assert.Equal("11111111111", GNSSData.PlatformId1);
+            Assert.Equal(1u, GNSSData.Alarm1);
+            Assert.Equal("22222222222", GNSSData.PlatformId2);
+            Assert.Equal(2u, GNSSData.Alarm2);
+            Assert.Equal("33333333333", GNSSData.PlatformId3);
+            Assert.Equal(3u, GNSSData.Alarm3);
 
-            var jt808_0x0200Hex = jT809_0X1200_0X1202.GNSSData.GnssData;
+            var jt808_0x0200Hex = GNSSData.GnssData;
             var jt808_0x0200 = JT808_2019_Serializer.Deserialize<JT808_0x0200>(jt808_0x0200Hex, JT808.Protocol.Enums.JT808Version.JTT2019);
             Assert.Equal((uint)1, jt808_0x0200.AlarmFlag);
             Assert.Equal(DateTime.Parse("2018-07-15 10:10:10"), jt808_0x0200.GPSTime);

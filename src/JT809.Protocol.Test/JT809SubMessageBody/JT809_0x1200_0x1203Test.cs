@@ -9,6 +9,7 @@ using JT809.Protocol.Exceptions;
 using JT809.Protocol.SubMessageBody;
 using JT809.Protocol.Enums;
 using JT809.Protocol.Internal;
+using JT809.Protocol.Metadata;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
@@ -23,58 +24,64 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_1 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202_1.VehiclePosition = new Metadata.JT809VehiclePositionProperties();
-            jT809_0X1200_0X1202_1.VehiclePosition.Day = 19;
-            jT809_0X1200_0X1202_1.VehiclePosition.Month = 7;
-            jT809_0X1200_0X1202_1.VehiclePosition.Year = 2012;
-            jT809_0X1200_0X1202_1.VehiclePosition.Hour = 15;
-            jT809_0X1200_0X1202_1.VehiclePosition.Minute = 15;
-            jT809_0X1200_0X1202_1.VehiclePosition.Second = 15;
-            jT809_0X1200_0X1202_1.VehiclePosition.Lon = 133123456;
-            jT809_0X1200_0X1202_1.VehiclePosition.Lat = 24123456;
-            jT809_0X1200_0X1202_1.VehiclePosition.Vec1 = 50;
-            jT809_0X1200_0X1202_1.VehiclePosition.Vec2 = 51;
-            jT809_0X1200_0X1202_1.VehiclePosition.Vec3 = 150;
-            jT809_0X1200_0X1202_1.VehiclePosition.Direction = 45;
-            jT809_0X1200_0X1202_1.VehiclePosition.Altitude = 45;
-            jT809_0X1200_0X1202_1.VehiclePosition.State = 3;
-            jT809_0X1200_0X1202_1.VehiclePosition.Alarm = 257;
+            jT809_0X1200_0X1202_1.VehiclePosition = new VehiclePositionPropertieOf2011
+            {
+                Day = 19,
+                Month = 7,
+                Year = 2012,
+                Hour = 15,
+                Minute = 15,
+                Second = 15,
+                Lon = 133123456,
+                Lat = 24123456,
+                Vec1 = 50,
+                Vec2 = 51,
+                Vec3 = 150,
+                Direction = 45,
+                Altitude = 45,
+                State = 3,
+                Alarm = 257,
+            };
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_2 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202_2.VehiclePosition = new Metadata.JT809VehiclePositionProperties();
-            jT809_0X1200_0X1202_2.VehiclePosition.Day = 19;
-            jT809_0X1200_0X1202_2.VehiclePosition.Month = 7;
-            jT809_0X1200_0X1202_2.VehiclePosition.Year = 2012;
-            jT809_0X1200_0X1202_2.VehiclePosition.Hour = 16;
-            jT809_0X1200_0X1202_2.VehiclePosition.Minute = 16;
-            jT809_0X1200_0X1202_2.VehiclePosition.Second = 16;
-            jT809_0X1200_0X1202_2.VehiclePosition.Lon = 133123456;
-            jT809_0X1200_0X1202_2.VehiclePosition.Lat = 24123456;
-            jT809_0X1200_0X1202_2.VehiclePosition.Vec1 = 50;
-            jT809_0X1200_0X1202_2.VehiclePosition.Vec2 = 51;
-            jT809_0X1200_0X1202_2.VehiclePosition.Vec3 = 150;
-            jT809_0X1200_0X1202_2.VehiclePosition.Direction = 45;
-            jT809_0X1200_0X1202_2.VehiclePosition.Altitude = 45;
-            jT809_0X1200_0X1202_2.VehiclePosition.State = 3;
-            jT809_0X1200_0X1202_2.VehiclePosition.Alarm = 257;
+            jT809_0X1200_0X1202_2.VehiclePosition = new VehiclePositionPropertieOf2011
+            {
+                Day = 19,
+                Month = 7,
+                Year = 2012,
+                Hour = 16,
+                Minute = 16,
+                Second = 16,
+                Lon = 133123456,
+                Lat = 24123456,
+                Vec1 = 50,
+                Vec2 = 51,
+                Vec3 = 150,
+                Direction = 45,
+                Altitude = 45,
+                State = 3,
+                Alarm = 257,
+            };
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_3 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202_3.VehiclePosition = new Metadata.JT809VehiclePositionProperties();
-            jT809_0X1200_0X1202_3.VehiclePosition.Day = 19;
-            jT809_0X1200_0X1202_3.VehiclePosition.Month = 7;
-            jT809_0X1200_0X1202_3.VehiclePosition.Year = 2012;
-            jT809_0X1200_0X1202_3.VehiclePosition.Hour = 17;
-            jT809_0X1200_0X1202_3.VehiclePosition.Minute = 17;
-            jT809_0X1200_0X1202_3.VehiclePosition.Second = 17;
-            jT809_0X1200_0X1202_3.VehiclePosition.Lon = 133123456;
-            jT809_0X1200_0X1202_3.VehiclePosition.Lat = 24123456;
-            jT809_0X1200_0X1202_3.VehiclePosition.Vec1 = 50;
-            jT809_0X1200_0X1202_3.VehiclePosition.Vec2 = 51;
-            jT809_0X1200_0X1202_3.VehiclePosition.Vec3 = 150;
-            jT809_0X1200_0X1202_3.VehiclePosition.Direction = 45;
-            jT809_0X1200_0X1202_3.VehiclePosition.Altitude = 45;
-            jT809_0X1200_0X1202_3.VehiclePosition.State = 3;
-            jT809_0X1200_0X1202_3.VehiclePosition.Alarm = 257;
+            jT809_0X1200_0X1202_3.VehiclePosition = new VehiclePositionPropertieOf2011
+            {
+                Day = 19,
+                Month = 7,
+                Year = 2012,
+                Hour = 17,
+                Minute = 17,
+                Second = 17,
+                Lon = 133123456,
+                Lat = 24123456,
+                Vec1 = 50,
+                Vec2 = 51,
+                Vec3 = 150,
+                Direction = 45,
+                Altitude = 45,
+                State = 3,
+                Alarm = 257,
+            };
 
 
             jT809_0X1200_0X1203.GNSS.Add(jT809_0X1200_0X1202_1);
@@ -94,79 +101,86 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
 
             Assert.Equal(3, jT809_0X1200_0X1203.GNSSCount);
 
+            var vehiclePosition1 = jT809_0X1200_0X1203.GNSS[0].VehiclePosition as VehiclePositionPropertieOf2011;
+            var vehiclePosition2 = jT809_0X1200_0X1203.GNSS[1].VehiclePosition as VehiclePositionPropertieOf2011;
+            var vehiclePosition3 = jT809_0X1200_0X1203.GNSS[2].VehiclePosition as VehiclePositionPropertieOf2011;
+            Assert.Equal(19, vehiclePosition1.Day);
+            Assert.Equal(7, vehiclePosition1.Month);
+            Assert.Equal(2012, vehiclePosition1.Year);
+            Assert.Equal(15, vehiclePosition1.Hour);
+            Assert.Equal(15, vehiclePosition1.Minute);
+            Assert.Equal(15, vehiclePosition1.Second);
+            Assert.Equal((uint)133123456, vehiclePosition1.Lon);
+            Assert.Equal((uint)24123456, vehiclePosition1.Lat);
+            Assert.Equal(50, vehiclePosition1.Vec1);
+            Assert.Equal(51, vehiclePosition1.Vec2);
+            Assert.Equal((ushort)45, vehiclePosition1.Direction);
+            Assert.Equal((ushort)45, vehiclePosition1.Altitude);
+            Assert.Equal((uint)3, vehiclePosition1.State);
+            Assert.Equal((uint)257, vehiclePosition1.Alarm);
 
-            Assert.Equal(19, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Day);
-            Assert.Equal(7, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Month);
-            Assert.Equal(2012, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Year);
-            Assert.Equal(15, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Hour);
-            Assert.Equal(15, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Minute);
-            Assert.Equal(15, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Second);
-            Assert.Equal((uint)133123456, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Lon);
-            Assert.Equal((uint)24123456, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Lat);
-            Assert.Equal(50, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Vec1);
-            Assert.Equal(51, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Vec2);
-            Assert.Equal((ushort)45, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Direction);
-            Assert.Equal((ushort)45, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Altitude);
-            Assert.Equal((uint)3, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.State);
-            Assert.Equal((uint)257, jT809_0X1200_0X1203.GNSS[0].VehiclePosition.Alarm);
+            Assert.Equal(19, vehiclePosition2.Day);
+            Assert.Equal(7, vehiclePosition2.Month);
+            Assert.Equal(2012, vehiclePosition2.Year);
+            Assert.Equal(16, vehiclePosition2.Hour);
+            Assert.Equal(16, vehiclePosition2.Minute);
+            Assert.Equal(16, vehiclePosition2.Second);
+            Assert.Equal((uint)133123456, vehiclePosition2.Lon);
+            Assert.Equal((uint)24123456, vehiclePosition2.Lat);
+            Assert.Equal(50, vehiclePosition2.Vec1);
+            Assert.Equal(51, vehiclePosition2.Vec2);
+            Assert.Equal((ushort)45, vehiclePosition2.Direction);
+            Assert.Equal((ushort)45, vehiclePosition2.Altitude);
+            Assert.Equal((uint)3, vehiclePosition2.State);
+            Assert.Equal((uint)257, vehiclePosition2.Alarm);
 
-            Assert.Equal(19, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Day);
-            Assert.Equal(7, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Month);
-            Assert.Equal(2012, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Year);
-            Assert.Equal(16, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Hour);
-            Assert.Equal(16, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Minute);
-            Assert.Equal(16, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Second);
-            Assert.Equal((uint)133123456, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Lon);
-            Assert.Equal((uint)24123456, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Lat);
-            Assert.Equal(50, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Vec1);
-            Assert.Equal(51, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Vec2);
-            Assert.Equal((ushort)45, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Direction);
-            Assert.Equal((ushort)45, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Altitude);
-            Assert.Equal((uint)3, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.State);
-            Assert.Equal((uint)257, jT809_0X1200_0X1203.GNSS[1].VehiclePosition.Alarm);
-
-            Assert.Equal(19, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Day);
-            Assert.Equal(7, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Month);
-            Assert.Equal(2012, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Year);
-            Assert.Equal(17, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Hour);
-            Assert.Equal(17, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Minute);
-            Assert.Equal(17, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Second);
-            Assert.Equal((uint)133123456, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Lon);
-            Assert.Equal((uint)24123456, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Lat);
-            Assert.Equal(50, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Vec1);
-            Assert.Equal(51, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Vec2);
-            Assert.Equal((ushort)45, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Direction);
-            Assert.Equal((ushort)45, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Altitude);
-            Assert.Equal((uint)3, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.State);
-            Assert.Equal((uint)257, jT809_0X1200_0X1203.GNSS[2].VehiclePosition.Alarm);
+            Assert.Equal(19, vehiclePosition3.Day);
+            Assert.Equal(7, vehiclePosition3.Month);
+            Assert.Equal(2012, vehiclePosition3.Year);
+            Assert.Equal(17, vehiclePosition3.Hour);
+            Assert.Equal(17, vehiclePosition3.Minute);
+            Assert.Equal(17, vehiclePosition3.Second);
+            Assert.Equal((uint)133123456, vehiclePosition3.Lon);
+            Assert.Equal((uint)24123456, vehiclePosition3.Lat);
+            Assert.Equal(50, vehiclePosition3.Vec1);
+            Assert.Equal(51, vehiclePosition3.Vec2);
+            Assert.Equal((ushort)45, vehiclePosition3.Direction);
+            Assert.Equal((ushort)45, vehiclePosition3.Altitude);
+            Assert.Equal((uint)3, vehiclePosition3.State);
+            Assert.Equal((uint)257, vehiclePosition3.Alarm);
         }
 
         [Fact]
         public void Test_2019_1()
         {
             JT809_0x1200_0x1203 jT809_0X1200_0X1203 = new JT809_0x1200_0x1203();
-            jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
-            JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202.GNSSData = new Metadata.JT809VehiclePositionProperties_2019();
-            jT809_0X1200_0X1202.GNSSData.Encrypt = JT809_VehiclePositionEncrypt.已加密;
-            //jT809_0X1200_0X1202.GNSSData.GnssData = new byte[20];
-            jT809_0X1200_0X1202.GNSSData.PlatformId1 = "11111111111";
-            jT809_0X1200_0X1202.GNSSData.Alarm1 = 1;
-            jT809_0X1200_0X1202.GNSSData.PlatformId2 = "22222222222";
-            jT809_0X1200_0X1202.GNSSData.Alarm2 = 2;
-            jT809_0X1200_0X1202.GNSSData.PlatformId3 = "33333333333";
-            jT809_0X1200_0X1202.GNSSData.Alarm3 = 3;
-            jT809_0X1200_0X1203.GNSS.Add(jT809_0X1200_0X1202);
-            JT809_0x1200_0x1202 jT809_0X1200_0X1202_1 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202_1.GNSSData = new Metadata.JT809VehiclePositionProperties_2019();
-            jT809_0X1200_0X1202_1.GNSSData.Encrypt = JT809_VehiclePositionEncrypt.已加密;
-            jT809_0X1200_0X1202_1.GNSSData.PlatformId1 = "11111111111";
-            jT809_0X1200_0X1202_1.GNSSData.Alarm1 = 1;
-            jT809_0X1200_0X1202_1.GNSSData.PlatformId2 = "22222222222";
-            jT809_0X1200_0X1202_1.GNSSData.Alarm2 = 2;
-            jT809_0X1200_0X1202_1.GNSSData.PlatformId3 = "33333333333";
-            jT809_0X1200_0X1202_1.GNSSData.Alarm3 = 3;
-            jT809_0X1200_0X1203.GNSS.Add(jT809_0X1200_0X1202_1);
+            jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>(){
+                new JT809_0x1200_0x1202
+                {
+                    VehiclePosition = new VehiclePositionPropertieOf2019
+                    {
+                        Encrypt = JT809_VehiclePositionEncrypt.已加密,
+                        PlatformId1 = "11111111111",
+                        Alarm1 = 1,
+                        PlatformId2 = "22222222222",
+                        Alarm2 = 2,
+                        PlatformId3 = "33333333333",
+                        Alarm3 = 3,
+                    }
+                },
+                new JT809_0x1200_0x1202{
+                    VehiclePosition=new VehiclePositionPropertieOf2019{
+                        Encrypt = JT809_VehiclePositionEncrypt.已加密,
+                        PlatformId1 = "11111111111",
+                        Alarm1 = 1,
+                        PlatformId2 = "22222222222",
+                        Alarm2 = 2,
+                        PlatformId3 = "33333333333",
+                        Alarm3 = 3,
+                    }
+                }
+            };
+
             var hex = JT809_2019_Serializer.Serialize(jT809_0X1200_0X1203).ToHexString();
             Assert.Equal("0201000000003131313131313131313131000000013232323232323232323232000000023333333333333333333333000000030100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003", hex);
 
@@ -177,21 +191,24 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             var bytes = "0201000000003131313131313131313131000000013232323232323232323232000000023333333333333333333333000000030100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
             JT809_0x1200_0x1203 jT809_0X1200_0X1203 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1203>(bytes);
-            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, jT809_0X1200_0X1203.GNSS[0].GNSSData.Encrypt);
-            Assert.Equal("11111111111", jT809_0X1200_0X1203.GNSS[0].GNSSData.PlatformId1);
-            Assert.Equal(1u, jT809_0X1200_0X1203.GNSS[0].GNSSData.Alarm1);
-            Assert.Equal("22222222222", jT809_0X1200_0X1203.GNSS[0].GNSSData.PlatformId2);
-            Assert.Equal(2u, jT809_0X1200_0X1203.GNSS[0].GNSSData.Alarm2);
-            Assert.Equal("33333333333", jT809_0X1200_0X1203.GNSS[0].GNSSData.PlatformId3);
-            Assert.Equal(3u, jT809_0X1200_0X1203.GNSS[0].GNSSData.Alarm3);
 
-            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, jT809_0X1200_0X1203.GNSS[1].GNSSData.Encrypt);
-            Assert.Equal("11111111111", jT809_0X1200_0X1203.GNSS[1].GNSSData.PlatformId1);
-            Assert.Equal(1u, jT809_0X1200_0X1203.GNSS[1].GNSSData.Alarm1);
-            Assert.Equal("22222222222", jT809_0X1200_0X1203.GNSS[1].GNSSData.PlatformId2);
-            Assert.Equal(2u, jT809_0X1200_0X1203.GNSS[1].GNSSData.Alarm2);
-            Assert.Equal("33333333333", jT809_0X1200_0X1203.GNSS[1].GNSSData.PlatformId3);
-            Assert.Equal(3u, jT809_0X1200_0X1203.GNSS[1].GNSSData.Alarm3);
+            var vehiclePosition1 = jT809_0X1200_0X1203.GNSS[0].VehiclePosition as VehiclePositionPropertieOf2019;
+            var vehiclePosition2 = jT809_0X1200_0X1203.GNSS[1].VehiclePosition as VehiclePositionPropertieOf2019;
+            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, vehiclePosition1.Encrypt);
+            Assert.Equal("11111111111", vehiclePosition1.PlatformId1);
+            Assert.Equal(1u, vehiclePosition1.Alarm1);
+            Assert.Equal("22222222222", vehiclePosition1.PlatformId2);
+            Assert.Equal(2u, vehiclePosition1.Alarm2);
+            Assert.Equal("33333333333", vehiclePosition1.PlatformId3);
+            Assert.Equal(3u, vehiclePosition1.Alarm3);
+
+            Assert.Equal(JT809_VehiclePositionEncrypt.已加密, vehiclePosition2.Encrypt);
+            Assert.Equal("11111111111", vehiclePosition2.PlatformId1);
+            Assert.Equal(1u, vehiclePosition2.Alarm1);
+            Assert.Equal("22222222222", vehiclePosition2.PlatformId2);
+            Assert.Equal(2u, vehiclePosition2.Alarm2);
+            Assert.Equal("33333333333", vehiclePosition2.PlatformId3);
+            Assert.Equal(3u, vehiclePosition2.Alarm3);
         }
     }
 }
