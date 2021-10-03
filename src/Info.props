@@ -1,20 +1,20 @@
 ﻿<Project>
 	<PropertyGroup>
-	  <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;</TargetFrameworks>
-	  <LangVersion>9.0</LangVersion>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;</TargetFrameworks>
+		<LangVersion>9.0</LangVersion>
 		<Copyright>Copyright 2018.</Copyright>
 		<Authors>SmallChi(Koike)</Authors>
-    <RepositoryUrl>https://github.com/SmallChi/JT809</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
-    <license>https://github.com/SmallChi/JT809/blob/master/LICENSE</license>
-    <licenseUrl>https://github.com/SmallChi/JT809/blob/master/LICENSE</licenseUrl>
-    <Version>2.2.1-preview1</Version>
+		<RepositoryUrl>https://github.com/SmallChi/JT809</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
+		<license>https://github.com/SmallChi/JT809/blob/master/LICENSE</license>
+		<licenseUrl>https://github.com/SmallChi/JT809/blob/master/LICENSE</licenseUrl>
+		<Version>2.2.1-preview1</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 </Project>
