@@ -27,9 +27,13 @@ namespace JT809.Protocol.SubMessageBody
         public JT809_0x1502_PhotoRspFlag PhotoRspFlag { get; set; }
 
         /// <summary>
-        /// 车辆定位信息
+        /// 车辆定位信息 2011版本
         /// </summary>
-        public VehiclePositionPropertieBase VehiclePosition { get; set; }
+        public JT809VehiclePositionProperties VehiclePosition { get; set; }
+        /// <summary>
+        /// 车辆定位信息 2019版本
+        /// </summary>
+        public JT809VehiclePositionProperties_2019 VehiclePosition_2019 { get; set; }
         /// <summary>
         /// 镜头ID
         /// </summary>
@@ -56,9 +60,14 @@ namespace JT809.Protocol.SubMessageBody
             JT809_0x1500_0x1502 value = new JT809_0x1500_0x1502();
             value.PhotoRspFlag = (JT809_0x1502_PhotoRspFlag)reader.ReadByte();
             writer.WriteString($"[{value.PhotoRspFlag.ToByteValue()}]拍照应答标识", value.PhotoRspFlag.ToString());
-            writer.WriteStartObject("车辆定位信息");
-            VehiclePositionPropertieBase.Analyze(ref reader, writer, config);
-            writer.WriteEndObject();
+            if (config.Version == JT809Version.JTT2011)
+            {
+                config.GetMessagePackFormatter<JT809VehiclePositionProperties>().Analyze(ref reader, writer, config);
+            }
+            else if (config.Version == JT809Version.JTT2019)
+            {
+                config.GetMessagePackFormatter<JT809VehiclePositionProperties_2019>().Analyze(ref reader, writer, config);
+            }
             value.LensID = reader.ReadByte();
             writer.WriteNumber($"[{value.LensID}]镜头ID", value.LensID);
             value.PhotoLen = reader.ReadUInt32();
@@ -78,7 +87,14 @@ namespace JT809.Protocol.SubMessageBody
         {
             JT809_0x1500_0x1502 value = new JT809_0x1500_0x1502();
             value.PhotoRspFlag = (JT809_0x1502_PhotoRspFlag)reader.ReadByte();
-            value.VehiclePosition = VehiclePositionPropertieBase.Deserialize(ref reader, config);
+            if (config.Version == JT809Version.JTT2011)
+            {
+                value.VehiclePosition = config.GetMessagePackFormatter<JT809VehiclePositionProperties>().Deserialize(ref reader, config);
+            }
+            else if (config.Version == JT809Version.JTT2019)
+            {
+                value.VehiclePosition_2019 = config.GetMessagePackFormatter<JT809VehiclePositionProperties_2019>().Deserialize(ref reader, config);
+            }
             value.LensID = reader.ReadByte();
             value.PhotoLen = reader.ReadUInt32();
             value.SizeType = (JT809__0x9502_SizeType)reader.ReadByte();
@@ -93,7 +109,20 @@ namespace JT809.Protocol.SubMessageBody
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1500_0x1502 value, IJT809Config config)
         {
             writer.WriteByte((byte)value.PhotoRspFlag);
-            VehiclePositionPropertieBase.Serialize(ref writer, value.VehiclePosition, config);
+            if (config.Version == JT809Version.JTT2011)
+            {
+                if (value.VehiclePosition != null)
+                {
+                    config.GetMessagePackFormatter<JT809VehiclePositionProperties>().Serialize(ref writer, value.VehiclePosition, config);
+                }
+            }
+            else if (config.Version == JT809Version.JTT2019)
+            {
+                if (value.VehiclePosition_2019 != null)
+                {
+                    config.GetMessagePackFormatter<JT809VehiclePositionProperties_2019>().Serialize(ref writer, value.VehiclePosition_2019, config);
+                }
+            }
             writer.WriteByte(value.LensID);
             bool isPhoto = (value.Photo != null && value.Photo.Length > 0);
             writer.WriteUInt32(isPhoto ? (uint)value.Photo.Length : 0);

@@ -148,20 +148,20 @@ namespace JT809.Protocol.Test.Simples
                 Speed = 60,
                 Direction = 0,
                 StatusFlag = 2,
-                JT808LocationAttachData = new Dictionary<byte, JT808_0x0200_BodyBase>()
+                BasicLocationAttachData = new Dictionary<byte, JT808_0x0200_BodyBase>()
             };
-            jT808UploadLocationRequest.JT808LocationAttachData.Add(JT808Constants.JT808_0x0200_0x01, new JT808_0x0200_0x01
+            jT808UploadLocationRequest.BasicLocationAttachData.Add(JT808Constants.JT808_0x0200_0x01, new JT808_0x0200_0x01
             {
                 Mileage = 100
             });
-            jT808UploadLocationRequest.JT808LocationAttachData.Add(JT808Constants.JT808_0x0200_0x02, new JT808_0x0200_0x02
+            jT808UploadLocationRequest.BasicLocationAttachData.Add(JT808Constants.JT808_0x0200_0x02, new JT808_0x0200_0x02
             {
                 Oil = 55
             });
             var jt808_0x0200Hex = JT808_2019_Serializer.Serialize(jT808UploadLocationRequest, JT808.Protocol.Enums.JT808Version.JTT2019);
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202.VehiclePosition = new Metadata.VehiclePositionPropertieOf2019
+            jT809_0X1200_0X1202.VehiclePosition_2019 = new Metadata.JT809VehiclePositionProperties_2019
             {
                 Encrypt = JT809_VehiclePositionEncrypt.已加密,
                 GnssData = jt808_0x0200Hex,
@@ -182,7 +182,7 @@ namespace JT809.Protocol.Test.Simples
         {
             var bytes = "0100000026000000010000000200BA7F0E07E4F11C0028003C000018071510101001040000006402020037313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1202>(bytes);
-            var GNSSData = jT809_0X1200_0X1202.VehiclePosition as Metadata.VehiclePositionPropertieOf2019;
+            var GNSSData = jT809_0X1200_0X1202.VehiclePosition_2019;
             Assert.Equal(JT809_VehiclePositionEncrypt.已加密, GNSSData.Encrypt);
             Assert.Equal("11111111111", GNSSData.PlatformId1);
             Assert.Equal(1u, GNSSData.Alarm1);
@@ -199,8 +199,8 @@ namespace JT809.Protocol.Test.Simples
             Assert.Equal(132444444, jt808_0x0200.Lng);
             Assert.Equal(60, jt808_0x0200.Speed);
             Assert.Equal((uint)2, jt808_0x0200.StatusFlag);
-            Assert.Equal(100, ((JT808_0x0200_0x01)jt808_0x0200.JT808LocationAttachData[JT808Constants.JT808_0x0200_0x01]).Mileage);
-            Assert.Equal(55, ((JT808_0x0200_0x02)jt808_0x0200.JT808LocationAttachData[JT808Constants.JT808_0x0200_0x02]).Oil);
+            Assert.Equal(100, ((JT808_0x0200_0x01)jt808_0x0200.BasicLocationAttachData[JT808Constants.JT808_0x0200_0x01]).Mileage);
+            Assert.Equal(55, ((JT808_0x0200_0x02)jt808_0x0200.BasicLocationAttachData[JT808Constants.JT808_0x0200_0x02]).Oil);
 
         }
 

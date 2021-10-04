@@ -24,7 +24,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>();
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_1 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202_1.VehiclePosition = new VehiclePositionPropertieOf2011
+            jT809_0X1200_0X1202_1.VehiclePosition = new  JT809VehiclePositionProperties
             {
                 Day = 19,
                 Month = 7,
@@ -44,7 +44,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             };
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_2 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202_2.VehiclePosition = new VehiclePositionPropertieOf2011
+            jT809_0X1200_0X1202_2.VehiclePosition = new  JT809VehiclePositionProperties
             {
                 Day = 19,
                 Month = 7,
@@ -64,7 +64,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             };
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202_3 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202_3.VehiclePosition = new VehiclePositionPropertieOf2011
+            jT809_0X1200_0X1202_3.VehiclePosition = new  JT809VehiclePositionProperties
             {
                 Day = 19,
                 Month = 7,
@@ -101,9 +101,9 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
 
             Assert.Equal(3, jT809_0X1200_0X1203.GNSSCount);
 
-            var vehiclePosition1 = jT809_0X1200_0X1203.GNSS[0].VehiclePosition as VehiclePositionPropertieOf2011;
-            var vehiclePosition2 = jT809_0X1200_0X1203.GNSS[1].VehiclePosition as VehiclePositionPropertieOf2011;
-            var vehiclePosition3 = jT809_0X1200_0X1203.GNSS[2].VehiclePosition as VehiclePositionPropertieOf2011;
+            var vehiclePosition1 = jT809_0X1200_0X1203.GNSS[0].VehiclePosition;
+            var vehiclePosition2 = jT809_0X1200_0X1203.GNSS[1].VehiclePosition;
+            var vehiclePosition3 = jT809_0X1200_0X1203.GNSS[2].VehiclePosition;
             Assert.Equal(19, vehiclePosition1.Day);
             Assert.Equal(7, vehiclePosition1.Month);
             Assert.Equal(2012, vehiclePosition1.Year);
@@ -157,7 +157,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             jT809_0X1200_0X1203.GNSS = new List<JT809_0x1200_0x1202>(){
                 new JT809_0x1200_0x1202
                 {
-                    VehiclePosition = new VehiclePositionPropertieOf2019
+                    VehiclePosition_2019 = new  JT809VehiclePositionProperties_2019
                     {
                         Encrypt = JT809_VehiclePositionEncrypt.已加密,
                         PlatformId1 = "11111111111",
@@ -169,7 +169,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
                     }
                 },
                 new JT809_0x1200_0x1202{
-                    VehiclePosition=new VehiclePositionPropertieOf2019{
+                    VehiclePosition_2019=new JT809VehiclePositionProperties_2019{
                         Encrypt = JT809_VehiclePositionEncrypt.已加密,
                         PlatformId1 = "11111111111",
                         Alarm1 = 1,
@@ -192,8 +192,8 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             var bytes = "0201000000003131313131313131313131000000013232323232323232323232000000023333333333333333333333000000030100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
             JT809_0x1200_0x1203 jT809_0X1200_0X1203 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1203>(bytes);
 
-            var vehiclePosition1 = jT809_0X1200_0X1203.GNSS[0].VehiclePosition as VehiclePositionPropertieOf2019;
-            var vehiclePosition2 = jT809_0X1200_0X1203.GNSS[1].VehiclePosition as VehiclePositionPropertieOf2019;
+            var vehiclePosition1 = jT809_0X1200_0X1203.GNSS[0].VehiclePosition_2019;
+            var vehiclePosition2 = jT809_0X1200_0X1203.GNSS[1].VehiclePosition_2019;
             Assert.Equal(JT809_VehiclePositionEncrypt.已加密, vehiclePosition1.Encrypt);
             Assert.Equal("11111111111", vehiclePosition1.PlatformId1);
             Assert.Equal(1u, vehiclePosition1.Alarm1);

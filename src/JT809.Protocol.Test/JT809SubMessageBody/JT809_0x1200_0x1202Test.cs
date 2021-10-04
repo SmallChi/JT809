@@ -9,6 +9,8 @@ using JT808.Protocol;
 using JT808.Protocol.Interfaces;
 using JT808.Protocol.MessageBody;
 using JT809.Protocol.Metadata;
+using System.Text.Json;
+using JT808.Protocol.MessagePack;
 
 namespace JT809.Protocol.Test.JT809SubMessageBody
 {
@@ -25,19 +27,25 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
     {
         private JT809Serializer JT809Serializer = new JT809Serializer();
 
-        private JT809Serializer JT809_2019_Serializer = new JT809Serializer(new DefaultGlobalConfig() { Version = JT809Version.JTT2019 });
+        private JT809Serializer JT809_2019_Serializer;
+
         private JT808Serializer JT808Serializer_2019;
+
+        private IJT808Config jT808Config;
         public JT809_0x1200_0x1202Test()
         {
-            IJT808Config jT808Config = new DefaultGlobal808_2019Config();
+            jT808Config = new DefaultGlobal808_2019Config();
             JT808Serializer_2019 = new JT808Serializer(jT808Config);
+            var config = new DefaultGlobalConfig() { Version = JT809Version.JTT2019 };
+            config.AnalyzeCallbacks.Add(0x0200, new JT808AnalyzeCallback(Test_2019_5_Callback));
+            JT809_2019_Serializer = new JT809Serializer(config);
         }
 
         [Fact]
         public void Test1()
         {
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202.VehiclePosition = new VehiclePositionPropertieOf2011
+            jT809_0X1200_0X1202.VehiclePosition = new JT809VehiclePositionProperties
             {
                 Day = 19,
                 Month = 7,
@@ -63,9 +71,9 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         [Fact]
         public void Test2()
         {
-            var bytes = "00 13 07 07 DC 0F 0F 0F 07 EF 4D 80 01 70 18 40 00 32 00 33 00 00 00 96 00 2D 00 2D 00 00 00 03 00 00 01 01".ToHexBytes();
+            byte[] bytes = "00 13 07 07 DC 0F 0F 0F 07 EF 4D 80 01 70 18 40 00 32 00 33 00 00 00 96 00 2D 00 2D 00 00 00 03 00 00 01 01".ToHexBytes();
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = JT809Serializer.Deserialize<JT809_0x1200_0x1202>(bytes);
-            var vehiclePosition = jT809_0X1200_0X1202.VehiclePosition as VehiclePositionPropertieOf2011;
+            var vehiclePosition = jT809_0X1200_0X1202.VehiclePosition;
             Assert.Equal(19, vehiclePosition.Day);
             Assert.Equal(7, vehiclePosition.Month);
             Assert.Equal(2012, vehiclePosition.Year);
@@ -86,7 +94,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         public void Test_2019_1()
         {
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202.VehiclePosition = new VehiclePositionPropertieOf2019
+            jT809_0X1200_0X1202.VehiclePosition_2019 = new JT809VehiclePositionProperties_2019
             {
                 Encrypt = JT809_VehiclePositionEncrypt.已加密,
                 PlatformId1 = "11111111111",
@@ -106,7 +114,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             var bytes = "0100000000313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1202>(bytes);
-            var gnssData = jT809_0X1200_0X1202.VehiclePosition as VehiclePositionPropertieOf2019;
+            var gnssData = jT809_0X1200_0X1202.VehiclePosition_2019;
             Assert.Equal(JT809_VehiclePositionEncrypt.已加密, gnssData.Encrypt);
             Assert.Equal("11111111111", gnssData.PlatformId1);
             Assert.Equal(1u, gnssData.Alarm1);
@@ -132,20 +140,20 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
                 Speed = 60,
                 Direction = 0,
                 StatusFlag = 2,
-                JT808LocationAttachData = new Dictionary<byte, JT808_0x0200_BodyBase>()
+                BasicLocationAttachData = new Dictionary<byte, JT808_0x0200_BodyBase>()
             };
-            jT808UploadLocationRequest.JT808LocationAttachData.Add(JT808Constants.JT808_0x0200_0x01, new JT808_0x0200_0x01
+            jT808UploadLocationRequest.BasicLocationAttachData.Add(JT808Constants.JT808_0x0200_0x01, new JT808_0x0200_0x01
             {
                 Mileage = 100
             });
-            jT808UploadLocationRequest.JT808LocationAttachData.Add(JT808Constants.JT808_0x0200_0x02, new JT808_0x0200_0x02
+            jT808UploadLocationRequest.BasicLocationAttachData.Add(JT808Constants.JT808_0x0200_0x02, new JT808_0x0200_0x02
             {
                 Oil = 55
             });
             var jt808_0x0200Hex = JT808Serializer_2019.Serialize(jT808UploadLocationRequest, JT808.Protocol.Enums.JT808Version.JTT2019);
 
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = new JT809_0x1200_0x1202();
-            jT809_0X1200_0X1202.VehiclePosition = new VehiclePositionPropertieOf2019
+            jT809_0X1200_0X1202.VehiclePosition_2019 = new JT809VehiclePositionProperties_2019
             {
                 Encrypt = JT809_VehiclePositionEncrypt.已加密,
                 GnssData = jt808_0x0200Hex,
@@ -158,7 +166,6 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             };
             var hex = JT809_2019_Serializer.Serialize(jT809_0X1200_0X1202).ToHexString();
             Assert.Equal("0100000026000000010000000200BA7F0E07E4F11C0028003C000018071510101001040000006402020037313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003", hex);
-
         }
 
         [Fact]
@@ -166,7 +173,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             var bytes = "0100000026000000010000000200BA7F0E07E4F11C0028003C000018071510101001040000006402020037313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
             JT809_0x1200_0x1202 jT809_0X1200_0X1202 = JT809_2019_Serializer.Deserialize<JT809_0x1200_0x1202>(bytes);
-            var gnssData = jT809_0X1200_0X1202.VehiclePosition as VehiclePositionPropertieOf2019;
+            var gnssData = jT809_0X1200_0X1202.VehiclePosition_2019;
             Assert.Equal(JT809_VehiclePositionEncrypt.已加密, gnssData.Encrypt);
             Assert.Equal("11111111111", gnssData.PlatformId1);
             Assert.Equal(1u, gnssData.Alarm1);
@@ -183,9 +190,23 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(132444444, jt808_0x0200.Lng);
             Assert.Equal(60, jt808_0x0200.Speed);
             Assert.Equal((uint)2, jt808_0x0200.StatusFlag);
-            Assert.Equal(100, ((JT808_0x0200_0x01)jt808_0x0200.JT808LocationAttachData[JT808Constants.JT808_0x0200_0x01]).Mileage);
-            Assert.Equal(55, ((JT808_0x0200_0x02)jt808_0x0200.JT808LocationAttachData[JT808Constants.JT808_0x0200_0x02]).Oil);
+            Assert.Equal(100, ((JT808_0x0200_0x01)jt808_0x0200.BasicLocationAttachData[JT808Constants.JT808_0x0200_0x01]).Mileage);
+            Assert.Equal(55, ((JT808_0x0200_0x02)jt808_0x0200.BasicLocationAttachData[JT808Constants.JT808_0x0200_0x02]).Oil);
 
+        }
+
+        [Fact]
+        public void Test_2019_5()
+        {
+            var bytes = "0100000026000000010000000200BA7F0E07E4F11C0028003C000018071510101001040000006402020037313131313131313131313100000001323232323232323232323200000002333333333333333333333300000003".ToHexBytes();
+            string json = JT809_2019_Serializer.Analyze<JT809_0x1200_0x1202>(bytes);
+        }
+
+        public void Test_2019_5_Callback(byte[] bytes, Utf8JsonWriter writer, IJT809Config jT809Config)
+        {
+            JT808MessagePackReader jT808MessagePackReader = new JT808MessagePackReader(bytes);
+            JT808.Protocol.Extensions.JT808AnalyzeExtensions.Analyze(JT808.Protocol.JT808ConfigExtensions.GetMessagePackFormatter<JT808_0x0200>(jT808Config),
+                ref jT808MessagePackReader, writer, jT808Config);
         }
     }
 }

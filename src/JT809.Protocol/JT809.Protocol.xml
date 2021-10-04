@@ -6,7 +6,8 @@
     <members>
         <member name="T:JT809.Protocol.Buffers.JT809BufferWriter">
             <summary>
-            <see cref="!:System.Buffers.Writer"/>
+            
+            see cref System.Buffers.Writer 
             </summary>
         </member>
         <member name="P:JT809.Protocol.Buffers.JT809BufferWriter.BeforeCodingWrittenPosition">
@@ -1123,6 +1124,11 @@
             加密选项
             </summary>
         </member>
+        <member name="P:JT809.Protocol.IJT809Config.AnalyzeCallbacks">
+            <summary>
+            JT808回调消息分析器处理
+            </summary>
+        </member>
         <member name="M:JT809.Protocol.IJT809Config.Register(System.Reflection.Assembly[])">
             <summary>
             全局注册外部程序集
@@ -1147,6 +1153,17 @@
             <summary>
             日期限制于2000年
             </summary>
+        </member>
+        <member name="M:JT809.Protocol.JT809DependencyInjectionExtensions.AddJT809_JT808AnalyzeCallback(JT809.Protocol.IJT809Builder,System.UInt16,JT809.Protocol.JT808AnalyzeCallback,JT809.Protocol.Enums.JT809Version)">
+            <summary>
+            目前只支持0x0200定位
+            0704需要拆分出来
+            </summary>
+            <param name="builder"></param>
+            <param name="jt808MsgId">0x0200</param>
+            <param name="jt808AnalyzeCallback"></param>
+            <param name="version"></param>
+            <returns></returns>
         </member>
         <member name="T:JT809.Protocol.JT809ExchangeMessageBodies">
             <summary>
@@ -1896,6 +1913,142 @@
             系统UTC时间
             </summary>
         </member>
+        <member name="T:JT809.Protocol.Metadata.JT809VehiclePositionProperties">
+            <summary>
+            车辆定位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Encrypt">
+            <summary>
+            该字段标识传输的定位信息是否使用国家测绘局批准的地图保密插件进行加密。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Day">
+            <summary>
+            日
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Month">
+            <summary>
+            月
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Year">
+            <summary>
+            年
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Hour">
+            <summary>
+            时
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Minute">
+            <summary>
+            分
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Second">
+            <summary>
+            秒
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Lon">
+            <summary>
+            经度，单位为 1*10^-6 度。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Lat">
+            <summary>
+            纬度，单位为 1*10^-6 度。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Vec1">
+            <summary>
+            速度，指卫星定位车载终端设备上传的行车速度信息，为必填项。单位为千米每小时（km/h）。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Vec2">
+            <summary>
+            行驶记录速度，指车辆行驶记录设备上传的行车速度 信息，为必填项。单位为千米每小时（km/h）。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Vec3">
+            <summary>
+            车辆当前总里程数，值车辆上传的行车里程数。单位单位为千米（km）
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Direction">
+            <summary>
+            方向，0-359，单位为度（。），正北为 0，顺时针。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Altitude">
+            <summary>
+            海拔高度，单位为米（m）。
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.State">
+            <summary>
+            车辆状态，二进制表示，B31B30B29。。。。。。B2B1B0.具体定义按照 JT/T808-2011 中表 17 的规定
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties.Alarm">
+            <summary>
+            报警状态，二进制表示，0 标识正常，1 表示报警： B31B30B29 。。。。。。 B2B1B0.具 体 定 义 按 照JT/T808-2011 中表 18 的规定
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Encrypt">
+            <summary>
+            是否使用国测局批准的地图保密插件进行加密 1 已加密 0未加密
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.DataLength">
+            <summary>
+            车辆定位信息数据长度
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.GnssData">
+            <summary>
+            车辆定位信息内容，包括车辆位置基本信息和位置附加信息
+            其数据格式安装 808-2019中8.12要求
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.PlatformId1">
+            <summary>
+            监控平台唯一编码，由平台所在地行政区域代码和平台编码组成  11位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Alarm1">
+            <summary>
+            报警状态，二进制标识 0 正常 1表示报警
+            具体定义按照808-2019中表18的规定
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.PlatformId2">
+            <summary>
+            市级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
+            未填写时，全填0，无市级平台应由省级平台全填1  11位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Alarm2">
+            <summary>
+            报警状态，二进制标识 0 正常 1表示报警
+            具体定义按照808-2019中表18的规定
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.PlatformId3">
+            <summary>
+            省级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
+             未填写时，全填0  11位
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.Metadata.JT809VehiclePositionProperties_2019.Alarm3">
+            <summary>
+            报警状态，二进制标识 0 正常 1表示报警
+            具体定义按照808-2019中表18的规定
+            </summary>
+        </member>
         <member name="T:JT809.Protocol.Metadata.JT809VehicleStaticInfo">
             <summary>
             车辆静态信息数据体  
@@ -1993,132 +2146,6 @@
             业户联系电话  非必填  运输企业名称
             </summary>
         </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Encrypt">
-            <summary>
-            该字段标识传输的定位信息是否使用国家测绘局批准的地图保密插件进行加密。
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Day">
-            <summary>
-            日
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Month">
-            <summary>
-            月
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Year">
-            <summary>
-            年
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Hour">
-            <summary>
-            时
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Minute">
-            <summary>
-            分
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Second">
-            <summary>
-            秒
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Lon">
-            <summary>
-            经度，单位为 1*10^-6 度。
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Lat">
-            <summary>
-            纬度，单位为 1*10^-6 度。
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Vec1">
-            <summary>
-            速度，指卫星定位车载终端设备上传的行车速度信息，为必填项。单位为千米每小时（km/h）。
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Vec2">
-            <summary>
-            行驶记录速度，指车辆行驶记录设备上传的行车速度 信息，为必填项。单位为千米每小时（km/h）。
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Vec3">
-            <summary>
-            车辆当前总里程数，值车辆上传的行车里程数。单位单位为千米（km）
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Direction">
-            <summary>
-            方向，0-359，单位为度（。），正北为 0，顺时针。
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Altitude">
-            <summary>
-            海拔高度，单位为米（m）。
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.State">
-            <summary>
-            车辆状态，二进制表示，B31B30B29。。。。。。B2B1B0.具体定义按照 JT/T808-2011 中表 17 的规定
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2011.Alarm">
-            <summary>
-            报警状态，二进制表示，0 标识正常，1 表示报警： B31B30B29 。。。。。。 B2B1B0.具 体 定 义 按 照JT/T808-2011 中表 18 的规定
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.Encrypt">
-            <summary>
-            是否使用国测局批准的地图保密插件进行加密 1 已加密 0未加密
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.GnssData">
-            <summary>
-            车辆定位信息内容，包括车辆位置基本信息和位置附加信息
-            其数据格式安装 808-2019中8.12要求
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.PlatformId1">
-            <summary>
-            监控平台唯一编码，由平台所在地行政区域代码和平台编码组成  11位
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.Alarm1">
-            <summary>
-            报警状态，二进制标识 0 正常 1表示报警
-            具体定义按照808-2019中表18的规定
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.PlatformId2">
-            <summary>
-            市级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
-            未填写时，全填0，无市级平台应由省级平台全填1  11位
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.Alarm2">
-            <summary>
-            报警状态，二进制标识 0 正常 1表示报警
-            具体定义按照808-2019中表18的规定
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.PlatformId3">
-            <summary>
-            省级监控平台唯一编码，由平台所在地行政区域代码和平台编码组成
-             未填写时，全填0  11位
-            </summary>
-        </member>
-        <member name="P:JT809.Protocol.Metadata.VehiclePositionPropertieOf2019.Alarm3">
-            <summary>
-            报警状态，二进制标识 0 正常 1表示报警
-            具体定义按照808-2019中表18的规定
-            </summary>
-        </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1201">
             <summary>
             上传车辆注册信息消息
@@ -2168,7 +2195,12 @@
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1202.VehiclePosition">
             <summary>
-            车辆定位信息
+            车辆定位信息 2011版本
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1202.VehiclePosition_2019">
+            <summary>
+            车辆定位信息 2019版本
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x1200_0x1203">
@@ -2815,7 +2847,12 @@
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1502.VehiclePosition">
             <summary>
-            车辆定位信息
+            车辆定位信息 2011版本
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1502.VehiclePosition_2019">
+            <summary>
+            车辆定位信息 2019版本
             </summary>
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1502.LensID">
@@ -2997,7 +3034,12 @@
         </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9202.VehiclePosition">
             <summary>
-            车辆定位信息
+            车辆定位信息 2011版本
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9202.VehiclePosition_2019">
+            <summary>
+            车辆定位信息 2019版本
             </summary>
         </member>
         <member name="T:JT809.Protocol.SubMessageBody.JT809_0x9200_0x9203">

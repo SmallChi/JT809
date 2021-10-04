@@ -43,6 +43,10 @@ namespace JT809.Protocol
         IJT809FormatterFactory FormatterFactory { get; set; }
         JT809Version Version { get; set; }
         /// <summary>
+        /// JT808回调消息分析器处理
+        /// </summary>
+        Dictionary<ushort, JT808AnalyzeCallback> AnalyzeCallbacks { get; set; }
+        /// <summary>
         /// 全局注册外部程序集
         /// </summary>
         /// <param name="externalAssemblies"></param>

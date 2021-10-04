@@ -5,6 +5,7 @@ using JT809.Protocol.Encrypt;
 using JT809.Protocol.Enums;
 using JT809.Protocol.Internal;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
@@ -20,6 +21,7 @@ namespace JT809.Protocol.Interfaces
             SubBusinessTypeFactory = new JT809SubBusinessTypeFactory();
             FormatterFactory = new JT809FormatterFactory();
             Version = version;
+            AnalyzeCallbacks = new Dictionary<ushort, JT808AnalyzeCallback>();
         }
         public abstract string ConfigId { get; }
         public IJT809MsgSNDistributed MsgSNDistributed { get; set; }= new DefaultMsgSNDistributedImpl();
@@ -32,7 +34,7 @@ namespace JT809.Protocol.Interfaces
         public IJT809SubBusinessTypeFactory SubBusinessTypeFactory { get; set ; }
         public IJT809FormatterFactory FormatterFactory { get; set; }
         public JT809Version Version { get; set; }
-
+        public Dictionary<ushort, JT808AnalyzeCallback> AnalyzeCallbacks { get; set; }
         public virtual IJT809Config Register(params Assembly[] externalAssemblies)
         {
             if (externalAssemblies != null)

@@ -21,7 +21,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             JT809_0x1500_0x1502 jT809_0x1500_0x1502 = new JT809_0x1500_0x1502
             {
                 PhotoRspFlag = JT809_0x1502_PhotoRspFlag.完成拍照,
-                VehiclePosition = new VehiclePositionPropertieOf2011
+                VehiclePosition = new  JT809VehiclePositionProperties
                 {
                     Encrypt = JT809_VehiclePositionEncrypt.未加密,
                     Day = 19,
@@ -55,7 +55,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             var bytes = "01 00 13 07 07 DC 0F 0F 0F 07 EF 4D 80 01 70 18 40 00 35 00 2D 00 00 04 D2 00 2D 00 2D 00 00 00 01 00 00 00 01 7B 00 00 00 00 01 01".ToHexBytes();
             JT809_0x1500_0x1502 jT809_0x1500_0x1502 = JT809Serializer.Deserialize<JT809_0x1500_0x1502>(bytes);
 
-            var vehiclePosition = jT809_0x1500_0x1502.VehiclePosition as VehiclePositionPropertieOf2011;
+            var vehiclePosition = jT809_0x1500_0x1502.VehiclePosition;
             Assert.Equal(JT809_0x1502_PhotoRspFlag.完成拍照, jT809_0x1500_0x1502.PhotoRspFlag);
             Assert.Equal(JT809_VehiclePositionEncrypt.未加密, vehiclePosition.Encrypt);
             Assert.Equal(19, vehiclePosition.Day);

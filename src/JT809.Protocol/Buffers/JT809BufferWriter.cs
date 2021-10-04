@@ -3,7 +3,8 @@
 namespace JT809.Protocol.Buffers
 {
     /// <summary>
-    /// <see cref="System.Buffers.Writer"/>
+    /// 
+    /// see cref System.Buffers.Writer 
     /// </summary>
     ref partial struct JT809BufferWriter
     {

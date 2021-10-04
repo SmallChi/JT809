@@ -34,12 +34,12 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Constants.cs" />
     <Compile Remove="IEscape.cs" />
+    <Compile Remove="Metadata\VehiclePositionPropertieBase.cs" />
   </ItemGroup>
 
   <ItemGroup>
