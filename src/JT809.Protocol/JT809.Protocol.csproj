@@ -6,6 +6,7 @@
     <Description>JT809协议、GB809协议、道路运输车辆卫星定位系统-平台数据交换协议（支持2011、2019版本） </Description>
     <PackageReleaseNotes>JT809协议、GB809协议、道路运输车辆卫星定位系统-平台数据交换协议（支持2011、2019版本） </PackageReleaseNotes>
     <DocumentationFile>JT809.Protocol.xml</DocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
@@ -30,10 +31,8 @@
     <None Remove="Enums\**" />
     <None Remove="Escape\**" />
     <None Remove="ProtocolPacket\**" />
-    <None Include="..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Include="..\..\README.md" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE"  Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>

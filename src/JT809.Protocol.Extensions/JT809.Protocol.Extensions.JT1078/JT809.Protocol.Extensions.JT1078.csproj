@@ -6,14 +6,13 @@
     <Description>基于JT809协议、GB809协议扩展的视频消息协议</Description>
     <PackageReleaseNotes>基于JT809协议、GB809协议扩展的视频消息协议</PackageReleaseNotes>
     <DocumentationFile>JT809.Protocol.Extensions.JT1078.xml</DocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Include="..\..\..\README.md" Pack="true" PackagePath=""/>
+    <None Include="..\..\..\LICENSE"  Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>

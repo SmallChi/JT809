@@ -292,10 +292,10 @@ public class JT809_2019_Config : JT809GlobalConfigBase
 
 ## NuGet安装
 
-| Package Name |  Version | Downloads
-|--------------|  ------- | ----
-| Install-Package JT809 | ![JT809](https://img.shields.io/nuget/v/JT809.svg) | ![JT809](https://img.shields.io/nuget/dt/JT809.svg)
-| Install-Package JT809.Protocol.Extensions.JT1078 | ![JT809.Protocol.Extensions.JT1078](https://img.shields.io/nuget/v/JT809.Protocol.Extensions.JT1078.svg) | ![JT809](https://img.shields.io/nuget/dt/JT809.Protocol.Extensions.JT1078.svg) |
+| Package Name |  Version | Pre Version |Downloads
+|--------------|  ------- | ------- |----
+| Install-Package JT809 | ![JT809](https://img.shields.io/nuget/v/JT809.svg) | ![JT809](https://img.shields.io/nuget/vpre/JT809.svg) |![JT809](https://img.shields.io/nuget/dt/JT809.svg)
+| Install-Package JT809.Protocol.Extensions.JT1078 | ![JT809.Protocol.Extensions.JT1078](https://img.shields.io/nuget/v/JT809.Protocol.Extensions.JT1078.svg) | ![JT809.Protocol.Extensions.JT1078](https://img.shields.io/nuget/vpre/JT809.Protocol.Extensions.JT1078.svg) |![JT809](https://img.shields.io/nuget/dt/JT809.Protocol.Extensions.JT1078.svg) |
 
 ## 使用BenchmarkDotNet性能测试报告（只是玩玩，不能当真）
 
