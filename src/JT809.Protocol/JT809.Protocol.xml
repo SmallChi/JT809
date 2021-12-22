@@ -4369,7 +4369,7 @@
         </member>
         <member name="T:JT809.Protocol.Enums.JT809VehicleColorType">
             <summary>
-            车辆颜色，按照 JT/T415-2006 中5.4.12 的规定
+            车辆颜色，按照 JT/T 415-2021 中5.4.12 的规定
             </summary>
         </member>
         <member name="T:JT809.Protocol.Enums.JT809WarnSrc">

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JT809.Protocol.Enums
 {
-    public enum JT809__0x9502_ImageType
+    public enum JT809_0x9502_ImageType
     {
         jpg=0x01,
         gif=0x02,

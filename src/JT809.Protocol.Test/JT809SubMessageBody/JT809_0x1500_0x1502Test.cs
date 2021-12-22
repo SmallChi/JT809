@@ -41,8 +41,8 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
                     Alarm = 1
                 },
                 LensID = 123,
-                SizeType = JT809__0x9502_SizeType._320x240,
-                Type = JT809__0x9502_ImageType.jpg,
+                SizeType = JT809_0x9502_SizeType._320x240,
+                Type = JT809_0x9502_ImageType.jpg,
             };
             var hex = JT809Serializer.Serialize(jT809_0x1500_0x1502).ToHexString();
             //"01 00 13 07 07 DC 0F 0F 0F 07 EF 4D 80 01 70 18 40 00 35 00 2D 00 00 04 D2 00 2D 00 2D 00 00 00 01 00 00 00 01 7B 00 00 00 00 01 01"
@@ -74,8 +74,8 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal((uint)1, vehiclePosition.State);
             Assert.Equal((uint)1, vehiclePosition.Alarm);
             Assert.Equal(123, jT809_0x1500_0x1502.LensID);
-            Assert.Equal(JT809__0x9502_SizeType._320x240, jT809_0x1500_0x1502.SizeType);
-            Assert.Equal(JT809__0x9502_ImageType.jpg, jT809_0x1500_0x1502.Type);
+            Assert.Equal(JT809_0x9502_SizeType._320x240, jT809_0x1500_0x1502.SizeType);
+            Assert.Equal(JT809_0x9502_ImageType.jpg, jT809_0x1500_0x1502.Type);
         }
     }
 }

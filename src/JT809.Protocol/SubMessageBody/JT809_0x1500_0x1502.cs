@@ -45,11 +45,11 @@ namespace JT809.Protocol.SubMessageBody
         /// <summary>
         /// 图片大小
         /// </summary>
-        public JT809__0x9502_SizeType SizeType { get; set; }
+        public JT809_0x9502_SizeType SizeType { get; set; }
         /// <summary>
         /// 图像格式
         /// </summary>
-        public JT809__0x9502_ImageType Type { get; set; }
+        public JT809_0x9502_ImageType Type { get; set; }
         /// <summary>
         /// 图片内容
         /// </summary>
@@ -72,9 +72,9 @@ namespace JT809.Protocol.SubMessageBody
             writer.WriteNumber($"[{value.LensID}]镜头ID", value.LensID);
             value.PhotoLen = reader.ReadUInt32();
             writer.WriteNumber($"[{value.PhotoLen}]图片长度", value.PhotoLen);
-            value.SizeType = (JT809__0x9502_SizeType)reader.ReadByte();
+            value.SizeType = (JT809_0x9502_SizeType)reader.ReadByte();
             writer.WriteString($"[{value.SizeType.ToByteValue()}]图片大小", value.SizeType.ToString());
-            value.Type = (JT809__0x9502_ImageType)reader.ReadByte();
+            value.Type = (JT809_0x9502_ImageType)reader.ReadByte();
             writer.WriteString($"[{value.Type.ToByteValue()}]图像格式", value.Type.ToString());
             if (value.PhotoLen > 0)
             {
@@ -97,8 +97,8 @@ namespace JT809.Protocol.SubMessageBody
             }
             value.LensID = reader.ReadByte();
             value.PhotoLen = reader.ReadUInt32();
-            value.SizeType = (JT809__0x9502_SizeType)reader.ReadByte();
-            value.Type = (JT809__0x9502_ImageType)reader.ReadByte();
+            value.SizeType = (JT809_0x9502_SizeType)reader.ReadByte();
+            value.Type = (JT809_0x9502_ImageType)reader.ReadByte();
             if (value.PhotoLen > 0)
             {
                 value.Photo = reader.ReadArray((int)value.PhotoLen).ToArray();

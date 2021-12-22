@@ -19,7 +19,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             JT809_0x9500_0x9502 jT809_0X9500_0X9502 = new JT809_0x9500_0x9502
             {
                   LensID=0x09,
-                  SizeType= Enums.JT809__0x9502_SizeType._320x240  
+                  SizeType= Enums.JT809_0x9502_SizeType._320x240  
             };
             var hex = JT809Serializer.Serialize(jT809_0X9500_0X9502).ToHexString();
             Assert.Equal("0901", hex);

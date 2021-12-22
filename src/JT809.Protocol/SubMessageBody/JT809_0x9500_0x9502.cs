@@ -32,14 +32,14 @@ namespace JT809.Protocol.SubMessageBody
         /// 0x07:704x288[HALF D];
         /// Ox08:704x576[DI]
         /// </summary>
-        public JT809__0x9502_SizeType SizeType { get; set; }
+        public JT809_0x9502_SizeType SizeType { get; set; }
 
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
             JT809_0x9500_0x9502 value = new JT809_0x9500_0x9502();
             value.LensID = reader.ReadByte();
             writer.WriteNumber($"[{value.LensID.ReadNumber() }]镜头ID", value.LensID);
-            value.SizeType = (JT809__0x9502_SizeType)reader.ReadByte();
+            value.SizeType = (JT809_0x9502_SizeType)reader.ReadByte();
             writer.WriteString($"[{value.SizeType.ToByteValue()}]图片大小", value.SizeType.ToString());
         }
 
@@ -47,7 +47,7 @@ namespace JT809.Protocol.SubMessageBody
         {
             JT809_0x9500_0x9502 value = new JT809_0x9500_0x9502();
             value.LensID = reader.ReadByte();
-            value.SizeType = (JT809__0x9502_SizeType)reader.ReadByte();
+            value.SizeType = (JT809_0x9502_SizeType)reader.ReadByte();
             return value;
         }
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x9500_0x9502 value, IJT809Config config)

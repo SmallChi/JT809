@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JT809.Protocol.Enums
 {
-    public enum JT809__0x9502_SizeType
+    public enum JT809_0x9502_SizeType
     {
         _320x240=0x01,
         _640x480=0x02,
