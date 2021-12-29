@@ -42,9 +42,11 @@ namespace JT809.Protocol.Extensions.JT1078.MessageBody
             var virtualHex = reader.ReadVirtualArray(64);
             value.AuthorizeCode = reader.ReadString(64);
             writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]时效口令", value.AuthorizeCode);
-            virtualHex = reader.ReadVirtualArray(36);
-            value.GnssData = reader.ReadArray(36).ToArray();
-            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车辆进入跨域地区后5min之内的任何位置", virtualHex.ToArray().ToHexString());
+            if (reader.ReadCurrentRemainContentLength()>=36)
+            {
+                value.GnssData = reader.ReadArray(reader.ReadCurrentRemainContentLength()).ToArray();
+                writer.WriteString($"[车辆进入跨域地区后5min之内的任何位置]", value.GnssData.ToHexString());
+            }
             string LogicalChannelNoDisplay(byte LogicalChannelNo)
             {
                 switch (LogicalChannelNo)
@@ -106,7 +108,10 @@ namespace JT809.Protocol.Extensions.JT1078.MessageBody
             value.ChannelId = reader.ReadByte();
             value.AVitemType = reader.ReadByte();
             value.AuthorizeCode = reader.ReadString(64);
-            value.GnssData = reader.ReadArray(36).ToArray();
+            if (reader.ReadCurrentRemainContentLength()>0)
+            {
+                value.GnssData = reader.ReadArray(36).ToArray();
+            }
             return value;
         }
 
@@ -115,7 +120,10 @@ namespace JT809.Protocol.Extensions.JT1078.MessageBody
             writer.WriteByte(value.ChannelId);
             writer.WriteByte(value.AVitemType);
             writer.WriteStringPadRight(value.AuthorizeCode,64);
-            writer.WriteArray(value.GnssData);
+            if(value.GnssData != null && value.GnssData.Length>0)
+            {
+                writer.WriteArray(value.GnssData);
+            }
         }
     }
 }
