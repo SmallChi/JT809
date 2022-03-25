@@ -39,7 +39,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         {
             var bytes = "00 00 00 00 00 00 00 00 08 08 6A 74 38 30 38 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 61 64 73 6C 73 6D 61 6C 6C 63 68 69 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 61 64 73 6C 31 32 33 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 31 32 37 2E 30 2E 30 2E 31 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 28 03 29 00 00 00 00 5B AC C6 40".ToHexBytes();
             JT809_0x9500_0x9505 jT809_0X9500_0X9505 = JT809Serializer.Deserialize<JT809_0x9500_0x9505>(bytes);
-            Assert.Equal("808", jT809_0X9500_0X9505.AuthenticationCode);
+            Assert.Equal("00000000000000000808", jT809_0X9500_0X9505.AuthenticationCode);
             Assert.Equal("jt808", jT809_0X9500_0X9505.AccessPointName);
             Assert.Equal("adslsmallchi", jT809_0X9500_0X9505.UserName);
             Assert.Equal("adsl123", jT809_0X9500_0X9505.Password);

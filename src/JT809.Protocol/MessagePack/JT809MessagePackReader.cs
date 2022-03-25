@@ -408,8 +408,7 @@ namespace JT809.Protocol.MessagePack
             {
                 bcdSb.Append(readOnlySpan[i].ToString("X2"));
             }
-            // todo:对于协议来说这个0是有意义的，下个版本在去掉
-            return bcdSb.ToString().TrimStart('0');
+            return bcdSb.ToString();
         }
         private ReadOnlySpan<byte> GetReadOnlySpan(int count)
         {
