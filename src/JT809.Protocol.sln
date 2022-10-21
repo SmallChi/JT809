@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JT809.Protocol", "JT809.Protocol\JT809.Protocol.csproj", "{4D33A5C9-F583-4230-9791-AB0394EFAD57}"
 EndProject
@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63D43A33-9CD2-4487-803E-51CA61BB7A5A}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\dotnetcore.yml = ..\.github\workflows\dotnetcore.yml
+		..\global.json = ..\global.json
 		Info.props = Info.props
 		..\LICENSE = ..\LICENSE
 	EndProjectSection
