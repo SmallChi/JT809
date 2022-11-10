@@ -87,7 +87,7 @@ namespace JT809.Protocol.Benchmark
     {
         public JT809SerializerContextConfig()
         {
-            AddJob(Job.Default.WithGcServer(false).WithToolchain(CsProjCoreToolchain.NetCoreApp60).WithPlatform(Platform.AnyCpu));
+            AddJob(Job.Default.WithGcServer(false).WithToolchain(CsProjCoreToolchain.NetCoreApp70).WithPlatform(Platform.AnyCpu));
         }
     }
 }
