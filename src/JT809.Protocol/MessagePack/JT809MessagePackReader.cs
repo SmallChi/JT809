@@ -262,6 +262,16 @@ namespace JT809.Protocol.MessagePack
         {
             return BinaryPrimitives.ReadUInt32BigEndian(GetVirtualReadOnlySpan(4));
         }
+        /// <summary>
+        /// 使用场景:在不改变现有的结构的情况下进行补救,主要用于获取父类的解析长度在子类获取不到  骚操作
+        /// </summary>
+        /// <param name="backwordOffset">回退偏移量</param>
+        /// <returns></returns>
+        public uint ReadVirtualUInt32(int backwordOffset)
+        {
+            return BinaryPrimitives.ReadUInt32BigEndian(GetVirtualReadOnlySpan(backwordOffset,4));
+        }
+
         public int ReadVirtualInt32()
         {
             return BinaryPrimitives.ReadInt32BigEndian(GetVirtualReadOnlySpan(4));
@@ -418,6 +428,15 @@ namespace JT809.Protocol.MessagePack
         public ReadOnlySpan<byte> GetVirtualReadOnlySpan(int count)
         {
             return Reader.Slice(ReaderCount, count);
+        }
+        public ReadOnlySpan<byte> GetVirtualReadOnlySpan(int backwordOffset,int count)
+        {
+            if(ReaderCount - backwordOffset < 0)
+            {
+                //处理直接子类导致溢出
+                return Reader.Slice(ReaderCount, count);
+            }
+            return Reader.Slice(ReaderCount - backwordOffset, count);
         }
         public ReadOnlySpan<byte> ReadContent(int count=0)
         {

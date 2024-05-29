@@ -47,6 +47,20 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
         }
 
         [Fact]
+        public void Test3()
+        {
+            var data = "5b00000067000000611200000003f30100000000036871bea948454e333137000000000000000000000000000412010000003100000000000000313031310000000000003730313131000000000000000000000000000000313230323939353533353735327d5d".ToHexBytes();
+            var json = JT809Serializer.Analyze(data);
+        }
+
+        [Fact]
+        public void Test4()
+        {
+            var data = "31313131313131313131003131313131313131313100313131313131313100000000000000000000000031313131314141323232323232323232323232".ToHexBytes();
+            var json = JT809Serializer.Analyze<JT809_0x1200_0x1201>(data);
+        }
+
+        [Fact]
         public void Test_2019_1()
         {
             JT809_0x1200_0x1201 jT809_0X1200_0X1201 = new JT809_0x1200_0x1201

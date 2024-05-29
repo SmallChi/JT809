@@ -29,8 +29,16 @@ namespace JT809.Protocol.SubMessageBody
         public string ProducerId { get; set; }
         /// <summary>
         /// 车载终端型号，不是 8 位时以“\0”终结
+        /// 自己外部扩展是2011还是2011的补充
+        /// 2011版本是8位
+        /// 2011补充版本是20位
         /// </summary>
         public string TerminalModelType { get; set; }
+        /// <summary>
+        /// 默认为2011补充版本
+        /// </summary>
+        public int TerminalModelLength { get; set; } = 20;
+
         /// <summary>
         /// 车载终端通讯模块IMEI码
         /// 2019版本
@@ -50,15 +58,33 @@ namespace JT809.Protocol.SubMessageBody
             JT809_0x1200_0x1201 value = new JT809_0x1200_0x1201();            
             if (config.Version == JT809Version.JTT2011)
             {
+                var dataLength = reader.ReadVirtualUInt32(4);
+                if (dataLength == 49)
+                {
+                    writer.WriteString($"[使用2011版本]", "2011-8版本");
+                }
+                else
+                {
+                    writer.WriteString($"[使用2011补充版本]", "2011-20版本");
+                }
                 var virtualHex = reader.ReadVirtualArray(11);
                 value.PlateformId = reader.ReadString(11);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]平台唯一编码", value.PlateformId);
                 virtualHex = reader.ReadVirtualArray(11);
                 value.ProducerId = reader.ReadString(11);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车载终端厂商唯一编码", value.ProducerId);
-                virtualHex = reader.ReadVirtualArray(20);
-                value.TerminalModelType = reader.ReadString(20);
-                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车载终端型号", value.TerminalModelType);
+                if (dataLength == 49)
+                {
+                    virtualHex = reader.ReadVirtualArray(8);
+                    value.TerminalModelType = reader.ReadString(8);
+                    writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车载终端型号", value.TerminalModelType);
+                }
+                else
+                {
+                    virtualHex = reader.ReadVirtualArray(20);
+                    value.TerminalModelType = reader.ReadString(20);
+                    writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]车载终端型号", value.TerminalModelType);
+                }
                 virtualHex = reader.ReadVirtualArray(7);
                 value.TerminalId = reader.ReadString(7);
                 value.TerminalId = value.TerminalId.ToUpper();
@@ -96,9 +122,17 @@ namespace JT809.Protocol.SubMessageBody
             JT809_0x1200_0x1201 value = new JT809_0x1200_0x1201();
             if(config.Version== JT809Version.JTT2011)
             {
+                var dataLength = reader.ReadVirtualUInt32(4);
                 value.PlateformId = reader.ReadString(11);
                 value.ProducerId = reader.ReadString(11);
-                value.TerminalModelType = reader.ReadString(20);
+                if (dataLength == 49)
+                {
+                    value.TerminalModelType = reader.ReadString(8);
+                }
+                else
+                {
+                    value.TerminalModelType = reader.ReadString(20);
+                }
                 value.TerminalId = reader.ReadString(7);
                 value.TerminalId = value.TerminalId.ToUpper();
                 value.TerminalSimCode = reader.ReadString(12);
@@ -122,7 +156,7 @@ namespace JT809.Protocol.SubMessageBody
             {
                 writer.WriteStringPadRight(value.PlateformId, 11);
                 writer.WriteStringPadRight(value.ProducerId, 11);
-                writer.WriteStringPadRight(value.TerminalModelType, 20);
+                writer.WriteStringPadRight(value.TerminalModelType, TerminalModelLength);
                 writer.WriteStringPadRight(value.TerminalId.ToUpper(), 7);
                 writer.WriteStringPadLeft(value.TerminalSimCode, 12);
             }
