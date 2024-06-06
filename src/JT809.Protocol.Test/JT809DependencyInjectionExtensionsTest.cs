@@ -8,16 +8,17 @@ using Xunit;
 
 namespace JT809.Protocol.Test
 {
-    public  class JT809DependencyInjectionExtensionsTest
+    public class JT809DependencyInjectionExtensionsTest
     {
         [Fact]
         public void Test1()
         {
+            var id = Guid.NewGuid().ToString("N");
             IServiceCollection serviceDescriptors1 = new ServiceCollection();
-            serviceDescriptors1.AddJT809Configure(new DefaultConfig());
+            serviceDescriptors1.AddJT809Configure(new DefaultConfig(id));
             var ServiceProvider1 = serviceDescriptors1.BuildServiceProvider();
             var defaultConfig = ServiceProvider1.GetRequiredService<IJT809Config>();
-            Assert.True(defaultConfig.GetSerializer().SerializerId == "test");
+            Assert.Equal(id, defaultConfig.GetSerializer().SerializerId);
         }
 
         [Fact]
@@ -56,9 +57,9 @@ namespace JT809.Protocol.Test
         }
     }
 
-    public class DefaultConfig : JT809GlobalConfigBase
+    public class DefaultConfig(string id = "default") : JT809GlobalConfigBase
     {
-        public override string ConfigId => "test";
+        public override string ConfigId => id;
     }
 
     public class Config1 : JT809GlobalConfigBase

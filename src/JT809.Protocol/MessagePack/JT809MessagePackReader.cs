@@ -49,7 +49,7 @@ namespace JT809.Protocol.MessagePack
         /// </summary>
         /// <returns></returns>
         public void Decode()
-         {
+        {
             Span<byte> span = new byte[SrcBuffer.Length];
             Decode(span);
             _decoded = true;
@@ -61,99 +61,23 @@ namespace JT809.Protocol.MessagePack
         public void Decode(Span<byte> allocateBuffer)
         {
             int offset = 0;
-            int len = SrcBuffer.Length;
-            allocateBuffer[offset++] = SrcBuffer[0];
-            // 取出校验码看是否需要转义
-            // 正常的    4A 4A 5D        
-            // 单个转义1 00 5A 02 4A 5D
-            // 单个转义2 00 4A 5A 02 5D
-            // 两个转义  5A 02 5A 02 5D
-            // 两个转义  5A 02 02 5A 02 5D
-            ReadOnlySpan<byte> checkCodeBufferSpan1 = SrcBuffer.Slice(len - 5, 4);
-            byte checkCodeLen = 0;
-            byte crcIndex = 0;
-            (int Index, byte Value) Crc1 =(-1,0);
-            (int Index, byte Value) Crc2 =(-1,0);
-            for (int i = 0; i < checkCodeBufferSpan1.Length; i++)
+            var checkcodeOffset = SrcBuffer.Length - 3;
+            for (int i = 0; i < SrcBuffer.Length; i++)
             {
-                if ((checkCodeBufferSpan1.Length - i) >= 2)
+                if (TryDecode(SrcBuffer.Slice(i, SrcBuffer.Length - i < 2 ? 1 : 2), out byte tmp))
                 {
-                    if (TryDecode(checkCodeBufferSpan1.Slice(i, 2), out byte tmp))
-                    {
-                        if (crcIndex > 0)
-                        {
-                            Crc2.Index = i;
-                            Crc2.Value = tmp;
-                        }
-                        else
-                        {
-                            Crc1.Index = i;
-                            Crc1.Value = tmp;
-                        }
-                        crcIndex++;
-                        i++;
-                    }
+                    i++;
+                    checkcodeOffset--;
                 }
-            }
-            if (Crc1.Index >= 0 && Crc2.Index > 0)
-            {
-                byte[] crc = new byte[2];
-                //有两个需要转义的
-                crc[0] = Crc1.Value;
-                crc[1] = Crc2.Value;
-                checkCodeLen += 4;
-                _realCheckCRCCode = ReadUInt16(crc);
-            }
-            else if(Crc1.Index >= 0 && Crc2.Index == -1)
-            {
-                byte[] crc = new byte[2];
-                if ((checkCodeBufferSpan1.Length - Crc1.Index) > 2)
+                if (offset > 0 && offset < checkcodeOffset)
                 {
-                    //最开始有一个需要转义的
-                    crc[0] = Crc1.Value;
-                    crc[1] = checkCodeBufferSpan1.Slice(Crc1.Index+2, 1)[0];
-                }
-                else
-                {
-                    //最末尾有一个需要转义的
-                    crc[0] = checkCodeBufferSpan1.Slice(Crc1.Index-1, 1)[0];
-                    crc[1] = Crc1.Value;
-                }
-                _realCheckCRCCode = ReadUInt16(crc);
-                //存在一个转义的
-                checkCodeLen += 3;
-            }
-            else
-            {
-                //最后两位不是转义的
-                checkCodeLen += 2;
-                _realCheckCRCCode=ReadUInt16(SrcBuffer.Slice(len - 3, 2));
-            }
-            //转义数据长度=len-校验码长度-头-尾
-            len = len - checkCodeLen - 1 - 1;
-            ReadOnlySpan<byte> tmpBufferSpan = SrcBuffer.Slice(1, len);
-            for (int i = 0; i < tmpBufferSpan.Length; i++)
-            {
-                byte tmp;
-                if ((tmpBufferSpan.Length - i) >= 2)
-                {
-                    if (TryDecode(tmpBufferSpan.Slice(i, 2), out tmp))
-                    {
-                        i++;
-                    }
-                }
-                else
-                {
-                    tmp = tmpBufferSpan[i];
+                    _calculateCheckCRCCode = (ushort)((_calculateCheckCRCCode << 8) ^ (ushort)CRCUtil.CRC[(_calculateCheckCRCCode >> 8) ^ tmp]);
                 }
                 allocateBuffer[offset++] = tmp;
-                _calculateCheckCRCCode = (ushort)((_calculateCheckCRCCode << 8) ^ (ushort)CRCUtil.CRC[(_calculateCheckCRCCode >> 8) ^ tmp]);
             }
-            allocateBuffer[offset++] = (byte)(_calculateCheckCRCCode >> 8);
-            allocateBuffer[offset++] = (byte)_calculateCheckCRCCode;
-            allocateBuffer[offset++] = SrcBuffer[SrcBuffer.Length - 1];
-            _checkCRCCodeVali = (_calculateCheckCRCCode == _realCheckCRCCode);
             Reader = allocateBuffer.Slice(0, offset);
+            _realCheckCRCCode = (ushort)((Reader[^3] << 8) | Reader[^2]);
+            _checkCRCCodeVali = _calculateCheckCRCCode == _realCheckCRCCode;
             _decoded = true;
         }
 
@@ -181,7 +105,7 @@ namespace JT809.Protocol.MessagePack
             Reader = span.Slice(0, offset);
         }
 
-        private bool TryDecode(ReadOnlySpan<byte> buffer,out byte value)
+        private bool TryDecode(ReadOnlySpan<byte> buffer, out byte value)
         {
             if (buffer.SequenceEqual(decode5a01))
             {
@@ -212,8 +136,8 @@ namespace JT809.Protocol.MessagePack
         public ushort CalculateCheckXorCode => _calculateCheckCRCCode;
         public ushort RealCheckXorCode => _realCheckCRCCode;
         public bool CheckXorCodeVali => _checkCRCCodeVali;
-        public byte ReadStart()=> ReadByte();
-        public byte ReadEnd()=> ReadByte();
+        public byte ReadStart() => ReadByte();
+        public byte ReadEnd() => ReadByte();
         public ushort ReadUInt16()
         {
             return BinaryPrimitives.ReadUInt16BigEndian(GetReadOnlySpan(2));
@@ -269,7 +193,7 @@ namespace JT809.Protocol.MessagePack
         /// <returns></returns>
         public uint ReadVirtualUInt32(int backwordOffset)
         {
-            return BinaryPrimitives.ReadUInt32BigEndian(GetVirtualReadOnlySpan(backwordOffset,4));
+            return BinaryPrimitives.ReadUInt32BigEndian(GetVirtualReadOnlySpan(backwordOffset, 4));
         }
 
         public int ReadVirtualInt32()
@@ -303,9 +227,9 @@ namespace JT809.Protocol.MessagePack
         {
             return GetReadOnlySpan(len).Slice(0, len);
         }
-        public ReadOnlySpan<byte> ReadArray(int start,int end)
+        public ReadOnlySpan<byte> ReadArray(int start, int end)
         {
-            return Reader.Slice(start,end);
+            return Reader.Slice(start, end);
         }
         public string ReadString(int len)
         {
@@ -394,7 +318,7 @@ namespace JT809.Protocol.MessagePack
             {
                 d = JT809Constants.UTCBaseTime;
             }
-            return d;   
+            return d;
         }
         public DateTime ReadUTCDateTime()
         {
@@ -429,16 +353,16 @@ namespace JT809.Protocol.MessagePack
         {
             return Reader.Slice(ReaderCount, count);
         }
-        public ReadOnlySpan<byte> GetVirtualReadOnlySpan(int backwordOffset,int count)
+        public ReadOnlySpan<byte> GetVirtualReadOnlySpan(int backwordOffset, int count)
         {
-            if(ReaderCount - backwordOffset < 0)
+            if (ReaderCount - backwordOffset < 0)
             {
                 //处理直接子类导致溢出
                 return Reader.Slice(ReaderCount, count);
             }
             return Reader.Slice(ReaderCount - backwordOffset, count);
         }
-        public ReadOnlySpan<byte> ReadContent(int count=0)
+        public ReadOnlySpan<byte> ReadContent(int count = 0)
         {
             if (_decoded)
             {
@@ -465,12 +389,12 @@ namespace JT809.Protocol.MessagePack
             }
             else
             {
-                len= Reader.Length - ReaderCount;
+                len = Reader.Length - ReaderCount;
             }
             if (len < 0) throw new JT809Exception(Enums.JT809ErrorCode.ReaderRemainContentLengthError);
             return len;
         }
-        public void Skip(int count=1)
+        public void Skip(int count = 1)
         {
             ReaderCount += count;
         }

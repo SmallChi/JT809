@@ -44,7 +44,7 @@ namespace JT809.Protocol.Test.Simples
                 WarnTime = DateTime.Parse("2018-09-27 10:24:00"),
                 SupervisionID = "123FFAA1",
                 SupervisionEndTime = DateTime.Parse("2018-09-27 11:24:00"),
-                SupervisionLevel =  JT809_9401_SupervisionLevel.一般,
+                SupervisionLevel = JT809_9401_SupervisionLevel.一般,
                 Supervisor = "smallchi",
                 SupervisorTel = "12345678901",
                 SupervisorEmail = "123456@qq.com"
@@ -104,7 +104,7 @@ namespace JT809.Protocol.Test.Simples
                     WarnTime = DateTime.Parse("2018-09-27 10:24:00"),
                     SupervisionID = "123FFAA1",
                     SupervisionEndTime = DateTime.Parse("2018-09-27 11:24:00"),
-                    SupervisionLevel =  JT809_9401_SupervisionLevel.一般,
+                    SupervisionLevel = JT809_9401_SupervisionLevel.一般,
                     Supervisor = "smallchi",
                     SupervisorTel = "12345678901",
                     SupervisorEmail = "123456@qq.com"
@@ -116,6 +116,26 @@ namespace JT809.Protocol.Test.Simples
             var hex = JT809SerializerTest3.Serialize(jT809Package).ToHexString();
             //"5B000000920000068294000133EFB8010000000000270FD4C1413132333435000000000000000000000000000294010000005C010002000000005A01AC3F40123FFAA1000000005A01AC4D5001736D616C6C636869000000000000000031323334353637383930310000000000000000003132333435364071712E636F6D000000000000000000000000000000000000007AEA5D"
             Assert.Equal("5B000000920000068294000133EFB8010000000000270FD4C1413132333435000000000000000000000000000294010000005C010002000000005A01AC3F40123FFAA1000000005A01AC4D5001736D616C6C636869000000000000000031323334353637383930310000000000000000003132333435364071712E636F6D000000000000000000000000000000000000007AEA5D", hex);
+        }
+
+        [Theory]
+        [InlineData("5B000000540000000D10010000006601020F010000000000000000665F4D7A261313752221202726251313131313752221243D233D233D221313131313131313131313131313131313131313131313345E0191E45D")]
+        public void Test4(string hex)
+        {
+            var serializer = new DefaultConfig(Guid.NewGuid().ToString("N"))
+            {
+                EncryptOptions = new JT809EncryptOptions
+                {
+                    IA1 = 20240604,
+                    IC1 = 20240604,
+                    M1 = 20240604
+                },
+                Version = JT809Version.JTT2019
+            }
+            .GetSerializer();
+            var package = serializer.Deserialize(hex.ToHexBytes());
+            Assert.NotNull(package.Bodies);
+            Assert.IsAssignableFrom<JT809Bodies>(package.Bodies);
         }
     }
 }
