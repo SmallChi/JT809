@@ -76,7 +76,7 @@ namespace JT809.Protocol.MessagePack
                 allocateBuffer[offset++] = tmp;
             }
             Reader = allocateBuffer.Slice(0, offset);
-            _realCheckCRCCode = (ushort)((Reader[^3] << 8) | Reader[^2]);
+            _realCheckCRCCode = (ushort)((Reader[Reader.Length - 3] << 8) | Reader[Reader.Length - 2]);
             _checkCRCCodeVali = _calculateCheckCRCCode == _realCheckCRCCode;
             _decoded = true;
         }
