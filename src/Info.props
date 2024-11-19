@@ -1,6 +1,6 @@
 ﻿<Project>
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net7.0;net8.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8.0;net9.0;</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<Copyright>Copyright 2018.</Copyright>
 		<Authors>SmallChi(Koike)</Authors>
@@ -8,7 +8,7 @@
 		<PackageProjectUrl>https://github.com/SmallChi/JT809</PackageProjectUrl>
 		<license>https://github.com/SmallChi/JT809/blob/master/LICENSE</license>
 		<licenseUrl>https://github.com/SmallChi/JT809/blob/master/LICENSE</licenseUrl>
-		<Version>2.2.5</Version>
+		<Version>2.2.6</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<AnalysisLevel>latest</AnalysisLevel>

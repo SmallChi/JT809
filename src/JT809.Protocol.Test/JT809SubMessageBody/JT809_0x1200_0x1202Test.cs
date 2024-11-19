@@ -190,7 +190,7 @@ namespace JT809.Protocol.Test.JT809SubMessageBody
             Assert.Equal(132444444, jt808_0x0200.Lng);
             Assert.Equal(60, jt808_0x0200.Speed);
             Assert.Equal((uint)2, jt808_0x0200.StatusFlag);
-            Assert.Equal(100, ((JT808_0x0200_0x01)jt808_0x0200.BasicLocationAttachData[JT808Constants.JT808_0x0200_0x01]).Mileage);
+            Assert.Equal(100u, ((JT808_0x0200_0x01)jt808_0x0200.BasicLocationAttachData[JT808Constants.JT808_0x0200_0x01]).Mileage);
             Assert.Equal(55, ((JT808_0x0200_0x02)jt808_0x0200.BasicLocationAttachData[JT808Constants.JT808_0x0200_0x02]).Oil);
 
         }
