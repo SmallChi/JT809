@@ -2843,6 +2843,18 @@
             <para>描述:下级平台向上级平台上传车辆单向监听请求消息的应答</para>
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1501.SourceDataType">
+            <summary>
+            对应车辆单向监听请求消息源子业务类型标识
+            809 2019
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1501.SourceMsgSN">
+            <summary>
+            对应车辆单向监听请求消息源报文序列号
+            809 2019
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1501.Result">
             <summary>
             应答结果

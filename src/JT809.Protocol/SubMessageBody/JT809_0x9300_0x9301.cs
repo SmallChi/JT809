@@ -54,6 +54,7 @@ namespace JT809.Protocol.SubMessageBody
                 virtualHex = reader.ReadVirtualArray(20);
                 value.ObjectID = reader.ReadString(20);
                 writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]查岗对象的ID", value.ObjectID);
+                value.AnswerTime = reader.ReadByte();
                 writer.WriteNumber($"[{value.AnswerTime.ReadNumber()}]查岗应答时限", value.AnswerTime);
             }
             value.InfoID = reader.ReadUInt32();
