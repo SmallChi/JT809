@@ -63,14 +63,18 @@ namespace JT809.Protocol.Metadata
             writer.WriteString($"[{GNSSData.Encrypt.ToByteValue()}]是否使用国家测绘局批准的地图保密插件进行加密", GNSSData.Encrypt.ToString());
             var gnssDataLength = reader.ReadUInt32();
             writer.WriteNumber($"[{gnssDataLength.ReadNumber()}]车辆定位信息数据长度", gnssDataLength);
-            if(config.AnalyzeCallbacks.TryGetValue(0x0200,out JT808AnalyzeCallback jT808AnalyzeCallback))
+            if (gnssDataLength > 0)
             {
-                jT808AnalyzeCallback(reader.ReadArray((int)gnssDataLength).ToArray(), writer, config);
-            }
-            else
-            {
-                GNSSData.GnssData = reader.ReadArray((int)gnssDataLength).ToArray();
-                writer.WriteString($"[{GNSSData.GnssData.ToHexString()}]车辆定位信息内容", GNSSData.GnssData.ToHexString());
+                if (config.AnalyzeCallbacks.TryGetValue(0x0200, out JT808AnalyzeCallback jT808AnalyzeCallback))
+                {
+                    jT808AnalyzeCallback(reader.ReadArray((int)gnssDataLength).ToArray(), writer, config);
+                }
+                else
+                {
+                    GNSSData.GnssData = reader.ReadArray((int)gnssDataLength).ToArray();
+                    writer.WriteString($"[{GNSSData.GnssData.ToHexString()}]车辆定位信息内容", GNSSData.GnssData.ToHexString());
+                }
+
             }
             var virtualHex = reader.ReadVirtualArray(11);
             GNSSData.PlatformId1 = reader.ReadString(11);

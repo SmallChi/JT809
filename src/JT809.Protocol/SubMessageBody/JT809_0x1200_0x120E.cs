@@ -26,7 +26,14 @@ namespace JT809.Protocol.SubMessageBody
             var value = new JT809_0x1200_0x120E();
             var virtualHex = reader.ReadVirtualArray(reader.ReadCurrentRemainContentLength());
             value.DRVLine = reader.ReadArray(reader.ReadCurrentRemainContentLength()).ToArray();
-            writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]路线信息", value.DRVLine);
+            writer.WriteString($"路线信息", value.DRVLine);
+            if(value.DRVLine!=null && value.DRVLine.Length > 0)
+            {
+                if (config.AnalyzeCallbacks.TryGetValue(0x8606, out JT808AnalyzeCallback jT808AnalyzeCallback))
+                {
+                    jT808AnalyzeCallback(value.DRVLine, writer, config);
+                }
+            } 
         }
 
         public JT809_0x1200_0x120E Deserialize(ref JT809MessagePackReader reader, IJT809Config config)

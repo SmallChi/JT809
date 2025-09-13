@@ -2867,6 +2867,18 @@
             <para>描述:下级平台应答上级平台发送的车辆拍照请求消息，上传图片信息到上级平台</para>
             </summary>
         </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1502.SourceDataType">
+            <summary>
+            对应车辆单向监听请求消息源子业务类型标识
+            809 2019
+            </summary>
+        </member>
+        <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1502.SourceMsgSN">
+            <summary>
+            对应车辆单向监听请求消息源报文序列号
+            809 2019
+            </summary>
+        </member>
         <member name="P:JT809.Protocol.SubMessageBody.JT809_0x1500_0x1502.PhotoRspFlag">
             <summary>
             拍照应答标识

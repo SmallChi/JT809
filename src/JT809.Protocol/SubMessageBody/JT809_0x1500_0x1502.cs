@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using JT809.Protocol.Interfaces;
 using System.Text.Json;
+using System.IO;
 
 namespace JT809.Protocol.SubMessageBody
 {
@@ -22,10 +23,19 @@ namespace JT809.Protocol.SubMessageBody
 
         public override string Description => "车辆拍照应答";
         /// <summary>
+        /// 对应车辆单向监听请求消息源子业务类型标识
+        /// 809 2019
+        /// </summary>
+        public ushort SourceDataType { get; set; }
+        /// <summary>
+        /// 对应车辆单向监听请求消息源报文序列号
+        /// 809 2019
+        /// </summary>
+        public uint SourceMsgSN { get; set; }
+        /// <summary>
         /// 拍照应答标识
         /// </summary>
         public JT809_0x1502_PhotoRspFlag PhotoRspFlag { get; set; }
-
         /// <summary>
         /// 车辆定位信息 2011版本
         /// </summary>
@@ -58,6 +68,13 @@ namespace JT809.Protocol.SubMessageBody
         public void Analyze(ref JT809MessagePackReader reader, Utf8JsonWriter writer, IJT809Config config)
         {
             JT809_0x1500_0x1502 value = new JT809_0x1500_0x1502();
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.SourceDataType = reader.ReadUInt16();
+                writer.WriteNumber($"[{value.SourceDataType.ReadNumber()}]对应车辆单向监听请求消息源子业务类型标识", value.SourceDataType);
+                value.SourceMsgSN = reader.ReadUInt32();
+                writer.WriteNumber($"[{value.SourceMsgSN.ReadNumber()}]对应车辆单向监听请求消息源报文序列号", value.SourceMsgSN);
+            }
             value.PhotoRspFlag = (JT809_0x1502_PhotoRspFlag)reader.ReadByte();
             writer.WriteString($"[{value.PhotoRspFlag.ToByteValue()}]拍照应答标识", value.PhotoRspFlag.ToString());
             if (config.Version == JT809Version.JTT2011)
@@ -73,19 +90,39 @@ namespace JT809.Protocol.SubMessageBody
             value.PhotoLen = reader.ReadUInt32();
             writer.WriteNumber($"[{value.PhotoLen}]图片长度", value.PhotoLen);
             value.SizeType = (JT809_0x9502_SizeType)reader.ReadByte();
-            writer.WriteString($"[{value.SizeType.ToByteValue()}]图片大小", value.SizeType.ToString());
+            writer.WriteString($"[{value.SizeType.ToByteValue()}]图片分辨率", value.SizeType.ToString());
             value.Type = (JT809_0x9502_ImageType)reader.ReadByte();
             writer.WriteString($"[{value.Type.ToByteValue()}]图像格式", value.Type.ToString());
             if (value.PhotoLen > 0)
             {
-                var virtualHex = reader.ReadVirtualArray((int)value.PhotoLen);
-                value.Photo = reader.ReadArray((int)value.PhotoLen).ToArray();
-                writer.WriteString($"[{virtualHex.ToArray().ToHexString()}]图片内容", value.Photo);
+                var remainLen = reader.ReadCurrentRemainContentLength();
+                ReadOnlySpan<byte> temp;
+                if ((remainLen - value.PhotoLen) <0)
+                {
+                    temp = reader.ReadArray(remainLen);
+                    writer.WriteString($"图片内容与实际长度不符合",$"实际长度[{value.PhotoLen}]_剩余长度[{remainLen}]_差值[{remainLen - value.PhotoLen}]" );
+                }
+                else
+                {
+                    temp = reader.ReadArray((int)value.PhotoLen);
+                }
+                value.Photo = temp.ToArray();
+                writer.WriteString($"图片内容(base64)", Convert.ToBase64String(value.Photo));
+                writer.WriteString($"图片内容(Hex)", value.Photo.ToHexString());
+                //using FileStream fs = new FileStream("photo.bin", FileMode.OpenOrCreate, FileAccess.Write);
+                //fs.Write(temp.ToArray(), 0, temp.Length);
+                //fs.Flush();
             }
         }
+
         public JT809_0x1500_0x1502 Deserialize(ref JT809MessagePackReader reader, IJT809Config config)
         {
             JT809_0x1500_0x1502 value = new JT809_0x1500_0x1502();
+            if (config.Version == JT809Version.JTT2019)
+            {
+                value.SourceDataType = reader.ReadUInt16();
+                value.SourceMsgSN = reader.ReadUInt32();
+            }
             value.PhotoRspFlag = (JT809_0x1502_PhotoRspFlag)reader.ReadByte();
             if (config.Version == JT809Version.JTT2011)
             {
@@ -101,13 +138,28 @@ namespace JT809.Protocol.SubMessageBody
             value.Type = (JT809_0x9502_ImageType)reader.ReadByte();
             if (value.PhotoLen > 0)
             {
-                value.Photo = reader.ReadArray((int)value.PhotoLen).ToArray();
+                var remainLen = reader.ReadCurrentRemainContentLength();
+                ReadOnlySpan<byte> temp;
+                if ((remainLen - value.PhotoLen) < 0)
+                {
+                    temp = reader.ReadArray(remainLen);
+                }
+                else
+                {
+                    temp = reader.ReadArray((int)value.PhotoLen);
+                }
+                value.Photo = temp.ToArray();
             }
             return value;
         }
 
         public void Serialize(ref JT809MessagePackWriter writer, JT809_0x1500_0x1502 value, IJT809Config config)
         {
+            if (config.Version == JT809Version.JTT2019)
+            {
+                writer.WriteUInt16(value.SourceDataType);
+                writer.WriteUInt32(value.SourceMsgSN);
+            }
             writer.WriteByte((byte)value.PhotoRspFlag);
             if (config.Version == JT809Version.JTT2011)
             {
