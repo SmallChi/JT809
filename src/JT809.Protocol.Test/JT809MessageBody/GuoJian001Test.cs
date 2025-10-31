@@ -140,6 +140,12 @@ namespace JT809.Protocol.Test.JT809MessageBody
         {
             var package = JT809_2019_Serializer.Analyze("5b00000033000002581400052df12c0000000100003b890000000068b7a9c0b7a40dc8859dc47888e98b8678be0e5b91232e5d".ToHexBytes(),options);
         }
+             
+        [Fact(DisplayName = "2019版序列化-大兄弟提供14")]
+        public void GuoJian001_2019_14()
+        {
+            var package = JT809_2019_Serializer.Analyze("5b000000d80000036d1200052df12c0000000100003b890000000068d8c78f6a674e82b6aef82e91879f8478be0e5f9087119a5ae396940d1cf3e8d127391563ebff619e887d75e63836951aa437fae48b3f0ff1b174070fdd03eaac020cba76326371d7d7e0e657020c75e68d398c4a5fc71a89db6eb412bed061b6a037a9be6ba38aa6c5cd3ff712a603e652439cb88f52ae9aa7c117f8bf1dc36de797e348d5e192dbfcd2c39f5b1f371f270199cb17ea1a3b153df8184de19173d0d96111b140a938c8755091a90ea02817cc734b36e1e887be08b65d".ToHexBytes(),options);
+        }
 
         class GuoJian001_GlobalConfig : JT809GlobalConfigBase
         {

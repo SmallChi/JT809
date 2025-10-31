@@ -1,5 +1,6 @@
 ﻿using JT809.Protocol.Enums;
 using JT809.Protocol.Exceptions;
+using JT809.Protocol.Extensions.JT1078.Enums;
 using JT809.Protocol.Formatters;
 using JT809.Protocol.Interfaces;
 using JT809.Protocol.MessagePack;
@@ -15,7 +16,7 @@ namespace JT809.Protocol.Extensions.JT1078.MessageBody
     /// </summary>
     public class JT809_JT1078_0x1800 : JT809ExchangeMessageBodies, IJT809MessagePackFormatter<JT809_JT1078_0x1800>, IJT809Analyze
     {
-        public override ushort MsgId { get; }
+        public override ushort MsgId { get; } = JT809_JT1078_BusinessType.主链路实时音视频业务类.ToUInt16Value();
 
         public override JT809_LinkType LinkType { get; } = JT809_LinkType.main;
 
