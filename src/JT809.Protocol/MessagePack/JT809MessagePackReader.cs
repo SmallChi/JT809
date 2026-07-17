@@ -45,7 +45,7 @@ namespace JT809.Protocol.MessagePack
             Reader = buffer;
         }
         /// <summary>
-        /// 在解码的时候把校验和也计算出来，避免在循环一次进行校验
+        /// 
         /// </summary>
         /// <returns></returns>
         public void Decode()
@@ -55,25 +55,31 @@ namespace JT809.Protocol.MessagePack
             _decoded = true;
         }
         /// <summary>
-        /// 在解码的时候把校验和也计算出来，避免在循环一次进行校验
+        /// 
         /// </summary>
         /// <returns></returns>
         public void Decode(Span<byte> allocateBuffer)
         {
             int offset = 0;
-            var checkcodeOffset = SrcBuffer.Length - 3;
             for (int i = 0; i < SrcBuffer.Length; i++)
             {
-                if (TryDecode(SrcBuffer.Slice(i, SrcBuffer.Length - i < 2 ? 1 : 2), out byte tmp))
+                byte tmp;
+                if ((SrcBuffer.Length - i) >= 2)
                 {
-                    i++;
-                    checkcodeOffset--;
+                    if (TryDecode(SrcBuffer.Slice(i, 2), out tmp))
+                    {
+                        i++;
+                    }
                 }
-                if (offset > 0 && offset < checkcodeOffset)
+                else
                 {
-                    _calculateCheckCRCCode = (ushort)((_calculateCheckCRCCode << 8) ^ (ushort)CRCUtil.CRC[(_calculateCheckCRCCode >> 8) ^ tmp]);
+                    tmp = SrcBuffer[i];
                 }
                 allocateBuffer[offset++] = tmp;
+            }
+            for (int i = 1; i < offset - 3; i++)
+            {
+                _calculateCheckCRCCode = (ushort)((_calculateCheckCRCCode << 8) ^ (ushort)CRCUtil.CRC[(_calculateCheckCRCCode >> 8) ^ allocateBuffer[i]]);
             }
             Reader = allocateBuffer.Slice(0, offset);
             _realCheckCRCCode = (ushort)((Reader[Reader.Length - 3] << 8) | Reader[Reader.Length - 2]);

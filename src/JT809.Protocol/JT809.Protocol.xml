@@ -1834,13 +1834,13 @@
         </member>
         <member name="M:JT809.Protocol.MessagePack.JT809MessagePackReader.Decode">
             <summary>
-            在解码的时候把校验和也计算出来，避免在循环一次进行校验
+            
             </summary>
             <returns></returns>
         </member>
         <member name="M:JT809.Protocol.MessagePack.JT809MessagePackReader.Decode(System.Span{System.Byte})">
             <summary>
-            在解码的时候把校验和也计算出来，避免在循环一次进行校验
+            
             </summary>
             <returns></returns>
         </member>
